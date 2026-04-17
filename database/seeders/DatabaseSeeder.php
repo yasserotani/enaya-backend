@@ -15,11 +15,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            AdminSeeder::class,
+            DepartmentSeeder::class,
+            DoctorSeeder::class,
+            PatientSeeder::class,
+            AppointmentSeeder::class,
+            QueueSeeder::class
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
         ]);
+        $receptionistUser = User::factory()->create([
+            'name' => 'Receptionist User',
+            'email' => 'receptionist@example.com',
+        ]);
+        $receptionistUser->assignRole('receptionist');
+
+
     }
 }

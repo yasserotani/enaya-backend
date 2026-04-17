@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->unique()->constrained('users')->cascadeOnDelete();
-            $table->foreignId('department_id')->index();
+            $table->foreignId('department_id')->constrained('departments')->restrictOnDelete(); // can't delete a department if there is a doctor linked to it
             $table->string('specialty');
             $table->timestamps();
         });

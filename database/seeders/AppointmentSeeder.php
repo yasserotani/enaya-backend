@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Appointment;
+use App\Models\Doctor;
+use App\Models\Patient;
 use Illuminate\Database\Seeder;
 
 class AppointmentSeeder extends Seeder
@@ -11,6 +14,23 @@ class AppointmentSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $doctors = Doctor::query()->get();
+        $patients = Patient::query()->get();
+
+        if ($doctors->isEmpty() || $patients->isEmpty()) {
+            return;
+        }
+
+        $appointmentCount = fake()->numberBetween(10, 20);
+
+        for ($index = 0; $index < $appointmentCount; $index++) {
+            Appointment::create([
+                'doctor_id' => $doctors->random()->id,
+                'patient_id' => $patients->random()->id,
+                'scheduled_at' => now()->addDays($index + 1)->setTime(fake()->numberBetween(8, 16), fake()->randomElement([0, 30])),
+                'status' => fake()->randomElement(['pending', 'confirmed', 'completed', 'canceled', 'no_show']),
+                'notes' => fake()->optional(0.7)->sentence(),
+            ]);
+        }
     }
 }

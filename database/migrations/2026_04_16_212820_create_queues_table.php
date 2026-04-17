@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('appointment_id')->nullable()->constrained('appointments')->nullOnDelete();
             $table->unsignedInteger('position');
             $table->enum('status', ['waiting', 'in_session', 'done'])->default('waiting');
+            $table->dateTime('waiting_since')->nullable();
             $table->text('notes')->nullable();
             $table->unique('appointment_id'); // prevent multiple appointment to add to queue at the same time
             $table->timestamps();

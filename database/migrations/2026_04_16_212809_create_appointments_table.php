@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('doctor_id')->constrained('doctors')->cascadeOnDelete();
             $table->foreignId('patient_id')->constrained('patients')->cascadeOnDelete();
-            $table->dateTime('appointment_date');
+            $table->dateTime('scheduled_at');
             $table->enum('status', ['pending', 'confirmed', 'completed', 'canceled', 'no_show'])
                 ->default('pending');
             $table->text('notes')->nullable();
-            $table->unique(['doctor_id', 'appointment_date']);
+            $table->unique(['doctor_id', 'scheduled_at']);
             $table->timestamps();
         });
     }
