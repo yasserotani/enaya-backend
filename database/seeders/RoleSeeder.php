@@ -13,8 +13,7 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = Role::firstOrCreate(['name' => 'admin']);
-        $receptionist = Role::firstOrCreate(['name' => 'receptionist']);
+        $receptionist = Role::firstOrCreate(['name' => 'receptionist', 'guard_name' => 'web']);
         $receptionist->givePermissionTo([
             'view-appointments',
             'create-appointment',
@@ -23,9 +22,8 @@ class RoleSeeder extends Seeder
             'view-queue',
             'manage-queue',
         ]);
-        $admin->givePermissionTo(Permission::all());
 
-        $doctor = Role::firstOrCreate(['name' => 'doctor']);
+        $doctor = Role::firstOrCreate(['name' => 'doctor', 'guard_name' => 'web']);
         $doctor->givePermissionTo([
             'view-appointments',
             'view-medical-records',
@@ -34,10 +32,13 @@ class RoleSeeder extends Seeder
         ]);
 
 
-        $patient = Role::firstOrCreate(['name' => 'patient']);
+        $patient = Role::firstOrCreate(['name' => 'patient', 'guard_name' => 'web']);
         $patient->givePermissionTo([
             'view-appointments',
             'create-appointment',
         ]);
+
+        $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
+        $admin->givePermissionTo(Permission::all());
     }
 }

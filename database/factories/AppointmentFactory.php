@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
@@ -19,11 +20,13 @@ class AppointmentFactory extends Factory
      */
     public function definition(): array
     {
+        $statuses = array_column(AppointmentStatus::cases(), 'value');
+
         return [
             'doctor_id' => Doctor::factory(),
             'patient_id' => Patient::factory(),
             'scheduled_at' => fake()->dateTimeBetween('+1 day', '+30 days'),
-            'status' => fake()->randomElement(['pending', 'confirmed', 'completed', 'canceled', 'no_show']),
+            'status' => fake()->randomElement($statuses),
             'notes' => fake()->optional(0.7)->text(100),
         ];
     }
