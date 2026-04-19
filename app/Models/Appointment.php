@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AppointmentStatus;
 use Database\Factories\AppointmentFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +22,7 @@ class Appointment extends Model
             'doctor_id' => 'integer',
             'patient_id' => 'integer',
             'scheduled_at' => 'datetime',
+            'status' => AppointmentStatus::class,
         ];
     }
 

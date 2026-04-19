@@ -1,0 +1,323 @@
+@keyframes move {
+    100% {
+        transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    flex-direction: column;
+    color: #000000;
+    font-size: larger
+}
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    /*background: #4CB8B6;*/
+    background: #0A1A1F;
+    background: linear-gradient(135deg, #0F2027, #203A43, #2C5364);
+    overflow: hidden;
+}
+
+.ball {
+    position: absolute;
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    animation: move linear infinite;
+}
+
+.ball:nth-child(odd) {
+    color: #006D5B;
+}
+
+.ball:nth-child(even) {
+    color: #FF6F61;
+}
+
+/* Using a custom attribute for variability */
+.ball:nth-child(1) {
+    top: 77%;
+    left: 88%;
+    animation-duration: 40s;
+    animation-delay: -3s;
+    transform-origin: 16vw -2vh;
+    box-shadow: 40vmin 0 5.703076368487546vmin currentColor;
+}
+.ball:nth-child(2) {
+    top: 42%;
+    left: 2%;
+    animation-duration: 53s;
+    animation-delay: -29s;
+    transform-origin: -19vw 21vh;
+    box-shadow: -40vmin 0 5.17594621519026vmin currentColor;
+}
+.ball:nth-child(3) {
+    top: 28%;
+    left: 18%;
+    animation-duration: 49s;
+    animation-delay: -8s;
+    transform-origin: -22vw 3vh;
+    box-shadow: 40vmin 0 5.248179047256236vmin currentColor;
+}
+.ball:nth-child(4) {
+    top: 50%;
+    left: 79%;
+    animation-duration: 26s;
+    animation-delay: -21s;
+    transform-origin: -17vw -6vh;
+    box-shadow: 40vmin 0 5.279749632220298vmin currentColor;
+}
+.ball:nth-child(5) {
+    top: 46%;
+    left: 15%;
+    animation-duration: 36s;
+    animation-delay: -40s;
+    transform-origin: 4vw 0vh;
+    box-shadow: -40vmin 0 5.964309466052033vmin currentColor;
+}
+.ball:nth-child(6) {
+    top: 77%;
+    left: 16%;
+    animation-duration: 31s;
+    animation-delay: -10s;
+    transform-origin: 18vw 4vh;
+    box-shadow: 40vmin 0 5.178483653434181vmin currentColor;
+}
+.ball:nth-child(7) {
+    top: 22%;
+    left: 17%;
+    animation-duration: 55s;
+    animation-delay: -6s;
+    transform-origin: 1vw -23vh;
+    box-shadow: -40vmin 0 5.703026794398318vmin currentColor;
+}
+.ball:nth-child(8) {
+    top: 41%;
+    left: 47%;
+    animation-duration: 43s;
+    animation-delay: -28s;
+    transform-origin: 25vw -3vh;
+    box-shadow: 40vmin 0 5.196265905749415vmin currentColor;
+}
+.holographic-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000;
+}
+
+.holographic-card {
+    width: 700px;
+    height: 200px;
+    /*background: #222;*/
+    background: #111;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    transition: all 0.5s ease;
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+
+}
+
+.holographic-card h2 {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0,255,255,0.4);
+    font-size: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.holographic-card::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -10%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        0deg,
+        transparent,
+        transparent 30%,
+        rgba(0,255,255,0.3)
+    );
+    transform: rotate(-45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.holographic-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,255,255,0.5);
+}
+
+.holographic-card:hover::before {
+    opacity: 1;
+    transform: rotate(-45deg) translateY(100%);
+}
+.loader_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 350px;
+}
+.loader {
+    --color-one: #ffbf48;
+    --color-two: #be4a1d;
+    --color-three: #ffbf4780;
+    --color-four: #bf4a1d80;
+    --color-five: #ffbf4740;
+    --time-animation: 2s;
+    --size: 1; /* You can change the size */
+    position: relative;
+    border-radius: 50%;
+    transform: scale(var(--size));
+    box-shadow:
+        0 0 25px 0 var(--color-three),
+        0 20px 50px 0 var(--color-four);
+    animation: colorize calc(var(--time-animation) * 3) ease-in-out infinite;
+    width: 100px;
+    height: 100px;
+}
+
+.loader::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-top: solid 1px var(--color-one);
+    border-bottom: solid 1px var(--color-two);
+    background: linear-gradient(180deg, var(--color-five), var(--color-four));
+    box-shadow:
+        inset 0 10px 10px 0 var(--color-three),
+        inset 0 -10px 10px 0 var(--color-four);
+}
+
+.loader .box {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(
+        180deg,
+        var(--color-one) 30%,
+        var(--color-two) 70%
+    );
+    mask: url(#clipping);
+    -webkit-mask: url(#clipping);
+}
+
+.loader svg {
+    position: absolute;
+}
+
+.loader svg #clipping {
+    filter: contrast(15);
+    animation: roundness calc(var(--time-animation) / 2) linear infinite;
+}
+
+.loader svg #clipping polygon {
+    filter: blur(7px);
+}
+
+.loader svg #clipping polygon:nth-child(1) {
+    transform-origin: 75% 25%;
+    transform: rotate(90deg);
+}
+
+.loader svg #clipping polygon:nth-child(2) {
+    transform-origin: 50% 50%;
+    animation: rotation var(--time-animation) linear infinite reverse;
+}
+
+.loader svg #clipping polygon:nth-child(3) {
+    transform-origin: 50% 60%;
+    animation: rotation var(--time-animation) linear infinite;
+    animation-delay: calc(var(--time-animation) / -3);
+}
+
+.loader svg #clipping polygon:nth-child(4) {
+    transform-origin: 40% 40%;
+    animation: rotation var(--time-animation) linear infinite reverse;
+}
+
+.loader svg #clipping polygon:nth-child(5) {
+    transform-origin: 40% 40%;
+    animation: rotation var(--time-animation) linear infinite reverse;
+    animation-delay: calc(var(--time-animation) / -2);
+}
+
+.loader svg #clipping polygon:nth-child(6) {
+    transform-origin: 60% 40%;
+    animation: rotation var(--time-animation) linear infinite;
+}
+
+.loader svg #clipping polygon:nth-child(7) {
+    transform-origin: 60% 40%;
+    animation: rotation var(--time-animation) linear infinite;
+    animation-delay: calc(var(--time-animation) / -1.5);
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes roundness {
+    0% {
+        filter: contrast(15);
+    }
+    20% {
+        filter: contrast(3);
+    }
+    40% {
+        filter: contrast(3);
+    }
+    60% {
+        filter: contrast(15);
+    }
+    100% {
+        filter: contrast(15);
+    }
+}
+
+@keyframes colorize {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    20% {
+        filter: hue-rotate(-30deg);
+    }
+    40% {
+        filter: hue-rotate(-60deg);
+    }
+    60% {
+        filter: hue-rotate(-90deg);
+    }
+    80% {
+        filter: hue-rotate(-45deg);
+    }
+    100% {
+        filter: hue-rotate(0deg);
+    }
+}

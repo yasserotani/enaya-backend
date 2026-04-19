@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 class RoleSeeder extends Seeder
 {
     /**
@@ -13,6 +14,15 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $admin = Role::firstOrCreate(['name' => 'admin']);
+        $receptionist = Role::firstOrCreate(['name' => 'receptionist']);
+        $receptionist->givePermissionTo([
+            'view-appointments',
+            'create-appointment',
+            'cancel-appointment',
+            'manage-schedule',
+            'view-queue',
+            'manage-queue',
+        ]);
         $admin->givePermissionTo(Permission::all());
 
         $doctor = Role::firstOrCreate(['name' => 'doctor']);
@@ -23,15 +33,6 @@ class RoleSeeder extends Seeder
             'view-queue',
         ]);
 
-        $receptionist = Role::firstOrCreate(['name' => 'receptionist']);
-        $receptionist->givePermissionTo([
-            'view-appointments',
-            'create-appointment',
-            'cancel-appointment',
-            'manage-schedule',
-            'view-queue',
-            'manage-queue',
-        ]);
 
         $patient = Role::firstOrCreate(['name' => 'patient']);
         $patient->givePermissionTo([
