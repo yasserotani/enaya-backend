@@ -9,6 +9,8 @@
     ],
     "license": "MIT",
     "require": {
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
         "php": "^8.3",
         "laravel/framework": "^13.0",
         "laravel/sanctum": "^4.0",
