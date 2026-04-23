@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,19 +18,15 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             AdminSeeder::class,
+            UserSeeder::class,
+            ReceptionistSeeder::class,
             DepartmentSeeder::class,
+            DoctorUserSeeder::class,
             DoctorSeeder::class,
             PatientSeeder::class,
             AppointmentSeeder::class,
-            QueueSeeder::class
-
+            QueueSeeder::class,
         ]);
-        $receptionistUser = User::factory()->create([
-            'name' => 'Receptionist User',
-            'email' => 'receptionist@example.com',
-        ]);
-        $receptionistUser->assignRole('receptionist');
-
 
     }
 }
