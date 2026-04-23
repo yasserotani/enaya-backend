@@ -22,7 +22,7 @@ class AuthController extends Controller
                 ->orWhere('name', $request->usernameOrEmail);
         })->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -53,7 +53,7 @@ class AuthController extends Controller
             $patientRole = Role::findOrCreate('patient', 'web');
 
             $user = User::create([
-                'name' => $request->userName,
+                'name' => $request->username,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
