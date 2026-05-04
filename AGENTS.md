@@ -9,7 +9,7 @@ The Laravel Boost guidelines are specifically curated by Laravel maintainers for
 
 This application is a Laravel application and its main Laravel ecosystems package & versions are below. You are an expert with them all. Ensure you abide by these specific packages & versions.
 
-- php - 8.4
+- php - 8.3+
 - laravel/framework (LARAVEL) - v13
 - laravel/prompts (PROMPTS) - v0
 - laravel/sanctum (SANCTUM) - v4
@@ -19,6 +19,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - laravel/pint (PINT) - v1
 - pestphp/pest (PEST) - v4
 - phpunit/phpunit (PHPUNIT) - v12
+- spatie/laravel-permission - v7
 - tailwindcss (TAILWINDCSS) - v4
 
 ## Skills Activation
@@ -43,10 +44,14 @@ This project has domain-specific skills available. You MUST activate the relevan
 
 - Stick to existing directory structure; don't create new base folders without approval.
 - Do not change the application's dependencies without approval.
+- API routes are organized in `routes/api.php` with domain-specific includes (for example `require __DIR__ . '/api/auth.php';`), and auth endpoints live under `/api/auth/*`.
+- Keep request validation in `app/Http/Requests` (for example `LoginRequest`, `RegisterRequest`) and response shaping in `app/Http/Resources` (for example `UserResource`).
+- In Eloquent models, follow the current Laravel 13 attribute pattern (`#[Fillable([...])]`, `#[Hidden([...])]`) used across `app/Models` instead of adding legacy `$fillable`/`$hidden` arrays.
 
 ## Frontend Bundling
 
 - If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `npm run build`, `npm run dev`, or `composer run dev`. Ask them.
+- Prefer `composer run dev` for local development because it runs the server, queue worker, and Vite together; use `composer run setup` for first-time environment bootstrap.
 
 ## Documentation Files
 
@@ -131,6 +136,8 @@ This project has domain-specific skills available. You MUST activate the relevan
 - When creating models for tests, use the factories for the models. Check if the factory has custom states that can be used before manually setting up the model.
 - Faker: Use methods such as `$this->faker->word()` or `fake()->randomDigit()`. Follow existing conventions whether to use `$this->faker` or `fake()`.
 - When creating tests, make use of `php artisan make:test [options] {name}` to create a feature test, and pass `--unit` to create a unit test. Most tests should be feature tests.
+- `tests/Pest.php` currently binds `Tests\TestCase` to `tests/Feature` only; if a `tests/Unit` test needs the Laravel application container, explicitly move it to Feature or bind it intentionally.
+- `RefreshDatabase` is not globally enabled in `tests/Pest.php`; add it per test file/suite when database isolation is required.
 
 ## Vite Error
 
