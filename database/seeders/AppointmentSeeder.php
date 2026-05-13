@@ -15,6 +15,10 @@ class AppointmentSeeder extends Seeder
      */
     public function run(): void
     {
+        if (Appointment::query()->exists()) {
+            return;
+        }
+
         $doctors = Doctor::query()->get();
         $patients = Patient::query()->get();
 

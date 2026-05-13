@@ -13,6 +13,7 @@
         "ext-pdo": "*",
         "ext-pdo_mysql": "*",
         "fakerphp/faker": "^1.24",
+        "knuckleswtf/scribe": "^5.10",
         "laravel/framework": "^13.0",
         "laravel/sanctum": "^4.3",
         "laravel/tinker": "^3.0",

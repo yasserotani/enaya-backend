@@ -27,6 +27,38 @@ class RegisterRequest extends FormRequest
             'email' => 'required|email|unique:users',
             'phone' => 'required|string',
             'password' => 'required|min:8|confirmed',
+            'password_confirmation' => 'required|string',
+        ];
+    }
+
+    /**
+     * Get the body parameters for documentation.
+     *
+     * @return array<string, mixed>
+     */
+    public function bodyParameters(): array
+    {
+        return [
+            'username' => [
+                'description' => 'The user\'s unique username',
+                'example' => 'newuser123',
+            ],
+            'email' => [
+                'description' => 'The user\'s email address',
+                'example' => 'newuser@enaya.com',
+            ],
+            'phone' => [
+                'description' => 'The user\'s phone number',
+                'example' => '+966501234567',
+            ],
+            'password' => [
+                'description' => 'The user\'s password (minimum 8 characters)',
+                'example' => 'password',
+            ],
+            'password_confirmation' => [
+                'description' => 'Password confirmation (must match password)',
+                'example' => 'password',
+            ],
         ];
     }
 }

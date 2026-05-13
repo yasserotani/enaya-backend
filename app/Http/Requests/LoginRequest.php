@@ -27,4 +27,23 @@ class LoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    /**
+     * Get the body parameters for documentation.
+     *
+     * @return array<string, mixed>
+     */
+    public function bodyParameters(): array
+    {
+        return [
+            'usernameOrEmail' => [
+                'description' => 'The user\'s username or email address',
+                'example' => 'user@enaya.com',
+            ],
+            'password' => [
+                'description' => 'The user\'s password',
+                'example' => 'password',
+            ],
+        ];
+    }
 }

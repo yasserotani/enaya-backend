@@ -14,6 +14,9 @@ use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
+    /**
+     * @unauthenticated
+     */
     public function login(LoginRequest $request)
     {
         // get user by email or name
@@ -22,7 +25,7 @@ class AuthController extends Controller
                 ->orWhere('name', $request->usernameOrEmail);
         })->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -47,6 +50,9 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * @unauthenticated
+     */
     public function register(RegisterRequest $request)
     {
         return DB::transaction(function () use ($request) { //sucess all faule all
