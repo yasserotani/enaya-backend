@@ -20,7 +20,13 @@ class PatientFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'phone' => fake()->unique()->phoneNumber(),
             'address' => fake()->address(),
+            'job' => fake()->optional(0.6)->jobTitle(),
+            'gender' => fake()->randomElement(['male', 'female']),
+            'age' => fake()->numberBetween(18, 80),
         ];
     }
 }

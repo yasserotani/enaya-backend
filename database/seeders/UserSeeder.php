@@ -27,7 +27,12 @@ class UserSeeder extends Seeder
 
         Patient::firstOrCreate(
             ['user_id' => $user->id],
-            ['address' => 'Test Address']
+            [
+                'name' => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'address' => 'Test Address',
+            ]
         );
     }
 }
