@@ -11,7 +11,7 @@ use function Knuckles\Scribe\Config\removeStrategies;
 
 return [
     // The HTML <title> for the generated documentation.
-    'title' => config('app.name').' API Documentation',
+    'title' => config('app.name') . ' API Documentation',
 
     // A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
     'description' => '',
@@ -26,8 +26,7 @@ return [
 
     // The base URL displayed in the docs.
     // If you're using `laravel` type, you can set this to a dynamic string, like '{{ config("app.tenant_url") }}' to get a dynamic base URL.
-    'base_url' => config('app.url'),
-
+    'base_url' => env('SCRIBE_BASE_URL', config('app.url')),
     // Routes to include in the docs
     'routes' => [
         [
@@ -93,8 +92,8 @@ return [
         'enabled' => true,
 
         // The base URL to use in the API tester. Leave as null to be the same as the displayed URL (`scribe.base_url`).
-        'base_url' => null,
-
+//        'base_url' => null,
+        'base_url' => env('SCRIBE_TRY_IT_BASE_URL', null),
         // [Laravel Sanctum] Fetch a CSRF token before each request, and add it as an X-XSRF-TOKEN header.
         'use_csrf' => false,
 
