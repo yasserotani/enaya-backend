@@ -49,7 +49,7 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        return DB::transaction(function () use ($request) {
+        return DB::transaction(function () use ($request) { //sucess all faule all
             $patientRole = Role::findOrCreate('patient', 'web');
             $data = $request->validated();
 
@@ -61,12 +61,43 @@ class AuthController extends Controller
             ]);
 
             $user->assignRole($patientRole);
+            // $user->patient()->create([
+            //     'user_id' => $user->id,
+            //     'name' => $user->name,
+            //     'job' => null,
+            //     'analysis' => null,
+            //     'medical_history' => null,
+            //     'gender' => null,
+            //     'age' => null,
+            //     'profile_completed' => false,
 
-            Patient::create([
-                'user_id' => $user->id,
-                'address' => $request->address,
-            ]);
+            // ]);
+            $existingPatient = Patient::whereNull('user_id')
+                ->where(function ($query) use ($user) {
 
+                    $query->where('email', $user->email)
+                        ->orWhere('phone', $user->phone);
+                })->first();
+            if ($existingPatient) {
+
+                $existingPatient->update([
+                    'user_id' => $user->id
+                ]);
+            } else {
+                $user->patient()->create([
+                    'phone'=>$user->phone,
+                    'email'=>$user->email,
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'job' => null,
+                    'analysis' => null,
+                    'medical_history' => null,
+                    'gender' => null,
+                    'age' => null,
+                    'profile_completed' => false,
+
+                ]);
+            }
             $token = $user->createToken('auth_token', ['*'], now()->addDays(30));
             $expiresAt = $token->accessToken->expires_at->toISOString();
 

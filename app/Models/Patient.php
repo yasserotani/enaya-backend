@@ -9,7 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['user_id', 'address'])]
+#[Fillable(['user_id', 'name','email','phone','address','job',
+        'analysis',
+        'medical_history',
+        'gender',
+        'age',
+      'profile_completed'])]
 class Patient extends Model
 {
     /** @use HasFactory<PatientFactory> */
