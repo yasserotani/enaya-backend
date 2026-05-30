@@ -27,7 +27,9 @@ class AppointmentFactory extends Factory
             'patient_id' => Patient::factory(),
             'scheduled_at' => fake()->dateTimeBetween('+1 day', '+30 days'),
             'status' => fake()->randomElement($statuses),
+            'visit_reason' => fake()->optional(0.7)->sentence(),
             'notes' => fake()->optional(0.7)->text(100),
+            'diagnosis' => fake()->optional(0.5)->sentence(),
         ];
     }
 }

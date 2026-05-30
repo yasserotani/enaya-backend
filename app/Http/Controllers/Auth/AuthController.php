@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
@@ -25,7 +26,7 @@ class AuthController extends Controller
                 ->orWhere('name', $request->usernameOrEmail);
         })->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -55,10 +56,9 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        return DB::transaction(function () use ($request) { //sucess all faule all
+        return DB::transaction(function () use ($request) { // sucess all faule all
             $patientRole = Role::findOrCreate('patient', 'web');
             $data = $request->validated();
-
             $user = User::create([
                 'name' => $data['username'],
                 'email' => $data['email'],
@@ -87,12 +87,12 @@ class AuthController extends Controller
             if ($existingPatient) {
 
                 $existingPatient->update([
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
                 ]);
             } else {
                 $user->patient()->create([
-                    'phone'=>$user->phone,
-                    'email'=>$user->email,
+                    'phone' => $user->phone,
+                    'email' => $user->email,
                     'user_id' => $user->id,
                     'name' => $user->name,
                     'job' => null,

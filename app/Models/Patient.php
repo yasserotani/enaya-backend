@@ -9,16 +9,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['user_id', 'name','email','phone','address','job',
-        'analysis',
-        'medical_history',
-        'gender',
-        'age',
-      'profile_completed'])]
+#[Fillable(['user_id', 'full_name', 'date_of_birth', 'gender', 'address', 'job', 'profile_completed'])]
 class Patient extends Model
 {
     /** @use HasFactory<PatientFactory> */
     use HasFactory;
+
+    protected function casts(): array
+    {
+        return [
+            'user_id' => 'integer',
+            'date_of_birth' => 'date',
+            'profile_completed' => 'boolean',
+        ];
+    }
 
     public function user(): BelongsTo
     {

@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -30,7 +30,6 @@ class RoleSeeder extends Seeder
             'create-medical-records',
             'view-queue',
         ]);
-
 
         $patient = Role::firstOrCreate(['name' => 'patient', 'guard_name' => 'web']);
         $patient->givePermissionTo([

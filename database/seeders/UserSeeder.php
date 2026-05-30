@@ -28,10 +28,12 @@ class UserSeeder extends Seeder
         Patient::firstOrCreate(
             ['user_id' => $user->id],
             [
-                'name' => $user->name,
-                'email' => $user->email,
-                'phone' => $user->phone,
+                'full_name' => $user->name,
+                'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years'),
+                'gender' => fake()->randomElement(['male', 'female']),
                 'address' => 'Test Address',
+                'job' => 'Test Job',
+                'profile_completed' => false,
             ]
         );
     }

@@ -11,7 +11,7 @@ use function Knuckles\Scribe\Config\removeStrategies;
 
 return [
     // The HTML <title> for the generated documentation.
-    'title' => config('app.name') . ' API Documentation',
+    'title' => config('app.name').' API Documentation',
 
     // A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
     'description' => '',
@@ -26,7 +26,8 @@ return [
 
     // The base URL displayed in the docs.
     // If you're using `laravel` type, you can set this to a dynamic string, like '{{ config("app.tenant_url") }}' to get a dynamic base URL.
-    'base_url' => env('SCRIBE_BASE_URL', config('app.url')),
+    'base_url' => env('APP_URL'),
+
     // Routes to include in the docs
     'routes' => [
         [
@@ -92,8 +93,8 @@ return [
         'enabled' => true,
 
         // The base URL to use in the API tester. Leave as null to be the same as the displayed URL (`scribe.base_url`).
-//        'base_url' => null,
-        'base_url' => env('SCRIBE_TRY_IT_BASE_URL', null),
+        'base_url' => null,
+
         // [Laravel Sanctum] Fetch a CSRF token before each request, and add it as an X-XSRF-TOKEN header.
         'use_csrf' => false,
 
@@ -114,7 +115,6 @@ return [
         'in' => AuthIn::BEARER->value,
 
         // The name of the auth parameter (e.g. token, key, apiKey) or header (e.g. Authorization, Api-Key).
-        //        'name' => 'key',
         'name' => 'Authorization',
 
         // The value of the parameter to be used by Scribe to authenticate response calls.
@@ -126,7 +126,7 @@ return [
         'placeholder' => '{YOUR_AUTH_KEY}',
 
         // Any extra authentication-related info for your users. Markdown and HTML are supported.
-        'extra_info' => 'Get your token from <b>POST /api/login</b>',
+        'extra_info' => 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.',
     ],
 
     // Example requests for each endpoint will be shown in each of these languages.
@@ -250,8 +250,7 @@ return [
     // For response calls, API resource responses and transformer responses,
     // Scribe will try to start database transactions, so no changes are persisted to your database.
     // Tell Scribe which connections should be transacted here. If you only use one db connection, you can leave this as is.
-//    'database_connections_to_transact' => [config('database.default')],
-    'database_connections_to_transact' => [],
+    'database_connections_to_transact' => [config('database.default')],
 
     'fractal' => [
         // If you are using a custom serializer with league/fractal, you can specify it here.
