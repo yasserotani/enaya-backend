@@ -29,6 +29,14 @@ class PermissionSeeder extends Seeder
             'manage-queue',
             'view-reports',
 
+            // patient management
+            'view-patients',
+            'create-patient',
+            'edit-patient',
+            'delete-patient',
+            'edit-app-patients',    // edit patients who have a user account
+            'delete-app-patients',  // delete patients who have a user account
+
         ];
 
         foreach ($permissions as $permission) {

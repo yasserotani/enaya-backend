@@ -25,7 +25,6 @@ class DoctorUserSeeder extends Seeder
             ['email' => 'doctor@enaya.com'],
             [
                 'name' => 'Doctor',
-                'phone' => '1234567892',
                 'password' => Hash::make('password'),
             ]
         );

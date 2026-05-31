@@ -17,7 +17,6 @@ class ReceptionistSeeder extends Seeder
             ['email' => 'receptionist@enaya.com'],
             [
                 'name' => 'Receptionist',
-                'phone' => '1234567891',
                 'password' => Hash::make('password'),
             ]
         );

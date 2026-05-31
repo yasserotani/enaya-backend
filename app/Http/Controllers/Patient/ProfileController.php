@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Patient\StorePatientRequest;
+use App\Http\Requests\Patient\CompletePatientProfileRequest;
+use App\Http\Requests\Patient\UpdatePatientProfileRequest;
 use App\Http\Requests\Patient\UpdatePatientRequest;
 use Illuminate\Http\Request;
 
@@ -11,9 +12,10 @@ class ProfileController extends Controller
 {
     public function show(Request $request)
     {
-        $patient = $request->user()->patient;
+        $user = $request->user();
+        $patient = $user->patient;
 
-        if (! $patient) {
+        if (!$patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient profile not found',
@@ -22,15 +24,28 @@ class ProfileController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $patient,
+            'data' => [
+                // from users table
+                'name' => $user->name,
+                'email' => $user->email,
+                // phone is stored on patients table
+                'phone' => $patient->phone,
+                // from patients table
+                'full_name' => $patient->full_name,
+                'date_of_birth' => $patient->date_of_birth,
+                'gender' => $patient->gender,
+                'address' => $patient->address,
+                'job' => $patient->job,
+                'profile_completed' => $patient->profile_completed,
+            ],
         ]);
     }
 
-    public function store(StorePatientRequest $request)
+    public function complete(CompletePatientProfileRequest $request)
     {
         $patient = $request->user()->patient;
 
-        if (! $patient) {
+        if (!$patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient record not found',
@@ -45,33 +60,57 @@ class ProfileController extends Controller
         }
 
         $patient->update([
-            ...$request->validated(),
+            'full_name' => $request->full_name,
+            'date_of_birth' => $request->date_of_birth,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'job' => $request->job,
             'profile_completed' => true,
         ]);
 
         return response()->json([
             'success' => true,
-            'message' => 'Patient profile completed successfully',
+            'message' => 'Profile completed successfully',
             'data' => $patient->fresh(),
         ]);
     }
 
     public function update(UpdatePatientRequest $request)
     {
-        $patient = $request->user()->patient;
+        $user = $request->user();
+        $patient = $user->patient;
 
-        if (! $patient) {
+        if (!$patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient record not found',
             ], 404);
         }
 
-        $patient->update($request->validated());
+        // users table fields (name & email only — phone is stored on patients)
+        $user->update($request->only(['name', 'email']));
+
+        // patients table fields (including phone)
+        $patient->update($request->only([
+            'phone',
+            'date_of_birth',
+            'gender',
+            'address',
+            'job',
+        ]));
 
         return response()->json([
             'success' => true,
-            'data' => $patient->fresh(),
+            'message' => 'Profile updated successfully',
+            'data' => [
+                'name' => $user->fresh()->name,
+                'email' => $user->fresh()->email,
+                'phone' => $patient->fresh()->phone,
+                'date_of_birth' => $patient->fresh()->date_of_birth,
+                'gender' => $patient->fresh()->gender,
+                'address' => $patient->fresh()->address,
+                'job' => $patient->fresh()->job,
+            ],
         ]);
     }
 }

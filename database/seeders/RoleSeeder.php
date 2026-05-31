@@ -21,6 +21,14 @@ class RoleSeeder extends Seeder
             'manage-schedule',
             'view-queue',
             'manage-queue',
+
+            // patient management
+            'view-patients',
+            'create-patient',
+            'edit-patient',
+            'delete-patient',
+            // 'edit-app-patients'   — not granted by default, admin decides
+            // 'delete-app-patients' — not granted by default, admin decides
         ]);
 
         $doctor = Role::firstOrCreate(['name' => 'doctor', 'guard_name' => 'web']);

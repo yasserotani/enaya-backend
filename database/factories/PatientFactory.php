@@ -21,6 +21,7 @@ class PatientFactory extends Factory
         return [
             'user_id' => User::factory(),
             'full_name' => fake()->name(),
+            'phone' => fake()->numberBetween(100000000, 9999999999),
             'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years'),
             'gender' => fake()->randomElement(['male', 'female']),
             'address' => fake()->address(),

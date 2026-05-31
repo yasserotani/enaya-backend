@@ -10,17 +10,14 @@ class PatientResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->user?->name ?? $this->name,
-            'email' => $this->user?->email ?? $this->email,
-            'phone' => $this->user?->phone ?? $this->phone,
-            'age' => $this->age,
+            'user_id' => $this->user_id,
+            'full_name' => $this->full_name,
+            'phone' => $this->phone,
+            'date_of_birth' => $this->date_of_birth?->toDateString(),
             'gender' => $this->gender,
-            'job' => $this->job,
             'address' => $this->address,
-            'medical_history' => $this->medical_history,
-            'analysis' => $this->analysis,
+            'job' => $this->job,
             'profile_completed' => $this->profile_completed,
-            'is_walk_in' => is_null($this->user_id),
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

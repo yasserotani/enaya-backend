@@ -22,6 +22,7 @@ class PatientSeeder extends Seeder
                 Patient::create([
                     'user_id' => $user->id,
                     'full_name' => $user->name,
+                    'phone' => fake()->unique()->phoneNumber(),
                     'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years'),
                     'gender' => fake()->randomElement(['male', 'female']),
                     'address' => fake()->address(),

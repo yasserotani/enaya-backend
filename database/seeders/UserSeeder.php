@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
             ['email' => 'user@enaya.com'],
             [
                 'name' => 'Test User',
-                'phone' => '1234567893',
                 'password' => Hash::make('password'),
             ]
         );
@@ -29,6 +28,7 @@ class UserSeeder extends Seeder
             ['user_id' => $user->id],
             [
                 'full_name' => $user->name,
+                'phone' => '1234567893',
                 'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years'),
                 'gender' => fake()->randomElement(['male', 'female']),
                 'address' => 'Test Address',

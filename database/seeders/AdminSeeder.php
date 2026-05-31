@@ -17,7 +17,6 @@ class AdminSeeder extends Seeder
             ['email' => 'admin@enaya.com'],
             [
                 'name' => 'Admin',
-                'phone' => '1234567890',
                 'password' => Hash::make('password'),
             ]
         );

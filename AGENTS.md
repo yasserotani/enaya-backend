@@ -44,14 +44,17 @@ This project has domain-specific skills available. You MUST activate the relevan
 
 - Stick to existing directory structure; don't create new base folders without approval.
 - Do not change the application's dependencies without approval.
-- API routes are organized in `routes/api.php` with domain-specific includes (for example `require __DIR__ . '/api/auth.php';`), and auth endpoints live under `/api/auth/*`.
-- Keep request validation in `app/Http/Requests` (for example `LoginRequest`, `RegisterRequest`) and response shaping in `app/Http/Resources` (for example `UserResource`).
+- API routes are organized in `routes/api.php`, which currently requires `routes/api/auth.php` and `routes/api/patients.php`; `bootstrap/app.php` also registers those route files inside the `api` middleware/prefix group.
+- Use the middleware aliases defined in `bootstrap/app.php` (`role`, `permission`, `role_or_permission`) when working with Spatie permissions.
+- Keep request validation in `app/Http/Requests` (with patient-specific requests under `app/Http/Requests/Patient/`) and response shaping in `app/Http/Resources` (for example `UserResource` and `PatientResource`).
+- New JSON endpoints in controllers such as `app/Http/Controllers/Auth/AuthController.php` and `app/Http/Controllers/Patient/*` follow the existing `success` / `data` / `message` / `error` / `errorCode` response envelope.
 - In Eloquent models, follow the current Laravel 13 attribute pattern (`#[Fillable([...])]`, `#[Hidden([...])]`) used across `app/Models` instead of adding legacy `$fillable`/`$hidden` arrays.
 
 ## Frontend Bundling
 
 - If the user doesn't see a frontend change reflected in the UI, it could mean they need to run `npm run build`, `npm run dev`, or `composer run dev`. Ask them.
 - Prefer `composer run dev` for local development because it runs the server, queue worker, and Vite together; use `composer run setup` for first-time environment bootstrap.
+- Vite is configured in `vite.config.js` with `@tailwindcss/vite`; the repo still contains a legacy stylesheet at `public/app.css`, so verify which asset a page is loading before chasing styling changes.
 
 ## Documentation Files
 
@@ -136,6 +139,7 @@ This project has domain-specific skills available. You MUST activate the relevan
 - When creating models for tests, use the factories for the models. Check if the factory has custom states that can be used before manually setting up the model.
 - Faker: Use methods such as `$this->faker->word()` or `fake()->randomDigit()`. Follow existing conventions whether to use `$this->faker` or `fake()`.
 - When creating tests, make use of `php artisan make:test [options] {name}` to create a feature test, and pass `--unit` to create a unit test. Most tests should be feature tests.
+- The repo's test script is `composer run test`, which clears config and then runs `php artisan test`.
 - `tests/Pest.php` currently binds `Tests\TestCase` to `tests/Feature` only; if a `tests/Unit` test needs the Laravel application container, explicitly move it to Feature or bind it intentionally.
 - `RefreshDatabase` is not globally enabled in `tests/Pest.php`; add it per test file/suite when database isolation is required.
 
