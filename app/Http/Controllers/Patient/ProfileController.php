@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Patient\CompletePatientProfileRequest;
-use App\Http\Requests\Patient\UpdatePatientProfileRequest;
 use App\Http\Requests\Patient\UpdatePatientRequest;
 use Illuminate\Http\Request;
 
