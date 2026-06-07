@@ -32,11 +32,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -131,7 +128,7 @@ endpoints:
       username:
         custom: []
         name: username
-        description: "The user's unique username."
+        description: "The user's unique username. Must not be greater than 50 characters."
         required: true
         example: newuser123
         type: string
@@ -153,9 +150,9 @@ endpoints:
       phone:
         custom: []
         name: phone
-        description: "The user's phone number."
+        description: "The user's phone number. Must not be greater than 20 characters."
         required: true
-        example: '+966501234567'
+        example: '+963912345678'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -186,7 +183,7 @@ endpoints:
     cleanBodyParameters:
       username: newuser123
       email: newuser@enaya.com
-      phone: '+966501234567'
+      phone: '+963912345678'
       password: password
       password_confirmation: password
     fileParameters: []
@@ -295,11 +292,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -317,14 +311,14 @@ endpoints:
     custom: []
     httpMethods:
       - GET
-    uri: api/patient_profile
+    uri: api/patients/reception
     metadata:
       custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
+      title: ''
       description: ''
       authenticated: true
       deprecated: false
@@ -342,11 +336,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -364,14 +355,14 @@ endpoints:
     custom: []
     httpMethods:
       - POST
-    uri: api/complete_patient_profile
+    uri: api/patients/reception
     metadata:
       custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: ''
       description: ''
       authenticated: true
       deprecated: false
@@ -384,34 +375,34 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      job:
+      full_name:
         custom: []
-        name: job
+        name: full_name
         description: 'Must not be greater than 255 characters.'
-        required: false
+        required: true
         example: b
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: true
+        nullable: false
         deprecated: false
-      analysis:
+      phone:
         custom: []
-        name: analysis
-        description: ''
-        required: false
-        example: architecto
+        name: phone
+        description: 'Must not be greater than 20 characters.'
+        required: true
+        example: ngzmiyvdljnikhwa
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: true
+        nullable: false
         deprecated: false
-      medical_history:
+      date_of_birth:
         custom: []
-        name: medical_history
-        description: ''
+        name: date_of_birth
+        description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: false
-        example: architecto
+        example: '2022-07-02'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -430,23 +421,468 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      age:
+      address:
         custom: []
-        name: age
-        description: 'Must be at least 0. Must not be greater than 120.'
+        name: address
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      job:
+        custom: []
+        name: job
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      full_name: b
+      phone: ngzmiyvdljnikhwa
+      date_of_birth: '2022-07-02'
+      gender: female
+      address: architecto
+      job: 'n'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/patients/reception/{patient_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      patient_id:
+        custom: []
+        name: patient_id
+        description: 'The ID of the patient.'
         required: true
-        example: 22
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
+    cleanUrlParameters:
+      patient_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PUT
+    uri: 'api/patients/reception/{patient_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      patient_id:
+        custom: []
+        name: patient_id
+        description: 'The ID of the patient.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      patient_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      full_name:
+        custom: []
+        name: full_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      phone:
+        custom: []
+        name: phone
+        description: 'Must not be greater than 20 characters.'
+        required: false
+        example: ngzmiyvdljnikhwa
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      date_of_birth:
+        custom: []
+        name: date_of_birth
+        description: 'Must be a valid date. Must be a date before <code>today</code>.'
+        required: false
+        example: '2022-07-02'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      gender:
+        custom: []
+        name: gender
+        description: ''
+        required: false
+        example: female
+        type: string
+        enumValues:
+          - male
+          - female
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      address:
+        custom: []
+        name: address
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      job:
+        custom: []
+        name: job
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
     cleanBodyParameters:
-      job: b
-      analysis: architecto
-      medical_history: architecto
+      full_name: b
+      phone: ngzmiyvdljnikhwa
+      date_of_birth: '2022-07-02'
       gender: female
-      age: 22
+      address: architecto
+      job: 'n'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/patients/reception/{patient_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      patient_id:
+        custom: []
+        name: patient_id
+        description: 'The ID of the patient.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      patient_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/doctors/{doctor_id}/patients'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      doctor_id:
+        custom: []
+        name: doctor_id
+        description: 'The ID of the doctor.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      doctor_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/patients/profile
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/patients/complete-profile
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      full_name:
+        custom: []
+        name: full_name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      phone:
+        custom: []
+        name: phone
+        description: 'Must not be greater than 20 characters.'
+        required: true
+        example: ngzmiyvdljnikhwa
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      date_of_birth:
+        custom: []
+        name: date_of_birth
+        description: 'Must be a valid date. Must be a date before <code>today</code>.'
+        required: true
+        example: '2022-07-02'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      gender:
+        custom: []
+        name: gender
+        description: ''
+        required: true
+        example: female
+        type: string
+        enumValues:
+          - male
+          - female
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      address:
+        custom: []
+        name: address
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      job:
+        custom: []
+        name: job
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      full_name: b
+      phone: ngzmiyvdljnikhwa
+      date_of_birth: '2022-07-02'
+      gender: female
+      address: architecto
+      job: 'n'
     fileParameters: []
     responses: []
     responseFields: []
@@ -461,14 +897,14 @@ endpoints:
     custom: []
     httpMethods:
       - PUT
-    uri: api/patient_update
+    uri: api/patients/profile
     metadata:
       custom: []
       groupName: Endpoints
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
+      title: ''
       description: ''
       authenticated: true
       deprecated: false
@@ -481,44 +917,55 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      job:
+      name:
         custom: []
-        name: job
+        name: name
         description: 'Must not be greater than 255 characters.'
         required: false
         example: b
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: true
+        nullable: false
         deprecated: false
-      analysis:
+      phone:
         custom: []
-        name: analysis
-        description: ''
+        name: phone
+        description: 'Must not be greater than 20 characters.'
         required: false
-        example: architecto
+        example: ngzmiyvdljnikhwa
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: true
+        nullable: false
         deprecated: false
-      medical_history:
+      email:
         custom: []
-        name: medical_history
-        description: ''
+        name: email
+        description: 'Must be a valid email address.'
         required: false
-        example: architecto
+        example: breitenberg.gilbert@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: true
+        nullable: false
+        deprecated: false
+      date_of_birth:
+        custom: []
+        name: date_of_birth
+        description: 'Must be a valid date. Must be a date before <code>today</code>.'
+        required: false
+        example: '2022-07-02'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
         deprecated: false
       gender:
         custom: []
         name: gender
         description: ''
-        required: true
+        required: false
         example: female
         type: string
         enumValues:
@@ -527,23 +974,36 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      age:
+      address:
         custom: []
-        name: age
-        description: 'Must be at least 0. Must not be greater than 120.'
-        required: true
-        example: 22
-        type: integer
+        name: address
+        description: ''
+        required: false
+        example: architecto
+        type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: false
+        nullable: true
+        deprecated: false
+      job:
+        custom: []
+        name: job
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
         deprecated: false
     cleanBodyParameters:
-      job: b
-      analysis: architecto
-      medical_history: architecto
+      name: b
+      phone: ngzmiyvdljnikhwa
+      email: breitenberg.gilbert@example.com
+      date_of_birth: '2022-07-02'
       gender: female
-      age: 22
+      address: architecto
+      job: 'n'
     fileParameters: []
     responses: []
     responseFields: []

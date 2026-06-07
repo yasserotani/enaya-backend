@@ -35,7 +35,9 @@ class AppointmentSeeder extends Seeder
                 'patient_id' => $patients->random()->id,
                 'scheduled_at' => now()->addDays($index + 1)->setTime(fake()->numberBetween(8, 16), fake()->randomElement([0, 30])),
                 'status' => fake()->randomElement($statuses),
+                'visit_reason' => fake()->optional(0.7)->sentence(),
                 'notes' => fake()->optional(0.7)->sentence(),
+                'diagnosis' => fake()->optional(0.5)->sentence(),
             ]);
         }
     }

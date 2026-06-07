@@ -14,17 +14,29 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             'manage-users',
-            'view-appointments',
-            'create-appointment',
-            'cancel-appointment',
-            'view-medical-records',
-            'create-medical-records',
-            'manage-schedule',
             'manage-doctors',
+            'manage-schedule',
             'manage-receptionists',
             'manage-departments',
+            'create-appointment',
+            'view-appointments',
+            'cancel-appointment',
+            'write-prescription',
+            'view-prescription',
+            'create-medical-records',
+            'view-medical-records',
             'view-queue',
             'manage-queue',
+            'view-reports',
+
+            // patient management
+            'view-patients',
+            'create-patient',
+            'edit-patient',
+            'delete-patient',
+            'edit-app-patients',    // edit patients who have a user account
+            'delete-app-patients',  // delete patients who have a user account
+
         ];
 
         foreach ($permissions as $permission) {

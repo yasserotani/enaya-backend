@@ -21,13 +21,13 @@ class PatientSeeder extends Seeder
 
                 Patient::create([
                     'user_id' => $user->id,
-                    'name' => fake()->name(),
-                    'email' => fake()->unique()->safeEmail(),
+                    'full_name' => $user->name,
                     'phone' => fake()->unique()->phoneNumber(),
+                    'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years'),
+                    'gender' => fake()->randomElement(['male', 'female']),
                     'address' => fake()->address(),
                     'job' => fake()->optional(0.6)->jobTitle(),
-                    'gender' => fake()->randomElement(['male', 'female']),
-                    'age' => fake()->numberBetween(18, 80),
+                    'profile_completed' => fake()->boolean(),
                 ]);
             });
     }

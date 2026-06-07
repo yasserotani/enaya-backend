@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
             ['email' => 'user@enaya.com'],
             [
                 'name' => 'Test User',
-                'phone' => '1234567893',
                 'password' => Hash::make('password'),
             ]
         );
@@ -28,10 +27,13 @@ class UserSeeder extends Seeder
         Patient::firstOrCreate(
             ['user_id' => $user->id],
             [
-                'name' => $user->name,
-                'email' => $user->email,
-                'phone' => $user->phone,
+                'full_name' => $user->name,
+                'phone' => '1234567893',
+                'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years'),
+                'gender' => fake()->randomElement(['male', 'female']),
                 'address' => 'Test Address',
+                'job' => 'Test Job',
+                'profile_completed' => false,
             ]
         );
     }

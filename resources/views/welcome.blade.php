@@ -12,6 +12,9 @@
     <div class="container">
         <h1></h1>
         <div class="holographic-card">
+            <div>
+                <img src="../../public/logo.png" alt="logo"/>
+            </div>
             <h2>Enaya: Medical Center Management System</h2>
         </div>
         <!-- Using common classes to minimize redundancy -->
@@ -40,7 +43,6 @@
         </svg>
         <div class="box"></div>
     </div>
-
 </div>
 </body>
 </html>

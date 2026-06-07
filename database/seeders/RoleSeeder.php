@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -21,6 +21,14 @@ class RoleSeeder extends Seeder
             'manage-schedule',
             'view-queue',
             'manage-queue',
+
+            // patient management
+            'view-patients',
+            'create-patient',
+            'edit-patient',
+            'delete-patient',
+            // 'edit-app-patients'   — not granted by default, admin decides
+            // 'delete-app-patients' — not granted by default, admin decides
         ]);
 
         $doctor = Role::firstOrCreate(['name' => 'doctor', 'guard_name' => 'web']);
@@ -30,7 +38,6 @@ class RoleSeeder extends Seeder
             'create-medical-records',
             'view-queue',
         ]);
-
 
         $patient = Role::firstOrCreate(['name' => 'patient', 'guard_name' => 'web']);
         $patient->givePermissionTo([

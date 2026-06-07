@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
@@ -25,7 +26,7 @@ class AuthController extends Controller
                 ->orWhere('name', $request->usernameOrEmail);
         })->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -55,55 +56,45 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        return DB::transaction(function () use ($request) { //sucess all faule all
+        return DB::transaction(function () use ($request) {
             $patientRole = Role::findOrCreate('patient', 'web');
             $data = $request->validated();
 
             $user = User::create([
                 'name' => $data['username'],
                 'email' => $data['email'],
-                'phone' => $data['phone'],
                 'password' => Hash::make($data['password']),
             ]);
 
             $user->assignRole($patientRole);
-            // $user->patient()->create([
-            //     'user_id' => $user->id,
-            //     'name' => $user->name,
-            //     'job' => null,
-            //     'analysis' => null,
-            //     'medical_history' => null,
-            //     'gender' => null,
-            //     'age' => null,
-            //     'profile_completed' => false,
 
-            // ]);
+            // check if a walk-in record exists with matching phone or email
+            // match existing receptionist-created walk-in by phone only (patients table stores phone)
             $existingPatient = Patient::whereNull('user_id')
-                ->where(function ($query) use ($user) {
+                ->where('phone', $data['phone'])
+                ->first();
 
-                    $query->where('email', $user->email)
-                        ->orWhere('phone', $user->phone);
-                })->first();
             if ($existingPatient) {
-
+                // link the existing walk-in record to the new account
+                // profile_completed stays true since receptionist already filled it
                 $existingPatient->update([
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
                 ]);
             } else {
+                // no walk-in record found — create a minimal empty record
+                // patient must complete their profile through the app
                 $user->patient()->create([
-                    'phone'=>$user->phone,
-                    'email'=>$user->email,
                     'user_id' => $user->id,
-                    'name' => $user->name,
-                    'job' => null,
-                    'analysis' => null,
-                    'medical_history' => null,
-                    'gender' => null,
-                    'age' => null,
+                    'full_name' => $user->name,
+                    'phone' => $data['phone'],
                     'profile_completed' => false,
-
+                    // // store phone on patient record for walk-in matching
+                    // 'phone' => $data['phone'],
+                    // full_name, date_of_birth, gender, address, job
+                    // all left null — filled in ProfileController@complete
                 ]);
             }
+
             $token = $user->createToken('auth_token', ['*'], now()->addDays(30));
             $expiresAt = $token->accessToken->expires_at->toISOString();
 

@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-#[Fillable(['doctor_id', 'patient_id', 'scheduled_at', 'status', 'notes'])]
+#[Fillable(['doctor_id', 'patient_id', 'scheduled_at', 'status', 'visit_reason', 'notes', 'diagnosis'])]
 class Appointment extends Model
 {
     /** @use HasFactory<AppointmentFactory> */
@@ -39,5 +40,15 @@ class Appointment extends Model
     public function queue(): HasOne
     {
         return $this->hasOne(Queue::class);
+    }
+
+    public function appointmentSession(): HasOne
+    {
+        return $this->hasOne(AppointmentSession::class);
+    }
+
+    public function prescriptions(): HasMany
+    {
+        return $this->hasMany(Prescription::class);
     }
 }

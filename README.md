@@ -37,5 +37,8 @@ composer run dev   # starts server + queue + Vite together
 All protected routes require a Sanctum Bearer token:
 `Authorization: Bearer <token>`
 
-Login via `POST /api/login` — returns a token for React/Flutter clients.
+Login via `POST /api/auth/login` — returns a token for React/Flutter clients.
 
+## API Docs
+
+Frontend API usage is documented in [docs/API.md](docs/API.md), including the app-patient complete-profile flow.

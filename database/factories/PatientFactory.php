@@ -19,14 +19,14 @@ class PatientFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'phone' => fake()->unique()->phoneNumber(),
+            'user_id' => fake()->boolean(70) ? User::factory() : null,
+            'full_name' => fake()->unique()->name(),
+            'phone' => fake()->unique()->numerify('+9639########'),
+            'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years')->format('Y-m-d'),
+            'gender' => fake()->randomElement(['male', 'female']),
             'address' => fake()->address(),
             'job' => fake()->optional(0.6)->jobTitle(),
-            'gender' => fake()->randomElement(['male', 'female']),
-            'age' => fake()->numberBetween(18, 80),
+            'profile_completed' => fake()->boolean(),
         ];
     }
 }

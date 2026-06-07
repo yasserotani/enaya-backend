@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class RegisterRequest extends FormRequest
+class RegisterRequest extends BaseFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,14 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'phone' => 'required|string',
+            'username' => 'required|string|max:50|unique:users,name',
+            'email' => 'required|email|unique:users,email',
+            'phone' => [
+                'required',
+                'string',
+                'max:20',
+                Rule::unique('patients', 'phone')->whereNotNull('user_id'), // allow walk in patient duplicate ,to allow linking existing record it
+            ],
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required|string',
         ];
@@ -49,7 +54,7 @@ class RegisterRequest extends FormRequest
             ],
             'phone' => [
                 'description' => 'The user\'s phone number',
-                'example' => '+966501234567',
+                'example' => '+963912345678',
             ],
             'password' => [
                 'description' => 'The user\'s password (minimum 8 characters)',
