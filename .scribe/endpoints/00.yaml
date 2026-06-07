@@ -148,10 +148,10 @@ endpoints:
       phone:
         custom: []
         name: phone
-        description: "The user's phone number."
+        description: "The user's phone number. Must not be greater than 20 characters."
         required: true
-        example: 966501234567.0
-        type: number
+        example: '+963912345678'
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
@@ -181,7 +181,7 @@ endpoints:
     cleanBodyParameters:
       username: newuser123
       email: newuser@enaya.com
-      phone: 966501234567.0
+      phone: '+963912345678'
       password: password
       password_confirmation: password
     fileParameters: []
@@ -309,7 +309,7 @@ endpoints:
     custom: []
     httpMethods:
       - GET
-    uri: api/reception
+    uri: api/patients/reception
     metadata:
       custom: []
       groupName: Endpoints
@@ -331,7 +331,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
     responseFields: []
     auth:
       - headers
@@ -344,7 +353,7 @@ endpoints:
     custom: []
     httpMethods:
       - POST
-    uri: api/reception
+    uri: api/patients/reception
     metadata:
       custom: []
       groupName: Endpoints
@@ -378,10 +387,10 @@ endpoints:
       phone:
         custom: []
         name: phone
-        description: 'Must not be greater than 20.'
+        description: 'Must not be greater than 20 characters.'
         required: true
-        example: 12
-        type: number
+        example: ngzmiyvdljnikhwa
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
@@ -391,7 +400,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: false
-        example: '2022-06-24'
+        example: '2022-07-02'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -401,14 +410,14 @@ endpoints:
         custom: []
         name: gender
         description: ''
-        required: false
-        example: male
+        required: true
+        example: female
         type: string
         enumValues:
           - male
           - female
         exampleWasSpecified: false
-        nullable: true
+        nullable: false
         deprecated: false
       address:
         custom: []
@@ -434,9 +443,9 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       full_name: b
-      phone: 12
-      date_of_birth: '2022-06-24'
-      gender: male
+      phone: ngzmiyvdljnikhwa
+      date_of_birth: '2022-07-02'
+      gender: female
       address: architecto
       job: 'n'
     fileParameters: []
@@ -453,7 +462,7 @@ endpoints:
     custom: []
     httpMethods:
       - GET
-    uri: 'api/reception/{patient_id}'
+    uri: 'api/patients/reception/{patient_id}'
     metadata:
       custom: []
       groupName: Endpoints
@@ -487,7 +496,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
     responseFields: []
     auth:
       - headers
@@ -500,7 +518,7 @@ endpoints:
     custom: []
     httpMethods:
       - PUT
-    uri: 'api/reception/{patient_id}'
+    uri: 'api/patients/reception/{patient_id}'
     metadata:
       custom: []
       groupName: Endpoints
@@ -552,25 +570,14 @@ endpoints:
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      email:
-        custom: []
-        name: email
-        description: 'Must be a valid email address.'
-        required: false
-        example: breitenberg.gilbert@example.com
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
+        nullable: false
         deprecated: false
       date_of_birth:
         custom: []
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: false
-        example: '2022-06-24'
+        example: '2022-07-02'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -587,7 +594,7 @@ endpoints:
           - male
           - female
         exampleWasSpecified: false
-        nullable: true
+        nullable: false
         deprecated: false
       address:
         custom: []
@@ -614,8 +621,7 @@ endpoints:
     cleanBodyParameters:
       full_name: b
       phone: ngzmiyvdljnikhwa
-      email: breitenberg.gilbert@example.com
-      date_of_birth: '2022-06-24'
+      date_of_birth: '2022-07-02'
       gender: female
       address: architecto
       job: 'n'
@@ -633,7 +639,7 @@ endpoints:
     custom: []
     httpMethods:
       - DELETE
-    uri: 'api/reception/{patient_id}'
+    uri: 'api/patients/reception/{patient_id}'
     metadata:
       custom: []
       groupName: Endpoints
@@ -680,6 +686,62 @@ endpoints:
     custom: []
     httpMethods:
       - GET
+    uri: 'api/doctors/{doctor_id}/patients'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      doctor_id:
+        custom: []
+        name: doctor_id
+        description: 'The ID of the doctor.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      doctor_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
     uri: api/patients/profile
     metadata:
       custom: []
@@ -702,7 +764,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
     responseFields: []
     auth:
       - headers
@@ -746,12 +817,23 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
+      phone:
+        custom: []
+        name: phone
+        description: 'Must not be greater than 20 characters.'
+        required: true
+        example: ngzmiyvdljnikhwa
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
       date_of_birth:
         custom: []
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: true
-        example: '2022-06-24'
+        example: '2022-07-02'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -794,7 +876,8 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       full_name: b
-      date_of_birth: '2022-06-24'
+      phone: ngzmiyvdljnikhwa
+      date_of_birth: '2022-07-02'
       gender: female
       address: architecto
       job: 'n'
@@ -870,7 +953,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: false
-        example: '2022-06-24'
+        example: '2022-07-02'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -915,7 +998,7 @@ endpoints:
       name: b
       phone: ngzmiyvdljnikhwa
       email: breitenberg.gilbert@example.com
-      date_of_birth: '2022-06-24'
+      date_of_birth: '2022-07-02'
       gender: female
       address: architecto
       job: 'n'

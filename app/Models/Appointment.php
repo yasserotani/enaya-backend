@@ -42,6 +42,11 @@ class Appointment extends Model
         return $this->hasOne(Queue::class);
     }
 
+    public function appointmentSession(): HasOne
+    {
+        return $this->hasOne(AppointmentSession::class);
+    }
+
     public function prescriptions(): HasMany
     {
         return $this->hasMany(Prescription::class);

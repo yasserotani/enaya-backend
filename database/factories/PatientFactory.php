@@ -19,10 +19,10 @@ class PatientFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'full_name' => fake()->name(),
-            'phone' => fake()->numberBetween(100000000, 9999999999),
-            'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years'),
+            'user_id' => fake()->boolean(70) ? User::factory() : null,
+            'full_name' => fake()->unique()->name(),
+            'phone' => fake()->unique()->numerify('+9639########'),
+            'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years')->format('Y-m-d'),
             'gender' => fake()->randomElement(['male', 'female']),
             'address' => fake()->address(),
             'job' => fake()->optional(0.6)->jobTitle(),

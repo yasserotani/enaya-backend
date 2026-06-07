@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Patient;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdatePatientRequest extends FormRequest
+class UpdatePatientRequest extends BaseFormRequest
 {
     public function authorize(): bool
     {
@@ -13,13 +14,27 @@ class UpdatePatientRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
-            // goes to users table
-            'name' => 'sometimes|string|max:255|unique:users,name,' . auth()->id(), // allow current user's name
-            'phone' => 'sometimes|string|max:20|unique:patients,phone,' . auth()->id(),
-            'email' => 'sometimes|email|unique:users,email,' . auth()->id(), // allow current user's email
+        $userId = $this->user()?->getKey();
+        $patientId = $this->user()?->patient?->getKey();
 
-            // goes to patients table
+        return [
+            'name' => [
+                'sometimes',
+                'string',
+                'max:255',
+                Rule::unique('users', 'name')->ignore($userId),
+            ],
+            'phone' => [
+                'sometimes',
+                'string',
+                'max:20',
+                Rule::unique('patients', 'phone')->ignore($patientId),
+            ],
+            'email' => [
+                'sometimes',
+                'email',
+                Rule::unique('users', 'email')->ignore($userId),
+            ],
             'date_of_birth' => 'sometimes|date|before:today',
             'gender' => 'sometimes|in:male,female',
             'address' => 'sometimes|nullable|string',

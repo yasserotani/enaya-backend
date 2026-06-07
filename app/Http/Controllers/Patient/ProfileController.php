@@ -14,7 +14,7 @@ class ProfileController extends Controller
         $user = $request->user();
         $patient = $user->patient;
 
-        if (!$patient) {
+        if (! $patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient profile not found',
@@ -42,15 +42,18 @@ class ProfileController extends Controller
 
     public function complete(CompletePatientProfileRequest $request)
     {
+        $validated = $request->validated();
         $patient = $request->user()->patient;
 
-        if (!$patient) {
+        // check if there is patient connected to this user
+        if (! $patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient record not found',
             ], 404);
         }
 
+        // check if the profile already completed
         if ($patient->profile_completed) {
             return response()->json([
                 'success' => false,
@@ -59,11 +62,12 @@ class ProfileController extends Controller
         }
 
         $patient->update([
-            'full_name' => $request->full_name,
-            'date_of_birth' => $request->date_of_birth,
-            'gender' => $request->gender,
-            'address' => $request->address,
-            'job' => $request->job,
+            'full_name' => $validated['full_name'],
+            'date_of_birth' => $validated['date_of_birth'],
+            'phone' => $validated['phone'],
+            'gender' => $validated['gender'],
+            'address' => $validated['address'] ?? null,
+            'job' => $validated['job'] ?? null,
             'profile_completed' => true,
         ]);
 
@@ -79,7 +83,7 @@ class ProfileController extends Controller
         $user = $request->user();
         $patient = $user->patient;
 
-        if (!$patient) {
+        if (! $patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient record not found',

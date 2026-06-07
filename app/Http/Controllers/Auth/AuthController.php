@@ -26,7 +26,7 @@ class AuthController extends Controller
                 ->orWhere('name', $request->usernameOrEmail);
         })->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -85,9 +85,11 @@ class AuthController extends Controller
                 // patient must complete their profile through the app
                 $user->patient()->create([
                     'user_id' => $user->id,
-                    'profile_completed' => false,
-                    // store phone on patient record for walk-in matching
+                    'full_name' => $user->name,
                     'phone' => $data['phone'],
+                    'profile_completed' => false,
+                    // // store phone on patient record for walk-in matching
+                    // 'phone' => $data['phone'],
                     // full_name, date_of_birth, gender, address, job
                     // all left null — filled in ProfileController@complete
                 ]);

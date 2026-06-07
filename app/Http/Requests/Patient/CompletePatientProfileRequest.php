@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Patient;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
+use Illuminate\Validation\Rule;
 
-class CompletePatientProfileRequest extends FormRequest
+class CompletePatientProfileRequest extends BaseFormRequest
 {
     public function authorize(): bool
     {
@@ -13,9 +14,21 @@ class CompletePatientProfileRequest extends FormRequest
 
     public function rules(): array
     {
+        $patientId = $this->user()?->patient?->getKey();
+
         return [
-            'full_name' => 'required|string|max:255|unique:patients,full_name,' . auth()->id(),
-            'phone' => 'required|numeric|unique:patients,phone,' . auth()->id(),
+            'full_name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('patients', 'full_name')->ignore($patientId),
+            ],
+            'phone' => [
+                'required',
+                'string',
+                'max:20',
+                Rule::unique('patients', 'phone')->ignore($patientId),
+            ],
             'date_of_birth' => 'required|date|before:today',
             'gender' => 'required|in:male,female',
             'address' => 'nullable|string',

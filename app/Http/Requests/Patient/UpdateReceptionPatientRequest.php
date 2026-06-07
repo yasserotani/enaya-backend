@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Patient;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateReceptionPatientRequest extends FormRequest
+class UpdateReceptionPatientRequest extends BaseFormRequest
 {
     public function authorize(): bool
     {
@@ -13,10 +14,21 @@ class UpdateReceptionPatientRequest extends FormRequest
 
     public function rules(): array
     {
+        $patientId = $this->route('patient')?->getKey();
+
         return [
-            'full_name' => 'sometimes|string|max:255|unique:patients,full_name,',
-            'phone' => 'sometimes|string|max:20|unique:patients,phone,',
-            'email' => 'sometimes|nullable|email',
+            'full_name' => [
+                'sometimes',
+                'string',
+                'max:255',
+                Rule::unique('patients', 'full_name')->ignore($patientId),
+            ],
+            'phone' => [
+                'sometimes',
+                'string',
+                'max:20',
+                Rule::unique('patients', 'phone')->ignore($patientId),
+            ],
             'date_of_birth' => 'sometimes|nullable|date|before:today',
             'gender' => 'sometimes|in:male,female',
             'address' => 'sometimes|nullable|string',

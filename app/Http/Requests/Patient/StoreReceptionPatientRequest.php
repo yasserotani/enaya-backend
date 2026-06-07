@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Patient;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
 
-class StoreReceptionPatientRequest extends FormRequest
+class StoreReceptionPatientRequest extends BaseFormRequest
 {
     public function authorize(): bool
     {
@@ -15,7 +15,7 @@ class StoreReceptionPatientRequest extends FormRequest
     {
         return [
             'full_name' => 'required|string|max:255|unique:patients,full_name',
-            'phone' => 'required|numeric|digits_between:1,20|unique:patients,phone',
+            'phone' => 'required|string|max:20|unique:patients,phone',
             'date_of_birth' => 'nullable|date|before:today',
             'gender' => 'required|in:male,female',
             'address' => 'nullable|string',

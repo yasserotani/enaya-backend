@@ -36,23 +36,25 @@ class ReceptionPatientController extends Controller
     public function store(StoreReceptionPatientRequest $request)
     {
         // check if the patient with this phone number already exist
-        if ($request->filled('phone')) {
-            $existingPatient = Patient::where('phone', $request->phone)
-                ->first();
-            if ($existingPatient) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'A patient with this phone number already exists',
-                    'data' => $existingPatient,
-                ], 409);
-            }
+
+        $existingPatient = Patient::query()
+            ->where('phone', '=', $request->validated('phone'))
+            ->first();
+        if ($existingPatient) {
+            return response()->json([
+                'success' => false,
+                'message' => 'A patient with this phone number already exists',
+                'data' => $existingPatient,
+            ], 409);
         }
+
         // create the patient
         $patient = Patient::create([
             ...$request->validated(),
             'user_id' => null,
             'profile_completed' => true,
         ]);
+
         return response()->json([
             'success' => true,
             'message' => 'Patient created successfully',
@@ -63,7 +65,7 @@ class ReceptionPatientController extends Controller
     public function update(UpdateReceptionPatientRequest $request, Patient $patient)
     {
         // if the patient has an account, prevent updating from reception
-        if ($patient->user_id !== null && !$request->user()->can('edit-app-patients')) {
+        if ($patient->user_id !== null && ! $request->user()->can('edit-app-patients')) {
             return response()->json([
                 'success' => false,
                 'message' => 'This patient has an account and cannot be edited from reception',
@@ -82,7 +84,7 @@ class ReceptionPatientController extends Controller
     public function destroy(Patient $patient)
     {
 
-        if ($patient->user_id !== null) {
+        if ($patient->user_id !== null && ! request()->user()->can('delete-app-patients')) {
             return response()->json([
                 'success' => false,
                 'message' => 'This patient has an account and cannot be deleted from reception',

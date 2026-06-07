@@ -8,22 +8,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // auth routes
-require __DIR__ . '/api/auth.php';
+require __DIR__.'/api/auth.php';
 
 // patient routes
-require __DIR__ . '/api/patients.php';
-//
-//// department routes
-//require __DIR__ . '/api/departments.php';
-//
-//// appointment routes
-//require __DIR__ . '/api/appointments.php';
-//
-//// doctor routes
-//require __DIR__ . '/api/doctors.php';
-//
-//// prescription routes
-//require __DIR__ . '/api/prescriptions.php';
-//
-//// queue routes
-//require __DIR__ . '/api/queues.php';
+require __DIR__.'/api/patients.php';
