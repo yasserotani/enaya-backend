@@ -4,7 +4,8 @@ namespace App\Enums;
 
 enum AppointmentStatus: string
 {
-    case Scheduled = 'scheduled';
+case Pending = 'pending';
+case Scheduled = 'scheduled';
     case Confirmed = 'confirmed';
     case Arrived = 'arrived';
     case InProgress = 'inProgress';

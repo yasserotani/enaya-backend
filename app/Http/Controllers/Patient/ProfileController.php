@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Patient\CompletePatientProfileRequest;
 use App\Http\Requests\Patient\UpdatePatientRequest;
 use Illuminate\Http\Request;
-
+use App\Models\Doctor;
 class ProfileController extends Controller
 {
     public function show(Request $request)
@@ -116,4 +116,30 @@ class ProfileController extends Controller
             ],
         ]);
     }
+    public function getDepartmentDoctors(Request $request)
+    {
+        // نطلب من المستخدم إرسال مفتاح اسمه 'department' (سواء كان ID أو اسم)
+        $request->validate([
+            'department' => 'required' 
+        ]);
+
+        $departmentInput = $request->department;
+
+        // التحقق: هل المدخل رقم (ID) أم نص (اسم القسم)؟
+        if (is_numeric($departmentInput)) {
+            // البحث المباشر السريع باستخدام الـ ID
+            $doctors = Doctor::where('department_id', $departmentInput)->get();
+        } else {
+            // البحث باستخدام اسم القسم (عبر العلاقة مع جدول الأقسام)
+            $doctors = Doctor::whereHas('department', function ($query) use ($departmentInput) {
+                $query->where('name', $departmentInput);
+            })->get();
+        }
+
+        return response()->json([
+            'message' =>'Doctors get successfully',
+            'data' => $doctors
+        ]);
+    }
 }
+

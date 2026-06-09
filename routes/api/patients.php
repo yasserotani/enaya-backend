@@ -4,7 +4,7 @@ use App\Http\Controllers\Doctor\PatientController as DoctorPatientController;
 use App\Http\Controllers\Patient\ProfileController;
 use App\Http\Controllers\Patient\ReceptionPatientController;
 use Illuminate\Support\Facades\Route;
-
+use  App\Http\Controllers\Appointment\AppointmentController;
 // patient reception routes
 Route::middleware(['auth:sanctum', 'role:receptionist'])
     ->prefix('patients/reception')
@@ -28,4 +28,5 @@ Route::middleware(['auth:sanctum', 'role:patient'])
         Route::get('/profile', [ProfileController::class, 'show'])->name('patients.profile.show');
         Route::post('/complete-profile', [ProfileController::class, 'complete'])->name('patients.profile.complete');
         Route::put('/profile', [ProfileController::class, 'update'])->name('patients.profile.update');
-    });
+        Route::post('/appointments', [AppointmentController::class, 'store']);
+        });
