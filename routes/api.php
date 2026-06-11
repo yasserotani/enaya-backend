@@ -8,10 +8,10 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // auth routes
-require __DIR__ . '/api/auth.php';
+require __DIR__.'/api/auth.php';
 
 // patient routes
-require __DIR__ . '/api/patients.php';
+require __DIR__.'/api/patients.php';
 
 // admin routes
-require __DIR__ . '/api/admin.php';
+require __DIR__.'/api/admin.php';

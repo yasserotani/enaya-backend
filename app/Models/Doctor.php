@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['user_id', 'department_id', 'specialty'])]
+#[Fillable(['user_id', 'department_id', 'specialty', 'full_name', 'start_time', 'end_time'])]
 class Doctor extends Model
 {
     /** @use HasFactory<DoctorFactory> */

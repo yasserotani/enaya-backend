@@ -314,6 +314,101 @@ Receptionists can delete walk-in patients. App-linked patients require the `dele
 
 These endpoints require `auth:sanctum` and the `admin` role.
 
+### Admin Dashboard
+
+`GET /api/admin/dashboard`
+
+Retrieves general metrics, KPIs, recent activities, and charts for the admin panel dashboard.
+
+Response `200`:
+
+```json
+{
+    "success": true,
+    "data": {
+        "total_patients": 150,
+        "total_doctors": 12,
+        "total_receptionists": 5,
+        "appointments_today": 8,
+        "appointments_this_week": 45,
+        "pending_appointments": 3,
+        "completed_today": 5,
+        "recent_patients": [
+            {
+                "id": 5,
+                "full_name": "Jane Doe",
+                "phone": "+963912345678",
+                "created_at": "2026-06-11T12:00:00.000000Z"
+            },
+            {
+                "id": 4,
+                "full_name": "John Smith",
+                "phone": "+963987654321",
+                "created_at": "2026-06-10T09:30:00.000000Z"
+            }
+        ],
+        "recent_appointments": [
+            {
+                "id": 10,
+                "doctor_id": 2,
+                "patient_id": 5,
+                "scheduled_at": "2026-06-11T14:00:00.000000Z",
+                "status": "scheduled",
+                "visit_reason": "Regular Checkup",
+                "notes": "Patient complains of headache",
+                "diagnosis": null,
+                "created_at": "2026-06-11T11:00:00.000000Z",
+                "updated_at": "2026-06-11T11:00:00.000000Z",
+                "patient": {
+                    "id": 5,
+                    "full_name": "Jane Doe"
+                },
+                "doctor": {
+                    "id": 2,
+                    "user_id": 1,
+                    "department_id": 1,
+                    "specialty": "Cardiology",
+                    "user": {
+                        "id": 1,
+                        "name": "Dr. Sam"
+                    }
+                }
+            }
+        ],
+        "appointments_last_7_days": [
+            {
+                "date": "2026-06-05",
+                "total": 5
+            },
+            {
+                "date": "2026-06-06",
+                "total": 7
+            },
+            {
+                "date": "2026-06-07",
+                "total": 6
+            },
+            {
+                "date": "2026-06-08",
+                "total": 8
+            },
+            {
+                "date": "2026-06-09",
+                "total": 10
+            },
+            {
+                "date": "2026-06-10",
+                "total": 9
+            },
+            {
+                "date": "2026-06-11",
+                "total": 8
+            }
+        ]
+    }
+}
+```
+
 ### List Users
 
 `GET /api/admin/users`
