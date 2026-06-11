@@ -15,11 +15,11 @@ Successful responses generally use this shape:
 
 ```json
 {
-  "success": true,
-  "data": {},
-  "message": "Optional message",
-  "error": null,
-  "errorCode": null
+    "success": true,
+    "data": {},
+    "message": "Optional message",
+    "error": null,
+    "errorCode": null
 }
 ```
 
@@ -39,11 +39,11 @@ Request:
 
 ```json
 {
-  "username": "newuser123",
-  "email": "newuser@enaya.com",
-  "phone": "+963912345678",
-  "password": "password123",
-  "password_confirmation": "password123"
+    "username": "newuser123",
+    "email": "newuser@enaya.com",
+    "phone": "+963912345678",
+    "password": "password123",
+    "password_confirmation": "password123"
 }
 ```
 
@@ -51,19 +51,19 @@ Response `201`:
 
 ```json
 {
-  "success": true,
-  "data": {
-    "user": {
-      "id": 1,
-      "email": "newuser@enaya.com",
-      "username": "newuser123",
-      "roleId": 3
+    "success": true,
+    "data": {
+        "user": {
+            "id": 1,
+            "email": "newuser@enaya.com",
+            "username": "newuser123",
+            "roleId": 3
+        },
+        "token": "plain-text-sanctum-token",
+        "expiresAt": "2026-07-07T12:00:00.000000Z"
     },
-    "token": "plain-text-sanctum-token",
-    "expiresAt": "2026-07-07T12:00:00.000000Z"
-  },
-  "error": null,
-  "errorCode": null
+    "error": null,
+    "errorCode": null
 }
 ```
 
@@ -87,8 +87,8 @@ Request:
 
 ```json
 {
-  "usernameOrEmail": "newuser@enaya.com",
-  "password": "password123"
+    "usernameOrEmail": "newuser@enaya.com",
+    "password": "password123"
 }
 ```
 
@@ -104,17 +104,17 @@ Response `200`:
 
 ```json
 {
-  "success": true,
-  "data": {
-    "user": {
-      "id": 1,
-      "email": "newuser@enaya.com",
-      "username": "newuser123",
-      "roleId": 3
-    }
-  },
-  "error": null,
-  "errorCode": null
+    "success": true,
+    "data": {
+        "user": {
+            "id": 1,
+            "email": "newuser@enaya.com",
+            "username": "newuser123",
+            "roleId": 3
+        }
+    },
+    "error": null,
+    "errorCode": null
 }
 ```
 
@@ -142,18 +142,18 @@ Response `200`:
 
 ```json
 {
-  "success": true,
-  "data": {
-    "name": "newuser123",
-    "email": "newuser@enaya.com",
-    "phone": "+963912345678",
-    "full_name": "New User",
-    "date_of_birth": "1995-05-20",
-    "gender": "female",
-    "address": "Damascus",
-    "job": "Teacher",
-    "profile_completed": false
-  }
+    "success": true,
+    "data": {
+        "name": "newuser123",
+        "email": "newuser@enaya.com",
+        "phone": "+963912345678",
+        "full_name": "New User",
+        "date_of_birth": "1995-05-20",
+        "gender": "female",
+        "address": "Damascus",
+        "job": "Teacher",
+        "profile_completed": false
+    }
 }
 ```
 
@@ -167,12 +167,12 @@ Request:
 
 ```json
 {
-  "full_name": "Jane Doe",
-  "phone": "+963912345678",
-  "date_of_birth": "1995-05-20",
-  "gender": "female",
-  "address": "Damascus",
-  "job": "Teacher"
+    "full_name": "Jane Doe",
+    "phone": "+963912345678",
+    "date_of_birth": "1995-05-20",
+    "gender": "female",
+    "address": "Damascus",
+    "job": "Teacher"
 }
 ```
 
@@ -180,19 +180,19 @@ Response `200`:
 
 ```json
 {
-  "success": true,
-  "message": "Profile completed successfully",
-  "data": {
-    "id": 1,
-    "user_id": 1,
-    "full_name": "Jane Doe",
-    "phone": "+963912345678",
-    "date_of_birth": "1995-05-20",
-    "gender": "female",
-    "address": "Damascus",
-    "job": "Teacher",
-    "profile_completed": true
-  }
+    "success": true,
+    "message": "Profile completed successfully",
+    "data": {
+        "id": 1,
+        "user_id": 1,
+        "full_name": "Jane Doe",
+        "phone": "+963912345678",
+        "date_of_birth": "1995-05-20",
+        "gender": "female",
+        "address": "Damascus",
+        "job": "Teacher",
+        "profile_completed": true
+    }
 }
 ```
 
@@ -217,23 +217,6 @@ Request:
 
 ```json
 {
-  "name": "Updated Username",
-  "email": "updated@example.com",
-  "phone": "+963933333333",
-  "date_of_birth": "1990-01-01",
-  "gender": "male",
-  "address": "Homs",
-  "job": "Engineer"
-}
-```
-
-Response `200`:
-
-```json
-{
-  "success": true,
-  "message": "Profile updated successfully",
-  "data": {
     "name": "Updated Username",
     "email": "updated@example.com",
     "phone": "+963933333333",
@@ -241,7 +224,24 @@ Response `200`:
     "gender": "male",
     "address": "Homs",
     "job": "Engineer"
-  }
+}
+```
+
+Response `200`:
+
+```json
+{
+    "success": true,
+    "message": "Profile updated successfully",
+    "data": {
+        "name": "Updated Username",
+        "email": "updated@example.com",
+        "phone": "+963933333333",
+        "date_of_birth": "1990-01-01",
+        "gender": "male",
+        "address": "Homs",
+        "job": "Engineer"
+    }
 }
 ```
 
@@ -255,10 +255,10 @@ These endpoints require `auth:sanctum` and the `receptionist` role.
 
 Query parameters:
 
-| Name | Description |
-| --- | --- |
-| `search` | Matches patient full name or phone |
-| `gender` | `male` or `female` |
+| Name          | Description                                          |
+| ------------- | ---------------------------------------------------- |
+| `search`      | Matches patient full name or phone                   |
+| `gender`      | `male` or `female`                                   |
 | `has_account` | `true` for app-linked patients, `false` for walk-ins |
 
 ### Create Walk-In Patient
@@ -269,12 +269,12 @@ Request:
 
 ```json
 {
-  "full_name": "Jane Doe",
-  "phone": "+963912345678",
-  "date_of_birth": "1995-05-20",
-  "gender": "female",
-  "address": "Damascus",
-  "job": "Teacher"
+    "full_name": "Jane Doe",
+    "phone": "+963912345678",
+    "date_of_birth": "1995-05-20",
+    "gender": "female",
+    "address": "Damascus",
+    "job": "Teacher"
 }
 ```
 
@@ -282,15 +282,15 @@ Response `201`:
 
 ```json
 {
-  "success": true,
-  "message": "Patient created successfully",
-  "data": {
-    "id": 1,
-    "user_id": null,
-    "full_name": "Jane Doe",
-    "phone": "+963912345678",
-    "profile_completed": true
-  }
+    "success": true,
+    "message": "Patient created successfully",
+    "data": {
+        "id": 1,
+        "user_id": null,
+        "full_name": "Jane Doe",
+        "phone": "+963912345678",
+        "profile_completed": true
+    }
 }
 ```
 
@@ -310,6 +310,208 @@ Receptionists can update walk-in patients. App-linked patients require the `edit
 
 Receptionists can delete walk-in patients. App-linked patients require the `delete-app-patients` permission.
 
+## Admin Panel
+
+These endpoints require `auth:sanctum` and the `admin` role.
+
+### List Users
+
+`GET /api/admin/users`
+
+Optional query parameters:
+
+| Name     | Description                                             |
+| -------- | ------------------------------------------------------- |
+| `search` | Matches user name or email                              |
+| `role`   | Filters by role: `doctor`, `receptionist`, or `patient` |
+| `page`   | Page number for paginated results                       |
+
+Response `200`:
+
+```json
+{
+    "success": true,
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "name": "Dr. House",
+                "email": "house@enaya.com",
+                "roles": ["doctor"]
+            }
+        ],
+        "last_page": 1
+    }
+}
+```
+
+### Create User
+
+`POST /api/admin/users`
+
+Request body when creating a doctor:
+
+```json
+{
+    "name": "Dr. Sam",
+    "email": "sam@enaya.com",
+    "password": "password123",
+    "role": "doctor",
+    "specialty": "Cardiology",
+    "department_id": 2
+}
+```
+
+Request body when creating a receptionist:
+
+```json
+{
+    "name": "Nadia",
+    "email": "nadia@enaya.com",
+    "password": "password123",
+    "role": "receptionist"
+}
+```
+
+Response `201`:
+
+```json
+{
+    "success": true,
+    "message": "User created successfully.",
+    "data": {
+        "id": 5,
+        "name": "Nadia",
+        "email": "nadia@enaya.com",
+        "roles": ["receptionist"]
+    }
+}
+```
+
+### Show User
+
+`GET /api/admin/users/{user}`
+
+Response `200` returns a user resource. For patients it returns the linked patient profile; for doctors it returns doctor details.
+
+### Update User
+
+`PUT /api/admin/users/{user}`
+
+Available fields:
+
+- `name`
+- `email`
+- `specialty` (doctors only)
+- `department_id` (doctors only)
+
+Response `200`:
+
+```json
+{
+    "success": true,
+    "message": "User updated successfully.",
+    "data": {
+        "id": 5,
+        "name": "Nadia Updated",
+        "email": "nadia@enaya.com"
+    }
+}
+```
+
+### Delete User
+
+`DELETE /api/admin/users/{user}`
+
+Admins cannot delete their own account. Returns `403` when attempting to delete the authenticated user.
+
+### List Patients
+
+`GET /api/admin/patients`
+
+Optional query parameters:
+
+| Name          | Description                                          |
+| ------------- | ---------------------------------------------------- |
+| `search`      | Matches patient full name or phone                   |
+| `gender`      | `male` or `female`                                   |
+| `has_account` | `true` for app-linked patients, `false` for walk-ins |
+| `page`        | Page number for paginated results                    |
+
+Response `200`:
+
+```json
+{
+    "success": true,
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "full_name": "Jane Doe",
+                "phone": "+963912345678",
+                "profile_completed": false
+            }
+        ],
+        "last_page": 1
+    }
+}
+```
+
+### Create Patient
+
+`POST /api/admin/patients`
+
+Request:
+
+```json
+{
+    "full_name": "Jane Doe",
+    "phone": "+963912345678",
+    "date_of_birth": "1995-05-20",
+    "gender": "female",
+    "address": "Damascus",
+    "job": "Teacher"
+}
+```
+
+Response `201`:
+
+```json
+{
+    "success": true,
+    "message": "Patient created successfully.",
+    "data": {
+        "id": 1,
+        "user_id": null,
+        "full_name": "Jane Doe",
+        "phone": "+963912345678",
+        "profile_completed": false
+    }
+}
+```
+
+A `409` conflict is returned if a patient with the same phone number already exists.
+
+### Show Patient
+
+`GET /api/admin/patients/{patient}`
+
+Response `200` returns the patient resource including the linked user when present.
+
+### Update Patient
+
+`PUT /api/admin/patients/{patient}`
+
+Admins can update any patient record.
+
+### Delete Patient
+
+`DELETE /api/admin/patients/{patient}`
+
+Responds with a success message when the patient is removed.
+
 ## Doctor Patients
 
 ### List Patients For Doctor
@@ -322,36 +524,36 @@ Returns patients who have appointments with the given doctor.
 
 Query parameters:
 
-| Name | Description |
-| --- | --- |
-| `search` | Matches patient full name or phone |
-| `gender` | `male` or `female` |
-| `has_account` | `true` for app-linked patients, `false` for walk-ins |
-| `profile_completed` | `true`/`false` |
-| `created_from` | `YYYY-MM-DD` (patient `created_at` lower bound) |
-| `created_to` | `YYYY-MM-DD` (patient `created_at` upper bound) |
-| `dob_from` | `YYYY-MM-DD` (patient `date_of_birth` lower bound) |
-| `dob_to` | `YYYY-MM-DD` (patient `date_of_birth` upper bound) |
+| Name                | Description                                          |
+| ------------------- | ---------------------------------------------------- |
+| `search`            | Matches patient full name or phone                   |
+| `gender`            | `male` or `female`                                   |
+| `has_account`       | `true` for app-linked patients, `false` for walk-ins |
+| `profile_completed` | `true`/`false`                                       |
+| `created_from`      | `YYYY-MM-DD` (patient `created_at` lower bound)      |
+| `created_to`        | `YYYY-MM-DD` (patient `created_at` upper bound)      |
+| `dob_from`          | `YYYY-MM-DD` (patient `date_of_birth` lower bound)   |
+| `dob_to`            | `YYYY-MM-DD` (patient `date_of_birth` upper bound)   |
 
 Response `200`:
 
 ```json
 {
-  "success": true,
-  "data": [
-    {
-      "id": 1,
-      "user_id": null,
-      "full_name": "Jane Doe",
-      "phone": "+963912345678",
-      "date_of_birth": "1995-05-20",
-      "gender": "female",
-      "address": "Damascus",
-      "job": "Teacher",
-      "profile_completed": true,
-      "created_at": "2026-06-07 12:00:00"
-    }
-  ]
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "user_id": null,
+            "full_name": "Jane Doe",
+            "phone": "+963912345678",
+            "date_of_birth": "1995-05-20",
+            "gender": "female",
+            "address": "Damascus",
+            "job": "Teacher",
+            "profile_completed": true,
+            "created_at": "2026-06-07 12:00:00"
+        }
+    ]
 }
 ```
 

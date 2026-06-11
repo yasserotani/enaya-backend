@@ -1,23 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Patient;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Patient\StoreReceptionPatientRequest;
 use App\Http\Requests\Patient\UpdateReceptionPatientRequest;
+use App\Http\Resources\PatientResource;
 use App\Models\Patient;
+use Illuminate\Http\Request;
 
-class ReceptionPatientController extends Controller
+class PatientController extends Controller
 {
-    public function index()
+    // GET /api/admin/patients
+    public function index(Request $request)
     {
-        $patients = Patient::applyFilters(request()->only([
+        $patients = Patient::with('user')->applyFilters($request->only([
             'search',
             'gender',
             'has_account',
         ]))
             ->latest()
-            ->get();
+            ->paginate(20); // admin gets pagination unlike reception's ->get()
 
         return response()->json([
             'success' => true,
@@ -25,30 +28,28 @@ class ReceptionPatientController extends Controller
         ]);
     }
 
+    // GET /api/admin/patients/{patient}
     public function show(Patient $patient)
     {
         return response()->json([
             'success' => true,
-            'data' => $patient,
+            'data' => new PatientResource($patient->load('user')),
         ]);
     }
 
+    // POST /api/admin/patients
     public function store(StoreReceptionPatientRequest $request)
     {
-        // check if the patient with this phone number already exist
+        $existingPatient = Patient::where('phone', $request->validated('phone'))->first();
 
-        $existingPatient = Patient::query()
-            ->where('phone', '=', $request->validated('phone'))
-            ->first();
         if ($existingPatient) {
             return response()->json([
                 'success' => false,
-                'message' => 'A patient with this phone number already exists',
+                'message' => 'A patient with this phone number already exists.',
                 'data' => $existingPatient,
             ], 409);
         }
 
-        // create the patient
         $patient = Patient::create([
             ...$request->validated(),
             'user_id' => null,
@@ -57,45 +58,32 @@ class ReceptionPatientController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Patient created successfully',
+            'message' => 'Patient created successfully.',
             'data' => $patient,
         ], 201);
     }
 
+    // PUT /api/admin/patients/{patient}
     public function update(UpdateReceptionPatientRequest $request, Patient $patient)
     {
-        // if the patient has an account, prevent updating from reception
-        if ($patient->user_id !== null && !$request->user()->can('edit-app-patients')) {
-            return response()->json([
-                'success' => false,
-                'message' => 'This patient has an account and cannot be edited from reception',
-            ], 403);
-        }
-
+        // admin can edit any patient, no restrictions unlike reception
         $patient->update($request->validated());
 
         return response()->json([
             'success' => true,
-            'message' => 'Patient updated successfully',
+            'message' => 'Patient updated successfully.',
             'data' => $patient->fresh(),
         ]);
     }
 
+    // DELETE /api/admin/patients/{patient}
     public function destroy(Patient $patient)
     {
-
-        if ($patient->user_id !== null && !request()->user()->can('delete-app-patients')) {
-            return response()->json([
-                'success' => false,
-                'message' => 'This patient has an account and cannot be deleted from reception',
-            ], 403);
-        }
-
         $patient->delete();
 
         return response()->json([
             'success' => true,
-            'message' => 'Patient deleted successfully',
+            'message' => 'Patient deleted successfully.',
         ]);
     }
 }

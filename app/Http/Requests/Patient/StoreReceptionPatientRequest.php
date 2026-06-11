@@ -16,8 +16,8 @@ class StoreReceptionPatientRequest extends BaseFormRequest
         return [
             'full_name' => 'required|string|max:255|unique:patients,full_name',
             'phone' => 'required|string|max:20|unique:patients,phone',
-            'date_of_birth' => 'nullable|date|before:today',
             'gender' => 'required|in:male,female',
+            'date_of_birth' => 'nullable|date|before:today',
             'address' => 'nullable|string',
             'job' => 'nullable|string|max:255',
         ];
