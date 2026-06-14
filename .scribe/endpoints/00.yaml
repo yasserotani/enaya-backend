@@ -400,7 +400,7 @@ endpoints:
         name: gender
         description: ''
         required: true
-        example: female
+        example: male
         type: string
         enumValues:
           - male
@@ -413,7 +413,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: false
-        example: '2022-07-06'
+        example: '2022-07-09'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -441,13 +441,25 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         deprecated: false
+      emergency_contact:
+        custom: []
+        name: emergency_contact
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
     cleanBodyParameters:
       full_name: b
       phone: ngzmiyvdljnikhwa
-      gender: female
-      date_of_birth: '2022-07-06'
+      gender: male
+      date_of_birth: '2022-07-09'
       address: architecto
       job: 'n'
+      emergency_contact: g
     fileParameters: []
     responses: []
     responseFields: []
@@ -577,7 +589,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: false
-        example: '2022-07-06'
+        example: '2022-07-09'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -588,7 +600,7 @@ endpoints:
         name: gender
         description: ''
         required: false
-        example: male
+        example: female
         type: string
         enumValues:
           - male
@@ -618,13 +630,25 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         deprecated: false
+      emergency_contact:
+        custom: []
+        name: emergency_contact
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
     cleanBodyParameters:
       full_name: b
       phone: ngzmiyvdljnikhwa
-      date_of_birth: '2022-07-06'
-      gender: male
+      date_of_birth: '2022-07-09'
+      gender: female
       address: architecto
       job: 'n'
+      emergency_contact: g
     fileParameters: []
     responses: []
     responseFields: []
@@ -833,7 +857,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: true
-        example: '2022-07-06'
+        example: '2022-07-09'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -877,7 +901,7 @@ endpoints:
     cleanBodyParameters:
       full_name: b
       phone: ngzmiyvdljnikhwa
-      date_of_birth: '2022-07-06'
+      date_of_birth: '2022-07-09'
       gender: female
       address: architecto
       job: 'n'
@@ -953,7 +977,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: false
-        example: '2022-07-06'
+        example: '2022-07-09'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -994,14 +1018,26 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         deprecated: false
+      emergency_contact:
+        custom: []
+        name: emergency_contact
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
     cleanBodyParameters:
       name: b
       phone: ngzmiyvdljnikhwa
       email: breitenberg.gilbert@example.com
-      date_of_birth: '2022-07-06'
+      date_of_birth: '2022-07-09'
       gender: female
       address: architecto
       job: 'n'
+      emergency_contact: g
     fileParameters: []
     responses: []
     responseFields: []
@@ -1052,7 +1088,7 @@ endpoints:
         name: scheduled_at
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>.'
         required: true
-        example: '2052-07-05'
+        example: '2052-07-08'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1071,7 +1107,7 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       doctor_id: architecto
-      scheduled_at: '2052-07-05'
+      scheduled_at: '2052-07-08'
       visit_reason: architecto
     fileParameters: []
     responses: []
@@ -1528,7 +1564,7 @@ endpoints:
         name: gender
         description: ''
         required: true
-        example: female
+        example: male
         type: string
         enumValues:
           - male
@@ -1541,7 +1577,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: false
-        example: '2022-07-06'
+        example: '2022-07-09'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1569,13 +1605,25 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         deprecated: false
+      emergency_contact:
+        custom: []
+        name: emergency_contact
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
     cleanBodyParameters:
       full_name: b
       phone: ngzmiyvdljnikhwa
-      gender: female
-      date_of_birth: '2022-07-06'
+      gender: male
+      date_of_birth: '2022-07-09'
       address: architecto
       job: 'n'
+      emergency_contact: g
     fileParameters: []
     responses: []
     responseFields: []
@@ -1705,7 +1753,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date. Must be a date before <code>today</code>.'
         required: false
-        example: '2022-07-06'
+        example: '2022-07-09'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1716,7 +1764,7 @@ endpoints:
         name: gender
         description: ''
         required: false
-        example: male
+        example: female
         type: string
         enumValues:
           - male
@@ -1746,13 +1794,25 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         deprecated: false
+      emergency_contact:
+        custom: []
+        name: emergency_contact
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
     cleanBodyParameters:
       full_name: b
       phone: ngzmiyvdljnikhwa
-      date_of_birth: '2022-07-06'
-      gender: male
+      date_of_birth: '2022-07-09'
+      gender: female
       address: architecto
       job: 'n'
+      emergency_contact: g
     fileParameters: []
     responses: []
     responseFields: []
@@ -1802,6 +1862,831 @@ endpoints:
     cleanBodyParameters: []
     fileParameters: []
     responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/admin/dashboard
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/doctor/appointments/{appointment_id}/sessions/list'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      appointment_id:
+        custom: []
+        name: appointment_id
+        description: 'The ID of the appointment.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      appointment_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/doctor/appointments/{appointment_id}/sessions/end'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      appointment_id:
+        custom: []
+        name: appointment_id
+        description: 'The ID of the appointment.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      appointment_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      diagnosis:
+        custom: []
+        name: diagnosis
+        description: 'Must not be greater than 2000 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      notes:
+        custom: []
+        name: notes
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      diagnosis: b
+      notes: 'n'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/doctor/appointments/{appointment_id}/sessions/start'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      appointment_id:
+        custom: []
+        name: appointment_id
+        description: 'The ID of the appointment.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      appointment_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      patient_complaint:
+        custom: []
+        name: patient_complaint
+        description: 'Must not be greater than 1000 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      notes:
+        custom: []
+        name: notes
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      patient_complaint: b
+      notes: 'n'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/doctor/appointments/{appointment_id}/sessions/{session_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      appointment_id:
+        custom: []
+        name: appointment_id
+        description: 'The ID of the appointment.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      session_id:
+        custom: []
+        name: session_id
+        description: 'The ID of the session.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      appointment_id: 1
+      session_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/doctor/appointments/{appointment_id}/sessions/{session_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      appointment_id:
+        custom: []
+        name: appointment_id
+        description: 'The ID of the appointment.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      session_id:
+        custom: []
+        name: session_id
+        description: 'The ID of the session.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      appointment_id: 1
+      session_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      diagnosis:
+        custom: []
+        name: diagnosis
+        description: 'Must not be greater than 2000 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      patient_complaint:
+        custom: []
+        name: patient_complaint
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      notes:
+        custom: []
+        name: notes
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      status:
+        custom: []
+        name: status
+        description: ''
+        required: false
+        example: completed
+        type: string
+        enumValues:
+          - active
+          - completed
+          - cancelled
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      diagnosis: b
+      patient_complaint: 'n'
+      notes: g
+      status: completed
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/doctor/sessions/{session_id}/prescriptions'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      session_id:
+        custom: []
+        name: session_id
+        description: 'The ID of the session.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      session_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      medication_name:
+        custom: []
+        name: medication_name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      dosage:
+        custom: []
+        name: dosage
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      frequency:
+        custom: []
+        name: frequency
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      duration_days:
+        custom: []
+        name: duration_days
+        description: 'Must be at least 1.'
+        required: true
+        example: 66
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      instructions:
+        custom: []
+        name: instructions
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: m
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      medication_name: b
+      dosage: 'n'
+      frequency: g
+      duration_days: 66
+      instructions: m
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/doctor/sessions/{session_id}/prescriptions/{prescription_id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      session_id:
+        custom: []
+        name: session_id
+        description: 'The ID of the session.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      prescription_id:
+        custom: []
+        name: prescription_id
+        description: 'The ID of the prescription.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      session_id: 1
+      prescription_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/appointments/my_all_appointments
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/appointments/book_appointment
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      doctor_id:
+        custom: []
+        name: doctor_id
+        description: 'The <code>id</code> of an existing record in the doctors table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      scheduled_at:
+        custom: []
+        name: scheduled_at
+        description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>.'
+        required: true
+        example: '2052-07-08'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      visit_reason:
+        custom: []
+        name: visit_reason
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      doctor_id: architecto
+      scheduled_at: '2052-07-08'
+      visit_reason: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/appointments/doctor
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      doctor_id:
+        custom: []
+        name: doctor_id
+        description: 'The <code>id</code> of an existing record in the doctors table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      doctor_id: architecto
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/appointments/available-slots
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      doctor_id:
+        custom: []
+        name: doctor_id
+        description: 'The <code>id</code> of an existing record in the doctors table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      date:
+        custom: []
+        name: date
+        description: 'Must be a valid date in the format <code>Y-m-d</code>. Must be a date after or equal to <code>today</code>.'
+        required: true
+        example: '2052-07-07'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      doctor_id: architecto
+      date: '2052-07-07'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
     responseFields: []
     auth:
       - headers

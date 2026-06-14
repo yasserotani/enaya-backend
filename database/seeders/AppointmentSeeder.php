@@ -37,7 +37,6 @@ class AppointmentSeeder extends Seeder
                 'status' => fake()->randomElement($statuses),
                 'visit_reason' => fake()->optional(0.7)->sentence(),
                 'notes' => fake()->optional(0.7)->sentence(),
-                'diagnosis' => fake()->optional(0.5)->sentence(),
             ]);
         }
     }

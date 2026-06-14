@@ -39,6 +39,7 @@ class UpdatePatientRequest extends BaseFormRequest
             'gender' => 'sometimes|in:male,female',
             'address' => 'sometimes|nullable|string',
             'job' => 'sometimes|nullable|string|max:255',
+            'emergency_contact' => 'sometimes|nullable|string|max:255',
         ];
     }
 }

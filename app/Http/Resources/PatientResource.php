@@ -18,6 +18,7 @@ class PatientResource extends JsonResource
             'address' => $this->address,
             'job' => $this->job,
             'profile_completed' => $this->profile_completed,
+            'emergency_contact' => $this->emergency_contact,
             'created_at' => $this->created_at->toDateTimeString(),
         ];
     }

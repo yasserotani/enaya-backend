@@ -20,10 +20,11 @@ return new class extends Migration
             $table->text('patient_complaint')->nullable();
             $table->text('diagnosis')->nullable();
             $table->enum('status', [
+                'pending',
                 'in_progress',
                 'completed',
                 'cancelled',
-            ])->default('in_progress');
+            ])->default('pending');
             $table->timestamps();
         });
     }

@@ -11,21 +11,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-#[Fillable(['doctor_id', 'patient_id', 'scheduled_at', 'status', 'visit_reason', 'notes', 'diagnosis'])]
+#[Fillable(['doctor_id', 'patient_id', 'scheduled_at', 'status', 'visit_reason', 'notes'])]
 class Appointment extends Model
 {
     /** @use HasFactory<AppointmentFactory> */
     use HasFactory;
-
-    protected function casts(): array
-    {
-        return [
-            'doctor_id' => 'integer',
-            'patient_id' => 'integer',
-            'scheduled_at' => 'datetime',
-            'status' => AppointmentStatus::class,
-        ];
-    }
 
     public function doctor(): BelongsTo
     {
@@ -42,7 +32,7 @@ class Appointment extends Model
         return $this->hasOne(Queue::class);
     }
 
-    public function appointmentSession(): HasOne
+    public function sessions(): HasOne
     {
         return $this->hasOne(AppointmentSession::class);
     }
@@ -50,5 +40,15 @@ class Appointment extends Model
     public function prescriptions(): HasManyThrough
     {
         return $this->hasManyThrough(Prescription::class, AppointmentSession::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'doctor_id' => 'integer',
+            'patient_id' => 'integer',
+            'scheduled_at' => 'datetime',
+            'status' => AppointmentStatus::class,
+        ];
     }
 }

@@ -20,6 +20,7 @@ class StoreReceptionPatientRequest extends BaseFormRequest
             'date_of_birth' => 'nullable|date|before:today',
             'address' => 'nullable|string',
             'job' => 'nullable|string|max:255',
+            'emergency_contact' => 'nullable|string|max:255',
         ];
     }
 }

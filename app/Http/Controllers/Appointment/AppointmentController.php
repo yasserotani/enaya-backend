@@ -44,6 +44,7 @@ class AppointmentController extends Controller
             'scheduled_at' => $requestedTime,
             'status' => AppointmentStatus::Scheduled,
             'visit_reason' => $validated['visit_reason'] ?? null,
+
         ]);
 
         return response()->json([
@@ -91,6 +92,7 @@ class AppointmentController extends Controller
             'data' => $appointments
         ]);
     }
+
     public function getDoctorAvailableSlots(Request $request)
     {
         $request->validate([
