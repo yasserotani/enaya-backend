@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['appointment_id', 'medication_name', 'dosage', 'frequency', 'duration_days', 'instructions'])]
+#[Fillable(['appointment_session_id', 'medication_name', 'dosage', 'frequency', 'duration_days', 'instructions'])]
 class Prescription extends Model
 {
     /** @use HasFactory<PrescriptionFactory> */
@@ -17,13 +17,13 @@ class Prescription extends Model
     protected function casts(): array
     {
         return [
-            'appointment_id' => 'integer',
+            'appointment_session_id' => 'integer',
             'duration_days' => 'integer',
         ];
     }
 
-    public function appointment(): BelongsTo
+    public function appointmentSession(): BelongsTo
     {
-        return $this->belongsTo(Appointment::class);
+        return $this->belongsTo(AppointmentSession::class);
     }
 }

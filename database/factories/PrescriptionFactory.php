@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Appointment;
+use App\Models\AppointmentSession;
 use App\Models\Prescription;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +19,7 @@ class PrescriptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'appointment_id' => Appointment::factory(),
+            'appointment_session_id' => AppointmentSession::factory(),
             'medication_name' => fake()->randomElement([
                 'Amoxicillin',
                 'Ibuprofen',

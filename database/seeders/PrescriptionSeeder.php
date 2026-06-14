@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Appointment;
+use App\Models\AppointmentSession;
 use App\Models\Prescription;
 use Illuminate\Database\Seeder;
 
@@ -13,20 +13,20 @@ class PrescriptionSeeder extends Seeder
      */
     public function run(): void
     {
-        $appointments = Appointment::query()->get();
+        $sessions = AppointmentSession::query()->get();
 
-        if ($appointments->isEmpty()) {
+        if ($sessions->isEmpty()) {
             return;
         }
 
-        $appointmentCount = (int) ($appointments->count() * 0.6);
+        $sessionCount = (int) ($sessions->count() * 0.6);
 
-        if ($appointmentCount === 0) {
+        if ($sessionCount === 0) {
             return;
         }
 
-        foreach ($appointments->random($appointmentCount) as $appointment) {
-            Prescription::factory()->for($appointment)->create();
+        foreach ($sessions->random($sessionCount) as $session) {
+            Prescription::factory()->for($session)->create();
         }
     }
 }

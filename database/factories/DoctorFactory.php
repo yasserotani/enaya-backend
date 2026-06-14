@@ -24,8 +24,8 @@ class DoctorFactory extends Factory
             'department_id' => Department::factory(),
             'specialty' => fake()->word(),
             'full_name' => fake()->name(),
-            'start_time' => '08:00:00',
-            'end_time' => '16:00:00',
+            'working_hours_start' => '08:00:00',
+            'working_hours_end' => '16:00:00',
         ];
     }
 }

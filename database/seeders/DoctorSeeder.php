@@ -31,6 +31,9 @@ class DoctorSeeder extends Seeder
                         'Cardiology',
                         'Dermatology',
                     ]),
+                    'full_name' => $user->name,
+                    'working_hours_start' => '08:00:00',
+                    'working_hours_end' => '16:00:00',
                 ]);
             });
     }

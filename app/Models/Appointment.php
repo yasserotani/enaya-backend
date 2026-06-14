@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable(['doctor_id', 'patient_id', 'scheduled_at', 'status', 'visit_reason', 'notes', 'diagnosis'])]
@@ -47,8 +47,8 @@ class Appointment extends Model
         return $this->hasOne(AppointmentSession::class);
     }
 
-    public function prescriptions(): HasMany
+    public function prescriptions(): HasManyThrough
     {
-        return $this->hasMany(Prescription::class);
+        return $this->hasManyThrough(Prescription::class, AppointmentSession::class);
     }
 }

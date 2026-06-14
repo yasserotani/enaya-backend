@@ -15,3 +15,9 @@ require __DIR__.'/api/patients.php';
 
 // admin routes
 require __DIR__.'/api/admin.php';
+
+// doctor routes
+require __DIR__.'/api/doctors.php';
+
+// appointment routes
+require __DIR__.'/api/appointments.php';
