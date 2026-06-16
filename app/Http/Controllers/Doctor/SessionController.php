@@ -9,10 +9,10 @@ use App\Http\Requests\Doctor\UpdateSessionRequest;
 use App\Models\Appointment;
 use App\Models\AppointmentSession;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
-
     public function index(Request $request, Appointment $appointment)
     {
         $this->checkOwnership($appointment, $request->user()->doctor);
@@ -45,7 +45,7 @@ class SessionController extends Controller
         // check if the appointment is for this doctor
         $this->checkOwnership($appointment, $request->user()->doctor);
         // check if the appointment is in a valid status to start a session
-        if (!in_array($appointment->status, ['arrived', 'confirmed'])) {
+        if (! in_array($appointment->status, ['arrived', 'confirmed'])) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -76,6 +76,7 @@ class SessionController extends Controller
 
             return $session;
         });
+
         return response()->json([
             'success' => true,
             'data' => ['session' => $session],
@@ -83,7 +84,6 @@ class SessionController extends Controller
             'errorCode' => null,
         ], 201);
     }
-
 
     public function update(UpdateSessionRequest $request, Appointment $appointment, AppointmentSession $session)
     {
@@ -98,7 +98,6 @@ class SessionController extends Controller
                 'errorCode' => '422',
             ], 422);
         }
-
 
         \DB::transaction(function () use ($request, $appointment, $session) {
             $isClosing = in_array($request->status, ['completed', 'cancelled']);
@@ -136,7 +135,7 @@ class SessionController extends Controller
             ], 422);
         }
 
-        \DB::transaction(function () use ($request, $appointment, $session) {
+        DB::transaction(function () use ($request, $appointment, $session) {
             $session->update([
                 'status' => 'completed',
                 'ended_at' => now(),
@@ -170,5 +169,4 @@ class SessionController extends Controller
             'errorCode' => null,
         ]);
     }
-
 }
