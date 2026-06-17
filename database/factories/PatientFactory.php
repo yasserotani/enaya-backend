@@ -18,15 +18,17 @@ class PatientFactory extends Factory
      */
     public function definition(): array
     {
+        $userId = fake()->boolean(70) ? User::factory() : null;
         return [
-            'user_id' => fake()->boolean(70) ? User::factory() : null,
+            'user_id' => $userId,
             'full_name' => fake()->unique()->name(),
             'phone' => fake()->unique()->numerify('+9639########'),
-            'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years')->format('Y-m-d'),
+            'date_of_birth' => fake()->dateTimeBetween('-50 years', '-10 years')->format('Y-m-d'),
             'gender' => fake()->randomElement(['male', 'female']),
             'address' => fake()->address(),
             'job' => fake()->optional(0.6)->jobTitle(),
-            'profile_completed' => fake()->boolean(),
+            'profile_completed' => $userId ? true : false,
+            'emergency_contact' => fake()->numerify('+9639########'),
         ];
     }
 }

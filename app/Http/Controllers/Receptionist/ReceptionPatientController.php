@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Patient;
+namespace App\Http\Controllers\Receptionist;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Patient\StoreReceptionPatientRequest;
@@ -65,7 +65,7 @@ class ReceptionPatientController extends Controller
     public function update(UpdateReceptionPatientRequest $request, Patient $patient)
     {
         // if the patient has an account, prevent updating from reception
-        if ($patient->user_id !== null && ! $request->user()->can('edit-app-patients')) {
+        if ($patient->user_id !== null && !$request->user()->can('edit-app-patients')) {
             return response()->json([
                 'success' => false,
                 'message' => 'This patient has an account and cannot be edited from reception',
@@ -84,7 +84,7 @@ class ReceptionPatientController extends Controller
     public function destroy(Patient $patient)
     {
 
-        if ($patient->user_id !== null && ! request()->user()->can('delete-app-patients')) {
+        if ($patient->user_id !== null && !request()->user()->can('delete-app-patients')) {
             return response()->json([
                 'success' => false,
                 'message' => 'This patient has an account and cannot be deleted from reception',

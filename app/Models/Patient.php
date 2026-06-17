@@ -51,12 +51,12 @@ class Patient extends Model
         }
 
         // date_of_birth range filters
-        if (!empty($filters['dob_from'])) {
-            $query->whereDate('date_of_birth', '>=', $filters['dob_from']);
+        if (!empty($filters['birth_from'])) {
+            $query->whereDate('date_of_birth', '>=', $filters['birth_from']);
         }
 
-        if (!empty($filters['dob_to'])) {
-            $query->whereDate('date_of_birth', '<=', $filters['dob_to']);
+        if (!empty($filters['birth_to'])) {
+            $query->whereDate('date_of_birth', '<=', $filters['birth_to']);
         }
 
         return $query;

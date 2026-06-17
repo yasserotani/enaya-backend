@@ -20,8 +20,8 @@ class PatientController extends Controller
             'profile_completed',
             'created_from',
             'created_to',
-            'dob_from',
-            'dob_to',
+            'birth_from',
+            'birth_to',
         ]);
 
         // get all patients that have appointments with this doctor, then apply patient filters

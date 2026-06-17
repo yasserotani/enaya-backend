@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Appointment\AppointmentController;
 use App\Http\Controllers\Doctor\PatientController as DoctorPatientController;
 use App\Http\Controllers\Patient\ProfileController;
-use App\Http\Controllers\Patient\ReceptionPatientController;
+use App\Http\Controllers\Receptionist\ReceptionPatientController;
 use Illuminate\Support\Facades\Route;
-use  App\Http\Controllers\Appointment\AppointmentController;
 
 // Receptionist patient routes
 Route::middleware(['auth:sanctum', 'role:receptionist'])

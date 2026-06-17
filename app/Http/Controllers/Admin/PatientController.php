@@ -8,27 +8,34 @@ use App\Http\Requests\Patient\UpdateReceptionPatientRequest;
 use App\Http\Resources\PatientResource;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class PatientController extends Controller
 {
-    // GET /api/admin/patients
     public function index(Request $request)
     {
-        $patients = Patient::with('user')->applyFilters($request->only([
+        $filters = $request->only([
             'search',
             'gender',
             'has_account',
-        ]))
-            ->latest()
-            ->paginate(20); // admin gets pagination unlike reception's ->get()
+            'profile_completed',
+            'created_from',
+            'created_to',
+            'birth_from',
+            'birth_to',
+        ]);
 
+        $patients = Patient::with('user')
+            ->applyFilters($filters)
+            ->latest()
+            ->paginate(20);
         return response()->json([
             'success' => true,
+//            'data' => PatientResource::collection($patients),
             'data' => $patients,
         ]);
     }
 
-    // GET /api/admin/patients/{patient}
     public function show(Patient $patient)
     {
         return response()->json([
@@ -37,7 +44,6 @@ class PatientController extends Controller
         ]);
     }
 
-    // POST /api/admin/patients
     public function store(StoreReceptionPatientRequest $request)
     {
         $existingPatient = Patient::where('phone', $request->validated('phone'))->first();
@@ -59,11 +65,10 @@ class PatientController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Patient created successfully.',
-            'data' => $patient,
+            'data' => new PatientResource($patient->load('user')),
         ], 201);
     }
 
-    // PUT /api/admin/patients/{patient}
     public function update(UpdateReceptionPatientRequest $request, Patient $patient)
     {
         // admin can edit any patient, no restrictions unlike reception
@@ -72,11 +77,10 @@ class PatientController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Patient updated successfully.',
-            'data' => $patient->fresh(),
+            'data' => new PatientResource($patient->fresh()),
         ]);
     }
 
-    // DELETE /api/admin/patients/{patient}
     public function destroy(Patient $patient)
     {
         $patient->delete();

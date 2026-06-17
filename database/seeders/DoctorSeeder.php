@@ -17,7 +17,7 @@ class DoctorSeeder extends Seeder
         $departments = Department::query()->pluck('id');
 
         User::factory()
-            ->count(3)
+            ->count(10)
             ->create()
             ->each(function (User $user) use ($departments): void {
                 $user->assignRole('doctor');

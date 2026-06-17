@@ -14,7 +14,7 @@ class PatientSeeder extends Seeder
     public function run(): void
     {
         User::factory()
-            ->count(5)
+            ->count(20)
             ->create()
             ->each(function (User $user): void {
                 $user->assignRole('patient');
