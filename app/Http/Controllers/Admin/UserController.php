@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Resources\DoctorResource;
 use App\Http\Resources\PatientResource;
 use App\Http\Resources\UserResource;
@@ -54,16 +55,9 @@ class UserController extends Controller
     }
 
     // POST /api/admin/users
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
-            'role' => 'required|string|in:doctor,receptionist',
-            'specialty' => 'required_if:role,doctor|string|max:255',
-            'department_id' => 'required_if:role,doctor|integer|exists:departments,id',
-        ]);
+        $validated = $request->validated();
 
         $user = DB::transaction(function () use ($validated) {
             // use transaction to ensure both user and doctor are created together, or neither if something fails
@@ -78,6 +72,10 @@ class UserController extends Controller
             if ($validated['role'] === 'doctor') {
                 Doctor::create([
                     'user_id' => $user->id,
+                    'full_name' => $validated['name'],
+                    'phone' => $validated['phone'],
+                    'date_of_birth' => $validated['date_of_birth'],
+                    'gender' => $validated['gender'],
                     'specialty' => $validated['specialty'],
                     'department_id' => $validated['department_id'],
                 ]);

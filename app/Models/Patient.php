@@ -17,16 +17,26 @@ class Patient extends Model
 
     public function scopeApplyFilters($query, array $filters)
     {
+
         if (!empty($filters['search'])) {
-            $query->where(function ($q) use ($filters) {
-                $q->where('full_name', 'like', "%{$filters['search']}%")
-                    ->orWhere('phone', 'like', "%{$filters['search']}%");
+            $search = $filters['search'];
+            $digitsOnly = preg_replace('/\D/', '', $search);
+
+            $query->where(function ($q) use ($search, $digitsOnly) {
+                $q->where('full_name', 'like', "%{$search}%");
+
+                if ($digitsOnly !== '') {
+                    // matches regardless of spaces, dashes, +, country code formatting
+                    $q->orWhereRaw(
+                        "REPLACE(REPLACE(REPLACE(phone, '-', ''), ' ', ''), '+', '') LIKE ?",
+                        ["%{$digitsOnly}%"]
+                    );
+                } else {
+                    $q->orWhere('phone', 'like', "%{$search}%");
+                }
             });
         }
 
-        if (!empty($filters['gender'])) {
-            $query->where('gender', $filters['gender']);
-        }
 
         if (!empty($filters['has_account'])) {
             $filters['has_account'] === 'true'

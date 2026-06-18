@@ -7,25 +7,28 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class DoctorResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
-            'userId' => $this->user_id,
-            'name' => $this->user?->name,
-            'email' => $this->user?->email,
-            'departmentId' => $this->department_id,
-            'department' => $this->department?->name,
-            'specialty' => $this->specialty,
-            'workingHours' => [
-                'start' => $this->working_hours_start,
-                'end' => $this->working_hours_end,
+            'user' => [
+                'id' => $this->user?->id,
+                'name' => $this->user?->name,
+                'email' => $this->user?->email,
             ],
+            'full_name' => $this->full_name,
+            'phone' => $this->phone,
+            'date_of_birth' => $this->date_of_birth?->format('Y-m-d'),
+            'gender' => $this->gender,
+            'specialty' => $this->specialty,
+            'working_hours_start' => $this->working_hours_start,
+            'working_hours_end' => $this->working_hours_end,
+            'department' => [
+                'id' => $this->department?->id,
+                'name' => $this->department?->name,
+            ],
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

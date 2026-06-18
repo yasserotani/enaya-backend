@@ -17,9 +17,6 @@ Route::middleware(['auth:sanctum', 'role:receptionist'])
         Route::delete('/{patient}', [ReceptionPatientController::class, 'destroy']);
     });
 
-// Doctor Patient routes
-Route::middleware(['auth:sanctum', 'permission:view-patients'])
-    ->get('/doctors/{doctor}/patients', [DoctorPatientController::class, 'index']);
 
 // Patient profile routes
 Route::middleware(['auth:sanctum', 'role:patient'])

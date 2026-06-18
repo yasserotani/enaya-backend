@@ -1,25 +1,21 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(function () {
-    // users
-    Route::get('/users', [UserController::class, 'index']);
-    Route::post('/users', [UserController::class, 'store']);
-    Route::get('/users/{user}', [UserController::class, 'show']);
-    Route::put('/users/{user}', [UserController::class, 'update']);
-    Route::delete('/users/{user}', [UserController::class, 'destroy']);
+Route::middleware(['auth:sanctum', 'role:admin'])
+    ->prefix('admin')
+    ->group(function () {
 
-    // patients
-    Route::get('/patients', [PatientController::class, 'index']);
-    Route::post('/patients', [PatientController::class, 'store']);
-    Route::get('/patients/{patient}', [PatientController::class, 'show']);
-    Route::put('/patients/{patient}', [PatientController::class, 'update']);
-    Route::delete('/patients/{patient}', [PatientController::class, 'destroy']);
+        Route::apiResource('users', UserController::class);
+        Route::apiResource('patients', PatientController::class);
+        Route::apiResource('doctors', DoctorController::class);
+        Route::apiResource('departments', DepartmentController::class);
+        Route::put('doctors/{doctor}/restore', [DoctorController::class, 'restore']);
 
-    // dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-});
+        Route::get('/dashboard', [DashboardController::class, 'index']);
+    });

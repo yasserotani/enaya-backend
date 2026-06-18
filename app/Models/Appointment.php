@@ -17,9 +17,12 @@ class Appointment extends Model
     /** @use HasFactory<AppointmentFactory> */
     use HasFactory;
 
-    public function doctor(): BelongsTo
+
+    public function doctor()
     {
-        return $this->belongsTo(Doctor::class);
+        // This ensures that anytime you load an appointment's doctor,
+        // it never returns null just because the doctor left the clinic.
+        return $this->belongsTo(Doctor::class)->withTrashed();
     }
 
     public function patient(): BelongsTo

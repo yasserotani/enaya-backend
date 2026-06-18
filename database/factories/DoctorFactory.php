@@ -22,8 +22,16 @@ class DoctorFactory extends Factory
         return [
             'user_id' => User::factory(),
             'department_id' => Department::factory(),
-            'specialty' => fake()->word(),
+            'specialty' => fake()->randomElement([
+                'General Practice',
+                'Pediatrics',
+                'Cardiology',
+                'Dermatology',
+            ]),
             'full_name' => fake()->name(),
+            'phone' => fake()->phoneNumber(),
+            'date_of_birth' => fake()->date(),
+            'gender' => fake()->randomElement(['male', 'female']),
             'working_hours_start' => '08:00:00',
             'working_hours_end' => '16:00:00',
         ];

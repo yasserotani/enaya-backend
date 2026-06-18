@@ -12,6 +12,11 @@ class PatientController extends Controller
 {
     public function index(Doctor $doctor, Request $request)
     {
+        $authDoctor = auth()->user()->doctor;
+        // check if the doctor is the same as the authenticated doctor
+        if (!$authDoctor || $authDoctor->id !== $doctor->id) {
+            abort(403, 'Unauthorized');
+        }
         // apply the same patient-level filters used by reception
         $filters = $request->only([
             'search',
@@ -25,16 +30,44 @@ class PatientController extends Controller
         ]);
 
         // get all patients that have appointments with this doctor, then apply patient filters
-        $patients = Patient::applyFilters($filters)
+
+        $patients = Patient::withCount('appointments')
             ->whereHas('appointments', function ($q) use ($doctor) {
                 $q->where('doctor_id', $doctor->id);
             })
+            ->applyFilters($filters)
             ->latest()
-            ->get();
+            ->paginate(15);
+
 
         return response()->json([
             'success' => true,
-            'data' => PatientResource::collection($patients),
+            'message' => 'Patients fetched successfully',
+            'data' => PatientResource::collection($patients->items()),
+            'meta' => [
+                'current_page' => $patients->currentPage(),
+                'last_page' => $patients->lastPage(),
+                'per_page' => $patients->perPage(),
+                'total' => $patients->total(),
+            ],
+        ]);
+    }
+
+    public function show(Request $request, Patient $patient)
+    {
+        $doctor = $request->user()->doctor;
+        
+
+        $patient->loadMissing([
+            'appointments' => fn($q) => $q
+                ->where('doctor_id', $doctor->id)
+                ->with('appointmentSession.prescriptions')
+                ->latest('scheduled_at'),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => new PatientResource($patient),
         ]);
     }
 }

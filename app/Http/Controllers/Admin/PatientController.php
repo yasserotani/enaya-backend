@@ -31,7 +31,6 @@ class PatientController extends Controller
             ->paginate(20);
         return response()->json([
             'success' => true,
-//            'data' => PatientResource::collection($patients),
             'data' => $patients,
         ]);
     }
@@ -41,6 +40,7 @@ class PatientController extends Controller
         return response()->json([
             'success' => true,
             'data' => new PatientResource($patient->load('user')),
+            'error' => null,
         ]);
     }
 
