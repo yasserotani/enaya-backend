@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Patient;
+namespace App\Http\Requests\Reception;
 
 use App\Http\Requests\BaseFormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateReceptionPatientRequest extends BaseFormRequest
+class UpdatePatientRequest extends BaseFormRequest
 {
     public function authorize(): bool
     {

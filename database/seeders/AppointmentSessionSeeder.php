@@ -36,7 +36,7 @@ class AppointmentSessionSeeder extends Seeder
 
             $sessionStatus = match ($appointmentStatus) {
                 AppointmentStatus::Completed->value => 'completed',
-                AppointmentStatus::Cancelled->value => 'cancelled',
+                AppointmentStatus::Canceled->value => 'cancelled',
                 default => 'in_progress',
             };
 

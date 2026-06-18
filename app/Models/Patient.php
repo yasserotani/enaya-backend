@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Fillable(['user_id', 'full_name', 'phone', 'date_of_birth', 'gender', 'address', 'job', 'profile_completed', 'emergency_contact'])]
 class Patient extends Model
 {
     /** @use HasFactory<PatientFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public function scopeApplyFilters($query, array $filters)
     {
@@ -93,6 +94,7 @@ class Patient extends Model
             'user_id' => 'integer',
             'date_of_birth' => 'date',
             'profile_completed' => 'boolean',
+            'deleted_at' => 'datetime',
         ];
     }
 }

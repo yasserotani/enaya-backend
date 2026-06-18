@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Patient;
+namespace App\Http\Requests\Reception;
 
 use App\Http\Requests\BaseFormRequest;
 
-class StoreReceptionPatientRequest extends BaseFormRequest
+class StorePatientRequest extends BaseFormRequest
 {
     public function authorize(): bool
     {

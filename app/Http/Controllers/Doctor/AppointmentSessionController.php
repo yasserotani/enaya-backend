@@ -11,7 +11,7 @@ use App\Models\AppointmentSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SessionController extends Controller
+class AppointmentSessionController extends Controller
 {
     public function index(Request $request, Appointment $appointment)
     {
@@ -45,7 +45,7 @@ class SessionController extends Controller
         // check if the appointment is for this doctor
         $this->checkOwnership($appointment, $request->user()->doctor);
         // check if the appointment is in a valid status to start a session
-        if (! in_array($appointment->status, ['arrived', 'confirmed'])) {
+        if (!in_array($appointment->status, ['arrived', 'confirmed', 'scheduled'])) {
             return response()->json([
                 'success' => false,
                 'data' => null,

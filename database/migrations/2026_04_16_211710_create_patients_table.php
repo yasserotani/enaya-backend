@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->unique()->constrained('users')->nullOnDelete();
-            $table->string('full_name')->unique();
+            $table->string('full_name');
             $table->string('phone')->unique();
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->boolean('profile_completed')->default(false);
             $table->string('emergency_contact')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

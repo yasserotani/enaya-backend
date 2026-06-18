@@ -602,7 +602,7 @@ endpoints:
         name: gender
         description: ''
         required: false
-        example: male
+        example: female
         type: string
         enumValues:
           - male
@@ -647,7 +647,7 @@ endpoints:
       full_name: b
       phone: ngzmiyvdljnikhwa
       date_of_birth: '2022-07-13'
-      gender: male
+      gender: female
       address: architecto
       job: 'n'
       emergency_contact: g
@@ -814,7 +814,7 @@ endpoints:
         name: gender
         description: ''
         required: true
-        example: male
+        example: female
         type: string
         enumValues:
           - male
@@ -859,7 +859,7 @@ endpoints:
       full_name: b
       phone: ngzmiyvdljnikhwa
       date_of_birth: '2022-07-13'
-      gender: male
+      gender: female
       address: architecto
       job: 'n'
       emergency_contact: g
@@ -946,7 +946,7 @@ endpoints:
         name: gender
         description: ''
         required: false
-        example: male
+        example: female
         type: string
         enumValues:
           - male
@@ -992,7 +992,7 @@ endpoints:
       phone: ngzmiyvdljnikhwa
       email: breitenberg.gilbert@example.com
       date_of_birth: '2022-07-13'
-      gender: male
+      gender: female
       address: architecto
       job: 'n'
       emergency_contact: g
@@ -1207,7 +1207,7 @@ endpoints:
         name: date_of_birth
         description: 'This field is required when <code>role</code> is <code>doctor</code>. Must be a valid date.'
         required: false
-        example: '2026-06-18T14:06:56'
+        example: '2026-06-18T20:55:46'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -1218,7 +1218,7 @@ endpoints:
         name: gender
         description: 'This field is required when <code>role</code> is <code>doctor</code>.'
         required: false
-        example: female
+        example: male
         type: string
         enumValues:
           - male
@@ -1254,8 +1254,8 @@ endpoints:
       password: '-0pBNvYgxw'
       role: doctor
       phone: aykcmyuwpwlvqwrsitcpscqldzsnrwtujwvlxjklqpp
-      date_of_birth: '2026-06-18T14:06:56'
-      gender: female
+      date_of_birth: '2026-06-18T20:55:46'
+      gender: male
       specialty: w
       department_id: 16
     fileParameters: []
@@ -1996,7 +1996,7 @@ endpoints:
         name: gender
         description: ''
         required: false
-        example: male
+        example: female
         type: string
         enumValues:
           - male
@@ -2031,7 +2031,7 @@ endpoints:
         name: working_hours_start
         description: 'Must be a valid date in the format <code>H:i</code>.'
         required: false
-        example: '14:06'
+        example: '20:55'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -2054,10 +2054,10 @@ endpoints:
       name: u
       phone: wpwlvqwrsitcpscq
       date_of_birth: '2022-07-13'
-      gender: male
+      gender: female
       department_id: architecto
       specialty: 'n'
-      working_hours_start: '14:06'
+      working_hours_start: '20:55'
       working_hours_end: '2052-07-11'
     fileParameters: []
     responses: []
@@ -2869,7 +2869,7 @@ endpoints:
         name: status
         description: ''
         required: false
-        example: completed
+        example: active
         type: string
         enumValues:
           - active
@@ -2882,7 +2882,7 @@ endpoints:
       diagnosis: b
       patient_complaint: 'n'
       notes: g
-      status: completed
+      status: active
     fileParameters: []
     responses: []
     responseFields: []
@@ -2897,7 +2897,7 @@ endpoints:
     custom: []
     httpMethods:
       - GET
-    uri: 'api/doctor/patients/{patient}/doctors/{doctor_id}/patients'
+    uri: 'api/doctor/doctors/{doctor_id}/patients'
     metadata:
       custom: []
       groupName: Endpoints
@@ -2913,17 +2913,6 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      patient:
-        custom: []
-        name: patient
-        description: 'The patient.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
       doctor_id:
         custom: []
         name: doctor_id
@@ -2936,7 +2925,6 @@ endpoints:
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      patient: 1
       doctor_id: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -2965,7 +2953,7 @@ endpoints:
     custom: []
     httpMethods:
       - GET
-    uri: 'api/doctor/patients/{patient_id}/doctors/{doctor}/patients/{patient_id}'
+    uri: 'api/doctor/doctors/{doctor}/patients/{patient_id}'
     metadata:
       custom: []
       groupName: Endpoints
@@ -2981,17 +2969,6 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      patient_id:
-        custom: []
-        name: patient_id
-        description: 'The ID of the patient.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
       doctor:
         custom: []
         name: doctor
@@ -3003,9 +2980,20 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
+      patient_id:
+        custom: []
+        name: patient_id
+        description: 'The ID of the patient.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
     cleanUrlParameters:
-      patient_id: 1
       doctor: 1
+      patient_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -3014,11 +3002,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -3227,11 +3212,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -3357,11 +3339,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -3428,11 +3407,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: |-
-          {
-              "message": "Server Error"
-          }
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

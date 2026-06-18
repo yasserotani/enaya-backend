@@ -16,14 +16,16 @@ return new class extends Migration {
             $table->foreignId('patient_id')->constrained('patients')->restrictOnDelete();
             $table->foreignId('doctor_id')->constrained('doctors')->restrictOnDelete();
             $table->dateTime('scheduled_at');
-            //            $table->enum('status', ['pending', 'confirmed', 'completed', 'canceled', 'no_show'])
-            //                ->default('pending');
             $table->enum('status', array_column(AppointmentStatus::cases(), 'value'))
                 ->default(AppointmentStatus::Scheduled->value);
             $table->text('visit_reason')->nullable();
             $table->text('notes')->nullable();
-
+            $table->string('cancelled_by')->nullable()->after('status'); // 'doctor' | 'patient' | 'receptionist'
             $table->unique(['doctor_id', 'scheduled_at']); // one doctor cannot have two appointments at the same time.
+
+            $table->index('scheduled_at');
+            $table->index('status');
+            $table->index(['patient_id', 'status']);
             $table->timestamps();
         });
     }

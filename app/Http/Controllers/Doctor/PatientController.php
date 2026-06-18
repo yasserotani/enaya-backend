@@ -53,11 +53,13 @@ class PatientController extends Controller
         ]);
     }
 
-    public function show(Request $request, Patient $patient)
+    public function show(Doctor $doctor, Patient $patient)
     {
-        $doctor = $request->user()->doctor;
-        
-
+        $authDoctor = auth()->user()->doctor;
+        // check if the doctor is the same as the authenticated doctor
+        if (!$authDoctor || $authDoctor->id !== $doctor->id) {
+            abort(403, 'Unauthorized');
+        }
         $patient->loadMissing([
             'appointments' => fn($q) => $q
                 ->where('doctor_id', $doctor->id)

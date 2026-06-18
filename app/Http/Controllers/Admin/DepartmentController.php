@@ -48,7 +48,7 @@ class DepartmentController extends Controller
             'success' => true,
             'message' => 'Department created successfully',
             'data' => new DepartmentResource($department),
-        ], 201); // 201 Created is best practice for new resources
+        ], 201);
     }
 
     /**
@@ -81,13 +81,12 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department): JsonResponse
     {
-        // 🛑 SAFETY CHECK: Prevent breaking the database relationships
-        // Assumes your Department model has a doctors() relationship defined.
+
         if ($department->doctors()->exists()) {
             return response()->json([
                 'success' => false,
                 'message' => 'Cannot delete department. Please reassign or delete its active doctors first.',
-            ], 422); // 422 Unprocessable Entity
+            ], 422);
         }
 
         $department->delete();

@@ -13,7 +13,7 @@
         <h1></h1>
         <div class="holographic-card">
             <div>
-                <img src="../../public/logo.png" alt="logo"/>
+                {{--                <img src="../../public/logo.png" alt="logo"/>--}}
             </div>
             <h2>Enaya: Medical Center Management System</h2>
         </div>

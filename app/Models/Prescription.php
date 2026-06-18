@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['appointment_session_id', 'medication_name', 'dosage', 'frequency', 'duration_days', 'instructions'])]
+#[Fillable(['appointment_session_id', 'medication_name', 'dosage', 'frequency', 'duration', 'notes'])]
 class Prescription extends Model
 {
     /** @use HasFactory<PrescriptionFactory> */
@@ -18,7 +18,7 @@ class Prescription extends Model
     {
         return [
             'appointment_session_id' => 'integer',
-            'duration_days' => 'integer',
+            'duration' => 'integer',
         ];
     }
 

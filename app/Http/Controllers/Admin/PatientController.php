@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Patient\StoreReceptionPatientRequest;
-use App\Http\Requests\Patient\UpdateReceptionPatientRequest;
+use App\Http\Requests\Reception\StorePatientRequest;
+use App\Http\Requests\Reception\UpdatePatientRequest;
 use App\Http\Resources\PatientResource;
 use App\Models\Patient;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class PatientController extends Controller
 {
@@ -23,10 +22,12 @@ class PatientController extends Controller
             'created_to',
             'birth_from',
             'birth_to',
+            'with_trashed',
         ]);
 
         $patients = Patient::with('user')
             ->applyFilters($filters)
+            ->when($request->boolean('with_trashed'), fn($query) => $query->withTrashed()) // Apply withTrashed if requested
             ->latest()
             ->paginate(20);
         return response()->json([
@@ -44,7 +45,7 @@ class PatientController extends Controller
         ]);
     }
 
-    public function store(StoreReceptionPatientRequest $request)
+    public function store(StorePatientRequest $request)
     {
         $existingPatient = Patient::where('phone', $request->validated('phone'))->first();
 
@@ -69,7 +70,7 @@ class PatientController extends Controller
         ], 201);
     }
 
-    public function update(UpdateReceptionPatientRequest $request, Patient $patient)
+    public function update(UpdatePatientRequest $request, Patient $patient)
     {
         // admin can edit any patient, no restrictions unlike reception
         $patient->update($request->validated());
@@ -88,6 +89,27 @@ class PatientController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Patient deleted successfully.',
+        ]);
+    }
+
+    public function restore(Patient $patient)
+    {
+        $patient->restore();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Patient restored successfully.',
+            'data' => new PatientResource($patient->fresh()),
+        ]);
+    }
+
+    public function forceDelete(Patient $patient)
+    {
+        $patient->forceDelete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Patient permanently deleted successfully.',
         ]);
     }
 }
