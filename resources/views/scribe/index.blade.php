@@ -89,21 +89,6 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-auth-me">
                                 <a href="#endpoints-GETapi-auth-me">GET api/auth/me</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-patients-reception">
-                                <a href="#endpoints-GETapi-patients-reception">GET api/patients/reception</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-patients-reception">
-                                <a href="#endpoints-POSTapi-patients-reception">POST api/patients/reception</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-patients-reception--patient_id-">
-                                <a href="#endpoints-GETapi-patients-reception--patient_id-">GET api/patients/reception/{patient_id}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-patients-reception--patient_id-">
-                                <a href="#endpoints-PUTapi-patients-reception--patient_id-">PUT api/patients/reception/{patient_id}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-patients-reception--patient_id-">
-                                <a href="#endpoints-DELETEapi-patients-reception--patient_id-">DELETE api/patients/reception/{patient_id}</a>
-                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-patients-profile">
                                 <a href="#endpoints-GETapi-patients-profile">GET api/patients/profile</a>
                             </li>
@@ -113,8 +98,35 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-PUTapi-patients-profile">
                                 <a href="#endpoints-PUTapi-patients-profile">PUT api/patients/profile</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-patients-appointments">
-                                <a href="#endpoints-POSTapi-patients-appointments">POST api/patients/appointments</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-patients-department-doctors">
+                                <a href="#endpoints-GETapi-patients-department-doctors">GET api/patients/department-doctors</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-appointments-patient">
+                                <a href="#endpoints-GETapi-appointments-patient">GET api/appointments/patient</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-appointments-patient">
+                                <a href="#endpoints-POSTapi-appointments-patient">POST api/appointments/patient</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-appointments-patient-available-slots">
+                                <a href="#endpoints-GETapi-appointments-patient-available-slots">GET api/appointments/patient/available-slots</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-appointments-patient--appointment_id--cancel">
+                                <a href="#endpoints-PATCHapi-appointments-patient--appointment_id--cancel">PATCH api/appointments/patient/{appointment_id}/cancel</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-prescriptions-patient">
+                                <a href="#endpoints-GETapi-prescriptions-patient">GET api/prescriptions/patient</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-prescriptions-patient--prescription_id-">
+                                <a href="#endpoints-GETapi-prescriptions-patient--prescription_id-">GET api/prescriptions/patient/{prescription_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-sessions-patient">
+                                <a href="#endpoints-GETapi-sessions-patient">GET api/sessions/patient</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-sessions-patient--session_id-">
+                                <a href="#endpoints-GETapi-sessions-patient--session_id-">GET api/sessions/patient/{session_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-dashboard">
+                                <a href="#endpoints-GETapi-admin-dashboard">GET api/admin/dashboard</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-users">
                                 <a href="#endpoints-GETapi-admin-users">GET api/admin/users</a>
@@ -146,6 +158,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-admin-patients--id-">
                                 <a href="#endpoints-DELETEapi-admin-patients--id-">DELETE api/admin/patients/{id}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-admin-patients--patient_id--restore">
+                                <a href="#endpoints-PUTapi-admin-patients--patient_id--restore">PUT api/admin/patients/{patient_id}/restore</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-doctors">
                                 <a href="#endpoints-GETapi-admin-doctors">Display a listing of the resource.</a>
                             </li>
@@ -157,6 +172,12 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-admin-doctors--id-">
                                 <a href="#endpoints-DELETEapi-admin-doctors--id-">Remove the specified resource from storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-admin-doctors--doctor_id--restore">
+                                <a href="#endpoints-PUTapi-admin-doctors--doctor_id--restore">Restore the specified soft-deleted doctor and reactivate the related user.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-admin-doctors--doctor_id--reset-password">
+                                <a href="#endpoints-PATCHapi-admin-doctors--doctor_id--reset-password">PATCH api/admin/doctors/{doctor_id}/reset-password</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-departments">
                                 <a href="#endpoints-GETapi-admin-departments">Display a listing of the resource with optional search.</a>
@@ -173,11 +194,35 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-admin-departments--id-">
                                 <a href="#endpoints-DELETEapi-admin-departments--id-">Remove the specified resource from storage.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-admin-doctors--doctor_id--restore">
-                                <a href="#endpoints-PUTapi-admin-doctors--doctor_id--restore">Restore the specified soft-deleted doctor and reactivate the related user.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-appointments">
+                                <a href="#endpoints-GETapi-admin-appointments">GET api/admin/appointments</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-dashboard">
-                                <a href="#endpoints-GETapi-admin-dashboard">GET api/admin/dashboard</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-appointments-stats">
+                                <a href="#endpoints-GETapi-admin-appointments-stats">GET api/admin/appointments/stats</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-appointments--appointment_id-">
+                                <a href="#endpoints-GETapi-admin-appointments--appointment_id-">GET api/admin/appointments/{appointment_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-admin-appointments--appointment_id--cancel">
+                                <a href="#endpoints-PATCHapi-admin-appointments--appointment_id--cancel">PATCH api/admin/appointments/{appointment_id}/cancel</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-admin-appointments--appointment_id--no-show">
+                                <a href="#endpoints-PATCHapi-admin-appointments--appointment_id--no-show">PATCH api/admin/appointments/{appointment_id}/no-show</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-admin-appointments--appointment_id--reschedule">
+                                <a href="#endpoints-PATCHapi-admin-appointments--appointment_id--reschedule">PATCH api/admin/appointments/{appointment_id}/reschedule</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-doctor-appointments">
+                                <a href="#endpoints-GETapi-doctor-appointments">GET api/doctor/appointments</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-doctor-appointments--appointment_id-">
+                                <a href="#endpoints-GETapi-doctor-appointments--appointment_id-">GET api/doctor/appointments/{appointment_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-doctor-appointments--appointment_id--cancel">
+                                <a href="#endpoints-PATCHapi-doctor-appointments--appointment_id--cancel">PATCH api/doctor/appointments/{appointment_id}/cancel</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-doctor-appointments--appointment_id--no-show">
+                                <a href="#endpoints-PATCHapi-doctor-appointments--appointment_id--no-show">PATCH api/doctor/appointments/{appointment_id}/no-show</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-doctor-appointments--appointment_id--sessions-list">
                                 <a href="#endpoints-GETapi-doctor-appointments--appointment_id--sessions-list">GET api/doctor/appointments/{appointment_id}/sessions/list</a>
@@ -194,11 +239,11 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-doctor-appointments--appointment_id--sessions--session_id-">
                                 <a href="#endpoints-PATCHapi-doctor-appointments--appointment_id--sessions--session_id-">PATCH api/doctor/appointments/{appointment_id}/sessions/{session_id}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-doctor-doctors--doctor_id--patients">
-                                <a href="#endpoints-GETapi-doctor-doctors--doctor_id--patients">GET api/doctor/doctors/{doctor_id}/patients</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-doctor--doctor_id--patients">
+                                <a href="#endpoints-GETapi-doctor--doctor_id--patients">GET api/doctor/{doctor_id}/patients</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-doctor-doctors--doctor--patients--patient_id-">
-                                <a href="#endpoints-GETapi-doctor-doctors--doctor--patients--patient_id-">GET api/doctor/doctors/{doctor}/patients/{patient_id}</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-doctor--doctor_id--patients--patient_id-">
+                                <a href="#endpoints-GETapi-doctor--doctor_id--patients--patient_id-">GET api/doctor/{doctor_id}/patients/{patient_id}</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-doctor-sessions--session_id--prescriptions">
                                 <a href="#endpoints-POSTapi-doctor-sessions--session_id--prescriptions">POST api/doctor/sessions/{session_id}/prescriptions</a>
@@ -206,17 +251,50 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-doctor-sessions--session_id--prescriptions--prescription_id-">
                                 <a href="#endpoints-DELETEapi-doctor-sessions--session_id--prescriptions--prescription_id-">DELETE api/doctor/sessions/{session_id}/prescriptions/{prescription_id}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-appointments-my_all_appointments">
-                                <a href="#endpoints-GETapi-appointments-my_all_appointments">GET api/appointments/my_all_appointments</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-reception-patients">
+                                <a href="#endpoints-GETapi-reception-patients">GET api/reception/patients</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-appointments-book_appointment">
-                                <a href="#endpoints-POSTapi-appointments-book_appointment">POST api/appointments/book_appointment</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-reception-patients">
+                                <a href="#endpoints-POSTapi-reception-patients">POST api/reception/patients</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-appointments-doctor">
-                                <a href="#endpoints-GETapi-appointments-doctor">GET api/appointments/doctor</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-reception-patients--patient_id-">
+                                <a href="#endpoints-GETapi-reception-patients--patient_id-">GET api/reception/patients/{patient_id}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-appointments-available-slots">
-                                <a href="#endpoints-GETapi-appointments-available-slots">GET api/appointments/available-slots</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-reception-patients--patient_id-">
+                                <a href="#endpoints-PUTapi-reception-patients--patient_id-">PUT api/reception/patients/{patient_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-reception-patients--patient_id-">
+                                <a href="#endpoints-DELETEapi-reception-patients--patient_id-">DELETE api/reception/patients/{patient_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-reception-patients--patient_id--restore">
+                                <a href="#endpoints-PUTapi-reception-patients--patient_id--restore">PUT api/reception/patients/{patient_id}/restore</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-reception-patients--patient_id--force-delete">
+                                <a href="#endpoints-DELETEapi-reception-patients--patient_id--force-delete">DELETE api/reception/patients/{patient_id}/force-delete</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-appointments-reception">
+                                <a href="#endpoints-GETapi-appointments-reception">GET api/appointments/reception</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-appointments-reception">
+                                <a href="#endpoints-POSTapi-appointments-reception">POST api/appointments/reception</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-appointments-reception--appointment_id-">
+                                <a href="#endpoints-GETapi-appointments-reception--appointment_id-">GET api/appointments/reception/{appointment_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-appointments-reception--appointment_id--confirm">
+                                <a href="#endpoints-PATCHapi-appointments-reception--appointment_id--confirm">PATCH api/appointments/reception/{appointment_id}/confirm</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-appointments-reception--appointment_id--arrived">
+                                <a href="#endpoints-PATCHapi-appointments-reception--appointment_id--arrived">PATCH api/appointments/reception/{appointment_id}/arrived</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-appointments-reception--appointment_id--reschedule">
+                                <a href="#endpoints-PATCHapi-appointments-reception--appointment_id--reschedule">PATCH api/appointments/reception/{appointment_id}/reschedule</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-appointments-reception--appointment_id--cancel">
+                                <a href="#endpoints-PATCHapi-appointments-reception--appointment_id--cancel">PATCH api/appointments/reception/{appointment_id}/cancel</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-appointments-reception--appointment_id--no-show">
+                                <a href="#endpoints-PATCHapi-appointments-reception--appointment_id--no-show">PATCH api/appointments/reception/{appointment_id}/no-show</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -229,7 +307,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 18, 2026</li>
+        <li>Last updated: June 19, 2026</li>
     </ul>
 </div>
 
@@ -294,22 +372,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-user">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-user" hidden>
     <blockquote>Received response<span
@@ -1022,22 +1084,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-auth-me">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-auth-me" hidden>
     <blockquote>Received response<span
@@ -1124,921 +1170,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-patients-reception">GET api/patients/reception</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-patients-reception">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-patients-reception">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-patients-reception" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-patients-reception"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-patients-reception"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-patients-reception" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-patients-reception">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-patients-reception" data-method="GET"
-      data-path="api/patients/reception"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-patients-reception', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-patients-reception"
-                    onclick="tryItOut('GETapi-patients-reception');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-patients-reception"
-                    onclick="cancelTryOut('GETapi-patients-reception');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-patients-reception"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/patients/reception</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-patients-reception"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-patients-reception"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-patients-reception"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-POSTapi-patients-reception">POST api/patients/reception</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-patients-reception">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"full_name\": \"b\",
-    \"phone\": \"ngzmiyvdljnikhwa\",
-    \"gender\": \"female\",
-    \"date_of_birth\": \"2022-07-13\",
-    \"address\": \"architecto\",
-    \"job\": \"n\",
-    \"emergency_contact\": \"g\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "full_name": "b",
-    "phone": "ngzmiyvdljnikhwa",
-    "gender": "female",
-    "date_of_birth": "2022-07-13",
-    "address": "architecto",
-    "job": "n",
-    "emergency_contact": "g"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-patients-reception">
-</span>
-<span id="execution-results-POSTapi-patients-reception" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-patients-reception"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-patients-reception"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-patients-reception" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-patients-reception">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-patients-reception" data-method="POST"
-      data-path="api/patients/reception"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-patients-reception', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-patients-reception"
-                    onclick="tryItOut('POSTapi-patients-reception');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-patients-reception"
-                    onclick="cancelTryOut('POSTapi-patients-reception');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-patients-reception"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/patients/reception</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-patients-reception"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-patients-reception"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-patients-reception"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>full_name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="full_name"                data-endpoint="POSTapi-patients-reception"
-               value="b"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="phone"                data-endpoint="POSTapi-patients-reception"
-               value="ngzmiyvdljnikhwa"
-               data-component="body">
-    <br>
-<p>Must be at least 8 characters. Must not be greater than 20 characters. Example: <code>ngzmiyvdljnikhwa</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="gender"                data-endpoint="POSTapi-patients-reception"
-               value="female"
-               data-component="body">
-    <br>
-<p>Example: <code>female</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>date_of_birth</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="date_of_birth"                data-endpoint="POSTapi-patients-reception"
-               value="2022-07-13"
-               data-component="body">
-    <br>
-<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="address"                data-endpoint="POSTapi-patients-reception"
-               value="architecto"
-               data-component="body">
-    <br>
-<p>Example: <code>architecto</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>job</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="job"                data-endpoint="POSTapi-patients-reception"
-               value="n"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>n</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>emergency_contact</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="emergency_contact"                data-endpoint="POSTapi-patients-reception"
-               value="g"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>g</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-GETapi-patients-reception--patient_id-">GET api/patients/reception/{patient_id}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-patients-reception--patient_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception/1" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception/1"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-patients-reception--patient_id-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-patients-reception--patient_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-patients-reception--patient_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-patients-reception--patient_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-patients-reception--patient_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-patients-reception--patient_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-patients-reception--patient_id-" data-method="GET"
-      data-path="api/patients/reception/{patient_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-patients-reception--patient_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-patients-reception--patient_id-"
-                    onclick="tryItOut('GETapi-patients-reception--patient_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-patients-reception--patient_id-"
-                    onclick="cancelTryOut('GETapi-patients-reception--patient_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-patients-reception--patient_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/patients/reception/{patient_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-patients-reception--patient_id-"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-patients-reception--patient_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-patients-reception--patient_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="patient_id"                data-endpoint="GETapi-patients-reception--patient_id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the patient. Example: <code>1</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-PUTapi-patients-reception--patient_id-">PUT api/patients/reception/{patient_id}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-PUTapi-patients-reception--patient_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception/1" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"full_name\": \"b\",
-    \"phone\": \"ngzmiyvdljnikhwa\",
-    \"date_of_birth\": \"2022-07-13\",
-    \"gender\": \"female\",
-    \"address\": \"architecto\",
-    \"job\": \"n\",
-    \"emergency_contact\": \"g\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception/1"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "full_name": "b",
-    "phone": "ngzmiyvdljnikhwa",
-    "date_of_birth": "2022-07-13",
-    "gender": "female",
-    "address": "architecto",
-    "job": "n",
-    "emergency_contact": "g"
-};
-
-fetch(url, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PUTapi-patients-reception--patient_id-">
-</span>
-<span id="execution-results-PUTapi-patients-reception--patient_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PUTapi-patients-reception--patient_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-patients-reception--patient_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-PUTapi-patients-reception--patient_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-patients-reception--patient_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-PUTapi-patients-reception--patient_id-" data-method="PUT"
-      data-path="api/patients/reception/{patient_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-patients-reception--patient_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-patients-reception--patient_id-"
-                    onclick="tryItOut('PUTapi-patients-reception--patient_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-patients-reception--patient_id-"
-                    onclick="cancelTryOut('PUTapi-patients-reception--patient_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-patients-reception--patient_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/patients/reception/{patient_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="patient_id"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the patient. Example: <code>1</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>full_name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="full_name"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="b"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="phone"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="ngzmiyvdljnikhwa"
-               data-component="body">
-    <br>
-<p>Must not be greater than 20 characters. Example: <code>ngzmiyvdljnikhwa</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>date_of_birth</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="date_of_birth"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="2022-07-13"
-               data-component="body">
-    <br>
-<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="gender"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="female"
-               data-component="body">
-    <br>
-<p>Example: <code>female</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="address"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="architecto"
-               data-component="body">
-    <br>
-<p>Example: <code>architecto</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>job</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="job"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="n"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>n</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>emergency_contact</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="emergency_contact"                data-endpoint="PUTapi-patients-reception--patient_id-"
-               value="g"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>g</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-DELETEapi-patients-reception--patient_id-">DELETE api/patients/reception/{patient_id}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-DELETEapi-patients-reception--patient_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception/1" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/reception/1"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "DELETE",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-DELETEapi-patients-reception--patient_id-">
-</span>
-<span id="execution-results-DELETEapi-patients-reception--patient_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-patients-reception--patient_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-patients-reception--patient_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-DELETEapi-patients-reception--patient_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-patients-reception--patient_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-DELETEapi-patients-reception--patient_id-" data-method="DELETE"
-      data-path="api/patients/reception/{patient_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-patients-reception--patient_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-patients-reception--patient_id-"
-                    onclick="tryItOut('DELETEapi-patients-reception--patient_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-patients-reception--patient_id-"
-                    onclick="cancelTryOut('DELETEapi-patients-reception--patient_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-patients-reception--patient_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-red">DELETE</small>
-            <b><code>api/patients/reception/{patient_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-patients-reception--patient_id-"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-patients-reception--patient_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-patients-reception--patient_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="patient_id"                data-endpoint="DELETEapi-patients-reception--patient_id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>The ID of the patient. Example: <code>1</code></p>
-            </div>
-                    </form>
-
                     <h2 id="endpoints-GETapi-patients-profile">GET api/patients/profile</h2>
 
 <p>
@@ -2079,22 +1210,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-patients-profile">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-patients-profile" hidden>
     <blockquote>Received response<span
@@ -2203,7 +1318,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"full_name\": \"b\",
     \"phone\": \"ngzmiyvdljnikhwa\",
     \"date_of_birth\": \"2022-07-13\",
-    \"gender\": \"female\",
+    \"gender\": \"male\",
     \"address\": \"architecto\",
     \"job\": \"n\",
     \"emergency_contact\": \"g\"
@@ -2226,7 +1341,7 @@ let body = {
     "full_name": "b",
     "phone": "ngzmiyvdljnikhwa",
     "date_of_birth": "2022-07-13",
-    "gender": "female",
+    "gender": "male",
     "address": "architecto",
     "job": "n",
     "emergency_contact": "g"
@@ -2369,10 +1484,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="POSTapi-patients-complete-profile"
-               value="female"
+               value="male"
                data-component="body">
     <br>
-<p>Example: <code>female</code></p>
+<p>Example: <code>male</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -2437,7 +1552,7 @@ Must be one of:
     \"phone\": \"ngzmiyvdljnikhwa\",
     \"email\": \"breitenberg.gilbert@example.com\",
     \"date_of_birth\": \"2022-07-13\",
-    \"gender\": \"female\",
+    \"gender\": \"male\",
     \"address\": \"architecto\",
     \"job\": \"n\",
     \"emergency_contact\": \"g\"
@@ -2461,7 +1576,7 @@ let body = {
     "phone": "ngzmiyvdljnikhwa",
     "email": "breitenberg.gilbert@example.com",
     "date_of_birth": "2022-07-13",
-    "gender": "female",
+    "gender": "male",
     "address": "architecto",
     "job": "n",
     "emergency_contact": "g"
@@ -2616,10 +1731,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="PUTapi-patients-profile"
-               value="female"
+               value="male"
                data-component="body">
     <br>
-<p>Example: <code>female</code></p>
+<p>Example: <code>male</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -2661,7 +1776,7 @@ Must be one of:
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-patients-appointments">POST api/patients/appointments</h2>
+                    <h2 id="endpoints-GETapi-patients-department-doctors">GET api/patients/department-doctors</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2669,27 +1784,25 @@ Must be one of:
 
 
 
-<span id="example-requests-POSTapi-patients-appointments">
+<span id="example-requests-GETapi-patients-department-doctors">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/appointments" \
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/department-doctors" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"doctor_id\": \"architecto\",
-    \"scheduled_at\": \"2052-07-12\",
-    \"visit_reason\": \"architecto\"
+    \"department\": \"architecto\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/appointments"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/department-doctors"
 );
 
 const headers = {
@@ -2699,66 +1812,64 @@ const headers = {
 };
 
 let body = {
-    "doctor_id": "architecto",
-    "scheduled_at": "2052-07-12",
-    "visit_reason": "architecto"
+    "department": "architecto"
 };
 
 fetch(url, {
-    method: "POST",
+    method: "GET",
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-POSTapi-patients-appointments">
-</span>
-<span id="execution-results-POSTapi-patients-appointments" hidden>
+<span id="example-responses-GETapi-patients-department-doctors">
+    </span>
+<span id="execution-results-GETapi-patients-department-doctors" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-patients-appointments"></span>:
+                id="execution-response-status-GETapi-patients-department-doctors"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-patients-appointments"
+    <pre class="json"><code id="execution-response-content-GETapi-patients-department-doctors"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-patients-appointments" hidden>
+<span id="execution-error-GETapi-patients-department-doctors" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-patients-appointments">
+    <pre><code id="execution-error-message-GETapi-patients-department-doctors">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-patients-appointments" data-method="POST"
-      data-path="api/patients/appointments"
+<form id="form-GETapi-patients-department-doctors" data-method="GET"
+      data-path="api/patients/department-doctors"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-patients-appointments', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-patients-department-doctors', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-patients-appointments"
-                    onclick="tryItOut('POSTapi-patients-appointments');">Try it out ⚡
+                    id="btn-tryout-GETapi-patients-department-doctors"
+                    onclick="tryItOut('GETapi-patients-department-doctors');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-patients-appointments"
-                    onclick="cancelTryOut('POSTapi-patients-appointments');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-patients-department-doctors"
+                    onclick="cancelTryOut('GETapi-patients-department-doctors');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-patients-appointments"
+                    id="btn-executetryout-GETapi-patients-department-doctors"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/patients/appointments</code></b>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/patients/department-doctors</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -2767,7 +1878,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-patients-appointments"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-patients-department-doctors"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -2779,7 +1890,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-patients-appointments"
+                              name="Content-Type"                data-endpoint="GETapi-patients-department-doctors"
                value="application/json"
                data-component="header">
     <br>
@@ -2791,7 +1902,335 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-patients-appointments"
+                              name="Accept"                data-endpoint="GETapi-patients-department-doctors"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>department</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="department"                data-endpoint="GETapi-patients-department-doctors"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-appointments-patient">GET api/appointments/patient</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-appointments-patient">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"status\": \"architecto\",
+    \"timeline\": \"past\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "status": "architecto",
+    "timeline": "past"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-appointments-patient">
+    </span>
+<span id="execution-results-GETapi-appointments-patient" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-appointments-patient"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-appointments-patient"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-appointments-patient" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-appointments-patient">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-appointments-patient" data-method="GET"
+      data-path="api/appointments/patient"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-appointments-patient', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-appointments-patient"
+                    onclick="tryItOut('GETapi-appointments-patient');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-appointments-patient"
+                    onclick="cancelTryOut('GETapi-appointments-patient');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-appointments-patient"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/appointments/patient</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-appointments-patient"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-appointments-patient"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-appointments-patient"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-appointments-patient"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="doctor_id"                data-endpoint="GETapi-appointments-patient"
+               value=""
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the doctors table.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>timeline</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="timeline"                data-endpoint="GETapi-appointments-patient"
+               value="past"
+               data-component="body">
+    <br>
+<p>Example: <code>past</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>upcoming</code></li> <li><code>past</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-appointments-patient">POST api/appointments/patient</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-appointments-patient">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"doctor_id\": \"architecto\",
+    \"scheduled_at\": \"2052-07-12\",
+    \"visit_reason\": \"architecto\",
+    \"notes\": \"architecto\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "doctor_id": "architecto",
+    "scheduled_at": "2052-07-12",
+    "visit_reason": "architecto",
+    "notes": "architecto"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-appointments-patient">
+</span>
+<span id="execution-results-POSTapi-appointments-patient" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-appointments-patient"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-appointments-patient"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-appointments-patient" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-appointments-patient">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-appointments-patient" data-method="POST"
+      data-path="api/appointments/patient"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-appointments-patient', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-appointments-patient"
+                    onclick="tryItOut('POSTapi-appointments-patient');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-appointments-patient"
+                    onclick="cancelTryOut('POSTapi-appointments-patient');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-appointments-patient"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/appointments/patient</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-appointments-patient"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-appointments-patient"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-appointments-patient"
                value="application/json"
                data-component="header">
     <br>
@@ -2804,7 +2243,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="doctor_id"                data-endpoint="POSTapi-patients-appointments"
+                              name="doctor_id"                data-endpoint="POSTapi-appointments-patient"
                value="architecto"
                data-component="body">
     <br>
@@ -2816,7 +2255,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="scheduled_at"                data-endpoint="POSTapi-patients-appointments"
+                              name="scheduled_at"                data-endpoint="POSTapi-appointments-patient"
                value="2052-07-12"
                data-component="body">
     <br>
@@ -2828,13 +2267,967 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="visit_reason"                data-endpoint="POSTapi-patients-appointments"
+                              name="visit_reason"                data-endpoint="POSTapi-appointments-patient"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="notes"                data-endpoint="POSTapi-appointments-patient"
                value="architecto"
                data-component="body">
     <br>
 <p>Example: <code>architecto</code></p>
         </div>
         </form>
+
+                    <h2 id="endpoints-GETapi-appointments-patient-available-slots">GET api/appointments/patient/available-slots</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-appointments-patient-available-slots">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient/available-slots" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient/available-slots"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-appointments-patient-available-slots">
+    </span>
+<span id="execution-results-GETapi-appointments-patient-available-slots" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-appointments-patient-available-slots"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-appointments-patient-available-slots"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-appointments-patient-available-slots" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-appointments-patient-available-slots">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-appointments-patient-available-slots" data-method="GET"
+      data-path="api/appointments/patient/available-slots"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-appointments-patient-available-slots', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-appointments-patient-available-slots"
+                    onclick="tryItOut('GETapi-appointments-patient-available-slots');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-appointments-patient-available-slots"
+                    onclick="cancelTryOut('GETapi-appointments-patient-available-slots');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-appointments-patient-available-slots"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/appointments/patient/available-slots</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-appointments-patient-available-slots"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-appointments-patient-available-slots"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-appointments-patient-available-slots"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-PATCHapi-appointments-patient--appointment_id--cancel">PATCH api/appointments/patient/{appointment_id}/cancel</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-appointments-patient--appointment_id--cancel">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient/1/cancel" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"reason\": \"b\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient/1/cancel"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "reason": "b"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-appointments-patient--appointment_id--cancel">
+</span>
+<span id="execution-results-PATCHapi-appointments-patient--appointment_id--cancel" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-appointments-patient--appointment_id--cancel"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-appointments-patient--appointment_id--cancel"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-appointments-patient--appointment_id--cancel" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-appointments-patient--appointment_id--cancel">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-appointments-patient--appointment_id--cancel" data-method="PATCH"
+      data-path="api/appointments/patient/{appointment_id}/cancel"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-appointments-patient--appointment_id--cancel', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-appointments-patient--appointment_id--cancel"
+                    onclick="tryItOut('PATCHapi-appointments-patient--appointment_id--cancel');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-appointments-patient--appointment_id--cancel"
+                    onclick="cancelTryOut('PATCHapi-appointments-patient--appointment_id--cancel');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-appointments-patient--appointment_id--cancel"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/appointments/patient/{appointment_id}/cancel</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-appointments-patient--appointment_id--cancel"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-appointments-patient--appointment_id--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-appointments-patient--appointment_id--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-appointments-patient--appointment_id--cancel"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reason"                data-endpoint="PATCHapi-appointments-patient--appointment_id--cancel"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-prescriptions-patient">GET api/prescriptions/patient</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-prescriptions-patient">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/prescriptions/patient" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/prescriptions/patient"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-prescriptions-patient">
+    </span>
+<span id="execution-results-GETapi-prescriptions-patient" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-prescriptions-patient"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-prescriptions-patient"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-prescriptions-patient" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-prescriptions-patient">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-prescriptions-patient" data-method="GET"
+      data-path="api/prescriptions/patient"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-prescriptions-patient', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-prescriptions-patient"
+                    onclick="tryItOut('GETapi-prescriptions-patient');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-prescriptions-patient"
+                    onclick="cancelTryOut('GETapi-prescriptions-patient');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-prescriptions-patient"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/prescriptions/patient</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-prescriptions-patient"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-prescriptions-patient"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-prescriptions-patient"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-prescriptions-patient--prescription_id-">GET api/prescriptions/patient/{prescription_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-prescriptions-patient--prescription_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/prescriptions/patient/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/prescriptions/patient/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-prescriptions-patient--prescription_id-">
+    </span>
+<span id="execution-results-GETapi-prescriptions-patient--prescription_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-prescriptions-patient--prescription_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-prescriptions-patient--prescription_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-prescriptions-patient--prescription_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-prescriptions-patient--prescription_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-prescriptions-patient--prescription_id-" data-method="GET"
+      data-path="api/prescriptions/patient/{prescription_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-prescriptions-patient--prescription_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-prescriptions-patient--prescription_id-"
+                    onclick="tryItOut('GETapi-prescriptions-patient--prescription_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-prescriptions-patient--prescription_id-"
+                    onclick="cancelTryOut('GETapi-prescriptions-patient--prescription_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-prescriptions-patient--prescription_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/prescriptions/patient/{prescription_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-prescriptions-patient--prescription_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-prescriptions-patient--prescription_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-prescriptions-patient--prescription_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>prescription_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="prescription_id"                data-endpoint="GETapi-prescriptions-patient--prescription_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the prescription. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-sessions-patient">GET api/sessions/patient</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-sessions-patient">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/sessions/patient" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/sessions/patient"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-sessions-patient">
+    </span>
+<span id="execution-results-GETapi-sessions-patient" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-sessions-patient"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-sessions-patient"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-sessions-patient" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-sessions-patient">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-sessions-patient" data-method="GET"
+      data-path="api/sessions/patient"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-sessions-patient', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-sessions-patient"
+                    onclick="tryItOut('GETapi-sessions-patient');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-sessions-patient"
+                    onclick="cancelTryOut('GETapi-sessions-patient');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-sessions-patient"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/sessions/patient</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-sessions-patient"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-sessions-patient"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-sessions-patient"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-sessions-patient--session_id-">GET api/sessions/patient/{session_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-sessions-patient--session_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/sessions/patient/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/sessions/patient/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-sessions-patient--session_id-">
+    </span>
+<span id="execution-results-GETapi-sessions-patient--session_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-sessions-patient--session_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-sessions-patient--session_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-sessions-patient--session_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-sessions-patient--session_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-sessions-patient--session_id-" data-method="GET"
+      data-path="api/sessions/patient/{session_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-sessions-patient--session_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-sessions-patient--session_id-"
+                    onclick="tryItOut('GETapi-sessions-patient--session_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-sessions-patient--session_id-"
+                    onclick="cancelTryOut('GETapi-sessions-patient--session_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-sessions-patient--session_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/sessions/patient/{session_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-sessions-patient--session_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-sessions-patient--session_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-sessions-patient--session_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>session_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="session_id"                data-endpoint="GETapi-sessions-patient--session_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the session. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-admin-dashboard">GET api/admin/dashboard</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-admin-dashboard">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/dashboard" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/dashboard"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-admin-dashboard">
+    </span>
+<span id="execution-results-GETapi-admin-dashboard" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-admin-dashboard"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-dashboard"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-admin-dashboard" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-admin-dashboard">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-admin-dashboard" data-method="GET"
+      data-path="api/admin/dashboard"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-dashboard', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-admin-dashboard"
+                    onclick="tryItOut('GETapi-admin-dashboard');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-admin-dashboard"
+                    onclick="cancelTryOut('GETapi-admin-dashboard');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-admin-dashboard"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/dashboard</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-admin-dashboard"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-admin-dashboard"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-admin-dashboard"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
 
                     <h2 id="endpoints-GETapi-admin-users">GET api/admin/users</h2>
 
@@ -2876,22 +3269,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-users">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-admin-users" hidden>
     <blockquote>Received response<span
@@ -3000,9 +3377,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"b\",
     \"email\": \"zbailey@example.net\",
     \"password\": \"-0pBNvYgxw\",
-    \"role\": \"doctor\",
+    \"role\": \"receptionist\",
     \"phone\": \"aykcmyuwpwlvqwrsitcpscqldzsnrwtujwvlxjklqpp\",
-    \"date_of_birth\": \"2026-06-18T20:55:46\",
+    \"date_of_birth\": \"2026-06-19T02:06:50\",
     \"gender\": \"male\",
     \"specialty\": \"w\",
     \"department_id\": 16
@@ -3025,9 +3402,9 @@ let body = {
     "name": "b",
     "email": "zbailey@example.net",
     "password": "-0pBNvYgxw",
-    "role": "doctor",
+    "role": "receptionist",
     "phone": "aykcmyuwpwlvqwrsitcpscqldzsnrwtujwvlxjklqpp",
-    "date_of_birth": "2026-06-18T20:55:46",
+    "date_of_birth": "2026-06-19T02:06:50",
     "gender": "male",
     "specialty": "w",
     "department_id": 16
@@ -3170,10 +3547,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="role"                data-endpoint="POSTapi-admin-users"
-               value="doctor"
+               value="receptionist"
                data-component="body">
     <br>
-<p>Example: <code>doctor</code></p>
+<p>Example: <code>receptionist</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>doctor</code></li> <li><code>receptionist</code></li></ul>
         </div>
@@ -3196,10 +3573,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="POSTapi-admin-users"
-               value="2026-06-18T20:55:46"
+               value="2026-06-19T02:06:50"
                data-component="body">
     <br>
-<p>This field is required when <code>role</code> is <code>doctor</code>. Must be a valid date. Example: <code>2026-06-18T20:55:46</code></p>
+<p>This field is required when <code>role</code> is <code>doctor</code>. Must be a valid date. Example: <code>2026-06-19T02:06:50</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
@@ -3281,22 +3658,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-users--id-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-admin-users--id-" hidden>
     <blockquote>Received response<span
@@ -3779,22 +4140,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-patients">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-admin-patients" hidden>
     <blockquote>Received response<span
@@ -3902,7 +4247,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"full_name\": \"b\",
     \"phone\": \"ngzmiyvdljnikhwa\",
-    \"gender\": \"female\",
+    \"gender\": \"male\",
     \"date_of_birth\": \"2022-07-13\",
     \"address\": \"architecto\",
     \"job\": \"n\",
@@ -3925,7 +4270,7 @@ const headers = {
 let body = {
     "full_name": "b",
     "phone": "ngzmiyvdljnikhwa",
-    "gender": "female",
+    "gender": "male",
     "date_of_birth": "2022-07-13",
     "address": "architecto",
     "job": "n",
@@ -4057,10 +4402,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="POSTapi-admin-patients"
-               value="female"
+               value="male"
                data-component="body">
     <br>
-<p>Example: <code>female</code></p>
+<p>Example: <code>male</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -4128,7 +4473,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/1" \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4136,7 +4481,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/1"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16"
 );
 
 const headers = {
@@ -4154,22 +4499,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-patients--id-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-admin-patients--id-" hidden>
     <blockquote>Received response<span
@@ -4262,10 +4591,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-admin-patients--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>1</code></p>
+<p>The ID of the patient. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4283,7 +4612,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/1" \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4301,7 +4630,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/1"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16"
 );
 
 const headers = {
@@ -4425,10 +4754,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-admin-patients--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>1</code></p>
+<p>The ID of the patient. Example: <code>16</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4533,7 +4862,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/1" \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4541,7 +4870,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/1"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16"
 );
 
 const headers = {
@@ -4651,10 +4980,149 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-admin-patients--id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>1</code></p>
+<p>The ID of the patient. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PUTapi-admin-patients--patient_id--restore">PUT api/admin/patients/{patient_id}/restore</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-admin-patients--patient_id--restore">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16/restore" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16/restore"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-admin-patients--patient_id--restore">
+</span>
+<span id="execution-results-PUTapi-admin-patients--patient_id--restore" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-admin-patients--patient_id--restore"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-admin-patients--patient_id--restore"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-admin-patients--patient_id--restore" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-admin-patients--patient_id--restore">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-admin-patients--patient_id--restore" data-method="PUT"
+      data-path="api/admin/patients/{patient_id}/restore"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-admin-patients--patient_id--restore', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-admin-patients--patient_id--restore"
+                    onclick="tryItOut('PUTapi-admin-patients--patient_id--restore');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-admin-patients--patient_id--restore"
+                    onclick="cancelTryOut('PUTapi-admin-patients--patient_id--restore');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-admin-patients--patient_id--restore"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/admin/patients/{patient_id}/restore</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-admin-patients--patient_id--restore"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-admin-patients--patient_id--restore"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-admin-patients--patient_id--restore"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="patient_id"                data-endpoint="PUTapi-admin-patients--patient_id--restore"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the patient. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4698,22 +5166,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-doctors">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-admin-doctors" hidden>
     <blockquote>Received response<span
@@ -4827,8 +5279,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"gender\": \"female\",
     \"department_id\": \"architecto\",
     \"specialty\": \"n\",
-    \"working_hours_start\": \"20:55\",
-    \"working_hours_end\": \"2052-07-11\"
+    \"working_hours_start\": \"02:06\",
+    \"working_hours_end\": \"2052-07-12\"
 }"
 </code></pre></div>
 
@@ -4853,8 +5305,8 @@ let body = {
     "gender": "female",
     "department_id": "architecto",
     "specialty": "n",
-    "working_hours_start": "20:55",
-    "working_hours_end": "2052-07-11"
+    "working_hours_start": "02:06",
+    "working_hours_end": "2052-07-12"
 };
 
 fetch(url, {
@@ -5056,10 +5508,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="working_hours_start"                data-endpoint="POSTapi-admin-doctors"
-               value="20:55"
+               value="02:06"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>20:55</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>02:06</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>working_hours_end</code></b>&nbsp;&nbsp;
@@ -5068,10 +5520,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="working_hours_end"                data-endpoint="POSTapi-admin-doctors"
-               value="2052-07-11"
+               value="2052-07-12"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>working_hours_start</code>. Example: <code>2052-07-11</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>working_hours_start</code>. Example: <code>2052-07-12</code></p>
         </div>
         </form>
 
@@ -5115,22 +5567,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-doctors--id-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-admin-doctors--id-" hidden>
     <blockquote>Received response<span
@@ -5369,6 +5805,305 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="endpoints-PUTapi-admin-doctors--doctor_id--restore">Restore the specified soft-deleted doctor and reactivate the related user.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-admin-doctors--doctor_id--restore">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/restore" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/restore"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-admin-doctors--doctor_id--restore">
+</span>
+<span id="execution-results-PUTapi-admin-doctors--doctor_id--restore" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-admin-doctors--doctor_id--restore"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-admin-doctors--doctor_id--restore"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-admin-doctors--doctor_id--restore" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-admin-doctors--doctor_id--restore">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-admin-doctors--doctor_id--restore" data-method="PUT"
+      data-path="api/admin/doctors/{doctor_id}/restore"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-admin-doctors--doctor_id--restore', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-admin-doctors--doctor_id--restore"
+                    onclick="tryItOut('PUTapi-admin-doctors--doctor_id--restore');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-admin-doctors--doctor_id--restore"
+                    onclick="cancelTryOut('PUTapi-admin-doctors--doctor_id--restore');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-admin-doctors--doctor_id--restore"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/admin/doctors/{doctor_id}/restore</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="doctor_id"                data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the doctor. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PATCHapi-admin-doctors--doctor_id--reset-password">PATCH api/admin/doctors/{doctor_id}/reset-password</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-admin-doctors--doctor_id--reset-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/reset-password" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"password\": \"|]|{+-\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/reset-password"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "password": "|]|{+-"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-admin-doctors--doctor_id--reset-password">
+</span>
+<span id="execution-results-PATCHapi-admin-doctors--doctor_id--reset-password" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-admin-doctors--doctor_id--reset-password"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-admin-doctors--doctor_id--reset-password"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-admin-doctors--doctor_id--reset-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-admin-doctors--doctor_id--reset-password">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-admin-doctors--doctor_id--reset-password" data-method="PATCH"
+      data-path="api/admin/doctors/{doctor_id}/reset-password"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-admin-doctors--doctor_id--reset-password', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-admin-doctors--doctor_id--reset-password"
+                    onclick="tryItOut('PATCHapi-admin-doctors--doctor_id--reset-password');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-admin-doctors--doctor_id--reset-password"
+                    onclick="cancelTryOut('PATCHapi-admin-doctors--doctor_id--reset-password');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-admin-doctors--doctor_id--reset-password"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/admin/doctors/{doctor_id}/reset-password</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="doctor_id"                data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the doctor. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
+               value="|]|{+-"
+               data-component="body">
+    <br>
+<p>Must be at least 8 characters. Example: <code>|]|{+-</code></p>
+        </div>
+        </form>
+
                     <h2 id="endpoints-GETapi-admin-departments">Display a listing of the resource with optional search.</h2>
 
 <p>
@@ -5409,22 +6144,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-departments">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-admin-departments" hidden>
     <blockquote>Received response<span
@@ -5698,22 +6417,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-departments--id-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-admin-departments--id-" hidden>
     <blockquote>Received response<span
@@ -6116,7 +6819,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-PUTapi-admin-doctors--doctor_id--restore">Restore the specified soft-deleted doctor and reactivate the related user.</h2>
+                    <h2 id="endpoints-GETapi-admin-appointments">GET api/admin/appointments</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -6124,21 +6827,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-PUTapi-admin-doctors--doctor_id--restore">
+<span id="example-requests-GETapi-admin-appointments">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/restore" \
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"date\": \"2026-06-19\",
+    \"date_from\": \"2026-06-19\",
+    \"date_to\": \"2052-07-12\",
+    \"status\": \"architecto\",
+    \"search\": \"n\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/restore"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments"
 );
 
 const headers = {
@@ -6147,61 +6858,69 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "date": "2026-06-19",
+    "date_from": "2026-06-19",
+    "date_to": "2052-07-12",
+    "status": "architecto",
+    "search": "n"
+};
 
 fetch(url, {
-    method: "PUT",
+    method: "GET",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-PUTapi-admin-doctors--doctor_id--restore">
-</span>
-<span id="execution-results-PUTapi-admin-doctors--doctor_id--restore" hidden>
+<span id="example-responses-GETapi-admin-appointments">
+    </span>
+<span id="execution-results-GETapi-admin-appointments" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi-admin-doctors--doctor_id--restore"></span>:
+                id="execution-response-status-GETapi-admin-appointments"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-admin-doctors--doctor_id--restore"
+    <pre class="json"><code id="execution-response-content-GETapi-admin-appointments"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi-admin-doctors--doctor_id--restore" hidden>
+<span id="execution-error-GETapi-admin-appointments" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-admin-doctors--doctor_id--restore">
+    <pre><code id="execution-error-message-GETapi-admin-appointments">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi-admin-doctors--doctor_id--restore" data-method="PUT"
-      data-path="api/admin/doctors/{doctor_id}/restore"
+<form id="form-GETapi-admin-appointments" data-method="GET"
+      data-path="api/admin/appointments"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-admin-doctors--doctor_id--restore', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-appointments', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-admin-doctors--doctor_id--restore"
-                    onclick="tryItOut('PUTapi-admin-doctors--doctor_id--restore');">Try it out ⚡
+                    id="btn-tryout-GETapi-admin-appointments"
+                    onclick="tryItOut('GETapi-admin-appointments');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-admin-doctors--doctor_id--restore"
-                    onclick="cancelTryOut('PUTapi-admin-doctors--doctor_id--restore');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-admin-appointments"
+                    onclick="cancelTryOut('GETapi-admin-appointments');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-admin-doctors--doctor_id--restore"
+                    id="btn-executetryout-GETapi-admin-appointments"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/admin/doctors/{doctor_id}/restore</code></b>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/appointments</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -6210,7 +6929,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-admin-appointments"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -6222,7 +6941,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+                              name="Content-Type"                data-endpoint="GETapi-admin-appointments"
                value="application/json"
                data-component="header">
     <br>
@@ -6234,28 +6953,88 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+                              name="Accept"                data-endpoint="GETapi-admin-appointments"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
  &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="doctor_id"                data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
-               value="1"
-               data-component="url">
+                <input type="text" style="display: none"
+                              name="date"                data-endpoint="GETapi-admin-appointments"
+               value="2026-06-19"
+               data-component="body">
     <br>
-<p>The ID of the doctor. Example: <code>1</code></p>
-            </div>
-                    </form>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_from</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date_from"                data-endpoint="GETapi-admin-appointments"
+               value="2026-06-19"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date_to"                data-endpoint="GETapi-admin-appointments"
+               value="2052-07-12"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Must be a date after or equal to <code>date_from</code>. Example: <code>2052-07-12</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="doctor_id"                data-endpoint="GETapi-admin-appointments"
+               value=""
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the doctors table.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-admin-appointments"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>search</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="search"                data-endpoint="GETapi-admin-appointments"
+               value="n"
+               data-component="body">
+    <br>
+<p>Must not be greater than 100 characters. Example: <code>n</code></p>
+        </div>
+        </form>
 
-                    <h2 id="endpoints-GETapi-admin-dashboard">GET api/admin/dashboard</h2>
+                    <h2 id="endpoints-GETapi-admin-appointments-stats">GET api/admin/appointments/stats</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -6263,13 +7042,186 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-admin-dashboard">
+<span id="example-requests-GETapi-admin-appointments-stats">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/dashboard" \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/stats" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"date_from\": \"2026-06-19\",
+    \"date_to\": \"2052-07-12\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/stats"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "date_from": "2026-06-19",
+    "date_to": "2052-07-12"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-admin-appointments-stats">
+    </span>
+<span id="execution-results-GETapi-admin-appointments-stats" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-admin-appointments-stats"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-appointments-stats"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-admin-appointments-stats" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-admin-appointments-stats">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-admin-appointments-stats" data-method="GET"
+      data-path="api/admin/appointments/stats"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-appointments-stats', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-admin-appointments-stats"
+                    onclick="tryItOut('GETapi-admin-appointments-stats');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-admin-appointments-stats"
+                    onclick="cancelTryOut('GETapi-admin-appointments-stats');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-admin-appointments-stats"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/appointments/stats</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-admin-appointments-stats"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-admin-appointments-stats"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-admin-appointments-stats"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_from</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date_from"                data-endpoint="GETapi-admin-appointments-stats"
+               value="2026-06-19"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date_to"                data-endpoint="GETapi-admin-appointments-stats"
+               value="2052-07-12"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Must be a date after or equal to <code>date_from</code>. Example: <code>2052-07-12</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="doctor_id"                data-endpoint="GETapi-admin-appointments-stats"
+               value=""
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the doctors table.</p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-admin-appointments--appointment_id-">GET api/admin/appointments/{appointment_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-admin-appointments--appointment_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6277,7 +7229,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/dashboard"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1"
 );
 
 const headers = {
@@ -6294,61 +7246,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-admin-dashboard">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
+<span id="example-responses-GETapi-admin-appointments--appointment_id-">
     </span>
-<span id="execution-results-GETapi-admin-dashboard" hidden>
+<span id="execution-results-GETapi-admin-appointments--appointment_id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-admin-dashboard"></span>:
+                id="execution-response-status-GETapi-admin-appointments--appointment_id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-admin-dashboard"
+    <pre class="json"><code id="execution-response-content-GETapi-admin-appointments--appointment_id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-admin-dashboard" hidden>
+<span id="execution-error-GETapi-admin-appointments--appointment_id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-admin-dashboard">
+    <pre><code id="execution-error-message-GETapi-admin-appointments--appointment_id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-admin-dashboard" data-method="GET"
-      data-path="api/admin/dashboard"
+<form id="form-GETapi-admin-appointments--appointment_id-" data-method="GET"
+      data-path="api/admin/appointments/{appointment_id}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-dashboard', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-appointments--appointment_id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-admin-dashboard"
-                    onclick="tryItOut('GETapi-admin-dashboard');">Try it out ⚡
+                    id="btn-tryout-GETapi-admin-appointments--appointment_id-"
+                    onclick="tryItOut('GETapi-admin-appointments--appointment_id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-admin-dashboard"
-                    onclick="cancelTryOut('GETapi-admin-dashboard');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-admin-appointments--appointment_id-"
+                    onclick="cancelTryOut('GETapi-admin-appointments--appointment_id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-admin-dashboard"
+                    id="btn-executetryout-GETapi-admin-appointments--appointment_id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -6356,7 +7292,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/admin/dashboard</code></b>
+            <b><code>api/admin/appointments/{appointment_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -6365,7 +7301,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-admin-dashboard"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-admin-appointments--appointment_id-"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -6377,7 +7313,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-admin-dashboard"
+                              name="Content-Type"                data-endpoint="GETapi-admin-appointments--appointment_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -6389,13 +7325,1079 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-admin-dashboard"
+                              name="Accept"                data-endpoint="GETapi-admin-appointments--appointment_id-"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="GETapi-admin-appointments--appointment_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PATCHapi-admin-appointments--appointment_id--cancel">PATCH api/admin/appointments/{appointment_id}/cancel</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-admin-appointments--appointment_id--cancel">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/cancel" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"reason\": \"b\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/cancel"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "reason": "b"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-admin-appointments--appointment_id--cancel">
+</span>
+<span id="execution-results-PATCHapi-admin-appointments--appointment_id--cancel" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-admin-appointments--appointment_id--cancel"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-admin-appointments--appointment_id--cancel"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-admin-appointments--appointment_id--cancel" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-admin-appointments--appointment_id--cancel">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-admin-appointments--appointment_id--cancel" data-method="PATCH"
+      data-path="api/admin/appointments/{appointment_id}/cancel"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-admin-appointments--appointment_id--cancel', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-admin-appointments--appointment_id--cancel"
+                    onclick="tryItOut('PATCHapi-admin-appointments--appointment_id--cancel');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-admin-appointments--appointment_id--cancel"
+                    onclick="cancelTryOut('PATCHapi-admin-appointments--appointment_id--cancel');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-admin-appointments--appointment_id--cancel"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/admin/appointments/{appointment_id}/cancel</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-admin-appointments--appointment_id--cancel"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-admin-appointments--appointment_id--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-admin-appointments--appointment_id--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-admin-appointments--appointment_id--cancel"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reason"                data-endpoint="PATCHapi-admin-appointments--appointment_id--cancel"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-PATCHapi-admin-appointments--appointment_id--no-show">PATCH api/admin/appointments/{appointment_id}/no-show</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-admin-appointments--appointment_id--no-show">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/no-show" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/no-show"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-admin-appointments--appointment_id--no-show">
+</span>
+<span id="execution-results-PATCHapi-admin-appointments--appointment_id--no-show" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-admin-appointments--appointment_id--no-show"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-admin-appointments--appointment_id--no-show"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-admin-appointments--appointment_id--no-show" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-admin-appointments--appointment_id--no-show">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-admin-appointments--appointment_id--no-show" data-method="PATCH"
+      data-path="api/admin/appointments/{appointment_id}/no-show"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-admin-appointments--appointment_id--no-show', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-admin-appointments--appointment_id--no-show"
+                    onclick="tryItOut('PATCHapi-admin-appointments--appointment_id--no-show');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-admin-appointments--appointment_id--no-show"
+                    onclick="cancelTryOut('PATCHapi-admin-appointments--appointment_id--no-show');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-admin-appointments--appointment_id--no-show"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/admin/appointments/{appointment_id}/no-show</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-admin-appointments--appointment_id--no-show"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-admin-appointments--appointment_id--no-show"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-admin-appointments--appointment_id--no-show"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-admin-appointments--appointment_id--no-show"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PATCHapi-admin-appointments--appointment_id--reschedule">PATCH api/admin/appointments/{appointment_id}/reschedule</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-admin-appointments--appointment_id--reschedule">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/reschedule" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"scheduled_at\": \"2052-07-12\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/reschedule"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "scheduled_at": "2052-07-12"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-admin-appointments--appointment_id--reschedule">
+</span>
+<span id="execution-results-PATCHapi-admin-appointments--appointment_id--reschedule" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-admin-appointments--appointment_id--reschedule"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-admin-appointments--appointment_id--reschedule"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-admin-appointments--appointment_id--reschedule" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-admin-appointments--appointment_id--reschedule">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-admin-appointments--appointment_id--reschedule" data-method="PATCH"
+      data-path="api/admin/appointments/{appointment_id}/reschedule"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-admin-appointments--appointment_id--reschedule', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-admin-appointments--appointment_id--reschedule"
+                    onclick="tryItOut('PATCHapi-admin-appointments--appointment_id--reschedule');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-admin-appointments--appointment_id--reschedule"
+                    onclick="cancelTryOut('PATCHapi-admin-appointments--appointment_id--reschedule');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-admin-appointments--appointment_id--reschedule"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/admin/appointments/{appointment_id}/reschedule</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-admin-appointments--appointment_id--reschedule"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-admin-appointments--appointment_id--reschedule"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-admin-appointments--appointment_id--reschedule"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-admin-appointments--appointment_id--reschedule"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>scheduled_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="scheduled_at"                data-endpoint="PATCHapi-admin-appointments--appointment_id--reschedule"
+               value="2052-07-12"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-12</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-doctor-appointments">GET api/doctor/appointments</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-doctor-appointments">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"status\": \"architecto\",
+    \"date\": \"2026-06-19\",
+    \"timeline\": \"past\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "status": "architecto",
+    "date": "2026-06-19",
+    "timeline": "past"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-doctor-appointments">
+    </span>
+<span id="execution-results-GETapi-doctor-appointments" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-doctor-appointments"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-doctor-appointments"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-doctor-appointments" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-doctor-appointments">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-doctor-appointments" data-method="GET"
+      data-path="api/doctor/appointments"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-doctor-appointments', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-doctor-appointments"
+                    onclick="tryItOut('GETapi-doctor-appointments');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-doctor-appointments"
+                    onclick="cancelTryOut('GETapi-doctor-appointments');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-doctor-appointments"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/doctor/appointments</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-doctor-appointments"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-doctor-appointments"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-doctor-appointments"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-doctor-appointments"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date"                data-endpoint="GETapi-doctor-appointments"
+               value="2026-06-19"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>timeline</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="timeline"                data-endpoint="GETapi-doctor-appointments"
+               value="past"
+               data-component="body">
+    <br>
+<p>Example: <code>past</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>upcoming</code></li> <li><code>past</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-doctor-appointments--appointment_id-">GET api/doctor/appointments/{appointment_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-doctor-appointments--appointment_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-doctor-appointments--appointment_id-">
+    </span>
+<span id="execution-results-GETapi-doctor-appointments--appointment_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-doctor-appointments--appointment_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-doctor-appointments--appointment_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-doctor-appointments--appointment_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-doctor-appointments--appointment_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-doctor-appointments--appointment_id-" data-method="GET"
+      data-path="api/doctor/appointments/{appointment_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-doctor-appointments--appointment_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-doctor-appointments--appointment_id-"
+                    onclick="tryItOut('GETapi-doctor-appointments--appointment_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-doctor-appointments--appointment_id-"
+                    onclick="cancelTryOut('GETapi-doctor-appointments--appointment_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-doctor-appointments--appointment_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/doctor/appointments/{appointment_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-doctor-appointments--appointment_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-doctor-appointments--appointment_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-doctor-appointments--appointment_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="GETapi-doctor-appointments--appointment_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PATCHapi-doctor-appointments--appointment_id--cancel">PATCH api/doctor/appointments/{appointment_id}/cancel</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-doctor-appointments--appointment_id--cancel">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/cancel" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/cancel"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-doctor-appointments--appointment_id--cancel">
+</span>
+<span id="execution-results-PATCHapi-doctor-appointments--appointment_id--cancel" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-doctor-appointments--appointment_id--cancel"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-doctor-appointments--appointment_id--cancel"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-doctor-appointments--appointment_id--cancel" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-doctor-appointments--appointment_id--cancel">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-doctor-appointments--appointment_id--cancel" data-method="PATCH"
+      data-path="api/doctor/appointments/{appointment_id}/cancel"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-doctor-appointments--appointment_id--cancel', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-doctor-appointments--appointment_id--cancel"
+                    onclick="tryItOut('PATCHapi-doctor-appointments--appointment_id--cancel');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-doctor-appointments--appointment_id--cancel"
+                    onclick="cancelTryOut('PATCHapi-doctor-appointments--appointment_id--cancel');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-doctor-appointments--appointment_id--cancel"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/doctor/appointments/{appointment_id}/cancel</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-doctor-appointments--appointment_id--cancel"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-doctor-appointments--appointment_id--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-doctor-appointments--appointment_id--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-doctor-appointments--appointment_id--cancel"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PATCHapi-doctor-appointments--appointment_id--no-show">PATCH api/doctor/appointments/{appointment_id}/no-show</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-doctor-appointments--appointment_id--no-show">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/no-show" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/no-show"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-doctor-appointments--appointment_id--no-show">
+</span>
+<span id="execution-results-PATCHapi-doctor-appointments--appointment_id--no-show" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-doctor-appointments--appointment_id--no-show"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-doctor-appointments--appointment_id--no-show"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-doctor-appointments--appointment_id--no-show" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-doctor-appointments--appointment_id--no-show">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-doctor-appointments--appointment_id--no-show" data-method="PATCH"
+      data-path="api/doctor/appointments/{appointment_id}/no-show"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-doctor-appointments--appointment_id--no-show', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-doctor-appointments--appointment_id--no-show"
+                    onclick="tryItOut('PATCHapi-doctor-appointments--appointment_id--no-show');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-doctor-appointments--appointment_id--no-show"
+                    onclick="cancelTryOut('PATCHapi-doctor-appointments--appointment_id--no-show');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-doctor-appointments--appointment_id--no-show"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/doctor/appointments/{appointment_id}/no-show</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-doctor-appointments--appointment_id--no-show"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-doctor-appointments--appointment_id--no-show"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-doctor-appointments--appointment_id--no-show"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-doctor-appointments--appointment_id--no-show"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
 
                     <h2 id="endpoints-GETapi-doctor-appointments--appointment_id--sessions-list">GET api/doctor/appointments/{appointment_id}/sessions/list</h2>
 
@@ -6437,22 +8439,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-doctor-appointments--appointment_id--sessions-list">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-doctor-appointments--appointment_id--sessions-list" hidden>
     <blockquote>Received response<span
@@ -6940,22 +8926,6 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-doctor-appointments--appointment_id--sessions--session_id-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
     </span>
 <span id="execution-results-GETapi-doctor-appointments--appointment_id--sessions--session_id-" hidden>
     <blockquote>Received response<span
@@ -7089,7 +9059,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"diagnosis\": \"b\",
     \"patient_complaint\": \"n\",
     \"notes\": \"g\",
-    \"status\": \"active\"
+    \"status\": \"cancelled\"
 }"
 </code></pre></div>
 
@@ -7109,7 +9079,7 @@ let body = {
     "diagnosis": "b",
     "patient_complaint": "n",
     "notes": "g",
-    "status": "active"
+    "status": "cancelled"
 };
 
 fetch(url, {
@@ -7274,16 +9244,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="status"                data-endpoint="PATCHapi-doctor-appointments--appointment_id--sessions--session_id-"
-               value="active"
+               value="cancelled"
                data-component="body">
     <br>
-<p>Example: <code>active</code></p>
+<p>Example: <code>cancelled</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>active</code></li> <li><code>completed</code></li> <li><code>cancelled</code></li></ul>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-doctor-doctors--doctor_id--patients">GET api/doctor/doctors/{doctor_id}/patients</h2>
+                    <h2 id="endpoints-GETapi-doctor--doctor_id--patients">GET api/doctor/{doctor_id}/patients</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -7291,13 +9261,13 @@ Must be one of:
 
 
 
-<span id="example-requests-GETapi-doctor-doctors--doctor_id--patients">
+<span id="example-requests-GETapi-doctor--doctor_id--patients">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/doctors/1/patients" \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/1/patients" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -7305,7 +9275,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/doctors/1/patients"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/1/patients"
 );
 
 const headers = {
@@ -7322,61 +9292,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-doctor-doctors--doctor_id--patients">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
+<span id="example-responses-GETapi-doctor--doctor_id--patients">
     </span>
-<span id="execution-results-GETapi-doctor-doctors--doctor_id--patients" hidden>
+<span id="execution-results-GETapi-doctor--doctor_id--patients" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-doctor-doctors--doctor_id--patients"></span>:
+                id="execution-response-status-GETapi-doctor--doctor_id--patients"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-doctor-doctors--doctor_id--patients"
+    <pre class="json"><code id="execution-response-content-GETapi-doctor--doctor_id--patients"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-doctor-doctors--doctor_id--patients" hidden>
+<span id="execution-error-GETapi-doctor--doctor_id--patients" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-doctor-doctors--doctor_id--patients">
+    <pre><code id="execution-error-message-GETapi-doctor--doctor_id--patients">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-doctor-doctors--doctor_id--patients" data-method="GET"
-      data-path="api/doctor/doctors/{doctor_id}/patients"
+<form id="form-GETapi-doctor--doctor_id--patients" data-method="GET"
+      data-path="api/doctor/{doctor_id}/patients"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-doctor-doctors--doctor_id--patients', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-doctor--doctor_id--patients', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-doctor-doctors--doctor_id--patients"
-                    onclick="tryItOut('GETapi-doctor-doctors--doctor_id--patients');">Try it out ⚡
+                    id="btn-tryout-GETapi-doctor--doctor_id--patients"
+                    onclick="tryItOut('GETapi-doctor--doctor_id--patients');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-doctor-doctors--doctor_id--patients"
-                    onclick="cancelTryOut('GETapi-doctor-doctors--doctor_id--patients');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-doctor--doctor_id--patients"
+                    onclick="cancelTryOut('GETapi-doctor--doctor_id--patients');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-doctor-doctors--doctor_id--patients"
+                    id="btn-executetryout-GETapi-doctor--doctor_id--patients"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -7384,7 +9338,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/doctor/doctors/{doctor_id}/patients</code></b>
+            <b><code>api/doctor/{doctor_id}/patients</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -7393,7 +9347,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-doctor-doctors--doctor_id--patients"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-doctor--doctor_id--patients"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -7405,7 +9359,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-doctor-doctors--doctor_id--patients"
+                              name="Content-Type"                data-endpoint="GETapi-doctor--doctor_id--patients"
                value="application/json"
                data-component="header">
     <br>
@@ -7417,7 +9371,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-doctor-doctors--doctor_id--patients"
+                              name="Accept"                data-endpoint="GETapi-doctor--doctor_id--patients"
                value="application/json"
                data-component="header">
     <br>
@@ -7430,7 +9384,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="doctor_id"                data-endpoint="GETapi-doctor-doctors--doctor_id--patients"
+               step="any"               name="doctor_id"                data-endpoint="GETapi-doctor--doctor_id--patients"
                value="1"
                data-component="url">
     <br>
@@ -7438,7 +9392,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-doctor-doctors--doctor--patients--patient_id-">GET api/doctor/doctors/{doctor}/patients/{patient_id}</h2>
+                    <h2 id="endpoints-GETapi-doctor--doctor_id--patients--patient_id-">GET api/doctor/{doctor_id}/patients/{patient_id}</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -7446,13 +9400,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-doctor-doctors--doctor--patients--patient_id-">
+<span id="example-requests-GETapi-doctor--doctor_id--patients--patient_id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/doctors/1/patients/1" \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/1/patients/16" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -7460,7 +9414,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/doctors/1/patients/1"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/1/patients/16"
 );
 
 const headers = {
@@ -7477,61 +9431,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-doctor-doctors--doctor--patients--patient_id-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
+<span id="example-responses-GETapi-doctor--doctor_id--patients--patient_id-">
     </span>
-<span id="execution-results-GETapi-doctor-doctors--doctor--patients--patient_id-" hidden>
+<span id="execution-results-GETapi-doctor--doctor_id--patients--patient_id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-doctor-doctors--doctor--patients--patient_id-"></span>:
+                id="execution-response-status-GETapi-doctor--doctor_id--patients--patient_id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-doctor-doctors--doctor--patients--patient_id-"
+    <pre class="json"><code id="execution-response-content-GETapi-doctor--doctor_id--patients--patient_id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-doctor-doctors--doctor--patients--patient_id-" hidden>
+<span id="execution-error-GETapi-doctor--doctor_id--patients--patient_id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-doctor-doctors--doctor--patients--patient_id-">
+    <pre><code id="execution-error-message-GETapi-doctor--doctor_id--patients--patient_id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-doctor-doctors--doctor--patients--patient_id-" data-method="GET"
-      data-path="api/doctor/doctors/{doctor}/patients/{patient_id}"
+<form id="form-GETapi-doctor--doctor_id--patients--patient_id-" data-method="GET"
+      data-path="api/doctor/{doctor_id}/patients/{patient_id}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-doctor-doctors--doctor--patients--patient_id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-doctor--doctor_id--patients--patient_id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-doctor-doctors--doctor--patients--patient_id-"
-                    onclick="tryItOut('GETapi-doctor-doctors--doctor--patients--patient_id-');">Try it out ⚡
+                    id="btn-tryout-GETapi-doctor--doctor_id--patients--patient_id-"
+                    onclick="tryItOut('GETapi-doctor--doctor_id--patients--patient_id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-doctor-doctors--doctor--patients--patient_id-"
-                    onclick="cancelTryOut('GETapi-doctor-doctors--doctor--patients--patient_id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-doctor--doctor_id--patients--patient_id-"
+                    onclick="cancelTryOut('GETapi-doctor--doctor_id--patients--patient_id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-doctor-doctors--doctor--patients--patient_id-"
+                    id="btn-executetryout-GETapi-doctor--doctor_id--patients--patient_id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -7539,7 +9477,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/doctor/doctors/{doctor}/patients/{patient_id}</code></b>
+            <b><code>api/doctor/{doctor_id}/patients/{patient_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -7548,7 +9486,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-doctor-doctors--doctor--patients--patient_id-"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-doctor--doctor_id--patients--patient_id-"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -7560,7 +9498,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-doctor-doctors--doctor--patients--patient_id-"
+                              name="Content-Type"                data-endpoint="GETapi-doctor--doctor_id--patients--patient_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -7572,7 +9510,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-doctor-doctors--doctor--patients--patient_id-"
+                              name="Accept"                data-endpoint="GETapi-doctor--doctor_id--patients--patient_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -7580,16 +9518,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>doctor</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="doctor"                data-endpoint="GETapi-doctor-doctors--doctor--patients--patient_id-"
+               step="any"               name="doctor_id"                data-endpoint="GETapi-doctor--doctor_id--patients--patient_id-"
                value="1"
                data-component="url">
     <br>
-<p>The doctor. Example: <code>1</code></p>
+<p>The ID of the doctor. Example: <code>1</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
@@ -7597,11 +9535,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="patient_id"                data-endpoint="GETapi-doctor-doctors--doctor--patients--patient_id-"
-               value="1"
+               step="any"               name="patient_id"                data-endpoint="GETapi-doctor--doctor_id--patients--patient_id-"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>1</code></p>
+<p>The ID of the patient. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -7972,7 +9910,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-appointments-my_all_appointments">GET api/appointments/my_all_appointments</h2>
+                    <h2 id="endpoints-GETapi-reception-patients">GET api/reception/patients</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -7980,13 +9918,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-appointments-my_all_appointments">
+<span id="example-requests-GETapi-reception-patients">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/my_all_appointments" \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -7994,7 +9932,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/my_all_appointments"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients"
 );
 
 const headers = {
@@ -8011,61 +9949,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-appointments-my_all_appointments">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
+<span id="example-responses-GETapi-reception-patients">
     </span>
-<span id="execution-results-GETapi-appointments-my_all_appointments" hidden>
+<span id="execution-results-GETapi-reception-patients" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-appointments-my_all_appointments"></span>:
+                id="execution-response-status-GETapi-reception-patients"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-appointments-my_all_appointments"
+    <pre class="json"><code id="execution-response-content-GETapi-reception-patients"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-appointments-my_all_appointments" hidden>
+<span id="execution-error-GETapi-reception-patients" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-appointments-my_all_appointments">
+    <pre><code id="execution-error-message-GETapi-reception-patients">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-appointments-my_all_appointments" data-method="GET"
-      data-path="api/appointments/my_all_appointments"
+<form id="form-GETapi-reception-patients" data-method="GET"
+      data-path="api/reception/patients"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-appointments-my_all_appointments', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-reception-patients', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-appointments-my_all_appointments"
-                    onclick="tryItOut('GETapi-appointments-my_all_appointments');">Try it out ⚡
+                    id="btn-tryout-GETapi-reception-patients"
+                    onclick="tryItOut('GETapi-reception-patients');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-appointments-my_all_appointments"
-                    onclick="cancelTryOut('GETapi-appointments-my_all_appointments');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-reception-patients"
+                    onclick="cancelTryOut('GETapi-reception-patients');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-appointments-my_all_appointments"
+                    id="btn-executetryout-GETapi-reception-patients"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -8073,7 +9995,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/appointments/my_all_appointments</code></b>
+            <b><code>api/reception/patients</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -8082,7 +10004,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-appointments-my_all_appointments"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-reception-patients"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -8094,7 +10016,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-appointments-my_all_appointments"
+                              name="Content-Type"                data-endpoint="GETapi-reception-patients"
                value="application/json"
                data-component="header">
     <br>
@@ -8106,7 +10028,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-appointments-my_all_appointments"
+                              name="Accept"                data-endpoint="GETapi-reception-patients"
                value="application/json"
                data-component="header">
     <br>
@@ -8114,7 +10036,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-POSTapi-appointments-book_appointment">POST api/appointments/book_appointment</h2>
+                    <h2 id="endpoints-POSTapi-reception-patients">POST api/reception/patients</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -8122,27 +10044,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-POSTapi-appointments-book_appointment">
+<span id="example-requests-POSTapi-reception-patients">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/book_appointment" \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"doctor_id\": \"architecto\",
-    \"scheduled_at\": \"2052-07-12\",
-    \"visit_reason\": \"architecto\"
+    \"full_name\": \"b\",
+    \"phone\": \"ngzmiyvdljnikhwa\",
+    \"gender\": \"male\",
+    \"date_of_birth\": \"2022-07-13\",
+    \"address\": \"architecto\",
+    \"job\": \"n\",
+    \"emergency_contact\": \"g\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/book_appointment"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients"
 );
 
 const headers = {
@@ -8152,9 +10078,13 @@ const headers = {
 };
 
 let body = {
-    "doctor_id": "architecto",
-    "scheduled_at": "2052-07-12",
-    "visit_reason": "architecto"
+    "full_name": "b",
+    "phone": "ngzmiyvdljnikhwa",
+    "gender": "male",
+    "date_of_birth": "2022-07-13",
+    "address": "architecto",
+    "job": "n",
+    "emergency_contact": "g"
 };
 
 fetch(url, {
@@ -8165,45 +10095,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-appointments-book_appointment">
+<span id="example-responses-POSTapi-reception-patients">
 </span>
-<span id="execution-results-POSTapi-appointments-book_appointment" hidden>
+<span id="execution-results-POSTapi-reception-patients" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-appointments-book_appointment"></span>:
+                id="execution-response-status-POSTapi-reception-patients"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-appointments-book_appointment"
+    <pre class="json"><code id="execution-response-content-POSTapi-reception-patients"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-appointments-book_appointment" hidden>
+<span id="execution-error-POSTapi-reception-patients" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-appointments-book_appointment">
+    <pre><code id="execution-error-message-POSTapi-reception-patients">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-appointments-book_appointment" data-method="POST"
-      data-path="api/appointments/book_appointment"
+<form id="form-POSTapi-reception-patients" data-method="POST"
+      data-path="api/reception/patients"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-appointments-book_appointment', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-reception-patients', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-appointments-book_appointment"
-                    onclick="tryItOut('POSTapi-appointments-book_appointment');">Try it out ⚡
+                    id="btn-tryout-POSTapi-reception-patients"
+                    onclick="tryItOut('POSTapi-reception-patients');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-appointments-book_appointment"
-                    onclick="cancelTryOut('POSTapi-appointments-book_appointment');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-reception-patients"
+                    onclick="cancelTryOut('POSTapi-reception-patients');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-appointments-book_appointment"
+                    id="btn-executetryout-POSTapi-reception-patients"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -8211,7 +10141,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/appointments/book_appointment</code></b>
+            <b><code>api/reception/patients</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -8220,7 +10150,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-appointments-book_appointment"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-reception-patients"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -8232,7 +10162,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-appointments-book_appointment"
+                              name="Content-Type"                data-endpoint="POSTapi-reception-patients"
                value="application/json"
                data-component="header">
     <br>
@@ -8244,7 +10174,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-appointments-book_appointment"
+                              name="Accept"                data-endpoint="POSTapi-reception-patients"
                value="application/json"
                data-component="header">
     <br>
@@ -8252,12 +10182,1270 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>full_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="full_name"                data-endpoint="POSTapi-reception-patients"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone"                data-endpoint="POSTapi-reception-patients"
+               value="ngzmiyvdljnikhwa"
+               data-component="body">
+    <br>
+<p>Must be at least 8 characters. Must not be greater than 20 characters. Example: <code>ngzmiyvdljnikhwa</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="gender"                data-endpoint="POSTapi-reception-patients"
+               value="male"
+               data-component="body">
+    <br>
+<p>Example: <code>male</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_of_birth</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date_of_birth"                data-endpoint="POSTapi-reception-patients"
+               value="2022-07-13"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="address"                data-endpoint="POSTapi-reception-patients"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>job</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="job"                data-endpoint="POSTapi-reception-patients"
+               value="n"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>emergency_contact</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="emergency_contact"                data-endpoint="POSTapi-reception-patients"
+               value="g"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>g</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-reception-patients--patient_id-">GET api/reception/patients/{patient_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-reception-patients--patient_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-reception-patients--patient_id-">
+    </span>
+<span id="execution-results-GETapi-reception-patients--patient_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-reception-patients--patient_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-reception-patients--patient_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-reception-patients--patient_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-reception-patients--patient_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-reception-patients--patient_id-" data-method="GET"
+      data-path="api/reception/patients/{patient_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-reception-patients--patient_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-reception-patients--patient_id-"
+                    onclick="tryItOut('GETapi-reception-patients--patient_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-reception-patients--patient_id-"
+                    onclick="cancelTryOut('GETapi-reception-patients--patient_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-reception-patients--patient_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/reception/patients/{patient_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-reception-patients--patient_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-reception-patients--patient_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-reception-patients--patient_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="patient_id"                data-endpoint="GETapi-reception-patients--patient_id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the patient. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PUTapi-reception-patients--patient_id-">PUT api/reception/patients/{patient_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-reception-patients--patient_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"full_name\": \"b\",
+    \"phone\": \"ngzmiyvdljnikhwa\",
+    \"date_of_birth\": \"2022-07-13\",
+    \"gender\": \"female\",
+    \"address\": \"architecto\",
+    \"job\": \"n\",
+    \"emergency_contact\": \"g\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "full_name": "b",
+    "phone": "ngzmiyvdljnikhwa",
+    "date_of_birth": "2022-07-13",
+    "gender": "female",
+    "address": "architecto",
+    "job": "n",
+    "emergency_contact": "g"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-reception-patients--patient_id-">
+</span>
+<span id="execution-results-PUTapi-reception-patients--patient_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-reception-patients--patient_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-reception-patients--patient_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-reception-patients--patient_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-reception-patients--patient_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-reception-patients--patient_id-" data-method="PUT"
+      data-path="api/reception/patients/{patient_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-reception-patients--patient_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-reception-patients--patient_id-"
+                    onclick="tryItOut('PUTapi-reception-patients--patient_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-reception-patients--patient_id-"
+                    onclick="cancelTryOut('PUTapi-reception-patients--patient_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-reception-patients--patient_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/reception/patients/{patient_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="patient_id"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the patient. Example: <code>16</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>full_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="full_name"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="phone"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="ngzmiyvdljnikhwa"
+               data-component="body">
+    <br>
+<p>Must not be greater than 20 characters. Example: <code>ngzmiyvdljnikhwa</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_of_birth</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date_of_birth"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="2022-07-13"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="gender"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="female"
+               data-component="body">
+    <br>
+<p>Example: <code>female</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="address"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>job</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="job"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="n"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>emergency_contact</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="emergency_contact"                data-endpoint="PUTapi-reception-patients--patient_id-"
+               value="g"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>g</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-DELETEapi-reception-patients--patient_id-">DELETE api/reception/patients/{patient_id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-reception-patients--patient_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-reception-patients--patient_id-">
+</span>
+<span id="execution-results-DELETEapi-reception-patients--patient_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-reception-patients--patient_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-reception-patients--patient_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-reception-patients--patient_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-reception-patients--patient_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-reception-patients--patient_id-" data-method="DELETE"
+      data-path="api/reception/patients/{patient_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-reception-patients--patient_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-reception-patients--patient_id-"
+                    onclick="tryItOut('DELETEapi-reception-patients--patient_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-reception-patients--patient_id-"
+                    onclick="cancelTryOut('DELETEapi-reception-patients--patient_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-reception-patients--patient_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/reception/patients/{patient_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-reception-patients--patient_id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-reception-patients--patient_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-reception-patients--patient_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="patient_id"                data-endpoint="DELETEapi-reception-patients--patient_id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the patient. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PUTapi-reception-patients--patient_id--restore">PUT api/reception/patients/{patient_id}/restore</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-reception-patients--patient_id--restore">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16/restore" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16/restore"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-reception-patients--patient_id--restore">
+</span>
+<span id="execution-results-PUTapi-reception-patients--patient_id--restore" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-reception-patients--patient_id--restore"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-reception-patients--patient_id--restore"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-reception-patients--patient_id--restore" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-reception-patients--patient_id--restore">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-reception-patients--patient_id--restore" data-method="PUT"
+      data-path="api/reception/patients/{patient_id}/restore"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-reception-patients--patient_id--restore', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-reception-patients--patient_id--restore"
+                    onclick="tryItOut('PUTapi-reception-patients--patient_id--restore');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-reception-patients--patient_id--restore"
+                    onclick="cancelTryOut('PUTapi-reception-patients--patient_id--restore');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-reception-patients--patient_id--restore"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/reception/patients/{patient_id}/restore</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-reception-patients--patient_id--restore"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-reception-patients--patient_id--restore"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-reception-patients--patient_id--restore"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="patient_id"                data-endpoint="PUTapi-reception-patients--patient_id--restore"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the patient. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-DELETEapi-reception-patients--patient_id--force-delete">DELETE api/reception/patients/{patient_id}/force-delete</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-reception-patients--patient_id--force-delete">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16/force-delete" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16/force-delete"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-reception-patients--patient_id--force-delete">
+</span>
+<span id="execution-results-DELETEapi-reception-patients--patient_id--force-delete" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-reception-patients--patient_id--force-delete"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-reception-patients--patient_id--force-delete"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-reception-patients--patient_id--force-delete" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-reception-patients--patient_id--force-delete">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-reception-patients--patient_id--force-delete" data-method="DELETE"
+      data-path="api/reception/patients/{patient_id}/force-delete"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-reception-patients--patient_id--force-delete', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-reception-patients--patient_id--force-delete"
+                    onclick="tryItOut('DELETEapi-reception-patients--patient_id--force-delete');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-reception-patients--patient_id--force-delete"
+                    onclick="cancelTryOut('DELETEapi-reception-patients--patient_id--force-delete');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-reception-patients--patient_id--force-delete"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/reception/patients/{patient_id}/force-delete</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-reception-patients--patient_id--force-delete"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-reception-patients--patient_id--force-delete"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-reception-patients--patient_id--force-delete"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="patient_id"                data-endpoint="DELETEapi-reception-patients--patient_id--force-delete"
+               value="16"
+               data-component="url">
+    <br>
+<p>The ID of the patient. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-appointments-reception">GET api/appointments/reception</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-appointments-reception">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"date\": \"2026-06-19\",
+    \"date_from\": \"2026-06-19\",
+    \"date_to\": \"2026-06-19\",
+    \"status\": \"architecto\",
+    \"search\": \"architecto\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "date": "2026-06-19",
+    "date_from": "2026-06-19",
+    "date_to": "2026-06-19",
+    "status": "architecto",
+    "search": "architecto"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-appointments-reception">
+    </span>
+<span id="execution-results-GETapi-appointments-reception" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-appointments-reception"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-appointments-reception"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-appointments-reception" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-appointments-reception">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-appointments-reception" data-method="GET"
+      data-path="api/appointments/reception"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-appointments-reception', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-appointments-reception"
+                    onclick="tryItOut('GETapi-appointments-reception');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-appointments-reception"
+                    onclick="cancelTryOut('GETapi-appointments-reception');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-appointments-reception"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/appointments/reception</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-appointments-reception"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-appointments-reception"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-appointments-reception"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date"                data-endpoint="GETapi-appointments-reception"
+               value="2026-06-19"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_from</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date_from"                data-endpoint="GETapi-appointments-reception"
+               value="2026-06-19"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="date_to"                data-endpoint="GETapi-appointments-reception"
+               value="2026-06-19"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="doctor_id"                data-endpoint="GETapi-appointments-reception"
+               value=""
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the doctors table.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-appointments-reception"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>search</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="search"                data-endpoint="GETapi-appointments-reception"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-appointments-reception">POST api/appointments/reception</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-appointments-reception">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"patient_id\": \"architecto\",
+    \"doctor_id\": \"architecto\",
+    \"scheduled_at\": \"2052-07-12\",
+    \"visit_reason\": \"architecto\",
+    \"notes\": \"architecto\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "patient_id": "architecto",
+    "doctor_id": "architecto",
+    "scheduled_at": "2052-07-12",
+    "visit_reason": "architecto",
+    "notes": "architecto"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-appointments-reception">
+</span>
+<span id="execution-results-POSTapi-appointments-reception" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-appointments-reception"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-appointments-reception"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-appointments-reception" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-appointments-reception">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-appointments-reception" data-method="POST"
+      data-path="api/appointments/reception"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-appointments-reception', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-appointments-reception"
+                    onclick="tryItOut('POSTapi-appointments-reception');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-appointments-reception"
+                    onclick="cancelTryOut('POSTapi-appointments-reception');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-appointments-reception"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/appointments/reception</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-appointments-reception"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-appointments-reception"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-appointments-reception"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="patient_id"                data-endpoint="POSTapi-appointments-reception"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the patients table. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="doctor_id"                data-endpoint="POSTapi-appointments-book_appointment"
+                              name="doctor_id"                data-endpoint="POSTapi-appointments-reception"
                value="architecto"
                data-component="body">
     <br>
@@ -8269,7 +11457,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="scheduled_at"                data-endpoint="POSTapi-appointments-book_appointment"
+                              name="scheduled_at"                data-endpoint="POSTapi-appointments-reception"
                value="2052-07-12"
                data-component="body">
     <br>
@@ -8281,7 +11469,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="visit_reason"                data-endpoint="POSTapi-appointments-book_appointment"
+                              name="visit_reason"                data-endpoint="POSTapi-appointments-reception"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="notes"                data-endpoint="POSTapi-appointments-reception"
                value="architecto"
                data-component="body">
     <br>
@@ -8289,7 +11489,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-appointments-doctor">GET api/appointments/doctor</h2>
+                    <h2 id="endpoints-GETapi-appointments-reception--appointment_id-">GET api/appointments/reception/{appointment_id}</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -8297,25 +11497,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-appointments-doctor">
+<span id="example-requests-GETapi-appointments-reception--appointment_id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/doctor" \
+    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"doctor_id\": \"architecto\"
-}"
-</code></pre></div>
+    --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/doctor"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1"
 );
 
 const headers = {
@@ -8324,73 +11520,53 @@ const headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "doctor_id": "architecto"
-};
 
 fetch(url, {
     method: "GET",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-appointments-doctor">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
+<span id="example-responses-GETapi-appointments-reception--appointment_id-">
     </span>
-<span id="execution-results-GETapi-appointments-doctor" hidden>
+<span id="execution-results-GETapi-appointments-reception--appointment_id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-appointments-doctor"></span>:
+                id="execution-response-status-GETapi-appointments-reception--appointment_id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-appointments-doctor"
+    <pre class="json"><code id="execution-response-content-GETapi-appointments-reception--appointment_id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-appointments-doctor" hidden>
+<span id="execution-error-GETapi-appointments-reception--appointment_id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-appointments-doctor">
+    <pre><code id="execution-error-message-GETapi-appointments-reception--appointment_id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-appointments-doctor" data-method="GET"
-      data-path="api/appointments/doctor"
+<form id="form-GETapi-appointments-reception--appointment_id-" data-method="GET"
+      data-path="api/appointments/reception/{appointment_id}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-appointments-doctor', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-appointments-reception--appointment_id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-appointments-doctor"
-                    onclick="tryItOut('GETapi-appointments-doctor');">Try it out ⚡
+                    id="btn-tryout-GETapi-appointments-reception--appointment_id-"
+                    onclick="tryItOut('GETapi-appointments-reception--appointment_id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-appointments-doctor"
-                    onclick="cancelTryOut('GETapi-appointments-doctor');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-appointments-reception--appointment_id-"
+                    onclick="cancelTryOut('GETapi-appointments-reception--appointment_id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-appointments-doctor"
+                    id="btn-executetryout-GETapi-appointments-reception--appointment_id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -8398,7 +11574,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/appointments/doctor</code></b>
+            <b><code>api/appointments/reception/{appointment_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -8407,7 +11583,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-appointments-doctor"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-appointments-reception--appointment_id-"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -8419,7 +11595,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-appointments-doctor"
+                              name="Content-Type"                data-endpoint="GETapi-appointments-reception--appointment_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -8431,28 +11607,28 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-appointments-doctor"
+                              name="Accept"                data-endpoint="GETapi-appointments-reception--appointment_id-"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="doctor_id"                data-endpoint="GETapi-appointments-doctor"
-               value="architecto"
-               data-component="body">
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="GETapi-appointments-reception--appointment_id-"
+               value="1"
+               data-component="url">
     <br>
-<p>The <code>id</code> of an existing record in the doctors table. Example: <code>architecto</code></p>
-        </div>
-        </form>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
 
-                    <h2 id="endpoints-GETapi-appointments-available-slots">GET api/appointments/available-slots</h2>
+                    <h2 id="endpoints-PATCHapi-appointments-reception--appointment_id--confirm">PATCH api/appointments/reception/{appointment_id}/confirm</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -8460,26 +11636,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-appointments-available-slots">
+<span id="example-requests-PATCHapi-appointments-reception--appointment_id--confirm">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/available-slots" \
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/confirm" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"doctor_id\": \"architecto\",
-    \"date\": \"2052-07-11\"
-}"
-</code></pre></div>
+    --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/available-slots"
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/confirm"
 );
 
 const headers = {
@@ -8488,82 +11659,61 @@ const headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "doctor_id": "architecto",
-    "date": "2052-07-11"
-};
 
 fetch(url, {
-    method: "GET",
+    method: "PATCH",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-appointments-available-slots">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-appointments-available-slots" hidden>
+<span id="example-responses-PATCHapi-appointments-reception--appointment_id--confirm">
+</span>
+<span id="execution-results-PATCHapi-appointments-reception--appointment_id--confirm" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-appointments-available-slots"></span>:
+                id="execution-response-status-PATCHapi-appointments-reception--appointment_id--confirm"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-appointments-available-slots"
+    <pre class="json"><code id="execution-response-content-PATCHapi-appointments-reception--appointment_id--confirm"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-appointments-available-slots" hidden>
+<span id="execution-error-PATCHapi-appointments-reception--appointment_id--confirm" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-appointments-available-slots">
+    <pre><code id="execution-error-message-PATCHapi-appointments-reception--appointment_id--confirm">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-appointments-available-slots" data-method="GET"
-      data-path="api/appointments/available-slots"
+<form id="form-PATCHapi-appointments-reception--appointment_id--confirm" data-method="PATCH"
+      data-path="api/appointments/reception/{appointment_id}/confirm"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-appointments-available-slots', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-appointments-reception--appointment_id--confirm', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-appointments-available-slots"
-                    onclick="tryItOut('GETapi-appointments-available-slots');">Try it out ⚡
+                    id="btn-tryout-PATCHapi-appointments-reception--appointment_id--confirm"
+                    onclick="tryItOut('PATCHapi-appointments-reception--appointment_id--confirm');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-appointments-available-slots"
-                    onclick="cancelTryOut('GETapi-appointments-available-slots');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PATCHapi-appointments-reception--appointment_id--confirm"
+                    onclick="cancelTryOut('PATCHapi-appointments-reception--appointment_id--confirm');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-appointments-available-slots"
+                    id="btn-executetryout-PATCHapi-appointments-reception--appointment_id--confirm"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/appointments/available-slots</code></b>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/appointments/reception/{appointment_id}/confirm</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -8572,7 +11722,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-appointments-available-slots"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-appointments-reception--appointment_id--confirm"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -8584,7 +11734,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-appointments-available-slots"
+                              name="Content-Type"                data-endpoint="PATCHapi-appointments-reception--appointment_id--confirm"
                value="application/json"
                data-component="header">
     <br>
@@ -8596,38 +11746,624 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-appointments-available-slots"
+                              name="Accept"                data-endpoint="PATCHapi-appointments-reception--appointment_id--confirm"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-appointments-reception--appointment_id--confirm"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PATCHapi-appointments-reception--appointment_id--arrived">PATCH api/appointments/reception/{appointment_id}/arrived</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-appointments-reception--appointment_id--arrived">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/arrived" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/arrived"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-appointments-reception--appointment_id--arrived">
+</span>
+<span id="execution-results-PATCHapi-appointments-reception--appointment_id--arrived" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-appointments-reception--appointment_id--arrived"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-appointments-reception--appointment_id--arrived"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-appointments-reception--appointment_id--arrived" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-appointments-reception--appointment_id--arrived">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-appointments-reception--appointment_id--arrived" data-method="PATCH"
+      data-path="api/appointments/reception/{appointment_id}/arrived"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-appointments-reception--appointment_id--arrived', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-appointments-reception--appointment_id--arrived"
+                    onclick="tryItOut('PATCHapi-appointments-reception--appointment_id--arrived');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-appointments-reception--appointment_id--arrived"
+                    onclick="cancelTryOut('PATCHapi-appointments-reception--appointment_id--arrived');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-appointments-reception--appointment_id--arrived"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/appointments/reception/{appointment_id}/arrived</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-appointments-reception--appointment_id--arrived"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-appointments-reception--appointment_id--arrived"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-appointments-reception--appointment_id--arrived"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-appointments-reception--appointment_id--arrived"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PATCHapi-appointments-reception--appointment_id--reschedule">PATCH api/appointments/reception/{appointment_id}/reschedule</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-appointments-reception--appointment_id--reschedule">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/reschedule" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"scheduled_at\": \"2052-07-12\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/reschedule"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "scheduled_at": "2052-07-12"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-appointments-reception--appointment_id--reschedule">
+</span>
+<span id="execution-results-PATCHapi-appointments-reception--appointment_id--reschedule" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-appointments-reception--appointment_id--reschedule"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-appointments-reception--appointment_id--reschedule"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-appointments-reception--appointment_id--reschedule" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-appointments-reception--appointment_id--reschedule">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-appointments-reception--appointment_id--reschedule" data-method="PATCH"
+      data-path="api/appointments/reception/{appointment_id}/reschedule"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-appointments-reception--appointment_id--reschedule', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-appointments-reception--appointment_id--reschedule"
+                    onclick="tryItOut('PATCHapi-appointments-reception--appointment_id--reschedule');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-appointments-reception--appointment_id--reschedule"
+                    onclick="cancelTryOut('PATCHapi-appointments-reception--appointment_id--reschedule');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-appointments-reception--appointment_id--reschedule"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/appointments/reception/{appointment_id}/reschedule</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-appointments-reception--appointment_id--reschedule"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-appointments-reception--appointment_id--reschedule"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-appointments-reception--appointment_id--reschedule"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-appointments-reception--appointment_id--reschedule"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>scheduled_at</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="doctor_id"                data-endpoint="GETapi-appointments-available-slots"
-               value="architecto"
+                              name="scheduled_at"                data-endpoint="PATCHapi-appointments-reception--appointment_id--reschedule"
+               value="2052-07-12"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the doctors table. Example: <code>architecto</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="date"                data-endpoint="GETapi-appointments-available-slots"
-               value="2052-07-11"
-               data-component="body">
-    <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Must be a date after or equal to <code>today</code>. Example: <code>2052-07-11</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-12</code></p>
         </div>
         </form>
+
+                    <h2 id="endpoints-PATCHapi-appointments-reception--appointment_id--cancel">PATCH api/appointments/reception/{appointment_id}/cancel</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-appointments-reception--appointment_id--cancel">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/cancel" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"reason\": \"b\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/cancel"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "reason": "b"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-appointments-reception--appointment_id--cancel">
+</span>
+<span id="execution-results-PATCHapi-appointments-reception--appointment_id--cancel" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-appointments-reception--appointment_id--cancel"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-appointments-reception--appointment_id--cancel"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-appointments-reception--appointment_id--cancel" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-appointments-reception--appointment_id--cancel">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-appointments-reception--appointment_id--cancel" data-method="PATCH"
+      data-path="api/appointments/reception/{appointment_id}/cancel"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-appointments-reception--appointment_id--cancel', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-appointments-reception--appointment_id--cancel"
+                    onclick="tryItOut('PATCHapi-appointments-reception--appointment_id--cancel');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-appointments-reception--appointment_id--cancel"
+                    onclick="cancelTryOut('PATCHapi-appointments-reception--appointment_id--cancel');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-appointments-reception--appointment_id--cancel"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/appointments/reception/{appointment_id}/cancel</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-appointments-reception--appointment_id--cancel"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-appointments-reception--appointment_id--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-appointments-reception--appointment_id--cancel"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-appointments-reception--appointment_id--cancel"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reason"                data-endpoint="PATCHapi-appointments-reception--appointment_id--cancel"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-PATCHapi-appointments-reception--appointment_id--no-show">PATCH api/appointments/reception/{appointment_id}/no-show</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-appointments-reception--appointment_id--no-show">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/no-show" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/no-show"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-appointments-reception--appointment_id--no-show">
+</span>
+<span id="execution-results-PATCHapi-appointments-reception--appointment_id--no-show" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-appointments-reception--appointment_id--no-show"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-appointments-reception--appointment_id--no-show"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-appointments-reception--appointment_id--no-show" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-appointments-reception--appointment_id--no-show">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-appointments-reception--appointment_id--no-show" data-method="PATCH"
+      data-path="api/appointments/reception/{appointment_id}/no-show"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-appointments-reception--appointment_id--no-show', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-appointments-reception--appointment_id--no-show"
+                    onclick="tryItOut('PATCHapi-appointments-reception--appointment_id--no-show');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-appointments-reception--appointment_id--no-show"
+                    onclick="cancelTryOut('PATCHapi-appointments-reception--appointment_id--no-show');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-appointments-reception--appointment_id--no-show"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/appointments/reception/{appointment_id}/no-show</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-appointments-reception--appointment_id--no-show"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-appointments-reception--appointment_id--no-show"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-appointments-reception--appointment_id--no-show"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-appointments-reception--appointment_id--no-show"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
 
             
 
