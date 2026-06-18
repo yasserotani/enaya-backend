@@ -10,30 +10,29 @@ use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        api: __DIR__.'/../routes/api.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        api: __DIR__ . '/../routes/api.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        // ← add this block
-        $middleware->trustHosts(at: [
-            'localhost',
-            'laravel-react.test',
-        ]);
-        $middleware->alias([
-            'role' => RoleMiddleware::class,
-            'permission' => PermissionMiddleware::class,
-            'role_or_permission' => RoleOrPermissionMiddleware::class,
-        ]);
-    })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->render(function (
-            ModelNotFoundException $e
-        ) {
+
+        //  handler for missing database records
+        $exceptions->render(function (ModelNotFoundException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'not found',
             ], 404);
         });
+
+        //  handler for Business Logic errors (DomainException)
+        $exceptions->render(function (\DomainException $e, Request $request) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'error' => $e->getMessage(),
+                ], 422);
+            }
+        });
+
     })->create();

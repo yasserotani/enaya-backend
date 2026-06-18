@@ -5,16 +5,20 @@ namespace App\Http\Controllers\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Patient\CompletePatientProfileRequest;
 use App\Http\Requests\Patient\UpdatePatientRequest;
+use App\Http\Resources\DoctorResource;
+use App\Http\Resources\PatientResource;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class ProfileController extends Controller
 {
     public function show(Request $request)
     {
-        $user = $request->user();
-        $patient = $user->patient;
+        $patient = $request->user()->patient;
 
-        if (! $patient) {
+        if (!$patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient profile not found',
@@ -23,20 +27,7 @@ class ProfileController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => [
-                // from users table
-                'name' => $user->name,
-                'email' => $user->email,
-                // phone is stored on patients table
-                'phone' => $patient->phone,
-                // from patients table
-                'full_name' => $patient->full_name,
-                'date_of_birth' => $patient->date_of_birth,
-                'gender' => $patient->gender,
-                'address' => $patient->address,
-                'job' => $patient->job,
-                'profile_completed' => $patient->profile_completed,
-            ],
+            'data' => new PatientResource($patient->load('user')),
         ]);
     }
 
@@ -45,15 +36,13 @@ class ProfileController extends Controller
         $validated = $request->validated();
         $patient = $request->user()->patient;
 
-        // check if there is patient connected to this user
-        if (! $patient) {
+        if (!$patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient record not found',
             ], 404);
         }
 
-        // check if the profile already completed
         if ($patient->profile_completed) {
             return response()->json([
                 'success' => false,
@@ -74,46 +63,46 @@ class ProfileController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Profile completed successfully',
-            'data' => $patient->fresh(),
+            'data' => new PatientResource($patient->fresh()->load('user')),
         ]);
     }
 
     public function update(UpdatePatientRequest $request)
     {
-        $user = $request->user();
-        $patient = $user->patient;
+        return DB::transaction(function () use ($request) {
+            $user = $request->user();
+            $patient = $user->patient;
 
-        if (! $patient) {
+            $user->update($request->only(['name', 'email']));
+            $patient->update($request->only(['phone', 'date_of_birth', 'gender', 'address', 'job']));
+
+            
             return response()->json([
-                'success' => false,
-                'message' => 'Patient record not found',
-            ], 404);
-        }
+                'success' => true,
+                'message' => 'Profile updated successfully',
+                'data' => new PatientResource($patient->fresh()->load('user')),
+            ]);
+        });
+    }
 
-        // users table fields (name & email only — phone is stored on patients)
-        $user->update($request->only(['name', 'email']));
+    public function getDepartmentDoctors(Request $request)
+    {
+        $request->validate([
+            'department' => 'required',
+        ]);
 
-        // patients table fields (including phone)
-        $patient->update($request->only([
-            'phone',
-            'date_of_birth',
-            'gender',
-            'address',
-            'job',
-        ]));
+        $departmentInput = $request->department;
+
+        $doctors = is_numeric($departmentInput)
+            ? Doctor::where('department_id', $departmentInput)->with('department')->get()
+            : Doctor::whereHas('department', fn($q) => $q->where('name', $departmentInput))
+                ->with('department')
+                ->get();
 
         return response()->json([
-            'success' => true,
-            'message' => 'Profile updated successfully',
-            'data' => [
-                'name' => $user->fresh()->name,
-                'email' => $user->fresh()->email,
-                'phone' => $patient->fresh()->phone,
-                'date_of_birth' => $patient->fresh()->date_of_birth,
-                'gender' => $patient->fresh()->gender,
-                'address' => $patient->fresh()->address,
-                'job' => $patient->fresh()->job,
-            ],
+            'success' => true,  // was missing
+            'message' => 'Doctors retrieved successfully',
+            'data' => DoctorResource::collection($doctors),
         ]);
     }
 }

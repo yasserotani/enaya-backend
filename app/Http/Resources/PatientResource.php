@@ -11,6 +11,8 @@ class PatientResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
+            'email' => $this->user?->email,
+            'account_name' => $this->user?->name,
             'full_name' => $this->full_name,
             'phone' => $this->phone,
             'date_of_birth' => $this->date_of_birth?->toDateString(),
@@ -18,7 +20,10 @@ class PatientResource extends JsonResource
             'address' => $this->address,
             'job' => $this->job,
             'profile_completed' => $this->profile_completed,
+            'emergency_contact' => $this->emergency_contact,
             'created_at' => $this->created_at->toDateTimeString(),
+
+            'appointments' => AppointmentResource::collection($this->whenLoaded('appointments')),
         ];
     }
 }

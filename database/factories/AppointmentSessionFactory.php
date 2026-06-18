@@ -18,10 +18,12 @@ class AppointmentSessionFactory extends Factory
      */
     public function definition(): array
     {
-        $status = fake()->randomElement(['in_progress', 'completed', 'cancelled']);
-        $startedAt = $status === 'cancelled'
-            ? fake()->optional(0.5)->dateTimeBetween('-14 days', 'now')
-            : fake()->dateTimeBetween('-14 days', 'now');
+        $status = fake()->randomElement(['pending', 'in_progress', 'completed', 'cancelled']);
+        $startedAt = match ($status) {
+            'pending' => null,
+            'cancelled' => fake()->optional(0.5)->dateTimeBetween('-14 days', 'now'),
+            default => fake()->dateTimeBetween('-14 days', 'now'),
+        };
 
         $endedAt = null;
         if ($status === 'completed' && $startedAt) {

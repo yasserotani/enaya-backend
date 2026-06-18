@@ -13,22 +13,7 @@ class PatientSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()
-            ->count(5)
-            ->create()
-            ->each(function (User $user): void {
-                $user->assignRole('patient');
+        Patient::factory()->count(20)->create();
 
-                Patient::create([
-                    'user_id' => $user->id,
-                    'full_name' => $user->name,
-                    'phone' => fake()->unique()->phoneNumber(),
-                    'date_of_birth' => fake()->dateTimeBetween('-80 years', '-18 years'),
-                    'gender' => fake()->randomElement(['male', 'female']),
-                    'address' => fake()->address(),
-                    'job' => fake()->optional(0.6)->jobTitle(),
-                    'profile_completed' => fake()->boolean(),
-                ]);
-            });
     }
 }

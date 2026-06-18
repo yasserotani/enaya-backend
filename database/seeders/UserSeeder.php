@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Test User',
                 'password' => Hash::make('password'),
+                'is_active' => true,
             ]
         );
 

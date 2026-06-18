@@ -15,7 +15,7 @@ class AppointmentSessionSeeder extends Seeder
      */
     public function run(): void
     {
-        if (! Schema::hasTable('appointment_sessions')) {
+        if (!Schema::hasTable('appointment_sessions')) {
             return;
         }
 
@@ -26,17 +26,17 @@ class AppointmentSessionSeeder extends Seeder
         }
 
         foreach ($appointments as $appointment) {
-            if ($appointment->appointmentSession()->exists()) {
+            if ($appointment->sessions()->exists()) {
                 continue;
             }
 
             $appointmentStatus = $appointment->status instanceof AppointmentStatus
                 ? $appointment->status->value
-                : (string) $appointment->status;
+                : (string)$appointment->status;
 
             $sessionStatus = match ($appointmentStatus) {
                 AppointmentStatus::Completed->value => 'completed',
-                AppointmentStatus::Cancelled->value => 'cancelled',
+                AppointmentStatus::Canceled->value => 'cancelled',
                 default => 'in_progress',
             };
 

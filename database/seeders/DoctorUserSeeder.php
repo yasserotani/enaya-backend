@@ -17,7 +17,7 @@ class DoctorUserSeeder extends Seeder
     {
         $department = Department::query()->first();
 
-        if (! $department) {
+        if (!$department) {
             return;
         }
 
@@ -26,6 +26,7 @@ class DoctorUserSeeder extends Seeder
             [
                 'name' => 'Doctor',
                 'password' => Hash::make('password'),
+                'is_active' => true,
             ]
         );
 
@@ -36,6 +37,12 @@ class DoctorUserSeeder extends Seeder
             [
                 'department_id' => $department->id,
                 'specialty' => 'General Practice',
+                'full_name' => $doctorUser->name,
+                'phone' => '1234567893',
+                'date_of_birth' => fake()->dateTimeBetween('-65 years', '-20 years'),
+                'gender' => 'male',
+                'working_hours_start' => '08:00:00',
+                'working_hours_end' => '16:00:00',
             ]
         );
     }

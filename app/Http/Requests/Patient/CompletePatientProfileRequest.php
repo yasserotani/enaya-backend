@@ -33,6 +33,7 @@ class CompletePatientProfileRequest extends BaseFormRequest
             'gender' => 'required|in:male,female',
             'address' => 'nullable|string',
             'job' => 'nullable|string|max:255',
+            'emergency_contact' => 'nullable|string|max:255',
         ];
     }
 }

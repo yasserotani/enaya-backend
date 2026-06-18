@@ -35,6 +35,16 @@ class AuthController extends Controller
             ], 401);
         }
 
+        // Check if the user is active
+        if (! $user->is_active) {
+            return response()->json([
+                'success' => false,
+                'data' => null,
+                'error' => 'Account has been deactivated.',
+                'errorCode' => 'ACCOUNT_DISABLED',
+            ], 403);
+        }
+
         $user->tokens()->delete(); // delete old tokens
         $token = $user->createToken('auth_token', ['*'], now()->addDays(30));
         $expiresAt = $token->accessToken->expires_at->toISOString();

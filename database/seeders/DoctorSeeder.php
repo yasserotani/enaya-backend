@@ -14,24 +14,19 @@ class DoctorSeeder extends Seeder
      */
     public function run(): void
     {
-        $departments = Department::query()->pluck('id');
+        $departments = Department::query()->pluck('id');// get all departments ids
 
         User::factory()
-            ->count(3)
+            ->count(10)
             ->create()
             ->each(function (User $user) use ($departments): void {
                 $user->assignRole('doctor');
 
-                Doctor::create([
-                    'user_id' => $user->id,
-                    'department_id' => $departments->random(),
-                    'specialty' => fake()->randomElement([
-                        'General Practice',
-                        'Pediatrics',
-                        'Cardiology',
-                        'Dermatology',
-                    ]),
-                ]);
+                Doctor::factory()
+                    ->for($user)
+                    ->create([
+                        'department_id' => $departments->random(),
+                    ]);
             });
     }
 }

@@ -8,27 +8,38 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Fillable(['user_id', 'full_name', 'phone', 'date_of_birth', 'gender', 'address', 'job', 'profile_completed'])]
+#[Fillable(['user_id', 'full_name', 'phone', 'date_of_birth', 'gender', 'address', 'job', 'profile_completed', 'emergency_contact'])]
 class Patient extends Model
 {
     /** @use HasFactory<PatientFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public function scopeApplyFilters($query, array $filters)
     {
-        if (! empty($filters['search'])) {
-            $query->where(function ($q) use ($filters) {
-                $q->where('full_name', 'like', "%{$filters['search']}%")
-                    ->orWhere('phone', 'like', "%{$filters['search']}%");
+
+        if (!empty($filters['search'])) {
+            $search = $filters['search'];
+            $digitsOnly = preg_replace('/\D/', '', $search);
+
+            $query->where(function ($q) use ($search, $digitsOnly) {
+                $q->where('full_name', 'like', "%{$search}%");
+
+                if ($digitsOnly !== '') {
+                    // matches regardless of spaces, dashes, +, country code formatting
+                    $q->orWhereRaw(
+                        "REPLACE(REPLACE(REPLACE(phone, '-', ''), ' ', ''), '+', '') LIKE ?",
+                        ["%{$digitsOnly}%"]
+                    );
+                } else {
+                    $q->orWhere('phone', 'like', "%{$search}%");
+                }
             });
         }
 
-        if (! empty($filters['gender'])) {
-            $query->where('gender', $filters['gender']);
-        }
 
-        if (! empty($filters['has_account'])) {
+        if (!empty($filters['has_account'])) {
             $filters['has_account'] === 'true'
                 ? $query->whereNotNull('user_id')
                 : $query->whereNull('user_id');
@@ -42,21 +53,21 @@ class Patient extends Model
         }
 
         // created_at range filters
-        if (! empty($filters['created_from'])) {
+        if (!empty($filters['created_from'])) {
             $query->whereDate('created_at', '>=', $filters['created_from']);
         }
 
-        if (! empty($filters['created_to'])) {
+        if (!empty($filters['created_to'])) {
             $query->whereDate('created_at', '<=', $filters['created_to']);
         }
 
         // date_of_birth range filters
-        if (! empty($filters['dob_from'])) {
-            $query->whereDate('date_of_birth', '>=', $filters['dob_from']);
+        if (!empty($filters['birth_from'])) {
+            $query->whereDate('date_of_birth', '>=', $filters['birth_from']);
         }
 
-        if (! empty($filters['dob_to'])) {
-            $query->whereDate('date_of_birth', '<=', $filters['dob_to']);
+        if (!empty($filters['birth_to'])) {
+            $query->whereDate('date_of_birth', '<=', $filters['birth_to']);
         }
 
         return $query;
@@ -83,6 +94,7 @@ class Patient extends Model
             'user_id' => 'integer',
             'date_of_birth' => 'date',
             'profile_completed' => 'boolean',
+            'deleted_at' => 'datetime',
         ];
     }
 }

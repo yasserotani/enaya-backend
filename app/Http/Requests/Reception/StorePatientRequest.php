@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Patient;
+namespace App\Http\Requests\Reception;
 
 use App\Http\Requests\BaseFormRequest;
 
-class StoreReceptionPatientRequest extends BaseFormRequest
+class StorePatientRequest extends BaseFormRequest
 {
     public function authorize(): bool
     {
@@ -15,11 +15,12 @@ class StoreReceptionPatientRequest extends BaseFormRequest
     {
         return [
             'full_name' => 'required|string|max:255|unique:patients,full_name',
-            'phone' => 'required|string|max:20|unique:patients,phone',
-            'date_of_birth' => 'nullable|date|before:today',
+            'phone' => 'required|string|min:8|max:20|unique:patients,phone',
             'gender' => 'required|in:male,female',
+            'date_of_birth' => 'nullable|date|before:today',
             'address' => 'nullable|string',
             'job' => 'nullable|string|max:255',
+            'emergency_contact' => 'nullable|string|max:255',
         ];
     }
 }

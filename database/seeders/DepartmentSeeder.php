@@ -12,14 +12,6 @@ class DepartmentSeeder extends Seeder
      */
     public function run(): void
     {
-        $departments = [
-            'General Medicine',
-            'Pediatrics',
-            'Cardiology',
-        ];
-
-        foreach ($departments as $department) {
-            Department::firstOrCreate(['name' => $department]);
-        }
+        Department::factory()->count(10)->create();
     }
 }
