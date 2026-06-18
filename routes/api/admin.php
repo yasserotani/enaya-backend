@@ -14,7 +14,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])
         Route::apiResource('users', UserController::class);
         Route::apiResource('patients', PatientController::class);
         Route::apiResource('doctors', DoctorController::class);
-        Route::apiResource('departments', DepartmentController::class);
+        Route::apiResource('departments', DepartmentController::class)->middleware('permission:manage-departments');
         Route::put('doctors/{doctor}/restore', [DoctorController::class, 'restore']);
 
         Route::get('/dashboard', [DashboardController::class, 'index']);
