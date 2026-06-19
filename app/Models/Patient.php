@@ -94,7 +94,6 @@ class Patient extends Model
             'user_id' => 'integer',
             'date_of_birth' => 'date',
             'profile_completed' => 'boolean',
-            'deleted_at' => 'datetime',
         ];
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration {
                 ->default(AppointmentStatus::Scheduled->value);
             $table->text('visit_reason')->nullable();
             $table->text('notes')->nullable();
-            $table->string('cancelled_by')->nullable()->after('status'); // 'doctor' | 'patient' | 'receptionist'
+            $table->string('cancelled_by')->nullable(); // 'doctor' | 'patient' | 'receptionist'
             $table->unique(['doctor_id', 'scheduled_at']); // one doctor cannot have two appointments at the same time.
 
             $table->index('scheduled_at');
