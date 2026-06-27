@@ -389,6 +389,30 @@ Get patient's appointments with optional filtering.
 }
 ```
 
+### Get Appointment
+
+`GET /api/appointments/patient/{appointment}`
+
+Get detailed appointment information.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "patient_id": 1,
+        "doctor_id": 1,
+        "scheduled_at": "2026-06-20T10:00:00.000000Z",
+        "status": "scheduled",
+        "visit_reason": "Regular Checkup",
+        "notes": "First time",
+        "created_at": "2026-06-11T12:00:00.000000Z"
+    }
+}
+```
+
 ### Book Appointment
 
 `POST /api/appointments/patient`
@@ -482,6 +506,30 @@ Cancel patient's own appointment.
 ```
 
 **Response `403`:** if appointment doesn't belong to the patient
+
+### Reschedule Appointment
+
+`PATCH /api/appointments/patient/{appointment}/reschedule`
+
+Change appointment time.
+
+**Request:**
+
+```json
+{
+    "scheduled_at": "2026-06-21 14:00:00"
+}
+```
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "message": "Appointment rescheduled.",
+    "data": { ... }
+}
+```
 
 ---
 
@@ -1016,6 +1064,22 @@ Get appointment details.
 
 **Response `403`:** if appointment doesn't belong to doctor
 
+### Confirm Appointment
+
+`PATCH /api/doctor/appointments/{appointment}/confirm`
+
+Confirm a scheduled appointment.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "message": "Appointment confirmed.",
+    "data": { ... }
+}
+```
+
 ### Cancel Appointment
 
 `PATCH /api/doctor/appointments/{appointment}/cancel`
@@ -1490,6 +1554,40 @@ Delete user account.
 
 **Response `403`:** if trying to delete own account
 
+### Activate User
+
+`PATCH /api/admin/users/{user}/activate`
+
+Activate a user account.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "message": "User activated successfully.",
+    "data": { ... }
+}
+```
+
+### Deactivate User
+
+`PATCH /api/admin/users/{user}/deactivate`
+
+Deactivate a user account.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "message": "User deactivated successfully.",
+    "data": { ... }
+}
+```
+
+**Response `403`:** if trying to deactivate own account
+
 ---
 
 ## Admin Patient Management
@@ -1625,6 +1723,21 @@ Restore soft-deleted patient.
     "success": true,
     "message": "Patient restored successfully.",
     "data": { ... }
+}
+```
+
+### Force Delete Patient
+
+`DELETE /api/admin/patients/{patient}/force-delete`
+
+Permanently delete patient (cannot be restored).
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "message": "Patient permanently deleted successfully."
 }
 ```
 
@@ -1996,6 +2109,38 @@ Get appointment details including all sessions.
 
 **Response `200`:** Appointment resource with sessions
 
+### Confirm Appointment
+
+`PATCH /api/admin/appointments/{appointment}/confirm`
+
+Confirm a scheduled appointment.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "message": "Appointment confirmed.",
+    "data": { ... }
+}
+```
+
+### Mark Arrived
+
+`PATCH /api/admin/appointments/{appointment}/arrived`
+
+Mark patient as arrived.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "message": "Patient marked as arrived.",
+    "data": { ... }
+}
+```
+
 ### Cancel Appointment
 
 `PATCH /api/admin/appointments/{appointment}/cancel`
@@ -2215,4 +2360,3 @@ Common HTTP Status Codes:
 - Access tokens expire after **30 days**
 - Use the refresh token endpoint to get a new token before expiration
 - The `expiresAt` field in auth responses indicates token expiration time
-

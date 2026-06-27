@@ -7,6 +7,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\DepartmentRequest;
 use App\Http\Resources\DepartmentResource;
+use App\Http\Resources\DoctorResource; // Added DoctorResource import
 use Illuminate\Http\JsonResponse;
 
 class DepartmentController extends Controller
@@ -94,6 +95,20 @@ class DepartmentController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Department deleted successfully',
+        ]);
+    }
+
+    /**
+     * Get doctors by department.
+     */
+    public function getDepartmentDoctors(Department $department): JsonResponse
+    {
+        $doctors = $department->doctors()->with('user')->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Doctors retrieved successfully',
+            'data' => DoctorResource::collection($doctors),
         ]);
     }
 }

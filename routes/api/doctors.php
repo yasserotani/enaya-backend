@@ -10,13 +10,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor'])->group(function () {
 
-    Route::prefix('appointments')->group(function () { // Changed to 'appointments' for the main resource
-        Route::get('/', [AppointmentController::class, 'index']); // Route for index
-        Route::get('/{appointment}', [AppointmentController::class, 'show']); // Route for show
-        Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']); // Route for cancel
-        Route::patch('/{appointment}/no-show', [AppointmentController::class, 'markNoShow']); // Route for markNoShow
+    Route::prefix('appointments')->group(function () {
+        Route::get('/', [AppointmentController::class, 'index']);
+        Route::get('/{appointment}', [AppointmentController::class, 'show']);
+        Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
+        Route::patch('/{appointment}/no-show', [AppointmentController::class, 'markNoShow']);
+        Route::patch('/{appointment}/confirm', [AppointmentController::class, 'confirm']);
 
-        Route::prefix('{appointment}')->group(function () { // Nested group for session-related routes
+        Route::prefix('{appointment}')->group(function () {
             Route::get('sessions/list', [AppointmentSessionController::class, 'index']);
             Route::post('sessions/end', [AppointmentSessionController::class, 'end']);
             Route::post('sessions/start', [AppointmentSessionController::class, 'start']);

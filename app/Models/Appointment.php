@@ -26,7 +26,8 @@ class Appointment extends Model
 
         // 2. Filter by Status
         if (!empty($filters['status'])) {
-            $query->where('status', $filters['status']);
+            $statusEnum = AppointmentStatus::tryFrom($filters['status']);
+            $query->where('status', $statusEnum);
         }
 
         // 3. Filter by a Single Specific Date

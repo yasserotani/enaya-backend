@@ -3,7 +3,7 @@
 
 
 <aside>
-    <strong>Base URL</strong>: <code>https://congenial-reexamine-regretful.ngrok-free.dev</code>
+    <strong>Base URL</strong>: <code>http://enaya.test</code>
 </aside>
 
     This documentation aims to provide all the information you need to work with our API.

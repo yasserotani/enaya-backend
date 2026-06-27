@@ -5,21 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\AppointmentStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reception\RescheduleAppointmentRequest;
+use App\Http\Requests\Reception\StoreAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
+use App\Models\Doctor;
 use App\Services\AppointmentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class AppointmentController extends Controller
 {
 
-    public function __construct(private AppointmentService $appointments)
+    public function __construct(private readonly AppointmentService $appointments)
     {
     }
 
 
-    // Full clinic-wide view with every filter available
     public function index(Request $request)
     {
         $request->validate([
@@ -50,6 +53,32 @@ class AppointmentController extends Controller
         ]);
     }
 
+    /**
+     * @throws Throwable
+     */
+    public function store(StoreAppointmentRequest $request)
+    {
+        $validated = $request->validated();
+        $scheduledAt = Carbon::parse($validated['scheduled_at']);
+
+        $appointment = $this->appointments->createAppointment(
+            patientId: $validated['patient_id'],
+            doctorId: $validated['doctor_id'],
+            scheduledAt: $scheduledAt,
+            status: AppointmentStatus::Scheduled,
+            visitReason: $validated['visit_reason'] ?? null,
+            notes: $validated['notes'] ?? null,
+        );
+        $appointment->load(['patient', 'doctor']);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Appointment booked successfully',
+            'data' => new AppointmentResource($appointment)
+        ], 201);
+    }
+
+
     public function show(Appointment $appointment)
     {
         $appointment->load(['patient', 'doctor', 'doctor.department', 'sessions']);
@@ -60,7 +89,16 @@ class AppointmentController extends Controller
         ]);
     }
 
-    // Admin can cancel any appointment regardless of who owns it
+    public function confirm(Appointment $appointment)
+    {
+        if ($appointment->status !== AppointmentStatus::Scheduled) {
+            return response()->json(['success' => false, 'error' => 'Only scheduled appointments can be confirmed.'], 422);
+        }
+
+        $appointment->update(['status' => AppointmentStatus::Confirmed]);
+        return response()->json(['success' => true, 'message' => 'Appointment confirmed.', 'data' => new AppointmentResource($appointment)]);
+    }
+
     public function cancel(Request $request, Appointment $appointment)
     {
         $validated = $request->validate(['reason' => 'nullable|string|max:255']);
@@ -74,15 +112,16 @@ class AppointmentController extends Controller
         ]);
     }
 
-    public function markNoShow(Appointment $appointment)
-    {
-        $this->appointments->markAsNoShow($appointment);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Marked as no-show.',
-            'data' => new AppointmentResource($appointment),
-        ]);
+    public function availableSlots(Request $request)
+    {
+        // get it from the appointments service
+        $slots = $this->appointments->availableSlots(
+            (int)$request->input('doctor_id'),
+            Carbon::parse($request->input('date'))
+        );
+
+        return response()->json(['success' => true, 'data' => $slots]);
     }
 
     public function reschedule(RescheduleAppointmentRequest $request, Appointment $appointment)
@@ -99,6 +138,16 @@ class AppointmentController extends Controller
         ]);
     }
 
+    public function markNoShow(Appointment $appointment)
+    {
+        $this->appointments->markAsNoShow($appointment);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Marked as no-show.',
+            'data' => new AppointmentResource($appointment),
+        ]);
+    }
 
     public function stats(Request $request)
     {
@@ -118,28 +167,38 @@ class AppointmentController extends Controller
             $query->whereDate('scheduled_at', Carbon::today());
         }
 
-        $appointments = $query->get();
-        $total = $appointments->count();
+        $statusCounts = $query->select('status', DB::raw('count(*) as count'))
+            ->groupBy('status')
+            ->pluck('count', 'status')
+            ->toArray();
 
-        $byStatus = $appointments
-            ->groupBy(fn($a) => $a->status->value)
-            ->map->count();
+        $total = array_sum($statusCounts);
 
         return response()->json([
             'success' => true,
             'data' => [
                 'total' => $total,
-                'scheduled' => $byStatus[AppointmentStatus::Scheduled->value] ?? 0,
-                'confirmed' => $byStatus[AppointmentStatus::Confirmed->value] ?? 0,
-                'arrived' => $byStatus[AppointmentStatus::Arrived->value] ?? 0,
-                'in_progress' => $byStatus[AppointmentStatus::InProgress->value] ?? 0,
-                'completed' => $byStatus[AppointmentStatus::Completed->value] ?? 0,
-                'cancelled' => $byStatus[AppointmentStatus::Canceled->value] ?? 0,
-                'no_show' => $byStatus[AppointmentStatus::NoShow->value] ?? 0,
+                'scheduled' => $statusCounts[AppointmentStatus::Scheduled->value] ?? 0,
+                'confirmed' => $statusCounts[AppointmentStatus::Confirmed->value] ?? 0,
+                'arrived' => $statusCounts[AppointmentStatus::Arrived->value] ?? 0,
+                'in_progress' => $statusCounts[AppointmentStatus::InProgress->value] ?? 0,
+                'completed' => $statusCounts[AppointmentStatus::Completed->value] ?? 0,
+                'cancelled' => $statusCounts[AppointmentStatus::Canceled->value] ?? 0,
+                'no_show' => $statusCounts[AppointmentStatus::NoShow->value] ?? 0,
                 'completion_rate' => $total > 0
-                    ? round(($byStatus[AppointmentStatus::Completed->value] ?? 0) / $total, 2)
+                    ? round(($statusCounts[AppointmentStatus::Completed->value] ?? 0) / $total, 2)
                     : 0,
             ],
         ]);
+    }
+
+    public function markArrived(Appointment $appointment)
+    {
+        if (!in_array($appointment->status, [AppointmentStatus::Scheduled, AppointmentStatus::Confirmed])) {
+            return response()->json(['success' => false, 'error' => 'Only scheduled or confirmed appointments can be marked arrived.'], 422);
+        }
+
+        $appointment->update(['status' => AppointmentStatus::Arrived]);
+        return response()->json(['success' => true, 'message' => 'Patient marked as arrived.', 'data' => new AppointmentResource($appointment)]);
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\UpdateDoctorRequest;
 use App\Http\Resources\DoctorResource;
 use App\Models\Doctor;
 use App\Models\User;
+use App\Services\DoctorService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
+    public function __construct(private readonly DoctorService $doctorService)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -44,30 +49,13 @@ class DoctorController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @throws \Throwable
      */
     public function store(StoreDoctorRequest $request): JsonResponse
     {
         $validated = $request->validated();
 
-        $doctor = DB::transaction(function () use ($validated) {
-            $user = User::create([
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-                'password' => Hash::make($validated['password'])
-            ]);
-            $user->assignRole('doctor');
-            return Doctor::create([
-                'user_id' => $user->id,
-                'full_name' => $validated['name'],
-                'phone' => $validated['phone'],
-                'date_of_birth' => $validated['date_of_birth'] ?? null,
-                'gender' => $validated['gender'] ?? null,
-                'department_id' => $validated['department_id'],
-                'specialty' => $validated['specialty'],
-                'working_hours_start' => $validated['working_hours_start'] ?? '08:00',
-                'working_hours_end' => $validated['working_hours_end'] ?? '14:00',
-            ]);
-        });
+        $doctor = $this->doctorService->createDoctor($validated);
 
         $doctor->load(['user', 'department']);
 
@@ -75,7 +63,6 @@ class DoctorController extends Controller
             'success' => true,
             'data' => new DoctorResource($doctor),
             'error' => null,
-
         ], 201);
     }
 
@@ -160,10 +147,11 @@ class DoctorController extends Controller
     /**
      * Restore the specified soft-deleted doctor and reactivate the related user.
      */
-    public function restore(Doctor $doctor): JsonResponse
+    public function restore(string $doctor_id): JsonResponse
     {
+        $doctor = Doctor::withTrashed()->findOrFail($doctor_id); //  find trashed doctor
         DB::transaction(function () use ($doctor) {
-            $doctor->restore(); // Restore the soft-deleted doctor
+            $doctor->restore();
             $doctor->user->update(['is_active' => true]); // Reactivate the related user
         });
 
