@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Patient;
 use App\Enums\AppointmentStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Patient\StoreAppointmentRequest;
+use App\Http\Requests\Reception\RescheduleAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
 use App\Models\Doctor;
@@ -12,52 +13,12 @@ use App\Services\AppointmentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class AppointmentController extends Controller
 {
     public function __construct(private AppointmentService $appointments)
     {
-    }
-
-    // 1. Book a new appointment
-
-
-    public function store(StoreAppointmentRequest $request)
-    {
-        $validated = $request->validated();
-        $scheduledAt = Carbon::parse($validated['scheduled_at']);
-
-        return DB::transaction(function () use ($validated, $scheduledAt, $request) {
-
-            // Lock the doctor's schedule so no one else can book them right now
-            $doctor = Doctor::where('id', $validated['doctor_id'])->lockForUpdate()->firstOrFail();
-
-            // Check for conflicts safely inside the lock
-            if ($this->slots->hasConflict($doctor->id, $scheduledAt)) {
-                return response()->json([
-                    'success' => false,
-                    'error' => 'Sorry, this time slot is already booked. Please choose another time.',
-                ], 422);
-            }
-
-            // 3. Create the appointment
-            $appointment = Appointment::create([
-                'patient_id' => $request->user()->patient->id,
-                'doctor_id' => $doctor->id,
-                'scheduled_at' => $scheduledAt,
-                'status' => AppointmentStatus::tryFrom(config('appointments.initial_status')),
-                'visit_reason' => $validated['visit_reason'] ?? null,
-                'notes' => $validated['notes'] ?? null,
-            ]);
-
-            $appointment->load(['patient', 'doctor']);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Appointment booked successfully!',
-                'data' => new AppointmentResource($appointment),
-            ], 201);
-        });
     }
 
 
@@ -84,6 +45,47 @@ class AppointmentController extends Controller
         ]);
     }
 
+    /**
+     * @throws Throwable
+     */
+    public function store(StoreAppointmentRequest $request)
+    {
+        $validated = $request->validated();
+        $scheduledAt = Carbon::parse($validated['scheduled_at']);
+
+        $appointment = $this->appointments->createAppointment(
+            patientId: $request->user()->patient->id,
+            doctorId: $validated['doctor_id'],
+            scheduledAt: $scheduledAt,
+            status: AppointmentStatus::Scheduled,
+            visitReason: $validated['visit_reason'] ?? null,
+            notes: $validated['notes'] ?? null,
+        );
+
+        $appointment->load(['patient', 'doctor']);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Appointment booked successfully!',
+            'data' => new AppointmentResource($appointment),
+        ], 201);
+    }
+
+    public function show(Appointment $appointment)
+    {
+        abort_if(
+            $appointment->patient_id !== auth()->user()->patient->id,
+            403,
+            'Not your appointment.'
+        );
+        $appointment->load(['patient', 'doctor', 'doctor.department', 'sessions']);
+
+        return response()->json([
+            'success' => true,
+            'data' => new AppointmentResource($appointment),
+        ]);
+    }
+
     // get available slots for a doctor on a given date
     public function availableSlots(Request $request)
     {
@@ -99,7 +101,11 @@ class AppointmentController extends Controller
     // cancel my appointment
     public function cancel(Request $request, Appointment $appointment)
     {
-        abort_if($appointment->patient_id !== $request->user()->patient->id, 403, 'Not your appointment.');
+        abort_if(
+            $appointment->patient_id !== $request->user()->patient->id,
+            403,
+            'Not your appointment.'
+        );
 
         $validated = $request->validate(['reason' => 'nullable|string|max:255']);
 
@@ -110,6 +116,27 @@ class AppointmentController extends Controller
             'success' => true,
             'message' => 'Appointment cancelled.',
             'data' => new AppointmentResource($appointment),
+        ]);
+    }
+
+
+    public function reschedule(RescheduleAppointmentRequest $request, Appointment $appointment)
+    {
+        abort_if(
+            $appointment->patient_id !== $request->user()->patient->id,
+            403,
+            'Not your appointment.'
+        );
+
+        $this->appointments->reschedule(
+            $appointment,
+            Carbon::parse($request->validated('scheduled_at'))
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Appointment rescheduled.',
+            'data' => new AppointmentResource($appointment->fresh()),
         ]);
     }
 }

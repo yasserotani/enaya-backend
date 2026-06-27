@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function __construct(private AppointmentService $appointments)
+    public function __construct(private readonly AppointmentService $appointments)
     {
     }
 
@@ -60,9 +60,29 @@ class AppointmentController extends Controller
         ]);
     }
 
+    public function confirm(Appointment $appointment)
+    {
+        abort_if(
+            $appointment->doctor_id !== auth()->user()->doctor->id,
+            403,
+            'Not your appointment.'
+        );
+
+        if ($appointment->status !== AppointmentStatus::Scheduled) {
+            return response()->json(['success' => false, 'error' => 'Only scheduled appointments can be confirmed.'], 422);
+        }
+
+        $appointment->update(['status' => AppointmentStatus::Confirmed]);
+        return response()->json(['success' => true, 'message' => 'Appointment confirmed.', 'data' => new AppointmentResource($appointment)]);
+    }
+
     public function cancel(Request $request, Appointment $appointment)
     {
-        abort_if($appointment->doctor_id !== $request->user()->doctor->id, 403, 'Not your appointment.');
+        abort_if(
+            $appointment->doctor_id !== $request->user()->doctor->id,
+            403,
+            'Not your appointment.'
+        );
 
         $this->appointments->cancel($appointment, 'doctor', null);
 

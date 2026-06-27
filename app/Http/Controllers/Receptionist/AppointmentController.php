@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Doctor;
+use Throwable;
 
 class AppointmentController extends Controller
 {
@@ -52,44 +53,34 @@ class AppointmentController extends Controller
     }
 
 
+    /**
+     * @throws  Throwable
+     */
     public function store(StoreAppointmentRequest $request)
     {
         $validated = $request->validated();
         $scheduledAt = Carbon::parse($validated['scheduled_at']);
 
-        return DB::transaction(function () use ($validated, $scheduledAt) {
+        $appointment = $this->appointments->createAppointment(
+            patientId: $validated['patient_id'],
+            doctorId: $validated['doctor_id'],
+            scheduledAt: $scheduledAt,
+            status: AppointmentStatus::Scheduled,
+            visitReason: $validated['visit_reason'] ?? null,
+            notes: $validated['notes'] ?? null,
+        );
 
-            //  Lock the doctor's schedule so no one else can book them right now
-            $doctor = Doctor::where('id', $validated['doctor_id'])->lockForUpdate()->firstOrFail();
-
-            if ($this->slots->hasConflict($doctor->id, $scheduledAt)) {
-                return response()->json([
-                    'success' => false,
-                    'error' => 'This time slot is already booked for the selected doctor.'
-                ], 422);
-            }
-
-            $appointment = Appointment::create([
-                'patient_id' => $validated['patient_id'],
-                'doctor_id' => $doctor->id,
-                'scheduled_at' => $scheduledAt,
-                'status' => AppointmentStatus::Arrived, // As requested in your original code
-                'visit_reason' => $validated['visit_reason'] ?? null,
-                'notes' => $validated['notes'] ?? null,
-            ]);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Appointment booked successfully',
-                'data' => new AppointmentResource($appointment)
-            ], 201);
-        });
+        return response()->json([
+            'success' => true,
+            'message' => 'Appointment booked successfully',
+            'data' => new AppointmentResource($appointment)
+        ], 201);
     }
 
 
     public function show(Appointment $appointment)
     {
-        $appointment->load(['patient', 'doctor']);
+        $appointment->load(['patient', 'doctor', 'doctor.department', 'sessions']);
         return response()->json(['success' => true, 'data' => new AppointmentResource($appointment)]);
     }
 
@@ -103,14 +94,29 @@ class AppointmentController extends Controller
         return response()->json(['success' => true, 'message' => 'Appointment confirmed.', 'data' => new AppointmentResource($appointment)]);
     }
 
-    public function markArrived(Appointment $appointment)
-    {
-        if (!in_array($appointment->status, [AppointmentStatus::Scheduled, AppointmentStatus::Confirmed])) {
-            return response()->json(['success' => false, 'error' => 'Only scheduled or confirmed appointments can be marked arrived.'], 422);
-        }
 
-        $appointment->update(['status' => AppointmentStatus::Arrived]);
-        return response()->json(['success' => true, 'message' => 'Patient marked as arrived.', 'data' => new AppointmentResource($appointment)]);
+    public function cancel(Request $request, Appointment $appointment)
+    {
+        $validated = $request->validate(['reason' => 'nullable|string|max:255']);
+
+        $this->appointments->cancel($appointment, 'receptionist', $validated['reason'] ?? null);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Appointment cancelled.',
+            'data' => new AppointmentResource($appointment),
+        ]);
+    }
+
+    public function availableSlots(Request $request)
+    {
+        // get it from the appointments service
+        $slots = $this->appointments->availableSlots(
+            (int)$request->input('doctor_id'),
+            Carbon::parse($request->input('date'))
+        );
+
+        return response()->json(['success' => true, 'data' => $slots]);
     }
 
     public function reschedule(RescheduleAppointmentRequest $request, Appointment $appointment)
@@ -127,20 +133,6 @@ class AppointmentController extends Controller
         ]);
     }
 
-    public function cancel(Request $request, Appointment $appointment)
-    {
-        $validated = $request->validate(['reason' => 'nullable|string|max:255']);
-
-        $this->appointments->cancel($appointment, 'receptionist', $validated['reason'] ?? null);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Appointment cancelled.',
-            'data' => new AppointmentResource($appointment),
-        ]);
-    }
-
-
     public function markNoShow(Appointment $appointment)
     {
         $this->appointments->markAsNoShow($appointment);
@@ -150,5 +142,15 @@ class AppointmentController extends Controller
             'message' => 'Marked as no-show.',
             'data' => new AppointmentResource($appointment),
         ]);
+    }
+
+    public function markArrived(Appointment $appointment)
+    {
+        if (!in_array($appointment->status, [AppointmentStatus::Scheduled, AppointmentStatus::Confirmed])) {
+            return response()->json(['success' => false, 'error' => 'Only scheduled or confirmed appointments can be marked arrived.'], 422);
+        }
+
+        $appointment->update(['status' => AppointmentStatus::Arrived]);
+        return response()->json(['success' => true, 'message' => 'Patient marked as arrived.', 'data' => new AppointmentResource($appointment)]);
     }
 }

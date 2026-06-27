@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "https://congenial-reexamine-regretful.ngrok-free.dev";
+        var tryItOutBaseUrl = "http://enaya.test";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -113,6 +113,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-appointments-patient--appointment_id--cancel">
                                 <a href="#endpoints-PATCHapi-appointments-patient--appointment_id--cancel">PATCH api/appointments/patient/{appointment_id}/cancel</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-appointments-patient--appointment_id--reschedule">
+                                <a href="#endpoints-PATCHapi-appointments-patient--appointment_id--reschedule">PATCH api/appointments/patient/{appointment_id}/reschedule</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-prescriptions-patient">
                                 <a href="#endpoints-GETapi-prescriptions-patient">GET api/prescriptions/patient</a>
                             </li>
@@ -161,6 +164,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-PUTapi-admin-patients--patient_id--restore">
                                 <a href="#endpoints-PUTapi-admin-patients--patient_id--restore">PUT api/admin/patients/{patient_id}/restore</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-admin-patients--patient_id--force-delete">
+                                <a href="#endpoints-DELETEapi-admin-patients--patient_id--force-delete">DELETE api/admin/patients/{patient_id}/force-delete</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-doctors">
                                 <a href="#endpoints-GETapi-admin-doctors">Display a listing of the resource.</a>
                             </li>
@@ -173,11 +179,11 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-admin-doctors--id-">
                                 <a href="#endpoints-DELETEapi-admin-doctors--id-">Remove the specified resource from storage.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-admin-doctors--doctor_id--restore">
-                                <a href="#endpoints-PUTapi-admin-doctors--doctor_id--restore">Restore the specified soft-deleted doctor and reactivate the related user.</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-admin--doctor_id--restore">
+                                <a href="#endpoints-PUTapi-admin--doctor_id--restore">Restore the specified soft-deleted doctor and reactivate the related user.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-admin-doctors--doctor_id--reset-password">
-                                <a href="#endpoints-PATCHapi-admin-doctors--doctor_id--reset-password">PATCH api/admin/doctors/{doctor_id}/reset-password</a>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-admin--doctor_id--reset-password">
+                                <a href="#endpoints-PATCHapi-admin--doctor_id--reset-password">PATCH api/admin/{doctor_id}/reset-password</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-departments">
                                 <a href="#endpoints-GETapi-admin-departments">Display a listing of the resource with optional search.</a>
@@ -200,8 +206,17 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-appointments-stats">
                                 <a href="#endpoints-GETapi-admin-appointments-stats">GET api/admin/appointments/stats</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-appointments-available-slots">
+                                <a href="#endpoints-GETapi-admin-appointments-available-slots">GET api/admin/appointments/available-slots</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-appointments">
+                                <a href="#endpoints-POSTapi-admin-appointments">POST api/admin/appointments</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-appointments--appointment_id-">
                                 <a href="#endpoints-GETapi-admin-appointments--appointment_id-">GET api/admin/appointments/{appointment_id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-admin-appointments--appointment_id--confirm">
+                                <a href="#endpoints-PATCHapi-admin-appointments--appointment_id--confirm">PATCH api/admin/appointments/{appointment_id}/confirm</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-admin-appointments--appointment_id--cancel">
                                 <a href="#endpoints-PATCHapi-admin-appointments--appointment_id--cancel">PATCH api/admin/appointments/{appointment_id}/cancel</a>
@@ -307,7 +322,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 19, 2026</li>
+        <li>Last updated: June 27, 2026</li>
     </ul>
 </div>
 
@@ -316,7 +331,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>https://congenial-reexamine-regretful.ngrok-free.dev</code>
+    <strong>Base URL</strong>: <code>http://enaya.test</code>
 </aside>
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
@@ -346,7 +361,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/user" \
+    --get "http://enaya.test/api/user" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -354,7 +369,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/user"
+    "http://enaya.test/api/user"
 );
 
 const headers = {
@@ -372,6 +387,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-user">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-user" hidden>
     <blockquote>Received response<span
@@ -471,7 +502,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/login" \
+    "http://enaya.test/api/auth/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -483,7 +514,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/login"
+    "http://enaya.test/api/auth/login"
 );
 
 const headers = {
@@ -617,7 +648,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/signup" \
+    "http://enaya.test/api/auth/signup" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -632,7 +663,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/signup"
+    "http://enaya.test/api/auth/signup"
 );
 
 const headers = {
@@ -806,7 +837,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/logout" \
+    "http://enaya.test/api/auth/logout" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -814,7 +845,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/logout"
+    "http://enaya.test/api/auth/logout"
 );
 
 const headers = {
@@ -932,7 +963,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/refresh-token" \
+    "http://enaya.test/api/auth/refresh-token" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -940,7 +971,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/refresh-token"
+    "http://enaya.test/api/auth/refresh-token"
 );
 
 const headers = {
@@ -1058,7 +1089,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/me" \
+    --get "http://enaya.test/api/auth/me" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1066,7 +1097,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/auth/me"
+    "http://enaya.test/api/auth/me"
 );
 
 const headers = {
@@ -1084,6 +1115,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-auth-me">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-auth-me" hidden>
     <blockquote>Received response<span
@@ -1184,7 +1231,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/profile" \
+    --get "http://enaya.test/api/patients/profile" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1192,7 +1239,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/profile"
+    "http://enaya.test/api/patients/profile"
 );
 
 const headers = {
@@ -1210,6 +1257,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-patients-profile">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-patients-profile" hidden>
     <blockquote>Received response<span
@@ -1310,15 +1373,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/complete-profile" \
+    "http://enaya.test/api/patients/complete-profile" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"full_name\": \"b\",
     \"phone\": \"ngzmiyvdljnikhwa\",
-    \"date_of_birth\": \"2022-07-13\",
-    \"gender\": \"male\",
+    \"date_of_birth\": \"2022-07-22\",
+    \"gender\": \"female\",
     \"address\": \"architecto\",
     \"job\": \"n\",
     \"emergency_contact\": \"g\"
@@ -1328,7 +1391,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/complete-profile"
+    "http://enaya.test/api/patients/complete-profile"
 );
 
 const headers = {
@@ -1340,8 +1403,8 @@ const headers = {
 let body = {
     "full_name": "b",
     "phone": "ngzmiyvdljnikhwa",
-    "date_of_birth": "2022-07-13",
-    "gender": "male",
+    "date_of_birth": "2022-07-22",
+    "gender": "female",
     "address": "architecto",
     "job": "n",
     "emergency_contact": "g"
@@ -1472,10 +1535,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="POSTapi-patients-complete-profile"
-               value="2022-07-13"
+               value="2022-07-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
+<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
@@ -1484,10 +1547,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="POSTapi-patients-complete-profile"
-               value="male"
+               value="female"
                data-component="body">
     <br>
-<p>Example: <code>male</code></p>
+<p>Example: <code>female</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -1543,7 +1606,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/profile" \
+    "http://enaya.test/api/patients/profile" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1551,8 +1614,8 @@ Must be one of:
     \"name\": \"b\",
     \"phone\": \"ngzmiyvdljnikhwa\",
     \"email\": \"breitenberg.gilbert@example.com\",
-    \"date_of_birth\": \"2022-07-13\",
-    \"gender\": \"male\",
+    \"date_of_birth\": \"2022-07-22\",
+    \"gender\": \"female\",
     \"address\": \"architecto\",
     \"job\": \"n\",
     \"emergency_contact\": \"g\"
@@ -1562,7 +1625,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/profile"
+    "http://enaya.test/api/patients/profile"
 );
 
 const headers = {
@@ -1575,8 +1638,8 @@ let body = {
     "name": "b",
     "phone": "ngzmiyvdljnikhwa",
     "email": "breitenberg.gilbert@example.com",
-    "date_of_birth": "2022-07-13",
-    "gender": "male",
+    "date_of_birth": "2022-07-22",
+    "gender": "female",
     "address": "architecto",
     "job": "n",
     "emergency_contact": "g"
@@ -1719,10 +1782,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="PUTapi-patients-profile"
-               value="2022-07-13"
+               value="2022-07-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
+<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
@@ -1731,10 +1794,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="PUTapi-patients-profile"
-               value="male"
+               value="female"
                data-component="body">
     <br>
-<p>Example: <code>male</code></p>
+<p>Example: <code>female</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -1790,7 +1853,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/department-doctors" \
+    --get "http://enaya.test/api/patients/department-doctors" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1802,7 +1865,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/patients/department-doctors"
+    "http://enaya.test/api/patients/department-doctors"
 );
 
 const headers = {
@@ -1824,6 +1887,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-patients-department-doctors">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-patients-department-doctors" hidden>
     <blockquote>Received response<span
@@ -1937,7 +2016,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient" \
+    --get "http://enaya.test/api/appointments/patient" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1950,7 +2029,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient"
+    "http://enaya.test/api/appointments/patient"
 );
 
 const headers = {
@@ -1973,6 +2052,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-appointments-patient">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-appointments-patient" hidden>
     <blockquote>Received response<span
@@ -2112,13 +2207,13 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient" \
+    "http://enaya.test/api/appointments/patient" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"doctor_id\": \"architecto\",
-    \"scheduled_at\": \"2052-07-12\",
+    \"scheduled_at\": \"2052-07-21\",
     \"visit_reason\": \"architecto\",
     \"notes\": \"architecto\"
 }"
@@ -2127,7 +2222,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient"
+    "http://enaya.test/api/appointments/patient"
 );
 
 const headers = {
@@ -2138,7 +2233,7 @@ const headers = {
 
 let body = {
     "doctor_id": "architecto",
-    "scheduled_at": "2052-07-12",
+    "scheduled_at": "2052-07-21",
     "visit_reason": "architecto",
     "notes": "architecto"
 };
@@ -2256,10 +2351,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="scheduled_at"                data-endpoint="POSTapi-appointments-patient"
-               value="2052-07-12"
+               value="2052-07-21"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-12</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-21</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>visit_reason</code></b>&nbsp;&nbsp;
@@ -2301,7 +2396,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient/available-slots" \
+    --get "http://enaya.test/api/appointments/patient/available-slots" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2309,7 +2404,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient/available-slots"
+    "http://enaya.test/api/appointments/patient/available-slots"
 );
 
 const headers = {
@@ -2327,6 +2422,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-appointments-patient-available-slots">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-appointments-patient-available-slots" hidden>
     <blockquote>Received response<span
@@ -2427,7 +2538,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient/1/cancel" \
+    "http://enaya.test/api/appointments/patient/1/cancel" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2439,7 +2550,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/patient/1/cancel"
+    "http://enaya.test/api/appointments/patient/1/cancel"
 );
 
 const headers = {
@@ -2573,6 +2684,166 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
+                    <h2 id="endpoints-PATCHapi-appointments-patient--appointment_id--reschedule">PATCH api/appointments/patient/{appointment_id}/reschedule</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-appointments-patient--appointment_id--reschedule">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://enaya.test/api/appointments/patient/1/reschedule" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"scheduled_at\": \"2052-07-21\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://enaya.test/api/appointments/patient/1/reschedule"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "scheduled_at": "2052-07-21"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-appointments-patient--appointment_id--reschedule">
+</span>
+<span id="execution-results-PATCHapi-appointments-patient--appointment_id--reschedule" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-appointments-patient--appointment_id--reschedule"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-appointments-patient--appointment_id--reschedule"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-appointments-patient--appointment_id--reschedule" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-appointments-patient--appointment_id--reschedule">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-appointments-patient--appointment_id--reschedule" data-method="PATCH"
+      data-path="api/appointments/patient/{appointment_id}/reschedule"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-appointments-patient--appointment_id--reschedule', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-appointments-patient--appointment_id--reschedule"
+                    onclick="tryItOut('PATCHapi-appointments-patient--appointment_id--reschedule');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-appointments-patient--appointment_id--reschedule"
+                    onclick="cancelTryOut('PATCHapi-appointments-patient--appointment_id--reschedule');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-appointments-patient--appointment_id--reschedule"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/appointments/patient/{appointment_id}/reschedule</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-appointments-patient--appointment_id--reschedule"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-appointments-patient--appointment_id--reschedule"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-appointments-patient--appointment_id--reschedule"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-appointments-patient--appointment_id--reschedule"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>scheduled_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="scheduled_at"                data-endpoint="PATCHapi-appointments-patient--appointment_id--reschedule"
+               value="2052-07-21"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-21</code></p>
+        </div>
+        </form>
+
                     <h2 id="endpoints-GETapi-prescriptions-patient">GET api/prescriptions/patient</h2>
 
 <p>
@@ -2587,7 +2858,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/prescriptions/patient" \
+    --get "http://enaya.test/api/prescriptions/patient" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2595,7 +2866,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/prescriptions/patient"
+    "http://enaya.test/api/prescriptions/patient"
 );
 
 const headers = {
@@ -2613,6 +2884,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-prescriptions-patient">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-prescriptions-patient" hidden>
     <blockquote>Received response<span
@@ -2713,7 +3000,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/prescriptions/patient/1" \
+    --get "http://enaya.test/api/prescriptions/patient/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2721,7 +3008,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/prescriptions/patient/1"
+    "http://enaya.test/api/prescriptions/patient/1"
 );
 
 const headers = {
@@ -2739,6 +3026,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-prescriptions-patient--prescription_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-prescriptions-patient--prescription_id-" hidden>
     <blockquote>Received response<span
@@ -2852,7 +3155,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/sessions/patient" \
+    --get "http://enaya.test/api/sessions/patient" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2860,7 +3163,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/sessions/patient"
+    "http://enaya.test/api/sessions/patient"
 );
 
 const headers = {
@@ -2878,6 +3181,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-sessions-patient">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-sessions-patient" hidden>
     <blockquote>Received response<span
@@ -2978,7 +3297,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/sessions/patient/1" \
+    --get "http://enaya.test/api/sessions/patient/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2986,7 +3305,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/sessions/patient/1"
+    "http://enaya.test/api/sessions/patient/1"
 );
 
 const headers = {
@@ -3004,6 +3323,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-sessions-patient--session_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-sessions-patient--session_id-" hidden>
     <blockquote>Received response<span
@@ -3117,7 +3452,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/dashboard" \
+    --get "http://enaya.test/api/admin/dashboard" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3125,7 +3460,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/dashboard"
+    "http://enaya.test/api/admin/dashboard"
 );
 
 const headers = {
@@ -3143,6 +3478,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-dashboard">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-dashboard" hidden>
     <blockquote>Received response<span
@@ -3243,7 +3594,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users" \
+    --get "http://enaya.test/api/admin/users" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3251,7 +3602,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users"
+    "http://enaya.test/api/admin/users"
 );
 
 const headers = {
@@ -3269,6 +3620,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-users">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-users" hidden>
     <blockquote>Received response<span
@@ -3369,7 +3736,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users" \
+    "http://enaya.test/api/admin/users" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3378,18 +3745,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"email\": \"zbailey@example.net\",
     \"password\": \"-0pBNvYgxw\",
     \"role\": \"receptionist\",
-    \"phone\": \"aykcmyuwpwlvqwrsitcpscqldzsnrwtujwvlxjklqpp\",
-    \"date_of_birth\": \"2026-06-19T02:06:50\",
-    \"gender\": \"male\",
-    \"specialty\": \"w\",
-    \"department_id\": 16
+    \"phone\": \"aykcmyuwpwlvqwrs\",
+    \"date_of_birth\": \"2022-07-22\",
+    \"gender\": \"female\",
+    \"specialty\": \"n\",
+    \"department_id\": 16,
+    \"working_hours_start\": \"14:52\",
+    \"working_hours_end\": \"2052-07-20\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users"
+    "http://enaya.test/api/admin/users"
 );
 
 const headers = {
@@ -3403,11 +3772,13 @@ let body = {
     "email": "zbailey@example.net",
     "password": "-0pBNvYgxw",
     "role": "receptionist",
-    "phone": "aykcmyuwpwlvqwrsitcpscqldzsnrwtujwvlxjklqpp",
-    "date_of_birth": "2026-06-19T02:06:50",
-    "gender": "male",
-    "specialty": "w",
-    "department_id": 16
+    "phone": "aykcmyuwpwlvqwrs",
+    "date_of_birth": "2022-07-22",
+    "gender": "female",
+    "specialty": "n",
+    "department_id": 16,
+    "working_hours_start": "14:52",
+    "working_hours_end": "2052-07-20"
 };
 
 fetch(url, {
@@ -3526,7 +3897,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="zbailey@example.net"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>zbailey@example.net</code></p>
+<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>zbailey@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -3552,7 +3923,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>receptionist</code></p>
 Must be one of:
-<ul style="list-style-type: square;"><li><code>doctor</code></li> <li><code>receptionist</code></li></ul>
+<ul style="list-style-type: square;"><li><code>doctor</code></li> <li><code>receptionist</code></li> <li><code>admin</code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -3561,10 +3932,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone"                data-endpoint="POSTapi-admin-users"
-               value="aykcmyuwpwlvqwrsitcpscqldzsnrwtujwvlxjklqpp"
+               value="aykcmyuwpwlvqwrs"
                data-component="body">
     <br>
-<p>This field is required when <code>role</code> is <code>doctor</code>. Must be at least 10 characters. Example: <code>aykcmyuwpwlvqwrsitcpscqldzsnrwtujwvlxjklqpp</code></p>
+<p>This field is required when <code>role</code> is <code>doctor</code>. Must not be greater than 20 characters. Example: <code>aykcmyuwpwlvqwrs</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_of_birth</code></b>&nbsp;&nbsp;
@@ -3573,10 +3944,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="POSTapi-admin-users"
-               value="2026-06-19T02:06:50"
+               value="2022-07-22"
                data-component="body">
     <br>
-<p>This field is required when <code>role</code> is <code>doctor</code>. Must be a valid date. Example: <code>2026-06-19T02:06:50</code></p>
+<p>This field is required when <code>role</code> is <code>doctor</code>. Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
@@ -3585,10 +3956,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="POSTapi-admin-users"
-               value="male"
+               value="female"
                data-component="body">
     <br>
-<p>This field is required when <code>role</code> is <code>doctor</code>. Example: <code>male</code></p>
+<p>This field is required when <code>role</code> is <code>doctor</code>. Example: <code>female</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -3599,10 +3970,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="specialty"                data-endpoint="POSTapi-admin-users"
-               value="w"
+               value="n"
                data-component="body">
     <br>
-<p>This field is required when <code>role</code> is <code>doctor</code>. Must not be greater than 255 characters. Example: <code>w</code></p>
+<p>This field is required when <code>role</code> is <code>doctor</code>. Must not be greater than 255 characters. Example: <code>n</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>department_id</code></b>&nbsp;&nbsp;
@@ -3615,6 +3986,30 @@ Must be one of:
                data-component="body">
     <br>
 <p>This field is required when <code>role</code> is <code>doctor</code>. The <code>id</code> of an existing record in the departments table. Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>working_hours_start</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="working_hours_start"                data-endpoint="POSTapi-admin-users"
+               value="14:52"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>14:52</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>working_hours_end</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="working_hours_end"                data-endpoint="POSTapi-admin-users"
+               value="2052-07-20"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>working_hours_start</code>. Example: <code>2052-07-20</code></p>
         </div>
         </form>
 
@@ -3632,7 +4027,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users/1" \
+    --get "http://enaya.test/api/admin/users/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3640,7 +4035,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users/1"
+    "http://enaya.test/api/admin/users/1"
 );
 
 const headers = {
@@ -3658,6 +4053,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-users--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-users--id-" hidden>
     <blockquote>Received response<span
@@ -3771,7 +4182,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users/1" \
+    "http://enaya.test/api/admin/users/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3785,7 +4196,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users/1"
+    "http://enaya.test/api/admin/users/1"
 );
 
 const headers = {
@@ -3975,7 +4386,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users/1" \
+    "http://enaya.test/api/admin/users/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3983,7 +4394,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/users/1"
+    "http://enaya.test/api/admin/users/1"
 );
 
 const headers = {
@@ -4114,7 +4525,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients" \
+    --get "http://enaya.test/api/admin/patients" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4122,7 +4533,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients"
+    "http://enaya.test/api/admin/patients"
 );
 
 const headers = {
@@ -4140,6 +4551,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-patients">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-patients" hidden>
     <blockquote>Received response<span
@@ -4240,15 +4667,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients" \
+    "http://enaya.test/api/admin/patients" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"full_name\": \"b\",
     \"phone\": \"ngzmiyvdljnikhwa\",
-    \"gender\": \"male\",
-    \"date_of_birth\": \"2022-07-13\",
+    \"gender\": \"female\",
+    \"date_of_birth\": \"2022-07-22\",
     \"address\": \"architecto\",
     \"job\": \"n\",
     \"emergency_contact\": \"g\"
@@ -4258,7 +4685,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients"
+    "http://enaya.test/api/admin/patients"
 );
 
 const headers = {
@@ -4270,8 +4697,8 @@ const headers = {
 let body = {
     "full_name": "b",
     "phone": "ngzmiyvdljnikhwa",
-    "gender": "male",
-    "date_of_birth": "2022-07-13",
+    "gender": "female",
+    "date_of_birth": "2022-07-22",
     "address": "architecto",
     "job": "n",
     "emergency_contact": "g"
@@ -4402,10 +4829,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="POSTapi-admin-patients"
-               value="male"
+               value="female"
                data-component="body">
     <br>
-<p>Example: <code>male</code></p>
+<p>Example: <code>female</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -4416,10 +4843,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="POSTapi-admin-patients"
-               value="2022-07-13"
+               value="2022-07-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
+<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -4473,7 +4900,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16" \
+    --get "http://enaya.test/api/admin/patients/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4481,7 +4908,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16"
+    "http://enaya.test/api/admin/patients/1"
 );
 
 const headers = {
@@ -4499,6 +4926,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-patients--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-patients--id-" hidden>
     <blockquote>Received response<span
@@ -4591,10 +5034,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-admin-patients--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -4612,15 +5055,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16" \
+    "http://enaya.test/api/admin/patients/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"full_name\": \"b\",
     \"phone\": \"ngzmiyvdljnikhwa\",
-    \"date_of_birth\": \"2022-07-13\",
-    \"gender\": \"female\",
+    \"date_of_birth\": \"2022-07-22\",
+    \"gender\": \"male\",
     \"address\": \"architecto\",
     \"job\": \"n\",
     \"emergency_contact\": \"g\"
@@ -4630,7 +5073,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16"
+    "http://enaya.test/api/admin/patients/1"
 );
 
 const headers = {
@@ -4642,8 +5085,8 @@ const headers = {
 let body = {
     "full_name": "b",
     "phone": "ngzmiyvdljnikhwa",
-    "date_of_birth": "2022-07-13",
-    "gender": "female",
+    "date_of_birth": "2022-07-22",
+    "gender": "male",
     "address": "architecto",
     "job": "n",
     "emergency_contact": "g"
@@ -4754,10 +5197,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-admin-patients--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4791,10 +5234,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="PUTapi-admin-patients--id-"
-               value="2022-07-13"
+               value="2022-07-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
+<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
@@ -4803,10 +5246,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="PUTapi-admin-patients--id-"
-               value="female"
+               value="male"
                data-component="body">
     <br>
-<p>Example: <code>female</code></p>
+<p>Example: <code>male</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -4862,7 +5305,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16" \
+    "http://enaya.test/api/admin/patients/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4870,7 +5313,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16"
+    "http://enaya.test/api/admin/patients/1"
 );
 
 const headers = {
@@ -4980,10 +5423,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-admin-patients--id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -5001,7 +5444,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16/restore" \
+    "http://enaya.test/api/admin/patients/1/restore" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5009,7 +5452,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/patients/16/restore"
+    "http://enaya.test/api/admin/patients/1/restore"
 );
 
 const headers = {
@@ -5119,10 +5562,149 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="patient_id"                data-endpoint="PUTapi-admin-patients--patient_id--restore"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-DELETEapi-admin-patients--patient_id--force-delete">DELETE api/admin/patients/{patient_id}/force-delete</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-admin-patients--patient_id--force-delete">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://enaya.test/api/admin/patients/1/force-delete" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://enaya.test/api/admin/patients/1/force-delete"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-admin-patients--patient_id--force-delete">
+</span>
+<span id="execution-results-DELETEapi-admin-patients--patient_id--force-delete" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-admin-patients--patient_id--force-delete"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-admin-patients--patient_id--force-delete"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-admin-patients--patient_id--force-delete" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-admin-patients--patient_id--force-delete">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-admin-patients--patient_id--force-delete" data-method="DELETE"
+      data-path="api/admin/patients/{patient_id}/force-delete"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-admin-patients--patient_id--force-delete', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-admin-patients--patient_id--force-delete"
+                    onclick="tryItOut('DELETEapi-admin-patients--patient_id--force-delete');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-admin-patients--patient_id--force-delete"
+                    onclick="cancelTryOut('DELETEapi-admin-patients--patient_id--force-delete');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-admin-patients--patient_id--force-delete"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/admin/patients/{patient_id}/force-delete</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-admin-patients--patient_id--force-delete"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-admin-patients--patient_id--force-delete"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-admin-patients--patient_id--force-delete"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="patient_id"                data-endpoint="DELETEapi-admin-patients--patient_id--force-delete"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -5140,7 +5722,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors" \
+    --get "http://enaya.test/api/admin/doctors" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5148,7 +5730,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors"
+    "http://enaya.test/api/admin/doctors"
 );
 
 const headers = {
@@ -5166,6 +5748,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-doctors">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-doctors" hidden>
     <blockquote>Received response<span
@@ -5266,7 +5864,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors" \
+    "http://enaya.test/api/admin/doctors" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5275,19 +5873,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"password\": \"+-0pBNvYgxwmi\\/#iw\",
     \"name\": \"u\",
     \"phone\": \"wpwlvqwrsitcpscq\",
-    \"date_of_birth\": \"2022-07-13\",
+    \"date_of_birth\": \"2022-07-22\",
     \"gender\": \"female\",
     \"department_id\": \"architecto\",
     \"specialty\": \"n\",
-    \"working_hours_start\": \"02:06\",
-    \"working_hours_end\": \"2052-07-12\"
+    \"working_hours_start\": \"14:52\",
+    \"working_hours_end\": \"2052-07-20\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors"
+    "http://enaya.test/api/admin/doctors"
 );
 
 const headers = {
@@ -5301,12 +5899,12 @@ let body = {
     "password": "+-0pBNvYgxwmi\/#iw",
     "name": "u",
     "phone": "wpwlvqwrsitcpscq",
-    "date_of_birth": "2022-07-13",
+    "date_of_birth": "2022-07-22",
     "gender": "female",
     "department_id": "architecto",
     "specialty": "n",
-    "working_hours_start": "02:06",
-    "working_hours_end": "2052-07-12"
+    "working_hours_start": "14:52",
+    "working_hours_end": "2052-07-20"
 };
 
 fetch(url, {
@@ -5458,10 +6056,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="POSTapi-admin-doctors"
-               value="2022-07-13"
+               value="2022-07-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
+<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
@@ -5508,10 +6106,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="working_hours_start"                data-endpoint="POSTapi-admin-doctors"
-               value="02:06"
+               value="14:52"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>02:06</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>14:52</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>working_hours_end</code></b>&nbsp;&nbsp;
@@ -5520,10 +6118,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="working_hours_end"                data-endpoint="POSTapi-admin-doctors"
-               value="2052-07-12"
+               value="2052-07-20"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>working_hours_start</code>. Example: <code>2052-07-12</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>working_hours_start</code>. Example: <code>2052-07-20</code></p>
         </div>
         </form>
 
@@ -5541,7 +6139,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1" \
+    --get "http://enaya.test/api/admin/doctors/3" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5549,7 +6147,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1"
+    "http://enaya.test/api/admin/doctors/3"
 );
 
 const headers = {
@@ -5567,6 +6165,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-doctors--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-doctors--id-" hidden>
     <blockquote>Received response<span
@@ -5659,10 +6273,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-admin-doctors--id-"
-               value="1"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the doctor. Example: <code>1</code></p>
+<p>The ID of the doctor. Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -5680,7 +6294,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1" \
+    "http://enaya.test/api/admin/doctors/3" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5688,7 +6302,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1"
+    "http://enaya.test/api/admin/doctors/3"
 );
 
 const headers = {
@@ -5798,14 +6412,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-admin-doctors--id-"
-               value="1"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the doctor. Example: <code>1</code></p>
+<p>The ID of the doctor. Example: <code>3</code></p>
             </div>
                     </form>
 
-                    <h2 id="endpoints-PUTapi-admin-doctors--doctor_id--restore">Restore the specified soft-deleted doctor and reactivate the related user.</h2>
+                    <h2 id="endpoints-PUTapi-admin--doctor_id--restore">Restore the specified soft-deleted doctor and reactivate the related user.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5813,13 +6427,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-PUTapi-admin-doctors--doctor_id--restore">
+<span id="example-requests-PUTapi-admin--doctor_id--restore">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/restore" \
+    "http://enaya.test/api/admin/3/restore" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5827,7 +6441,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/restore"
+    "http://enaya.test/api/admin/3/restore"
 );
 
 const headers = {
@@ -5844,45 +6458,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PUTapi-admin-doctors--doctor_id--restore">
+<span id="example-responses-PUTapi-admin--doctor_id--restore">
 </span>
-<span id="execution-results-PUTapi-admin-doctors--doctor_id--restore" hidden>
+<span id="execution-results-PUTapi-admin--doctor_id--restore" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi-admin-doctors--doctor_id--restore"></span>:
+                id="execution-response-status-PUTapi-admin--doctor_id--restore"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-admin-doctors--doctor_id--restore"
+    <pre class="json"><code id="execution-response-content-PUTapi-admin--doctor_id--restore"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi-admin-doctors--doctor_id--restore" hidden>
+<span id="execution-error-PUTapi-admin--doctor_id--restore" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-admin-doctors--doctor_id--restore">
+    <pre><code id="execution-error-message-PUTapi-admin--doctor_id--restore">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi-admin-doctors--doctor_id--restore" data-method="PUT"
-      data-path="api/admin/doctors/{doctor_id}/restore"
+<form id="form-PUTapi-admin--doctor_id--restore" data-method="PUT"
+      data-path="api/admin/{doctor_id}/restore"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-admin-doctors--doctor_id--restore', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-admin--doctor_id--restore', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-admin-doctors--doctor_id--restore"
-                    onclick="tryItOut('PUTapi-admin-doctors--doctor_id--restore');">Try it out ⚡
+                    id="btn-tryout-PUTapi-admin--doctor_id--restore"
+                    onclick="tryItOut('PUTapi-admin--doctor_id--restore');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-admin-doctors--doctor_id--restore"
-                    onclick="cancelTryOut('PUTapi-admin-doctors--doctor_id--restore');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PUTapi-admin--doctor_id--restore"
+                    onclick="cancelTryOut('PUTapi-admin--doctor_id--restore');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-admin-doctors--doctor_id--restore"
+                    id="btn-executetryout-PUTapi-admin--doctor_id--restore"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -5890,7 +6504,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/admin/doctors/{doctor_id}/restore</code></b>
+            <b><code>api/admin/{doctor_id}/restore</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -5899,7 +6513,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-admin--doctor_id--restore"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -5911,7 +6525,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+                              name="Content-Type"                data-endpoint="PUTapi-admin--doctor_id--restore"
                value="application/json"
                data-component="header">
     <br>
@@ -5923,7 +6537,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
+                              name="Accept"                data-endpoint="PUTapi-admin--doctor_id--restore"
                value="application/json"
                data-component="header">
     <br>
@@ -5936,15 +6550,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="doctor_id"                data-endpoint="PUTapi-admin-doctors--doctor_id--restore"
-               value="1"
+               step="any"               name="doctor_id"                data-endpoint="PUTapi-admin--doctor_id--restore"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the doctor. Example: <code>1</code></p>
+<p>The ID of the doctor. Example: <code>3</code></p>
             </div>
                     </form>
 
-                    <h2 id="endpoints-PATCHapi-admin-doctors--doctor_id--reset-password">PATCH api/admin/doctors/{doctor_id}/reset-password</h2>
+                    <h2 id="endpoints-PATCHapi-admin--doctor_id--reset-password">PATCH api/admin/{doctor_id}/reset-password</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5952,13 +6566,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-PATCHapi-admin-doctors--doctor_id--reset-password">
+<span id="example-requests-PATCHapi-admin--doctor_id--reset-password">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/reset-password" \
+    "http://enaya.test/api/admin/3/reset-password" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5970,7 +6584,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/doctors/1/reset-password"
+    "http://enaya.test/api/admin/3/reset-password"
 );
 
 const headers = {
@@ -5991,45 +6605,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PATCHapi-admin-doctors--doctor_id--reset-password">
+<span id="example-responses-PATCHapi-admin--doctor_id--reset-password">
 </span>
-<span id="execution-results-PATCHapi-admin-doctors--doctor_id--reset-password" hidden>
+<span id="execution-results-PATCHapi-admin--doctor_id--reset-password" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PATCHapi-admin-doctors--doctor_id--reset-password"></span>:
+                id="execution-response-status-PATCHapi-admin--doctor_id--reset-password"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi-admin-doctors--doctor_id--reset-password"
+    <pre class="json"><code id="execution-response-content-PATCHapi-admin--doctor_id--reset-password"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PATCHapi-admin-doctors--doctor_id--reset-password" hidden>
+<span id="execution-error-PATCHapi-admin--doctor_id--reset-password" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi-admin-doctors--doctor_id--reset-password">
+    <pre><code id="execution-error-message-PATCHapi-admin--doctor_id--reset-password">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PATCHapi-admin-doctors--doctor_id--reset-password" data-method="PATCH"
-      data-path="api/admin/doctors/{doctor_id}/reset-password"
+<form id="form-PATCHapi-admin--doctor_id--reset-password" data-method="PATCH"
+      data-path="api/admin/{doctor_id}/reset-password"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-admin-doctors--doctor_id--reset-password', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-admin--doctor_id--reset-password', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-admin-doctors--doctor_id--reset-password"
-                    onclick="tryItOut('PATCHapi-admin-doctors--doctor_id--reset-password');">Try it out ⚡
+                    id="btn-tryout-PATCHapi-admin--doctor_id--reset-password"
+                    onclick="tryItOut('PATCHapi-admin--doctor_id--reset-password');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-admin-doctors--doctor_id--reset-password"
-                    onclick="cancelTryOut('PATCHapi-admin-doctors--doctor_id--reset-password');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PATCHapi-admin--doctor_id--reset-password"
+                    onclick="cancelTryOut('PATCHapi-admin--doctor_id--reset-password');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-admin-doctors--doctor_id--reset-password"
+                    id="btn-executetryout-PATCHapi-admin--doctor_id--reset-password"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -6037,7 +6651,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
-            <b><code>api/admin/doctors/{doctor_id}/reset-password</code></b>
+            <b><code>api/admin/{doctor_id}/reset-password</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -6046,7 +6660,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-admin--doctor_id--reset-password"
                value="Bearer {YOUR_AUTH_KEY}"
                data-component="header">
     <br>
@@ -6058,7 +6672,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
+                              name="Content-Type"                data-endpoint="PATCHapi-admin--doctor_id--reset-password"
                value="application/json"
                data-component="header">
     <br>
@@ -6070,7 +6684,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
+                              name="Accept"                data-endpoint="PATCHapi-admin--doctor_id--reset-password"
                value="application/json"
                data-component="header">
     <br>
@@ -6083,11 +6697,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="doctor_id"                data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
-               value="1"
+               step="any"               name="doctor_id"                data-endpoint="PATCHapi-admin--doctor_id--reset-password"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the doctor. Example: <code>1</code></p>
+<p>The ID of the doctor. Example: <code>3</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -6096,7 +6710,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="password"                data-endpoint="PATCHapi-admin-doctors--doctor_id--reset-password"
+                              name="password"                data-endpoint="PATCHapi-admin--doctor_id--reset-password"
                value="|]|{+-"
                data-component="body">
     <br>
@@ -6118,7 +6732,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments" \
+    --get "http://enaya.test/api/admin/departments" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6126,7 +6740,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments"
+    "http://enaya.test/api/admin/departments"
 );
 
 const headers = {
@@ -6144,6 +6758,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-departments">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-departments" hidden>
     <blockquote>Received response<span
@@ -6244,7 +6874,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments" \
+    "http://enaya.test/api/admin/departments" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6256,7 +6886,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments"
+    "http://enaya.test/api/admin/departments"
 );
 
 const headers = {
@@ -6391,7 +7021,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments/1" \
+    --get "http://enaya.test/api/admin/departments/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6399,7 +7029,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments/1"
+    "http://enaya.test/api/admin/departments/1"
 );
 
 const headers = {
@@ -6417,6 +7047,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-departments--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-departments--id-" hidden>
     <blockquote>Received response<span
@@ -6530,7 +7176,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments/1" \
+    "http://enaya.test/api/admin/departments/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6542,7 +7188,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments/1"
+    "http://enaya.test/api/admin/departments/1"
 );
 
 const headers = {
@@ -6694,7 +7340,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments/1" \
+    "http://enaya.test/api/admin/departments/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6702,7 +7348,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/departments/1"
+    "http://enaya.test/api/admin/departments/1"
 );
 
 const headers = {
@@ -6833,14 +7479,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments" \
+    --get "http://enaya.test/api/admin/appointments" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"date\": \"2026-06-19\",
-    \"date_from\": \"2026-06-19\",
-    \"date_to\": \"2052-07-12\",
+    \"date\": \"2026-06-27\",
+    \"date_from\": \"2026-06-27\",
+    \"date_to\": \"2052-07-20\",
     \"status\": \"architecto\",
     \"search\": \"n\"
 }"
@@ -6849,7 +7495,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments"
+    "http://enaya.test/api/admin/appointments"
 );
 
 const headers = {
@@ -6859,9 +7505,9 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-06-19",
-    "date_from": "2026-06-19",
-    "date_to": "2052-07-12",
+    "date": "2026-06-27",
+    "date_from": "2026-06-27",
+    "date_to": "2052-07-20",
     "status": "architecto",
     "search": "n"
 };
@@ -6875,6 +7521,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-appointments">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-appointments" hidden>
     <blockquote>Received response<span
@@ -6967,10 +7629,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-admin-appointments"
-               value="2026-06-19"
+               value="2026-06-27"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_from</code></b>&nbsp;&nbsp;
@@ -6979,10 +7641,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-admin-appointments"
-               value="2026-06-19"
+               value="2026-06-27"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -6991,10 +7653,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_to"                data-endpoint="GETapi-admin-appointments"
-               value="2052-07-12"
+               value="2052-07-20"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Must be a date after or equal to <code>date_from</code>. Example: <code>2052-07-12</code></p>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Must be a date after or equal to <code>date_from</code>. Example: <code>2052-07-20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
@@ -7048,20 +7710,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/stats" \
+    --get "http://enaya.test/api/admin/appointments/stats" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"date_from\": \"2026-06-19\",
-    \"date_to\": \"2052-07-12\"
+    \"date_from\": \"2026-06-27\",
+    \"date_to\": \"2052-07-20\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/stats"
+    "http://enaya.test/api/admin/appointments/stats"
 );
 
 const headers = {
@@ -7071,8 +7733,8 @@ const headers = {
 };
 
 let body = {
-    "date_from": "2026-06-19",
-    "date_to": "2052-07-12"
+    "date_from": "2026-06-27",
+    "date_to": "2052-07-20"
 };
 
 fetch(url, {
@@ -7084,6 +7746,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-appointments-stats">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-appointments-stats" hidden>
     <blockquote>Received response<span
@@ -7176,10 +7854,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-admin-appointments-stats"
-               value="2026-06-19"
+               value="2026-06-27"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -7188,10 +7866,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_to"                data-endpoint="GETapi-admin-appointments-stats"
-               value="2052-07-12"
+               value="2052-07-20"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Must be a date after or equal to <code>date_from</code>. Example: <code>2052-07-12</code></p>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Must be a date after or equal to <code>date_from</code>. Example: <code>2052-07-20</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
@@ -7204,6 +7882,351 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>The <code>id</code> of an existing record in the doctors table.</p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-admin-appointments-available-slots">GET api/admin/appointments/available-slots</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-admin-appointments-available-slots">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://enaya.test/api/admin/appointments/available-slots" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://enaya.test/api/admin/appointments/available-slots"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-admin-appointments-available-slots">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-admin-appointments-available-slots" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-admin-appointments-available-slots"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-appointments-available-slots"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-admin-appointments-available-slots" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-admin-appointments-available-slots">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-admin-appointments-available-slots" data-method="GET"
+      data-path="api/admin/appointments/available-slots"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-appointments-available-slots', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-admin-appointments-available-slots"
+                    onclick="tryItOut('GETapi-admin-appointments-available-slots');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-admin-appointments-available-slots"
+                    onclick="cancelTryOut('GETapi-admin-appointments-available-slots');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-admin-appointments-available-slots"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/appointments/available-slots</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-admin-appointments-available-slots"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-admin-appointments-available-slots"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-admin-appointments-available-slots"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POSTapi-admin-appointments">POST api/admin/appointments</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-admin-appointments">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://enaya.test/api/admin/appointments" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"patient_id\": \"architecto\",
+    \"doctor_id\": \"architecto\",
+    \"scheduled_at\": \"2052-07-21\",
+    \"visit_reason\": \"architecto\",
+    \"notes\": \"architecto\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://enaya.test/api/admin/appointments"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "patient_id": "architecto",
+    "doctor_id": "architecto",
+    "scheduled_at": "2052-07-21",
+    "visit_reason": "architecto",
+    "notes": "architecto"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-admin-appointments">
+</span>
+<span id="execution-results-POSTapi-admin-appointments" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-admin-appointments"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-admin-appointments"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-admin-appointments" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-admin-appointments">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-admin-appointments" data-method="POST"
+      data-path="api/admin/appointments"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-admin-appointments', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-admin-appointments"
+                    onclick="tryItOut('POSTapi-admin-appointments');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-admin-appointments"
+                    onclick="cancelTryOut('POSTapi-admin-appointments');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-admin-appointments"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/admin/appointments</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-admin-appointments"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-admin-appointments"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-admin-appointments"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="patient_id"                data-endpoint="POSTapi-admin-appointments"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the patients table. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="doctor_id"                data-endpoint="POSTapi-admin-appointments"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>The <code>id</code> of an existing record in the doctors table. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>scheduled_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="scheduled_at"                data-endpoint="POSTapi-admin-appointments"
+               value="2052-07-21"
+               data-component="body">
+    <br>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-21</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>visit_reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="visit_reason"                data-endpoint="POSTapi-admin-appointments"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="notes"                data-endpoint="POSTapi-admin-appointments"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -7221,7 +8244,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1" \
+    --get "http://enaya.test/api/admin/appointments/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -7229,7 +8252,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1"
+    "http://enaya.test/api/admin/appointments/1"
 );
 
 const headers = {
@@ -7247,6 +8270,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-appointments--appointment_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-appointments--appointment_id-" hidden>
     <blockquote>Received response<span
@@ -7346,6 +8385,145 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="endpoints-PATCHapi-admin-appointments--appointment_id--confirm">PATCH api/admin/appointments/{appointment_id}/confirm</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-admin-appointments--appointment_id--confirm">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://enaya.test/api/admin/appointments/1/confirm" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://enaya.test/api/admin/appointments/1/confirm"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-admin-appointments--appointment_id--confirm">
+</span>
+<span id="execution-results-PATCHapi-admin-appointments--appointment_id--confirm" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-admin-appointments--appointment_id--confirm"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-admin-appointments--appointment_id--confirm"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-admin-appointments--appointment_id--confirm" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-admin-appointments--appointment_id--confirm">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-admin-appointments--appointment_id--confirm" data-method="PATCH"
+      data-path="api/admin/appointments/{appointment_id}/confirm"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-admin-appointments--appointment_id--confirm', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-admin-appointments--appointment_id--confirm"
+                    onclick="tryItOut('PATCHapi-admin-appointments--appointment_id--confirm');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-admin-appointments--appointment_id--confirm"
+                    onclick="cancelTryOut('PATCHapi-admin-appointments--appointment_id--confirm');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-admin-appointments--appointment_id--confirm"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/admin/appointments/{appointment_id}/confirm</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-admin-appointments--appointment_id--confirm"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-admin-appointments--appointment_id--confirm"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-admin-appointments--appointment_id--confirm"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>appointment_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="appointment_id"                data-endpoint="PATCHapi-admin-appointments--appointment_id--confirm"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the appointment. Example: <code>1</code></p>
+            </div>
+                    </form>
+
                     <h2 id="endpoints-PATCHapi-admin-appointments--appointment_id--cancel">PATCH api/admin/appointments/{appointment_id}/cancel</h2>
 
 <p>
@@ -7360,7 +8538,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/cancel" \
+    "http://enaya.test/api/admin/appointments/1/cancel" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7372,7 +8550,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/cancel"
+    "http://enaya.test/api/admin/appointments/1/cancel"
 );
 
 const headers = {
@@ -7520,7 +8698,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/no-show" \
+    "http://enaya.test/api/admin/appointments/1/no-show" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -7528,7 +8706,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/no-show"
+    "http://enaya.test/api/admin/appointments/1/no-show"
 );
 
 const headers = {
@@ -7659,19 +8837,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/reschedule" \
+    "http://enaya.test/api/admin/appointments/1/reschedule" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"scheduled_at\": \"2052-07-12\"
+    \"scheduled_at\": \"2052-07-21\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/admin/appointments/1/reschedule"
+    "http://enaya.test/api/admin/appointments/1/reschedule"
 );
 
 const headers = {
@@ -7681,7 +8859,7 @@ const headers = {
 };
 
 let body = {
-    "scheduled_at": "2052-07-12"
+    "scheduled_at": "2052-07-21"
 };
 
 fetch(url, {
@@ -7798,10 +8976,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="scheduled_at"                data-endpoint="PATCHapi-admin-appointments--appointment_id--reschedule"
-               value="2052-07-12"
+               value="2052-07-21"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-12</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-21</code></p>
         </div>
         </form>
 
@@ -7819,13 +8997,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments" \
+    --get "http://enaya.test/api/doctor/appointments" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"status\": \"architecto\",
-    \"date\": \"2026-06-19\",
+    \"date\": \"2026-06-27\",
     \"timeline\": \"past\"
 }"
 </code></pre></div>
@@ -7833,7 +9011,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments"
+    "http://enaya.test/api/doctor/appointments"
 );
 
 const headers = {
@@ -7844,7 +9022,7 @@ const headers = {
 
 let body = {
     "status": "architecto",
-    "date": "2026-06-19",
+    "date": "2026-06-27",
     "timeline": "past"
 };
 
@@ -7857,6 +9035,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-doctor-appointments">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-doctor-appointments" hidden>
     <blockquote>Received response<span
@@ -7961,10 +9155,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-doctor-appointments"
-               value="2026-06-19"
+               value="2026-06-27"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>timeline</code></b>&nbsp;&nbsp;
@@ -7996,7 +9190,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1" \
+    --get "http://enaya.test/api/doctor/appointments/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8004,7 +9198,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1"
+    "http://enaya.test/api/doctor/appointments/1"
 );
 
 const headers = {
@@ -8022,6 +9216,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-doctor-appointments--appointment_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-doctor-appointments--appointment_id-" hidden>
     <blockquote>Received response<span
@@ -8135,7 +9345,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/cancel" \
+    "http://enaya.test/api/doctor/appointments/1/cancel" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8143,7 +9353,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/cancel"
+    "http://enaya.test/api/doctor/appointments/1/cancel"
 );
 
 const headers = {
@@ -8274,7 +9484,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/no-show" \
+    "http://enaya.test/api/doctor/appointments/1/no-show" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8282,7 +9492,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/no-show"
+    "http://enaya.test/api/doctor/appointments/1/no-show"
 );
 
 const headers = {
@@ -8413,7 +9623,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/list" \
+    --get "http://enaya.test/api/doctor/appointments/1/sessions/list" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8421,7 +9631,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/list"
+    "http://enaya.test/api/doctor/appointments/1/sessions/list"
 );
 
 const headers = {
@@ -8439,6 +9649,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-doctor-appointments--appointment_id--sessions-list">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-doctor-appointments--appointment_id--sessions-list" hidden>
     <blockquote>Received response<span
@@ -8552,7 +9778,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/end" \
+    "http://enaya.test/api/doctor/appointments/1/sessions/end" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8565,7 +9791,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/end"
+    "http://enaya.test/api/doctor/appointments/1/sessions/end"
 );
 
 const headers = {
@@ -8726,7 +9952,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/start" \
+    "http://enaya.test/api/doctor/appointments/1/sessions/start" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8739,7 +9965,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/start"
+    "http://enaya.test/api/doctor/appointments/1/sessions/start"
 );
 
 const headers = {
@@ -8900,7 +10126,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/1" \
+    --get "http://enaya.test/api/doctor/appointments/1/sessions/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8908,7 +10134,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/1"
+    "http://enaya.test/api/doctor/appointments/1/sessions/1"
 );
 
 const headers = {
@@ -8926,6 +10152,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-doctor-appointments--appointment_id--sessions--session_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-doctor-appointments--appointment_id--sessions--session_id-" hidden>
     <blockquote>Received response<span
@@ -9051,7 +10293,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/1" \
+    "http://enaya.test/api/doctor/appointments/1/sessions/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9066,7 +10308,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/appointments/1/sessions/1"
+    "http://enaya.test/api/doctor/appointments/1/sessions/1"
 );
 
 const headers = {
@@ -9267,7 +10509,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/1/patients" \
+    --get "http://enaya.test/api/doctor/3/patients" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9275,7 +10517,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/1/patients"
+    "http://enaya.test/api/doctor/3/patients"
 );
 
 const headers = {
@@ -9293,6 +10535,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-doctor--doctor_id--patients">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-doctor--doctor_id--patients" hidden>
     <blockquote>Received response<span
@@ -9385,10 +10643,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="doctor_id"                data-endpoint="GETapi-doctor--doctor_id--patients"
-               value="1"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the doctor. Example: <code>1</code></p>
+<p>The ID of the doctor. Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -9406,7 +10664,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/1/patients/16" \
+    --get "http://enaya.test/api/doctor/3/patients/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9414,7 +10672,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/1/patients/16"
+    "http://enaya.test/api/doctor/3/patients/1"
 );
 
 const headers = {
@@ -9432,6 +10690,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-doctor--doctor_id--patients--patient_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-doctor--doctor_id--patients--patient_id-" hidden>
     <blockquote>Received response<span
@@ -9524,10 +10798,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="doctor_id"                data-endpoint="GETapi-doctor--doctor_id--patients--patient_id-"
-               value="1"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the doctor. Example: <code>1</code></p>
+<p>The ID of the doctor. Example: <code>3</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>patient_id</code></b>&nbsp;&nbsp;
@@ -9536,10 +10810,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="patient_id"                data-endpoint="GETapi-doctor--doctor_id--patients--patient_id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -9557,7 +10831,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/sessions/1/prescriptions" \
+    "http://enaya.test/api/doctor/sessions/1/prescriptions" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -9573,7 +10847,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/sessions/1/prescriptions"
+    "http://enaya.test/api/doctor/sessions/1/prescriptions"
 );
 
 const headers = {
@@ -9773,7 +11047,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/sessions/1/prescriptions/1" \
+    "http://enaya.test/api/doctor/sessions/1/prescriptions/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9781,7 +11055,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/doctor/sessions/1/prescriptions/1"
+    "http://enaya.test/api/doctor/sessions/1/prescriptions/1"
 );
 
 const headers = {
@@ -9924,7 +11198,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients" \
+    --get "http://enaya.test/api/reception/patients" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9932,7 +11206,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients"
+    "http://enaya.test/api/reception/patients"
 );
 
 const headers = {
@@ -9950,6 +11224,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-reception-patients">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-reception-patients" hidden>
     <blockquote>Received response<span
@@ -10050,15 +11340,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients" \
+    "http://enaya.test/api/reception/patients" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"full_name\": \"b\",
     \"phone\": \"ngzmiyvdljnikhwa\",
-    \"gender\": \"male\",
-    \"date_of_birth\": \"2022-07-13\",
+    \"gender\": \"female\",
+    \"date_of_birth\": \"2022-07-22\",
     \"address\": \"architecto\",
     \"job\": \"n\",
     \"emergency_contact\": \"g\"
@@ -10068,7 +11358,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients"
+    "http://enaya.test/api/reception/patients"
 );
 
 const headers = {
@@ -10080,8 +11370,8 @@ const headers = {
 let body = {
     "full_name": "b",
     "phone": "ngzmiyvdljnikhwa",
-    "gender": "male",
-    "date_of_birth": "2022-07-13",
+    "gender": "female",
+    "date_of_birth": "2022-07-22",
     "address": "architecto",
     "job": "n",
     "emergency_contact": "g"
@@ -10212,10 +11502,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="POSTapi-reception-patients"
-               value="male"
+               value="female"
                data-component="body">
     <br>
-<p>Example: <code>male</code></p>
+<p>Example: <code>female</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -10226,10 +11516,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="POSTapi-reception-patients"
-               value="2022-07-13"
+               value="2022-07-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
+<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -10283,7 +11573,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16" \
+    --get "http://enaya.test/api/reception/patients/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10291,7 +11581,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16"
+    "http://enaya.test/api/reception/patients/1"
 );
 
 const headers = {
@@ -10309,6 +11599,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-reception-patients--patient_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-reception-patients--patient_id-" hidden>
     <blockquote>Received response<span
@@ -10401,10 +11707,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="patient_id"                data-endpoint="GETapi-reception-patients--patient_id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -10422,15 +11728,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16" \
+    "http://enaya.test/api/reception/patients/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"full_name\": \"b\",
     \"phone\": \"ngzmiyvdljnikhwa\",
-    \"date_of_birth\": \"2022-07-13\",
-    \"gender\": \"female\",
+    \"date_of_birth\": \"2022-07-22\",
+    \"gender\": \"male\",
     \"address\": \"architecto\",
     \"job\": \"n\",
     \"emergency_contact\": \"g\"
@@ -10440,7 +11746,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16"
+    "http://enaya.test/api/reception/patients/1"
 );
 
 const headers = {
@@ -10452,8 +11758,8 @@ const headers = {
 let body = {
     "full_name": "b",
     "phone": "ngzmiyvdljnikhwa",
-    "date_of_birth": "2022-07-13",
-    "gender": "female",
+    "date_of_birth": "2022-07-22",
+    "gender": "male",
     "address": "architecto",
     "job": "n",
     "emergency_contact": "g"
@@ -10560,10 +11866,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="patient_id"                data-endpoint="PUTapi-reception-patients--patient_id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -10597,10 +11903,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="PUTapi-reception-patients--patient_id-"
-               value="2022-07-13"
+               value="2022-07-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-13</code></p>
+<p>Must be a valid date. Must be a date before <code>today</code>. Example: <code>2022-07-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
@@ -10609,10 +11915,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="PUTapi-reception-patients--patient_id-"
-               value="female"
+               value="male"
                data-component="body">
     <br>
-<p>Example: <code>female</code></p>
+<p>Example: <code>male</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>male</code></li> <li><code>female</code></li></ul>
         </div>
@@ -10668,7 +11974,7 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16" \
+    "http://enaya.test/api/reception/patients/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10676,7 +11982,7 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16"
+    "http://enaya.test/api/reception/patients/1"
 );
 
 const headers = {
@@ -10786,10 +12092,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="patient_id"                data-endpoint="DELETEapi-reception-patients--patient_id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -10807,7 +12113,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16/restore" \
+    "http://enaya.test/api/reception/patients/1/restore" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10815,7 +12121,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16/restore"
+    "http://enaya.test/api/reception/patients/1/restore"
 );
 
 const headers = {
@@ -10925,10 +12231,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="patient_id"                data-endpoint="PUTapi-reception-patients--patient_id--restore"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -10946,7 +12252,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16/force-delete" \
+    "http://enaya.test/api/reception/patients/1/force-delete" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10954,7 +12260,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/reception/patients/16/force-delete"
+    "http://enaya.test/api/reception/patients/1/force-delete"
 );
 
 const headers = {
@@ -11064,10 +12370,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="patient_id"                data-endpoint="DELETEapi-reception-patients--patient_id--force-delete"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the patient. Example: <code>16</code></p>
+<p>The ID of the patient. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -11085,14 +12391,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception" \
+    --get "http://enaya.test/api/appointments/reception" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"date\": \"2026-06-19\",
-    \"date_from\": \"2026-06-19\",
-    \"date_to\": \"2026-06-19\",
+    \"date\": \"2026-06-27\",
+    \"date_from\": \"2026-06-27\",
+    \"date_to\": \"2026-06-27\",
     \"status\": \"architecto\",
     \"search\": \"architecto\"
 }"
@@ -11101,7 +12407,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception"
+    "http://enaya.test/api/appointments/reception"
 );
 
 const headers = {
@@ -11111,9 +12417,9 @@ const headers = {
 };
 
 let body = {
-    "date": "2026-06-19",
-    "date_from": "2026-06-19",
-    "date_to": "2026-06-19",
+    "date": "2026-06-27",
+    "date_from": "2026-06-27",
+    "date_to": "2026-06-27",
     "status": "architecto",
     "search": "architecto"
 };
@@ -11127,6 +12433,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-appointments-reception">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-appointments-reception" hidden>
     <blockquote>Received response<span
@@ -11219,10 +12541,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date"                data-endpoint="GETapi-appointments-reception"
-               value="2026-06-19"
+               value="2026-06-27"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_from</code></b>&nbsp;&nbsp;
@@ -11231,10 +12553,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_from"                data-endpoint="GETapi-appointments-reception"
-               value="2026-06-19"
+               value="2026-06-27"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
@@ -11243,10 +12565,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_to"                data-endpoint="GETapi-appointments-reception"
-               value="2026-06-19"
+               value="2026-06-27"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-19</code></p>
+<p>Must be a valid date in the format <code>Y-m-d</code>. Example: <code>2026-06-27</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>doctor_id</code></b>&nbsp;&nbsp;
@@ -11300,14 +12622,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception" \
+    "http://enaya.test/api/appointments/reception" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"patient_id\": \"architecto\",
     \"doctor_id\": \"architecto\",
-    \"scheduled_at\": \"2052-07-12\",
+    \"scheduled_at\": \"2052-07-21\",
     \"visit_reason\": \"architecto\",
     \"notes\": \"architecto\"
 }"
@@ -11316,7 +12638,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception"
+    "http://enaya.test/api/appointments/reception"
 );
 
 const headers = {
@@ -11328,7 +12650,7 @@ const headers = {
 let body = {
     "patient_id": "architecto",
     "doctor_id": "architecto",
-    "scheduled_at": "2052-07-12",
+    "scheduled_at": "2052-07-21",
     "visit_reason": "architecto",
     "notes": "architecto"
 };
@@ -11458,10 +12780,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="scheduled_at"                data-endpoint="POSTapi-appointments-reception"
-               value="2052-07-12"
+               value="2052-07-21"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-12</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-21</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>visit_reason</code></b>&nbsp;&nbsp;
@@ -11503,7 +12825,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1" \
+    --get "http://enaya.test/api/appointments/reception/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11511,7 +12833,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1"
+    "http://enaya.test/api/appointments/reception/1"
 );
 
 const headers = {
@@ -11529,6 +12851,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-appointments-reception--appointment_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+vary: Origin
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-appointments-reception--appointment_id-" hidden>
     <blockquote>Received response<span
@@ -11642,7 +12980,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/confirm" \
+    "http://enaya.test/api/appointments/reception/1/confirm" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11650,7 +12988,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/confirm"
+    "http://enaya.test/api/appointments/reception/1/confirm"
 );
 
 const headers = {
@@ -11781,7 +13119,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/arrived" \
+    "http://enaya.test/api/appointments/reception/1/arrived" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11789,7 +13127,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/arrived"
+    "http://enaya.test/api/appointments/reception/1/arrived"
 );
 
 const headers = {
@@ -11920,19 +13258,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/reschedule" \
+    "http://enaya.test/api/appointments/reception/1/reschedule" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"scheduled_at\": \"2052-07-12\"
+    \"scheduled_at\": \"2052-07-21\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/reschedule"
+    "http://enaya.test/api/appointments/reception/1/reschedule"
 );
 
 const headers = {
@@ -11942,7 +13280,7 @@ const headers = {
 };
 
 let body = {
-    "scheduled_at": "2052-07-12"
+    "scheduled_at": "2052-07-21"
 };
 
 fetch(url, {
@@ -12059,10 +13397,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="scheduled_at"                data-endpoint="PATCHapi-appointments-reception--appointment_id--reschedule"
-               value="2052-07-12"
+               value="2052-07-21"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-12</code></p>
+<p>Must be a valid date in the format <code>Y-m-d H:i:s</code>. Must be a date after <code>now</code>. Example: <code>2052-07-21</code></p>
         </div>
         </form>
 
@@ -12080,7 +13418,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/cancel" \
+    "http://enaya.test/api/appointments/reception/1/cancel" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12092,7 +13430,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/cancel"
+    "http://enaya.test/api/appointments/reception/1/cancel"
 );
 
 const headers = {
@@ -12240,7 +13578,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/no-show" \
+    "http://enaya.test/api/appointments/reception/1/no-show" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -12248,7 +13586,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://congenial-reexamine-regretful.ngrok-free.dev/api/appointments/reception/1/no-show"
+    "http://enaya.test/api/appointments/reception/1/no-show"
 );
 
 const headers = {

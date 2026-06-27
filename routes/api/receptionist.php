@@ -29,4 +29,5 @@ Route::middleware(['auth:sanctum', 'role:receptionist'])->prefix('appointments/r
     Route::patch('/{appointment}/reschedule', [AppointmentController::class, 'reschedule']);
     Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
     Route::patch('/{appointment}/no-show', [AppointmentController::class, 'markNoShow']);
+    Route::get('/available-slots', [AppointmentController::class, 'availableSlots']);
 });

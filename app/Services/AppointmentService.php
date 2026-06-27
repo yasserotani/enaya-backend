@@ -6,6 +6,8 @@ use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class AppointmentService
 {
@@ -57,6 +59,40 @@ class AppointmentService
 
 
     //  Appointment Actions
+
+    /**
+     * @throws Throwable
+     */
+    public function createAppointment(
+        int               $patientId,
+        int               $doctorId,
+        Carbon            $scheduledAt,
+        AppointmentStatus $status,
+        ?string           $visitReason = null,
+        ?string           $notes = null
+    ): Appointment
+    {
+        return DB::transaction(function () use ($patientId, $doctorId, $scheduledAt, $status, $visitReason, $notes) {
+
+            // get and lock the doctor record while updating 
+            $doctor = Doctor::where('id', $doctorId)->lockForUpdate()->firstOrFail();
+
+            if ($this->hasConflict($doctor->id, $scheduledAt)) {
+                throw new \DomainException('This time slot is already booked for the selected doctor.');
+            }
+
+            return Appointment::create([
+                'patient_id' => $patientId,
+                'doctor_id' => $doctor->id,
+                'scheduled_at' => $scheduledAt,
+                'status' => $status,
+                'visit_reason' => $visitReason,
+                'notes' => $notes,
+            ]);
+        });
+    }
+
+
     public function cancel(Appointment $appointment, string $cancelledBy, ?string $reason): Appointment
     {
         if (!in_array($appointment->status, [

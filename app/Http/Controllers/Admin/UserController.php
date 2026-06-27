@@ -9,13 +9,17 @@ use App\Http\Resources\PatientResource;
 use App\Http\Resources\UserResource;
 use App\Models\Doctor;
 use App\Models\User;
+use App\Services\DoctorService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // GET /api/admin/users
+    public function __construct(private readonly DoctorService $doctorService)
+    {
+    }
+
     public function index(Request $request)
     {
         $query = User::with('roles');
@@ -41,26 +45,47 @@ class UserController extends Controller
     {
         if ($user->hasRole('patient')) {
             $user->loadMissing('patient');
-
-            return new PatientResource($user->patient);
+            return response()->json([
+                'success' => true,
+                'data' => new PatientResource($user->patient),
+            ]);
         }
 
         if ($user->hasRole('doctor')) {
             $user->loadMissing('doctor.department');
-
-            return new DoctorResource($user->doctor);
+            return response()->json([
+                'success' => true,
+                'data' => new DoctorResource($user->doctor),
+            ]);
         }
 
-        return new UserResource($user);
+        return response()->json([
+            'success' => true,
+            'data' => new UserResource($user),
+        ]);
     }
 
-    // POST /api/admin/users
+    /**
+     * @throws \Throwable
+     */
     public function store(StoreUserRequest $request)
     {
         $validated = $request->validated();
 
+        // if doctor
+        if ($validated['role'] === 'doctor') {
+
+            $doctor = $this->doctorService->createDoctor($validated);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Doctor created successfully.',
+                'data' => new UserResource($doctor->user->load('roles', 'doctor.department')),
+            ], 201);
+        }
+
+        // if Receptionist or admin
         $user = DB::transaction(function () use ($validated) {
-            // use transaction to ensure both user and doctor are created together, or neither if something fails
             $user = User::create([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
@@ -69,31 +94,16 @@ class UserController extends Controller
 
             $user->assignRole($validated['role']);
 
-            if ($validated['role'] === 'doctor') {
-                Doctor::create([
-                    'user_id' => $user->id,
-                    'full_name' => $validated['name'],
-                    'phone' => $validated['phone'],
-                    'date_of_birth' => $validated['date_of_birth'],
-                    'gender' => $validated['gender'],
-                    'specialty' => $validated['specialty'],
-                    'department_id' => $validated['department_id'],
-                ]);
-            }
-
             return $user;
         });
 
         return response()->json([
             'success' => true,
             'message' => 'User created successfully.',
-            'data' => new UserResource(
-                $user->load('roles', 'doctor.department')
-            ),
+            'data' => new UserResource($user->load('roles')),
         ], 201);
     }
 
-    // PUT /api/admin/users/{user}
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
@@ -133,6 +143,32 @@ class UserController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'User deleted successfully.',
+        ]);
+    }
+
+    public function activate(User $user)
+    {
+        $user->update(['is_active' => true]);
+        return response()->json([
+            'success' => true,
+            'message' => 'User activated successfully.',
+            'data' => new UserResource($user),
+        ]);
+    }
+
+    public function deactivate(User $user)
+    {
+        if ($user->id === auth()->id()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You cannot deactivate your own account.',
+            ], 403);
+        }
+        $user->update(['is_active' => false]);
+        return response()->json([
+            'success' => true,
+            'message' => 'User deactivated successfully.',
+            'data' => new UserResource($user),
         ]);
     }
 }
