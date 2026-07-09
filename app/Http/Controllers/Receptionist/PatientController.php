@@ -54,7 +54,7 @@ class PatientController extends Controller
         $patient = Patient::create([
             ...$request->validated(),
             'user_id' => null,
-            'profile_completed' => false,
+            'profile_completed' => true,
         ]);
 
         return response()->json([

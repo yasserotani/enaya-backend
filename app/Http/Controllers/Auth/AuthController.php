@@ -26,7 +26,7 @@ class AuthController extends Controller
                 ->orWhere('name', $request->usernameOrEmail);
         })->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -36,7 +36,7 @@ class AuthController extends Controller
         }
 
         // Check if the user is active
-        if (! $user->is_active) {
+        if (!$user->is_active) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -48,7 +48,6 @@ class AuthController extends Controller
         $user->tokens()->delete(); // delete old tokens
         $token = $user->createToken('auth_token', ['*'], now()->addDays(30));
         $expiresAt = $token->accessToken->expires_at->toISOString();
-
         return response()->json([
             'success' => true,
             'data' => [
@@ -107,11 +106,12 @@ class AuthController extends Controller
 
             $token = $user->createToken('auth_token', ['*'], now()->addDays(30));
             $expiresAt = $token->accessToken->expires_at->toISOString();
-
+            $user->load('patient');
             return response()->json([
                 'success' => true,
                 'data' => [
                     'user' => new UserResource($user),
+                    'profileCompleted' => $user->patient?->profile_completed,
                     'token' => $token->plainTextToken,
                     'expiresAt' => $expiresAt,
                 ],
@@ -134,6 +134,7 @@ class AuthController extends Controller
 
     public function me(Request $request)
     {
+
         return response()->json([
             'success' => true,
             'data' => [

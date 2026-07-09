@@ -3,32 +3,20 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Doctor\StorePrescriptionRequest;
+use App\Http\Requests\Doctor\UpdatePrescriptionRequest;
 use App\Models\AppointmentSession;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
 {
-    public function store(Request $request, AppointmentSession $session)
+    public function store(StorePrescriptionRequest $request, AppointmentSession $session)
     {
-        $request->validate([
-            'medication_name' => ['required', 'string', 'max:255'],
-            'dosage' => ['required', 'string', 'max:255'],
-            'frequency' => ['required', 'string', 'max:255'],
-            'duration_days' => ['required', 'integer', 'min:1'],
-            'instructions' => ['nullable', 'string', 'max:1000'],
-        ]);
-
         $this->checkSessionOwnership($session, $request->user()->doctor);
         $this->checkSessionActive($session);
 
-        $prescription = $session->prescriptions()->create($request->only([
-            'medication_name',
-            'dosage',
-            'frequency',
-            'duration_days',
-            'instructions',
-        ]));
+        $prescription = $session->prescriptions()->create($request->validated());
 
         return response()->json([
             'success' => true,
@@ -36,6 +24,26 @@ class PrescriptionController extends Controller
             'error' => null,
             'errorCode' => null,
         ], 201);
+    }
+
+    public function update(UpdatePrescriptionRequest $request, AppointmentSession $session, Prescription $prescription)
+    {
+        $this->checkSessionOwnership($session, $request->user()->doctor);
+        $this->checkSessionActive($session);
+
+        if ($prescription->appointment_session_id !== $session->id) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Prescription does not belong to this session',
+            ], 404);
+        }
+
+        $prescription->update($request->validated());
+
+        return response()->json([
+            'success' => true,
+            'data' => ['prescription' => $prescription->fresh()],
+        ]);
     }
 
     private function checkSessionOwnership(AppointmentSession $session, $doctor): void

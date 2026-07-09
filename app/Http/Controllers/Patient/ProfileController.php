@@ -76,7 +76,7 @@ class ProfileController extends Controller
             $user->update($request->only(['name', 'email']));
             $patient->update($request->only(['phone', 'date_of_birth', 'gender', 'address', 'job']));
 
-            
+
             return response()->json([
                 'success' => true,
                 'message' => 'Profile updated successfully',

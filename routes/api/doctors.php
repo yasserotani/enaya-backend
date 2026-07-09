@@ -35,5 +35,6 @@ Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor'])->group(func
     Route::prefix('sessions/{session}')->group(function () {
         Route::post('/prescriptions', [PrescriptionController::class, 'store']);
         Route::delete('/prescriptions/{prescription}', [PrescriptionController::class, 'destroy']);
+        Route::put('/prescriptions/{prescription}', [PrescriptionController::class, 'update']);
     });
 });

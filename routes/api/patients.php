@@ -5,6 +5,7 @@ use App\Http\Controllers\Patient\AppointmentController;
 use App\Http\Controllers\Patient\ProfileController;
 use App\Http\Controllers\Patient\PrescriptionController;
 use App\Http\Controllers\Patient\AppointmentSessionController;
+use App\Http\Controllers\Patient\DoctorController; // Import the new DoctorController
 
 // Profil
 Route::middleware(['auth:sanctum', 'role:patient'])
@@ -42,4 +43,12 @@ Route::middleware(['auth:sanctum', 'role:patient'])
     ->group(function () {
         Route::get('/', [AppointmentSessionController::class, 'index']);
         Route::get('/{session}', [AppointmentSessionController::class, 'show']);
+    });
+
+// Doctors
+Route::middleware(['auth:sanctum', 'role:patient'])
+    ->prefix('doctors')
+    ->group(function () {
+        Route::get('/', [DoctorController::class, 'index']);
+        Route::get('/{doctor}', [DoctorController::class, 'show']);
     });

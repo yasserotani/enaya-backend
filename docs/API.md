@@ -28,6 +28,7 @@ Accept: application/json
 ### Phone Numbers
 
 Phone numbers are normalized by the backend. The frontend may send Syrian phone numbers in these formats:
+
 - `09xxxxxxxx` (Syrian domestic)
 - `9639xxxxxxxx` (without +countrycode)
 - `009639xxxxxxxx` (with 00 prefix)
@@ -53,7 +54,8 @@ All auth endpoints are public (no authentication required).
 
 `POST /api/auth/signup`
 
-Create a new app user with the `patient` role. If a walk-in patient record exists with matching phone number, the new account is automatically linked.
+Create a new app user with the `patient` role. If a walk-in patient record exists with matching phone number, the new
+account is automatically linked.
 
 **Request:**
 
@@ -79,6 +81,7 @@ Create a new app user with the `patient` role. If a walk-in patient record exist
             "username": "newuser123",
             "roleId": 3
         },
+        "profileCompleted": false,
         "token": "plain-text-sanctum-token",
         "expiresAt": "2026-07-07T12:00:00.000000Z"
     },
@@ -96,9 +99,13 @@ Create a new app user with the `patient` role. If a walk-in patient record exist
 **Mobile/Frontend Next Steps:**
 
 1. Store the returned Sanctum token securely
-2. Call `GET /api/patients/profile` to check profile status
-3. If `profile_completed` is `false`, navigate to complete-profile screen
-4. If `profile_completed` is `true`, allow access to app
+2. Read `profileCompleted` directly from this response
+3. If `false`, navigate to complete-profile screen
+4. If `true`, allow access to app
+
+Note: this field is only present on the register response. On subsequent
+logins, call `GET /api/patients/profile` and check `profile_completed`
+there instead (see Patient Profile Endpoints below).
 
 ### Login
 
@@ -117,7 +124,8 @@ Authenticate with username/email and password.
 
 **Response `200`:**
 
-Same token shape as signup response.
+Same token shape as signup response, without `profileCompleted`.
+For patient accounts, check profile status via `GET /api/patients/profile`.
 
 **Error Responses:**
 
@@ -322,9 +330,9 @@ Get list of doctors by department. Used for appointment booking form.
 
 **Query Parameters:**
 
-| Name         | Type     | Required | Description                            |
-|--------------|----------|----------|----------------------------------------|
-| `department` | string   | Yes      | Department ID (numeric) or name        |
+| Name         | Type   | Required | Description                     |
+|--------------|--------|----------|---------------------------------|
+| `department` | string | Yes      | Department ID (numeric) or name |
 
 **Response `200`:**
 
@@ -349,6 +357,78 @@ Get list of doctors by department. Used for appointment booking form.
 
 ---
 
+## Patient Doctor Management
+
+**Authorization:** `auth:sanctum` + `role:patient`
+
+Base path: `/api/doctors`
+
+### List Doctors
+
+`GET /api/doctors`
+
+Retrieve a listing of all doctors.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "full_name": "Dr. John Doe",
+            "email": "john.doe@example.com",
+            "phone": "+963912345678",
+            "date_of_birth": "1980-01-01",
+            "gender": "male",
+            "specialty": "Cardiology",
+            "department": {
+                "id": 1,
+                "name": "Cardiology"
+            },
+            "working_hours_start": "09:00",
+            "working_hours_end": "17:00"
+        }
+    ],
+    "message": "Doctors retrieved successfully."
+}
+```
+
+### Get Doctor Details
+
+`GET /api/doctors/{doctor}`
+
+Retrieve the details of a specific doctor.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "user_id": 1,
+        "full_name": "Dr. John Doe",
+        "email": "john.doe@example.com",
+        "phone": "+963912345678",
+        "date_of_birth": "1980-01-01",
+        "gender": "male",
+        "specialty": "Cardiology",
+        "department": {
+            "id": 1,
+            "name": "Cardiology"
+        },
+        "working_hours_start": "09:00",
+        "working_hours_end": "17:00"
+    },
+    "message": "Doctor retrieved successfully."
+}
+```
+
+---
+
 ## Patient Appointments
 
 **Authorization:** `auth:sanctum` + `role:patient`
@@ -363,11 +443,11 @@ Get patient's appointments with optional filtering.
 
 **Query Parameters:**
 
-| Name       | Type   | Values               | Description                  |
-|------------|--------|----------------------|------------------------------|
-| `status`   | enum   | scheduled, confirmed, arrived, inProgress, completed, canceled, noShow | Filter by appointment status |
-| `doctor_id` | int   |                      | Filter by doctor ID          |
-| `timeline` | enum   | upcoming, past       | Filter by timeline           |
+| Name        | Type | Values                                                                 | Description                  |
+|-------------|------|------------------------------------------------------------------------|------------------------------|
+| `status`    | enum | scheduled, confirmed, arrived, inProgress, completed, canceled, noShow | Filter by appointment status |
+| `doctor_id` | int  |                                                                        | Filter by doctor ID          |
+| `timeline`  | enum | upcoming, past                                                         | Filter by timeline           |
 
 **Response `200`:**
 
@@ -459,10 +539,10 @@ Get available time slots for a doctor on a specific date.
 
 **Query Parameters:**
 
-| Name        | Type   | Required | Description       |
-|-------------|--------|----------|-------------------|
-| `doctor_id` | int    | Yes      | Doctor ID         |
-| `date`      | date   | Yes      | Date (YYYY-MM-DD) |
+| Name        | Type | Required | Description       |
+|-------------|------|----------|-------------------|
+| `doctor_id` | int  | Yes      | Doctor ID         |
+| `date`      | date | Yes      | Date (YYYY-MM-DD) |
 
 **Response `200`:**
 
@@ -527,7 +607,9 @@ Change appointment time.
 {
     "success": true,
     "message": "Appointment rescheduled.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -687,12 +769,12 @@ List all patients with optional filtering.
 
 **Query Parameters:**
 
-| Name           | Type   | Values        | Description                            |
-|----------------|--------|---------------|----------------------------------------|
-| `search`       | string |               | Search by name or phone                |
-| `gender`       | enum   | male, female  | Filter by gender                       |
-| `has_account`  | bool   | true, false   | Filter by account status               |
-| `with_trashed` | bool   | true, false   | Include soft-deleted patients          |
+| Name           | Type   | Values       | Description                   |
+|----------------|--------|--------------|-------------------------------|
+| `search`       | string |              | Search by name or phone       |
+| `gender`       | enum   | male, female | Filter by gender              |
+| `has_account`  | bool   | true, false  | Filter by account status      |
+| `with_trashed` | bool   | true, false  | Include soft-deleted patients |
 
 **Response `200`:**
 
@@ -709,7 +791,6 @@ List all patients with optional filtering.
             "gender": "female",
             "address": "Damascus",
             "job": "Teacher",
-            "profile_completed": true,
             "emergency_contact": null,
             "created_at": "2026-06-11T12:00:00.000000Z"
         }
@@ -819,7 +900,9 @@ Restore a soft-deleted patient.
 {
     "success": true,
     "message": "Patient restored successfully.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -854,14 +937,14 @@ List appointments with filtering. Defaults to today's appointments.
 
 **Query Parameters:**
 
-| Name       | Type   | Format   | Description            |
-|------------|--------|----------|------------------------|
-| `date`     | date   | Y-m-d    | Filter by single date  |
-| `date_from` | date   | Y-m-d    | Filter from date       |
-| `date_to`  | date   | Y-m-d    | Filter to date         |
-| `doctor_id` | int    |          | Filter by doctor       |
-| `status`   | enum   | See list | Filter by status       |
-| `search`   | string |          | Search by patient name/phone |
+| Name        | Type   | Format   | Description                  |
+|-------------|--------|----------|------------------------------|
+| `date`      | date   | Y-m-d    | Filter by single date        |
+| `date_from` | date   | Y-m-d    | Filter from date             |
+| `date_to`   | date   | Y-m-d    | Filter to date               |
+| `doctor_id` | int    |          | Filter by doctor             |
+| `status`    | enum   | See list | Filter by status             |
+| `search`    | string |          | Search by patient name/phone |
 
 **Response `200`:**
 
@@ -905,7 +988,9 @@ Create appointment on behalf of a patient (walk-in or app user).
 {
     "success": true,
     "message": "Appointment booked successfully",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -929,7 +1014,9 @@ Confirm a scheduled appointment.
 {
     "success": true,
     "message": "Appointment confirmed.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -945,7 +1032,9 @@ Mark patient as arrived.
 {
     "success": true,
     "message": "Patient marked as arrived.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -969,7 +1058,9 @@ Change appointment time.
 {
     "success": true,
     "message": "Appointment rescheduled.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -993,7 +1084,9 @@ Cancel appointment.
 {
     "success": true,
     "message": "Appointment cancelled.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1009,7 +1102,9 @@ Mark patient as no-show.
 {
     "success": true,
     "message": "Marked as no-show.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1029,11 +1124,11 @@ List doctor's appointments. Defaults to today's appointments.
 
 **Query Parameters:**
 
-| Name       | Type   | Values               | Description         |
-|------------|--------|----------------------|---------------------|
-| `status`   | enum   | See status list      | Filter by status    |
-| `date`     | date   | Y-m-d                | Filter by date      |
-| `timeline` | enum   | upcoming, past       | Filter by timeline  |
+| Name       | Type | Values          | Description        |
+|------------|------|-----------------|--------------------|
+| `status`   | enum | See status list | Filter by status   |
+| `date`     | date | Y-m-d           | Filter by date     |
+| `timeline` | enum | upcoming, past  | Filter by timeline |
 
 **Response `200`:**
 
@@ -1048,7 +1143,9 @@ List doctor's appointments. Defaults to today's appointments.
             "scheduled_at": "2026-06-20T10:00:00.000000Z",
             "status": "arrived",
             "visit_reason": "Regular Checkup",
-            "patient": { ... }
+            "patient": {
+                ...
+            }
         }
     ]
 }
@@ -1076,7 +1173,9 @@ Confirm a scheduled appointment.
 {
     "success": true,
     "message": "Appointment confirmed.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1092,7 +1191,9 @@ Cancel appointment.
 {
     "success": true,
     "message": "Appointment cancelled.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1108,7 +1209,9 @@ Mark patient as no-show.
 {
     "success": true,
     "message": "Marked as no-show.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1228,7 +1331,9 @@ Get session details.
 {
     "success": true,
     "data": {
-        "session": { ... }
+        "session": {
+            ...
+        }
     }
 }
 ```
@@ -1256,7 +1361,9 @@ Update session notes or status. Cannot modify completed sessions.
 {
     "success": true,
     "data": {
-        "session": { ... }
+        "session": {
+            ...
+        }
     }
 }
 ```
@@ -1308,6 +1415,45 @@ Add prescription to session (only during active session).
 
 **Response `422`:** if session not active
 
+### Update Prescription
+
+`PATCH /api/doctor/sessions/{session}/prescriptions/{prescription}`
+
+Update an existing prescription.
+
+**Request:**
+
+```json
+{
+    "medication_name": "Updated Medication",
+    "dosage": "1000mg",
+    "frequency": "Once daily",
+    "duration_days": 14,
+    "instructions": "Take with water"
+}
+```
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "prescription": {
+            "id": 1,
+            "appointment_session_id": 1,
+            "medication_name": "Updated Medication",
+            "dosage": "1000mg",
+            "frequency": "Once daily",
+            "duration_days": 14,
+            "instructions": "Take with water",
+            "created_at": "2026-06-11T12:00:00.000000Z",
+            "updated_at": "2026-06-11T12:00:00.000000Z"
+        }
+    }
+}
+```
+
 ### Delete Prescription
 
 `DELETE /api/doctor/sessions/{session}/prescriptions/{prescription}`
@@ -1341,16 +1487,16 @@ Get all patients who have appointments with this doctor.
 
 **Query Parameters:**
 
-| Name                | Type   | Values        | Description                              |
-|---------------------|--------|---------------|------------------------------------------|
-| `search`            | string |               | Search by name or phone                  |
-| `gender`            | enum   | male, female  | Filter by gender                         |
-| `has_account`       | bool   | true, false   | Filter by account status                 |
-| `profile_completed` | bool   | true, false   | Filter by profile completion             |
-| `created_from`      | date   | Y-m-d         | Filter from creation date                |
-| `created_to`        | date   | Y-m-d         | Filter to creation date                  |
-| `birth_from`        | date   | Y-m-d         | Filter from birth date                   |
-| `birth_to`          | date   | Y-m-d         | Filter to birth date                     |
+| Name                | Type   | Values       | Description                  |
+|---------------------|--------|--------------|------------------------------|
+| `search`            | string |              | Search by name or phone      |
+| `gender`            | enum   | male, female | Filter by gender             |
+| `has_account`       | bool   | true, false  | Filter by account status     |
+| `profile_completed` | bool   | true, false  | Filter by profile completion |
+| `created_from`      | date   | Y-m-d        | Filter from creation date    |
+| `created_to`        | date   | Y-m-d        | Filter to creation date      |
+| `birth_from`        | date   | Y-m-d        | Filter from birth date       |
+| `birth_to`          | date   | Y-m-d        | Filter to birth date         |
 
 **Response `200`:**
 
@@ -1404,7 +1550,9 @@ Get patient profile with all appointments from this doctor.
                 "status": "completed",
                 "appointmentSession": {
                     "id": 1,
-                    "prescriptions": [ ... ]
+                    "prescriptions": [
+                        ...
+                    ]
                 }
             }
         ]
@@ -1430,11 +1578,11 @@ List all system users.
 
 **Query Parameters:**
 
-| Name   | Type   | Values                              | Description               |
-|--------|--------|-------------------------------------|---------------------------|
-| `search` | string |                                     | Search by name or email   |
-| `role` | enum   | doctor, receptionist, patient, admin | Filter by role            |
-| `page` | int    |                                     | Pagination page           |
+| Name     | Type   | Values                               | Description             |
+|----------|--------|--------------------------------------|-------------------------|
+| `search` | string |                                      | Search by name or email |
+| `role`   | enum   | doctor, receptionist, patient, admin | Filter by role          |
+| `page`   | int    |                                      | Pagination page         |
 
 **Response `200`:**
 
@@ -1448,7 +1596,9 @@ List all system users.
                 "id": 1,
                 "name": "Dr. House",
                 "email": "house@enaya.com",
-                "roles": ["doctor"]
+                "roles": [
+                    "doctor"
+                ]
             }
         ],
         "last_page": 1
@@ -1501,7 +1651,9 @@ Create new user (doctor or receptionist).
         "id": 5,
         "name": "Nadia",
         "email": "nadia@enaya.com",
-        "roles": ["receptionist"]
+        "roles": [
+            "receptionist"
+        ]
     }
 }
 ```
@@ -1533,7 +1685,9 @@ Update user information.
 {
     "success": true,
     "message": "User updated successfully.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1566,7 +1720,9 @@ Activate a user account.
 {
     "success": true,
     "message": "User activated successfully.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1582,7 +1738,9 @@ Deactivate a user account.
 {
     "success": true,
     "message": "User deactivated successfully.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1604,18 +1762,18 @@ List all patients.
 
 **Query Parameters:**
 
-| Name               | Type   | Values        | Description                          |
-|--------------------|--------|---------------|--------------------------------------|
-| `search`           | string |               | Search by name or phone              |
-| `gender`           | enum   | male, female  | Filter by gender                     |
-| `has_account`      | bool   | true, false   | Filter by account status             |
-| `profile_completed` | bool   | true, false   | Filter by completion                 |
-| `created_from`     | date   | Y-m-d         | Filter from creation date            |
-| `created_to`       | date   | Y-m-d         | Filter to creation date              |
-| `birth_from`       | date   | Y-m-d         | Filter from birth date               |
-| `birth_to`         | date   | Y-m-d         | Filter to birth date                 |
-| `with_trashed`     | bool   | true, false   | Include deleted patients             |
-| `page`             | int    |               | Pagination page                      |
+| Name                | Type   | Values       | Description               |
+|---------------------|--------|--------------|---------------------------|
+| `search`            | string |              | Search by name or phone   |
+| `gender`            | enum   | male, female | Filter by gender          |
+| `has_account`       | bool   | true, false  | Filter by account status  |
+| `profile_completed` | bool   | true, false  | Filter by completion      |
+| `created_from`      | date   | Y-m-d        | Filter from creation date |
+| `created_to`        | date   | Y-m-d        | Filter to creation date   |
+| `birth_from`        | date   | Y-m-d        | Filter from birth date    |
+| `birth_to`          | date   | Y-m-d        | Filter to birth date      |
+| `with_trashed`      | bool   | true, false  | Include deleted patients  |
+| `page`              | int    |              | Pagination page           |
 
 **Response `200`:**
 
@@ -1663,7 +1821,9 @@ Create new patient record.
 {
     "success": true,
     "message": "Patient created successfully.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1691,7 +1851,9 @@ Update patient information. Admins can edit any patient.
 {
     "success": true,
     "message": "Patient updated successfully.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1722,7 +1884,9 @@ Restore soft-deleted patient.
 {
     "success": true,
     "message": "Patient restored successfully.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -1757,13 +1921,13 @@ List all doctors.
 
 **Query Parameters:**
 
-| Name             | Type   | Values        | Description          |
-|------------------|--------|---------------|----------------------|
-| `search`         | string |               | Search by name       |
-| `specialty`      | string |               | Filter by specialty  |
-| `department_id`  | int    |               | Filter by department |
-| `gender`         | enum   | male, female  | Filter by gender     |
-| `per_page`       | int    |               | Results per page     |
+| Name            | Type   | Values       | Description          |
+|-----------------|--------|--------------|----------------------|
+| `search`        | string |              | Search by name       |
+| `specialty`     | string |              | Filter by specialty  |
+| `department_id` | int    |              | Filter by department |
+| `gender`        | enum   | male, female | Filter by gender     |
+| `per_page`      | int    |              | Results per page     |
 
 **Response `200`:**
 
@@ -1778,7 +1942,9 @@ List all doctors.
                 "user_id": 1,
                 "full_name": "Dr. Sam",
                 "specialty": "Cardiology",
-                "department": { ... }
+                "department": {
+                    ...
+                }
             }
         ],
         "last_page": 1
@@ -1814,7 +1980,9 @@ Create new doctor with user account.
 ```json
 {
     "success": true,
-    "data": { ... },
+    "data": {
+        ...
+    },
     "error": null
 }
 ```
@@ -1830,7 +1998,9 @@ Get doctor details.
 ```json
 {
     "success": true,
-    "data": { ... },
+    "data": {
+        ...
+    },
     "error": null
 }
 ```
@@ -1846,7 +2016,9 @@ Update doctor information.
 ```json
 {
     "success": true,
-    "data": { ... },
+    "data": {
+        ...
+    },
     "error": null
 }
 ```
@@ -1880,7 +2052,9 @@ Restore soft-deleted doctor and reactivate user.
 {
     "success": true,
     "message": "Doctor restored successfully",
-    "data": { ... },
+    "data": {
+        ...
+    },
     "error": null
 }
 ```
@@ -1926,8 +2100,8 @@ List all departments.
 
 **Query Parameters:**
 
-| Name     | Type   | Description                |
-|----------|--------|----------------------------|
+| Name     | Type   | Description               |
+|----------|--------|---------------------------|
 | `search` | string | Filter by department name |
 
 **Response `200`:**
@@ -1989,7 +2163,9 @@ Get department details.
 ```json
 {
     "success": true,
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -2013,7 +2189,9 @@ Update department.
 {
     "success": true,
     "message": "Department updated successfully",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -2050,15 +2228,15 @@ List clinic's appointments with pagination, ordered by latest scheduled time.
 
 **Query Parameters:**
 
-| Name          | Type   | Format   | Description            |
-|---------------|--------|----------|------------------------|
-| `date`        | date   | Y-m-d    | Filter by single date  |
-| `date_from`   | date   | Y-m-d    | Filter from date       |
-| `date_to`     | date   | Y-m-d    | Filter to date         |
-| `doctor_id`   | int    |          | Filter by doctor       |
-| `status`      | enum   | See list | Filter by status       |
-| `search`      | string |          | Search patient/reason  |
-| `per_page`    | int    |          | Items per page (default: 15) |
+| Name        | Type   | Format   | Description                  |
+|-------------|--------|----------|------------------------------|
+| `date`      | date   | Y-m-d    | Filter by single date        |
+| `date_from` | date   | Y-m-d    | Filter from date             |
+| `date_to`   | date   | Y-m-d    | Filter to date               |
+| `doctor_id` | int    |          | Filter by doctor             |
+| `status`    | enum   | See list | Filter by status             |
+| `search`    | string |          | Search patient/reason        |
+| `per_page`  | int    |          | Items per page (default: 15) |
 
 **Response `200`:**
 
@@ -2073,8 +2251,12 @@ List clinic's appointments with pagination, ordered by latest scheduled time.
             "scheduled_at": "2026-06-20T10:00:00.000000Z",
             "status": "scheduled",
             "visit_reason": "Regular Checkup",
-            "patient": { ... },
-            "doctor": { ... }
+            "patient": {
+                ...
+            },
+            "doctor": {
+                ...
+            }
         }
     ],
     "meta": {
@@ -2118,8 +2300,12 @@ Create appointment on behalf of a patient (walk-in or app user).
         "status": "scheduled",
         "visit_reason": "Regular Checkup",
         "notes": "Admin booked",
-        "patient": { ... },
-        "doctor": { ... }
+        "patient": {
+            ...
+        },
+        "doctor": {
+            ...
+        }
     }
 }
 ```
@@ -2132,11 +2318,11 @@ Get appointment statistics and breakdown by status.
 
 **Query Parameters:**
 
-| Name        | Type   | Format   | Description      |
-|-------------|--------|----------|------------------|
-| `date_from` | date   | Y-m-d    | Filter from date |
-| `date_to`   | date   | Y-m-d    | Filter to date   |
-| `doctor_id` | int    |          | Filter by doctor |
+| Name        | Type | Format | Description      |
+|-------------|------|--------|------------------|
+| `date_from` | date | Y-m-d  | Filter from date |
+| `date_to`   | date | Y-m-d  | Filter to date   |
+| `doctor_id` | int  |        | Filter by doctor |
 
 **Response `200`:**
 
@@ -2177,7 +2363,9 @@ Confirm a scheduled appointment.
 {
     "success": true,
     "message": "Appointment confirmed.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -2193,7 +2381,9 @@ Mark patient as arrived.
 {
     "success": true,
     "message": "Patient marked as arrived.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -2217,7 +2407,9 @@ Cancel any appointment.
 {
     "success": true,
     "message": "Appointment cancelled.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -2233,7 +2425,9 @@ Mark appointment as no-show.
 {
     "success": true,
     "message": "Marked as no-show.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -2257,7 +2451,9 @@ Reschedule appointment.
 {
     "success": true,
     "message": "Appointment rescheduled.",
-    "data": { ... }
+    "data": {
+        ...
+    }
 }
 ```
 
@@ -2269,10 +2465,10 @@ Get available time slots for a doctor on a specific date.
 
 **Query Parameters:**
 
-| Name        | Type   | Required | Description       |
-|-------------|--------|----------|-------------------|
-| `doctor_id` | int    | Yes      | Doctor ID         |
-| `date`      | date   | Yes      | Date (YYYY-MM-DD) |
+| Name        | Type | Required | Description       |
+|-------------|------|----------|-------------------|
+| `doctor_id` | int  | Yes      | Doctor ID         |
+| `date`      | date | Yes      | Date (YYYY-MM-DD) |
 
 **Response `200`:**
 
@@ -2351,15 +2547,15 @@ Get comprehensive dashboard data including KPIs, recent activity, and charts.
 
 Valid appointment statuses throughout the system:
 
-| Status      | Description              |
-|-------------|--------------------------|
-| scheduled   | Initial booking status   |
-| confirmed   | Receptionist confirmed   |
-| arrived     | Patient arrived in clinic |
-| inProgress  | During session with doctor |
-| completed   | Session finished         |
-| canceled    | Cancelled by any party   |
-| noShow      | Patient didn't show up  |
+| Status     | Description                |
+|------------|----------------------------|
+| scheduled  | Initial booking status     |
+| confirmed  | Receptionist confirmed     |
+| arrived    | Patient arrived in clinic  |
+| inProgress | During session with doctor |
+| completed  | Session finished           |
+| canceled   | Cancelled by any party     |
+| noShow     | Patient didn't show up     |
 
 ---
 
@@ -2390,7 +2586,9 @@ List endpoints return paginated results:
     "success": true,
     "data": {
         "current_page": 1,
-        "data": [ ... ],
+        "data": [
+            ...
+        ],
         "last_page": 5,
         "per_page": 15,
         "total": 67
@@ -2400,14 +2598,15 @@ List endpoints return paginated results:
 
 ### Soft Deletes
 
-Patients and doctors support soft deletion (recovery possible). Use `with_trashed=true` query parameter to include deleted records.
+Patients and doctors support soft deletion (recovery possible). Use `with_trashed=true` query parameter to include
+deleted records.
 
 ### Role-Based Access
 
 All endpoints enforce role-based access control through middleware:
 
 - `role:patient` - Patient endpoints
-- `role:receptionist` - Receptionist endpoints  
+- `role:receptionist` - Receptionist endpoints
 - `role:doctor` - Doctor endpoints
 - `role:admin` - Admin endpoints
 
