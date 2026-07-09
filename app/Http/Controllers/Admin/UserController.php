@@ -128,7 +128,7 @@ class UserController extends Controller
         ]);
     }
 
-    // DELETE /api/admin/users/{user}
+
     public function destroy(User $user)
     {
         if ($user->id === auth()->id()) {
@@ -138,6 +138,38 @@ class UserController extends Controller
             ], 403);
         }
 
+        // if the user doctor or patient  , soft delete doctor row and set use is_active to false
+        if ($user->hasRole('doctor')) {
+            $user->loadMissing('doctor');
+
+            if ($user->doctor) {
+                $user->doctor->delete(); // soft delete
+            }
+            // prevent logging in by setting is_active to false
+            $user->update(['is_active' => false]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Doctor deleted successfully.',
+            ]);
+        }
+
+        if ($user->hasRole('patient')) {
+            $user->loadMissing('patient');
+
+            if ($user->patient) {
+                $user->patient->delete(); // soft delete
+            }
+
+            $user->update(['is_active' => false]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Patient deleted successfully.',
+            ]);
+        }
+
+        // admin or reception , no soft delete
         $user->delete();
 
         return response()->json([
@@ -170,5 +202,14 @@ class UserController extends Controller
             'message' => 'User deactivated successfully.',
             'data' => new UserResource($user),
         ]);
+    }
+
+    public function test()
+    {
+        $user = User::find(1);
+        $user->patient()
+            ->where('created_at', '<=', now()->subDays(10))
+            ->get();
+
     }
 }

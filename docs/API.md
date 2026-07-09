@@ -2046,7 +2046,7 @@ Base path: `/api/admin/appointments`
 
 `GET /api/admin/appointments`
 
-List clinic's appointments. Defaults to today's appointments.
+List clinic's appointments with pagination, ordered by latest scheduled time.
 
 **Query Parameters:**
 
@@ -2058,13 +2058,69 @@ List clinic's appointments. Defaults to today's appointments.
 | `doctor_id`   | int    |          | Filter by doctor       |
 | `status`      | enum   | See list | Filter by status       |
 | `search`      | string |          | Search patient/reason  |
+| `per_page`    | int    |          | Items per page (default: 15) |
 
 **Response `200`:**
 
 ```json
 {
     "success": true,
-    "data": [ ... ]
+    "data": [
+        {
+            "id": 1,
+            "patient_id": 1,
+            "doctor_id": 1,
+            "scheduled_at": "2026-06-20T10:00:00.000000Z",
+            "status": "scheduled",
+            "visit_reason": "Regular Checkup",
+            "patient": { ... },
+            "doctor": { ... }
+        }
+    ],
+    "meta": {
+        "current_page": 1,
+        "last_page": 1,
+        "per_page": 15,
+        "total": 1
+    }
+}
+```
+
+### Create Appointment
+
+`POST /api/admin/appointments`
+
+Create appointment on behalf of a patient (walk-in or app user).
+
+**Request:**
+
+```json
+{
+    "patient_id": 1,
+    "doctor_id": 1,
+    "scheduled_at": "2026-06-20 10:00:00",
+    "visit_reason": "Regular Checkup",
+    "notes": "Admin booked"
+}
+```
+
+**Response `201`:**
+
+```json
+{
+    "success": true,
+    "message": "Appointment booked successfully",
+    "data": {
+        "id": 1,
+        "patient_id": 1,
+        "doctor_id": 1,
+        "scheduled_at": "2026-06-20T10:00:00.000000Z",
+        "status": "scheduled",
+        "visit_reason": "Regular Checkup",
+        "notes": "Admin booked",
+        "patient": { ... },
+        "doctor": { ... }
+    }
 }
 ```
 
@@ -2202,6 +2258,33 @@ Reschedule appointment.
     "success": true,
     "message": "Appointment rescheduled.",
     "data": { ... }
+}
+```
+
+### Get Available Slots
+
+`GET /api/admin/appointments/available-slots`
+
+Get available time slots for a doctor on a specific date.
+
+**Query Parameters:**
+
+| Name        | Type   | Required | Description       |
+|-------------|--------|----------|-------------------|
+| `doctor_id` | int    | Yes      | Doctor ID         |
+| `date`      | date   | Yes      | Date (YYYY-MM-DD) |
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30"
+    ]
 }
 ```
 

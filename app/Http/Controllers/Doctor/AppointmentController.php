@@ -107,4 +107,21 @@ class AppointmentController extends Controller
             'data' => new AppointmentResource($appointment),
         ]);
     }
+
+    public function availableSlots(Request $request)
+    {
+        $request->validate([
+            'date' => 'required|date_format:Y-m-d',
+        ]);
+
+        $doctorId = $request->user()->doctor->id;
+        $date = Carbon::parse($request->input('date'));
+
+        $slots = $this->appointments->availableSlots($doctorId, $date);
+
+        return response()->json([
+            'success' => true,
+            'data' => $slots,
+        ]);
+    }
 }

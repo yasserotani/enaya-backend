@@ -7,6 +7,7 @@ use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class AppointmentSeeder extends Seeder
 {
@@ -26,7 +27,7 @@ class AppointmentSeeder extends Seeder
             return;
         }
 
-        $appointmentCount = fake()->numberBetween(50, 150);
+        $appointmentCount = fake()->numberBetween(100, 300); // Increased count for more data
         $statuses = array_column(AppointmentStatus::cases(), 'value');
 
         // Prevent duplicate (doctor_id + scheduled_at)
@@ -36,14 +37,13 @@ class AppointmentSeeder extends Seeder
 
             $doctorId = $doctors->random()->id;
 
-            // Generate unique slot for this doctor
+            // Generate unique slot for this doctor, including today and future dates
             do {
-                $date = now()
-                    ->subDays(fake()->numberBetween(0, 6))
-                    ->setTime(
-                        fake()->numberBetween(8, 16),
-                        fake()->randomElement([0, 30])
-                    );
+                $date = fake()->dateTimeBetween('-1 month', '+3 months'); // Mix of past, present, and future
+                $date = Carbon::parse($date)->setTime(
+                    fake()->numberBetween(8, 16), // Working hours 8 AM to 4 PM
+                    fake()->randomElement([0, 30]) // 0 or 30 minutes
+                );
 
                 $slotKey = $doctorId . '_' . $date->format('Y-m-d H:i:s');
 

@@ -17,15 +17,15 @@ class DoctorService
     public function createDoctor(array $data): Doctor
     {
         return DB::transaction(function () use ($data) {
+            // create user account
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password'])
             ]);
 
-            // create user account
             $user->assignRole('doctor');
-
+            // create the doctor row
             return Doctor::create([
                 'user_id' => $user->id,
                 'full_name' => $data['name'],

@@ -26,7 +26,14 @@ class DoctorController extends Controller
      */
     public function index(Request $request)
     {
-        $doctors = Doctor::with(['department', 'user'])
+        $query = Doctor::with(['department', 'user']);
+
+        // if the amdin the deleted doctors
+        if ($request->boolean('with_trashed')) {
+            $query->withTrashed();
+        }
+
+        $doctors = $query
             ->applyFilters($request->only([
                 'department_id',
                 'specialty',
@@ -147,18 +154,21 @@ class DoctorController extends Controller
     /**
      * Restore the specified soft-deleted doctor and reactivate the related user.
      */
-    public function restore(string $doctor_id): JsonResponse
+    public function restore($id): JsonResponse
     {
-        $doctor = Doctor::withTrashed()->findOrFail($doctor_id); //  find trashed doctor
+        $doctor = Doctor::onlyTrashed()->findOrFail($id);
         DB::transaction(function () use ($doctor) {
             $doctor->restore();
-            $doctor->user->update(['is_active' => true]); // Reactivate the related user
+            $doctor->user()->update([
+                'is_active' => true,
+            ]);
         });
-
         return response()->json([
             'success' => true,
-            'data' => new DoctorResource($doctor->load(['department', 'user'])),
             'message' => 'Doctor restored successfully',
+            'data' => new DoctorResource(
+                $doctor->fresh()->load(['user', 'department'])
+            ),
             'error' => null,
         ]);
     }

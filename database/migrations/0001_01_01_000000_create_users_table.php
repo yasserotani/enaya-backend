@@ -20,7 +20,9 @@ return new class extends Migration {
 
             $table->timestamps();
         });
+        Scheme::create('test' , function (Blueprint $table) {
 
+        });
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');

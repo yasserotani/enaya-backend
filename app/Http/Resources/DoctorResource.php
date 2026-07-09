@@ -21,14 +21,15 @@ class DoctorResource extends JsonResource
             'date_of_birth' => $this->date_of_birth?->format('Y-m-d'),
             'gender' => $this->gender,
             'specialty' => $this->specialty,
-            'working_hours_start' => $this->working_hours_start,
-            'working_hours_end' => $this->working_hours_end,
+            'working_hours_start' => optional($this->working_hours_start)->format('H:i'),
+            'working_hours_end' => optional($this->working_hours_end)->format('H:i'),
             'department' => [
                 'id' => $this->department?->id,
                 'name' => $this->department?->name,
             ],
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            "deleted_at" => $this->deleted_at,
         ];
     }
 }

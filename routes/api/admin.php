@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])
         Route::delete('patients/{patient}/force-delete', [PatientController::class, 'forceDelete']);
 
         //doctors
-        Route::apiResource('doctors', DoctorController::class);
+        Route::apiResource('doctors', DoctorController::class)->withTrashed(['show']);
         Route::put('doctors/{doctor}/restore', [DoctorController::class, 'restore']); // Fixed route
         Route::patch('doctors/{doctor}/reset-password', [DoctorController::class, 'resetPassword']); // Fixed route
 

@@ -29,6 +29,7 @@ Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor'])->group(func
     Route::prefix('{doctor}')->group(function () {
         Route::get('/patients', [PatientController::class, 'index']);
         Route::get('/patients/{patient}', [PatientController::class, 'show']);
+        Route::get('/available-slots', [AppointmentController::class, 'availableSlots']);
     });
 
     Route::prefix('sessions/{session}')->group(function () {

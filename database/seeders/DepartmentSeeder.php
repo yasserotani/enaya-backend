@@ -12,6 +12,17 @@ class DepartmentSeeder extends Seeder
      */
     public function run(): void
     {
-        Department::factory()->count(10)->create();
+        $departments = [
+            'Cardiology',
+            'Neurology',
+            'Pediatrics',
+            'Orthopedics',
+            'Radiology',
+        ];
+
+        foreach ($departments as $name) {
+            Department::create(['name' => $name]);
+        }
     }
+
 }

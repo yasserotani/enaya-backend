@@ -32,24 +32,29 @@ class AppointmentController extends Controller
             'doctor_id' => 'nullable|exists:doctors,id',
             'status' => 'nullable|string',
             'search' => 'nullable|string|max:100',
+            'per_page' => 'nullable|integer|min:1',
         ]);
 
         $query = Appointment::applyFilters($request->only([
             'date', 'date_from', 'date_to', 'doctor_id', 'status', 'search',
         ]));
+        
 
-        // Default to today when no date filter is provided
-        if (!$request->hasAny(['date', 'date_from', 'date_to'])) {
-            $query->whereDate('scheduled_at', Carbon::today());
-        }
+        $perPage = $request->input('per_page', 15); // Default to 15 items per page
 
         $appointments = $query->with(['patient', 'doctor', 'doctor.department'])
-            ->orderBy('scheduled_at')
-            ->get();
+            ->orderBy('scheduled_at', 'desc') // Order by latest
+            ->paginate($perPage);
 
         return response()->json([
             'success' => true,
             'data' => AppointmentResource::collection($appointments),
+            'meta' => [
+                'current_page' => $appointments->currentPage(),
+                'last_page' => $appointments->lastPage(),
+                'per_page' => $appointments->perPage(),
+                'total' => $appointments->total(),
+            ],
         ]);
     }
 
