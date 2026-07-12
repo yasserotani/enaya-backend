@@ -4,12 +4,19 @@
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.8.0"
+        },
+        "public/index.php": {
+            "runtime": "vercel-php@0.8.0"
         }
     },
     "routes": [
         {
-            "src": "/(.*)",
+            "src": "/api/(.*)",
             "dest": "/api/index.php"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/public/index.php"
         }
     ]
 }
