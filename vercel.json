@@ -2,14 +2,14 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "api/index.php": {
+        "server/index.php": {
             "runtime": "vercel-php@0.8.0"
         }
     },
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/api/index.php"
+            "dest": "/server/index.php"
         }
     ]
 }
