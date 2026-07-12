@@ -9,12 +9,15 @@
     "routes": [
         {
             "src": "/api/(.*)",
-            "dest": "/api/index.php"
+            "dest": "/api/index.php?path=$1"
         },
         {
             "src": "/(.*)",
-            "dest": "/api/index.php"
+            "dest": "/api/index.php?path=$1"
         }
     ],
-    "installCommand": "composer install --no-dev --prefer-dist"
+    "installCommand": "composer install --no-dev --prefer-dist",
+    "buildCommand": "npm run build",
+    "outputDirectory": "public"
 }
+
