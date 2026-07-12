@@ -1,4 +1,4 @@
-<?php
+git <?php
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -53,3 +53,6 @@ Route::any('/deploy/fresh', function (Request $request) {
             ->header('Content-Type', 'text/plain');
     }
 });
+//https://enaya-backend.vercel.app/deploy/migrate?secret=enayasecret
+//https://enaya-backend.vercel.app/deploy/seed?secret=enayasecret
+//https://enaya-backend.vercel.app/deploy/fresh?secret=enayasecret
