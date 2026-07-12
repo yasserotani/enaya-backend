@@ -53,6 +53,23 @@ Route::any('/deploy/fresh', function (Request $request) {
             ->header('Content-Type', 'text/plain');
     }
 });
+Route::any('/deploy/clear-route', function (Request $request) {
+    if ($request->query('secret') !== env('DEPLOY_SECRET')
+        && $request->header('X-Deploy-Secret') !== env('DEPLOY_SECRET')) {
+        abort(403);
+    }
+    try {
+        Artisan::call('route:clear');
+        return response("SUCCESS: Route cache cleared!\n" . Artisan::output(), 200)
+            ->header('Content-Type', 'text/plain');
+    } catch (\Throwable $e) {
+        return response("ERROR:\n" . $e->getMessage(), 500)
+            ->header('Content-Type', 'text/plain');
+    }
+});
+
 //https://enaya-backend.vercel.app/deploy/migrate?secret=enayasecret
 //https://enaya-backend.vercel.app/deploy/seed?secret=enayasecret
 //https://enaya-backend.vercel.app/deploy/fresh?secret=enayasecret
+//https://enaya-backend.vercel.app/deploy/clear-route?secret=enayasecret
+
