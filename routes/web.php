@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-//deployment
-
+// deployment
 Route::any('/deploy/migrate', function (Request $request) {
     if ($request->query('secret') !== env('DEPLOY_SECRET')
         && $request->header('X-Deploy-Secret') !== env('DEPLOY_SECRET')) {
