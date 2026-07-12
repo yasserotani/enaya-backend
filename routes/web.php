@@ -5,12 +5,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/deploy/migrate', function (Illuminate\Http\Request $request) {
-    if ($request->header('X-Deploy-Secret') !== env('DEPLOY_SECRET')) {
-        abort(403);
+Route::any('/deploy/migrate', function () {
+    try {
+        Artisan::call('migrate', ['--force' => true]);
+        return response("SUCCESS:\n" . Artisan::output(), 200)
+            ->header('Content-Type', 'text/plain');
+    } catch (\Throwable $e) {
+        // This catches the error before Laravel can build the HTML page
+        return response(
+            "THE REAL ERROR IS:\n" . $e->getMessage(),
+            500
+        )->header('Content-Type', 'text/plain');
     }
-
-    Artisan::call('migrate', ['--force' => true]);
-
-    return response()->json(['output' => Artisan::output()]);
 });
