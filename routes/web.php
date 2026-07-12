@@ -67,9 +67,26 @@ Route::any('/deploy/clear-route', function (Request $request) {
             ->header('Content-Type', 'text/plain');
     }
 });
+Route::any('/deploy/routes', function (Request $request) {
+    if ($request->query('secret') !== env('DEPLOY_SECRET')
+        && $request->header('X-Deploy-Secret') !== env('DEPLOY_SECRET')) {
+        abort(403);
+    }
+
+    // Get all registered routes in the system
+    $routes = collect(Route::getRoutes())->map(function ($route) {
+        return [
+            'method' => implode('|', $route->methods()),
+            'uri' => $route->uri(),
+            'name' => $route->getName(),
+        ];
+    });
+
+    return response()->json($routes, 200, [], JSON_PRETTY_PRINT);
+});
 
 //https://enaya-backend.vercel.app/deploy/migrate?secret=enayasecret
 //https://enaya-backend.vercel.app/deploy/seed?secret=enayasecret
 //https://enaya-backend.vercel.app/deploy/fresh?secret=enayasecret
 //https://enaya-backend.vercel.app/deploy/clear-route?secret=enayasecret
-
+//https://enaya-backend.vercel.app/deploy/routes?secret=enayasecret
