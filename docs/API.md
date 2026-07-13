@@ -433,11 +433,11 @@ Retrieve the details of a specific doctor.
 
 **Authorization:** `auth:sanctum` + `role:patient`
 
-Base path: `/api/appointments/patient`
+Base path: `/api/patient/appointments`
 
 ### List Appointments
 
-`GET /api/appointments/patient`
+`GET /api/patient/appointments`
 
 Get patient's appointments with optional filtering.
 
@@ -471,7 +471,7 @@ Get patient's appointments with optional filtering.
 
 ### Get Appointment
 
-`GET /api/appointments/patient/{appointment}`
+`GET /api/patient/appointments/{appointment}`
 
 Get detailed appointment information.
 
@@ -495,7 +495,7 @@ Get detailed appointment information.
 
 ### Book Appointment
 
-`POST /api/appointments/patient`
+`POST /api/patient/appointments`
 
 Create a new appointment. The system checks doctor availability using pessimistic locking.
 
@@ -533,7 +533,7 @@ Create a new appointment. The system checks doctor availability using pessimisti
 
 ### Get Available Slots
 
-`GET /api/appointments/patient/available-slots`
+`GET /api/patient/appointments/available-slots`
 
 Get available time slots for a doctor on a specific date.
 
@@ -558,9 +558,34 @@ Get available time slots for a doctor on a specific date.
 }
 ```
 
+### Get Available Days
+
+`GET /api/patient/appointments/available-days`
+
+Get days with available slots for a doctor for the next month starting from today.
+
+**Query Parameters:**
+
+| Name        | Type | Required | Description |
+|-------------|------|----------|-------------|
+| `doctor_id` | int  | Yes      | Doctor ID   |
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        "2026-06-20",
+        "2026-06-21",
+        "2026-06-25"
+    ]
+}
+```
+
 ### Cancel Appointment
 
-`PATCH /api/appointments/patient/{appointment}/cancel`
+`PATCH /api/patient/appointments/{appointment}/cancel`
 
 Cancel patient's own appointment.
 
@@ -589,7 +614,7 @@ Cancel patient's own appointment.
 
 ### Reschedule Appointment
 
-`PATCH /api/appointments/patient/{appointment}/reschedule`
+`PATCH /api/patient/appointments/{appointment}/reschedule`
 
 Change appointment time.
 
@@ -927,11 +952,11 @@ Permanently delete patient (cannot be restored).
 
 **Authorization:** `auth:sanctum` + `role:receptionist`
 
-Base path: `/api/appointments/reception`
+Base path: `/api/receptionist/appointments`
 
 ### List Appointments
 
-`GET /api/appointments/reception`
+`GET /api/receptionist/appointments`
 
 List appointments with filtering. Defaults to today's appointments.
 
@@ -966,7 +991,7 @@ List appointments with filtering. Defaults to today's appointments.
 
 ### Create Appointment
 
-`POST /api/appointments/reception`
+`POST /api/receptionist/appointments`
 
 Create appointment on behalf of a patient (walk-in or app user).
 
@@ -996,7 +1021,7 @@ Create appointment on behalf of a patient (walk-in or app user).
 
 ### Get Appointment
 
-`GET /api/appointments/reception/{appointment}`
+`GET /api/receptionist/appointments/{appointment}`
 
 Get appointment details.
 
@@ -1004,7 +1029,7 @@ Get appointment details.
 
 ### Confirm Appointment
 
-`PATCH /api/appointments/reception/{appointment}/confirm`
+`PATCH /api/receptionist/appointments/{appointment}/confirm`
 
 Confirm a scheduled appointment.
 
@@ -1022,7 +1047,7 @@ Confirm a scheduled appointment.
 
 ### Mark Arrived
 
-`PATCH /api/appointments/reception/{appointment}/arrived`
+`PATCH /api/receptionist/appointments/{appointment}/arrived`
 
 Mark patient as arrived.
 
@@ -1040,7 +1065,7 @@ Mark patient as arrived.
 
 ### Reschedule Appointment
 
-`PATCH /api/appointments/reception/{appointment}/reschedule`
+`PATCH /api/receptionist/appointments/{appointment}/reschedule`
 
 Change appointment time.
 
@@ -1066,7 +1091,7 @@ Change appointment time.
 
 ### Cancel Appointment
 
-`PATCH /api/appointments/reception/{appointment}/cancel`
+`PATCH /api/receptionist/appointments/{appointment}/cancel`
 
 Cancel appointment.
 
@@ -1092,7 +1117,7 @@ Cancel appointment.
 
 ### Mark No-Show
 
-`PATCH /api/appointments/reception/{appointment}/no-show`
+`PATCH /api/receptionist/appointments/{appointment}/no-show`
 
 Mark patient as no-show.
 
@@ -1105,6 +1130,31 @@ Mark patient as no-show.
     "data": {
         ...
     }
+}
+```
+
+### Get Available Days
+
+`GET /api/receptionist/appointments/available-days`
+
+Get days with available slots for a doctor for the next month starting from today.
+
+**Query Parameters:**
+
+| Name        | Type | Required | Description |
+|-------------|------|----------|-------------|
+| `doctor_id` | int  | Yes      | Doctor ID   |
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        "2026-06-20",
+        "2026-06-21",
+        "2026-06-25"
+    ]
 }
 ```
 
@@ -1212,6 +1262,58 @@ Mark patient as no-show.
     "data": {
         ...
     }
+}
+```
+
+### Get Available Slots
+
+`GET /api/doctor/appointments/available-slots`
+
+Get available time slots for a doctor on a specific date.
+
+**Query Parameters:**
+
+| Name        | Type | Required | Description       |
+|-------------|------|----------|-------------------|
+| `doctor_id` | int  | Yes      | Doctor ID         |
+| `date`      | date | Yes      | Date (YYYY-MM-DD) |
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30"
+    ]
+}
+```
+
+### Get Available Days
+
+`GET /api/doctor/appointments/available-days`
+
+Get days with available slots for a doctor for the next month starting from today.
+
+**Query Parameters:**
+
+| Name        | Type | Required | Description |
+|-------------|------|----------|-------------|
+| `doctor_id` | int  | Yes      | Doctor ID   |
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        "2026-06-20",
+        "2026-06-21",
+        "2026-06-25"
+    ]
 }
 ```
 

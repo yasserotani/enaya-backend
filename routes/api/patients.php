@@ -19,11 +19,12 @@ Route::middleware(['auth:sanctum', 'role:patient'])
 
 // Appointment
 Route::middleware(['auth:sanctum', 'role:patient'])
-    ->prefix('appointments/patient')
+    ->prefix('patient/appointments')
     ->group(function () {
         Route::get('/', [AppointmentController::class, 'index']);
         Route::post('/', [AppointmentController::class, 'store']);
         Route::get('/available-slots', [AppointmentController::class, 'availableSlots']);
+        Route::get('/available-days', [AppointmentController::class, 'availableDays']); // New route
         Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
         Route::patch('/{appointment}/reschedule', [AppointmentController::class, 'reschedule']);
         Route::get('/{appointment}', [AppointmentController::class, 'show']); // Added show route

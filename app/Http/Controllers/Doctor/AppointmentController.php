@@ -124,4 +124,12 @@ class AppointmentController extends Controller
             'data' => $slots,
         ]);
     }
+
+    public function availableDays(Request $request)
+    {
+        $doctorId = $request->user()->doctor->id;
+        $availableDays = $this->appointments->getAvailableDays($doctorId);
+
+        return response()->json(['success' => true, 'data' => $availableDays]);
+    }
 }

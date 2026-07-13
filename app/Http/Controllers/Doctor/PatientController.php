@@ -10,13 +10,10 @@ use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-    public function index(Doctor $doctor, Request $request)
+    public function index(Request $request)
     {
         $authDoctor = auth()->user()->doctor;
-        // check if the doctor is the same as the authenticated doctor
-        if (!$authDoctor || $authDoctor->id !== $doctor->id) {
-            abort(403, 'Unauthorized');
-        }
+
         // apply the same patient-level filters used by reception
         $filters = $request->only([
             'search',
@@ -32,8 +29,8 @@ class PatientController extends Controller
         // get all patients that have appointments with this doctor, then apply patient filters
 
         $patients = Patient::withCount('appointments')
-            ->whereHas('appointments', function ($q) use ($doctor) {
-                $q->where('doctor_id', $doctor->id);
+            ->whereHas('appointments', function ($q) use ($authDoctor) {
+                $q->where('doctor_id', $authDoctor->id);
             })
             ->applyFilters($filters)
             ->latest()
@@ -53,16 +50,13 @@ class PatientController extends Controller
         ]);
     }
 
-    public function show(Doctor $doctor, Patient $patient)
+    public function show(Patient $patient)
     {
         $authDoctor = auth()->user()->doctor;
-        // check if the doctor is the same as the authenticated doctor
-        if (!$authDoctor || $authDoctor->id !== $doctor->id) {
-            abort(403, 'Unauthorized');
-        }
+
         $patient->loadMissing([
             'appointments' => fn($q) => $q
-                ->where('doctor_id', $doctor->id)
+                ->where('doctor_id', $authDoctor->id)
                 ->with('appointmentSession.prescriptions')
                 ->latest('scheduled_at'),
         ]);

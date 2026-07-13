@@ -16,6 +16,8 @@ Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor'])->group(func
         Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
         Route::patch('/{appointment}/no-show', [AppointmentController::class, 'markNoShow']);
         Route::patch('/{appointment}/confirm', [AppointmentController::class, 'confirm']);
+        Route::get('/available-slots', [AppointmentController::class, 'availableSlots']); // Moved here
+        Route::get('/available-days', [AppointmentController::class, 'availableDays']); // Moved here
 
         Route::prefix('{appointment}')->group(function () {
             Route::get('sessions/list', [AppointmentSessionController::class, 'index']);
@@ -26,11 +28,8 @@ Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor'])->group(func
         });
     });
 
-    Route::prefix('{doctor}')->group(function () {
-        Route::get('/patients', [PatientController::class, 'index']);
-        Route::get('/patients/{patient}', [PatientController::class, 'show']);
-        Route::get('/available-slots', [AppointmentController::class, 'availableSlots']);
-    });
+    Route::get('/patients', [PatientController::class, 'index']);
+    Route::get('/patients/{patient}', [PatientController::class, 'show']);
 
     Route::prefix('sessions/{session}')->group(function () {
         Route::post('/prescriptions', [PrescriptionController::class, 'store']);

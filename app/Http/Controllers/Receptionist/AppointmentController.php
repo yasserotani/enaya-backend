@@ -124,6 +124,19 @@ class AppointmentController extends Controller
         return response()->json(['success' => true, 'data' => $slots]);
     }
 
+    public function availableDays(Request $request)
+    {
+        $request->validate([
+            'doctor_id' => 'required|exists:doctors,id',
+        ]);
+
+        $availableDays = $this->appointments->getAvailableDays(
+            (int)$request->input('doctor_id')
+        );
+
+        return response()->json(['success' => true, 'data' => $availableDays]);
+    }
+
     public function reschedule(RescheduleAppointmentRequest $request, Appointment $appointment)
     {
         $this->appointments->reschedule(

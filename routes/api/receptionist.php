@@ -20,14 +20,15 @@ Route::middleware(['auth:sanctum', 'role:receptionist'])
 
 
 // Receptionist appointment management (view, update, cancel, reschedule, mark arrived/no-show)
-Route::middleware(['auth:sanctum', 'role:receptionist'])->prefix('appointments/reception')->group(function () {
+Route::middleware(['auth:sanctum', 'role:receptionist'])->prefix('receptionist/appointments')->group(function () { // Changed prefix here
     Route::get('/', [AppointmentController::class, 'index']);
     Route::post('/', [AppointmentController::class, 'store']);
+    Route::get('/available-slots', [AppointmentController::class, 'availableSlots']);
+    Route::get('/available-days', [AppointmentController::class, 'availableDays']);
     Route::get('/{appointment}', [AppointmentController::class, 'show']);
     Route::patch('/{appointment}/confirm', [AppointmentController::class, 'confirm']);
     Route::patch('/{appointment}/arrived', [AppointmentController::class, 'markArrived']);
     Route::patch('/{appointment}/reschedule', [AppointmentController::class, 'reschedule']);
     Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
     Route::patch('/{appointment}/no-show', [AppointmentController::class, 'markNoShow']);
-    Route::get('/available-slots', [AppointmentController::class, 'availableSlots']);
 });

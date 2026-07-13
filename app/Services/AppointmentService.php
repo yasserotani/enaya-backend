@@ -45,6 +45,23 @@ class AppointmentService
         return $slots;
     }
 
+    public function getAvailableDays(int $doctorId): array
+    {
+        $days = [];
+
+        $cursor = now()->copy()->startOfDay();
+        $end = $cursor->copy()->addMonth();
+
+        while ($cursor->lessThan($end)) {
+            if (!empty($this->availableSlots($doctorId, $cursor->copy()))) {
+                $days[] = $cursor->toDateString();
+            }
+            $cursor->addDay();
+        }
+
+        return $days;
+    }
+
     public function hasConflict(int $doctorId, Carbon $time, ?int $excludeAppointmentId = null): bool
     {
         return Appointment::where('doctor_id', $doctorId)
@@ -74,7 +91,7 @@ class AppointmentService
     {
         return DB::transaction(function () use ($patientId, $doctorId, $scheduledAt, $status, $visitReason, $notes) {
 
-            // get and lock the doctor record while updating 
+            // get and lock the doctor record while updating
             $doctor = Doctor::where('id', $doctorId)->lockForUpdate()->firstOrFail();
 
             if ($this->hasConflict($doctor->id, $scheduledAt)) {
