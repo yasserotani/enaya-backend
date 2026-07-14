@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Patient;
+namespace App\Http\Controllers\Receptionist;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DoctorResource;
 use App\Models\Doctor;
 use App\Models\Department; // Import the Department model
+use App\Services\DoctorService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Resources\DoctorResource;
-use App\Services\DoctorService;
 use App\Http\Resources\DepartmentResource; // Assuming a DepartmentResource exists or will be created
 
 class DoctorController extends Controller
@@ -21,7 +21,7 @@ class DoctorController extends Controller
     }
 
     /**
-     * Display a listing of the doctors.
+     * Display a listing of the doctors for receptionists.
      */
     public function index(Request $request): JsonResponse
     {
@@ -35,7 +35,7 @@ class DoctorController extends Controller
     }
 
     /**
-     * Display the specified doctor.
+     * Display the specified doctor for receptionists.
      */
     public function show(Doctor $doctor): JsonResponse
     {

@@ -85,24 +85,24 @@ class ProfileController extends Controller
         });
     }
 
-    public function getDepartmentDoctors(Request $request)
-    {
-        $request->validate([
-            'department' => 'required',
-        ]);
-
-        $departmentInput = $request->department;
-
-        $doctors = is_numeric($departmentInput)
-            ? Doctor::where('department_id', $departmentInput)->with('department')->get()
-            : Doctor::whereHas('department', fn($q) => $q->where('name', $departmentInput))
-                ->with('department')
-                ->get();
-
-        return response()->json([
-            'success' => true,  // was missing
-            'message' => 'Doctors retrieved successfully',
-            'data' => DoctorResource::collection($doctors),
-        ]);
-    }
+//    public function getDepartmentDoctors(Request $request)
+//    {
+//        $request->validate([
+//            'department' => 'required',
+//        ]);
+//
+//        $departmentInput = $request->department;
+//
+//        $doctors = is_numeric($departmentInput)
+//            ? Doctor::where('department_id', $departmentInput)->with('department')->get()
+//            : Doctor::whereHas('department', fn($q) => $q->where('name', $departmentInput))
+//                ->with('department')
+//                ->get();
+//
+//        return response()->json([
+//            'success' => true,  // was missing
+//            'message' => 'Doctors retrieved successfully',
+//            'data' => DoctorResource::collection($doctors),
+//        ]);
+//    }
 }

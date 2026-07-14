@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Receptionist\AppointmentController;
 use App\Http\Controllers\Receptionist\PatientController;
+use App\Http\Controllers\Receptionist\DoctorController; // Import the new DoctorController
 use Illuminate\Support\Facades\Route;
 
 // Receptionist patient routes
@@ -32,3 +33,12 @@ Route::middleware(['auth:sanctum', 'role:receptionist'])->prefix('receptionist/a
     Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
     Route::patch('/{appointment}/no-show', [AppointmentController::class, 'markNoShow']);
 });
+
+// Receptionist doctor routes
+Route::middleware(['auth:sanctum', 'role:receptionist'])
+    ->prefix('receptionist/doctors')
+    ->group(function () {
+        Route::get('/', [DoctorController::class, 'index']);
+        Route::get('/departments', [DoctorController::class, 'getDepartments']); // New route for departments
+        Route::get('/{doctor}', [DoctorController::class, 'show']);
+    });

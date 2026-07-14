@@ -1771,20 +1771,8 @@ endpoints:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the user.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: 1
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2267,20 +2255,8 @@ endpoints:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the patient.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: 1
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2966,20 +2942,8 @@ endpoints:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the department.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: 1
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -3025,20 +2989,8 @@ endpoints:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the department.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: 1
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -4067,20 +4019,8 @@ endpoints:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      appointment_id:
-        custom: []
-        name: appointment_id
-        description: 'The ID of the appointment.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      appointment_id: 1
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -5977,3 +5917,111 @@ endpoints:
     controller: null
     method: null
     route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/receptionist/appointments/doctors
+    metadata:
+      custom: []
+      groupName: Receptionist Appointments
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List all doctors'
+      description: 'Retrieve a paginated list of doctors, with optional filters, for receptionists.'
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      department_id:
+        custom: []
+        name: department_id
+        description: 'Filter by department ID.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      specialty:
+        custom: []
+        name: specialty
+        description: 'Filter by doctor specialty.'
+        required: false
+        example: Cardiology
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      search:
+        custom: []
+        name: search
+        description: 'Search by doctor name or email.'
+        required: false
+        example: John Doe
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      gender:
+        custom: []
+        name: gender
+        description: 'Filter by gender.'
+        required: false
+        example: male
+        type: string
+        enumValues:
+          - male
+          - female
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of doctors per page.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanQueryParameters:
+      department_id: 1
+      specialty: Cardiology
+      search: John Doe
+      gender: male
+      per_page: 15
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: '{"success":true,"data":{"current_page":1,"data":[{"id":1,"full_name":"Dr. John Doe","email":"john.doe@example.com","phone":"+1234567890","gender":"male","date_of_birth":"1980-01-01","address":"123 Main St","specialty":"Cardiology","department":{"id":1,"name":"Cardiology"},"user":{"id":1,"name":"John Doe","email":"john.doe@example.com"}}],"first_page_url":"http://localhost/api/receptionist/appointments/doctors?page=1","from":1,"last_page":1,"last_page_url":"http://localhost/api/receptionist/appointments/doctors?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http://localhost/api/receptionist/appointments/doctors?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"http://localhost/api/receptionist/appointments/doctors","per_page":15,"prev_page_url":null,"to":1,"total":1},"error":null}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer {YOUR_AUTH_KEY}'
+    controller: 'App\Http\Controllers\Receptionist\AppointmentController@indexDoctors'
+    method: indexDoctors
+    route: 'receptionist.appointments.doctors.index'

@@ -7,6 +7,9 @@ use App\Models\Doctor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Throwable;
+use Illuminate\Http\Request;
+use App\Http\Resources\DoctorResource;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DoctorService
 {
@@ -38,5 +41,26 @@ class DoctorService
                 'working_hours_end' => $data['working_hours_end'] ?? '14:00',
             ]);
         });
+    }
+
+    public function indexDoctors(Request $request): LengthAwarePaginator
+    {
+        $query = Doctor::with(['department', 'user']);
+
+        $doctors = $query
+            ->applyFilters($request->only([
+                'department_id',
+                'specialty',
+                'search',
+                'gender',
+            ]))
+            ->latest()
+            ->paginate($request->get('per_page', 15));
+
+        $doctors->setCollection(
+            DoctorResource::collection($doctors->getCollection())->collection
+        );
+
+        return $doctors;
     }
 }

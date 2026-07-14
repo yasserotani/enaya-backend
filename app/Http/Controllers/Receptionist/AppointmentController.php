@@ -11,13 +11,11 @@ use App\Models\Appointment;
 use App\Services\AppointmentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Doctor;
 use Throwable;
 
 class AppointmentController extends Controller
 {
-    public function __construct(private AppointmentService $appointments)
+    public function __construct(private AppointmentService $appointments) // Removed DoctorService injection
     {
     }
 
@@ -56,7 +54,6 @@ class AppointmentController extends Controller
             ],
         ]);
     }
-
 
     /**
      * @throws  Throwable

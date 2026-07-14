@@ -322,41 +322,6 @@ Update patient profile fields. All fields optional.
 }
 ```
 
-### Get Department Doctors
-
-`GET /api/patients/department-doctors`
-
-Get list of doctors by department. Used for appointment booking form.
-
-**Query Parameters:**
-
-| Name         | Type   | Required | Description                     |
-|--------------|--------|----------|---------------------------------|
-| `department` | string | Yes      | Department ID (numeric) or name |
-
-**Response `200`:**
-
-```json
-{
-    "success": true,
-    "message": "Doctors retrieved successfully",
-    "data": [
-        {
-            "id": 1,
-            "user_id": 1,
-            "full_name": "Dr. Sam",
-            "specialty": "Cardiology",
-            "department": {
-                "id": 1,
-                "name": "Cardiology"
-            }
-        }
-    ]
-}
-```
-
----
-
 ## Patient Doctor Management
 
 **Authorization:** `auth:sanctum` + `role:patient`
@@ -424,6 +389,31 @@ Retrieve the details of a specific doctor.
         "working_hours_end": "17:00"
     },
     "message": "Doctor retrieved successfully."
+}
+```
+
+### List Departments
+
+`GET /api/doctors/departments`
+
+Retrieve a listing of all departments.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "Cardiology"
+        },
+        {
+            "id": 2,
+            "name": "Pediatrics"
+        }
+    ],
+    "message": "Departments retrieved successfully."
 }
 ```
 
@@ -943,6 +933,103 @@ Permanently delete patient (cannot be restored).
 {
     "success": true,
     "message": "Patient permanently deleted successfully."
+}
+```
+
+---
+
+## Receptionist Doctor Management
+
+**Authorization:** `auth:sanctum` + `role:receptionist`
+
+Base path: `/api/receptionist/doctors`
+
+### List Doctors
+
+`GET /api/receptionist/doctors`
+
+Retrieve a listing of all doctors.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "full_name": "Dr. John Doe",
+            "email": "john.doe@example.com",
+            "phone": "+963912345678",
+            "date_of_birth": "1980-01-01",
+            "gender": "male",
+            "specialty": "Cardiology",
+            "department": {
+                "id": 1,
+                "name": "Cardiology"
+            },
+            "working_hours_start": "09:00",
+            "working_hours_end": "17:00"
+        }
+    ],
+    "message": "Doctors retrieved successfully."
+}
+```
+
+### Get Doctor Details
+
+`GET /api/receptionist/doctors/{doctor}`
+
+Retrieve the details of a specific doctor.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "user_id": 1,
+        "full_name": "Dr. John Doe",
+        "email": "john.doe@example.com",
+        "phone": "+963912345678",
+        "date_of_birth": "1980-01-01",
+        "gender": "male",
+        "specialty": "Cardiology",
+        "department": {
+            "id": 1,
+            "name": "Cardiology"
+        },
+        "working_hours_start": "09:00",
+        "working_hours_end": "17:00"
+    },
+    "message": "Doctor retrieved successfully."
+}
+```
+
+### List Departments
+
+`GET /api/receptionist/doctors/departments`
+
+Retrieve a listing of all departments.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "Cardiology"
+        },
+        {
+            "id": 2,
+            "name": "Pediatrics"
+        }
+    ],
+    "message": "Departments retrieved successfully."
 }
 ```
 
