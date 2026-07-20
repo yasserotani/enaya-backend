@@ -26,7 +26,7 @@ class AuthController extends Controller
                 ->orWhere('name', $request->usernameOrEmail);
         })->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -36,7 +36,7 @@ class AuthController extends Controller
         }
 
         // Check if the user is active
-        if (! $user->is_active) {
+        if (!$user->is_active) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -125,6 +125,15 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        $request->validate([
+            'fcm_token' => 'nullable|string',
+        ]);
+
+        // delete the notification token
+        if ($request->fcm_token) {
+            $request->user()->deviceTokens()->where('fcm_token', $request->fcm_token)->delete();
+        }
+
         $request->user()->currentAccessToken()->delete();
 
         return response()->json([
