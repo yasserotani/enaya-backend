@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             ReceptionistSeeder::class,
             DepartmentSeeder::class,
             DoctorUserSeeder::class,
+            PatientSeeder::class,  // Run BEFORE DoctorSeeder so all patients exist
             DoctorSeeder::class,
-            PatientSeeder::class,
             AppointmentSeeder::class,
             AppointmentSessionSeeder::class,
             PrescriptionSeeder::class,

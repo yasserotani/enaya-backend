@@ -20,32 +20,32 @@ class Appointment extends Model
     public function scopeApplyFilters($query, array $filters)
     {
         // 1. Filter by Doctor
-        if (!empty($filters['doctor_id'])) {
+        if (! empty($filters['doctor_id'])) {
             $query->where('doctor_id', $filters['doctor_id']);
         }
 
         // 2. Filter by Status
-        if (!empty($filters['status'])) {
+        if (! empty($filters['status'])) {
             $statusEnum = AppointmentStatus::tryFrom($filters['status']);
             $query->where('status', $statusEnum);
         }
 
         // 3. Filter by a Single Specific Date
-        if (!empty($filters['date'])) {
+        if (! empty($filters['date'])) {
             $query->whereDate('scheduled_at', $filters['date']);
         }
 
         // 4. Filter by Date Ranges (e.g., view this week's appointments)
-        if (!empty($filters['date_from'])) {
+        if (! empty($filters['date_from'])) {
             $query->whereDate('scheduled_at', '>=', $filters['date_from']);
         }
 
-        if (!empty($filters['date_to'])) {
+        if (! empty($filters['date_to'])) {
             $query->whereDate('scheduled_at', '<=', $filters['date_to']);
         }
 
         // 5. Smart Search (Searches patient info OR visit reasons)
-        if (!empty($filters['search'])) {
+        if (! empty($filters['search'])) {
             $search = $filters['search'];
 
             $query->where(function ($q) use ($search) {
@@ -60,7 +60,7 @@ class Appointment extends Model
             });
         }
         // coming vs past appointments for the pateint
-        if (!empty($filters['timeline'])) {
+        if (! empty($filters['timeline'])) {
             if ($filters['timeline'] === 'upcoming') {
                 $query->where('scheduled_at', '>=', now());
             } elseif ($filters['timeline'] === 'past') {

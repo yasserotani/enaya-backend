@@ -16,9 +16,9 @@ class UpdateDoctorRequest extends FormRequest
         $doctor = $this->route('doctor');
 
         return [
-            'email' => ['sometimes', 'email', 'unique:users,email,' . $doctor->user_id],
+            'email' => ['sometimes', 'email', 'unique:users,email,'.$doctor->user_id],
             'name' => ['sometimes', 'string', 'max:255'],
-            'phone' => ['sometimes', 'string', 'unique:doctors,phone,' . $doctor->id],
+            'phone' => ['sometimes', 'string', 'unique:doctors,phone,'.$doctor->id],
             'date_of_birth' => ['nullable', 'date', 'before:today'],
             'gender' => ['nullable', 'in:male,female'],
             'department_id' => ['sometimes', 'exists:departments,id'],

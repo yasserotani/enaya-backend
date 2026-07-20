@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PatientResource;
 use App\Http\Resources\PrescriptionResource;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
@@ -36,7 +35,7 @@ class PrescriptionController extends Controller
             return response()->json([
                 'success' => false,
                 'error' => 'You are not authorized to view this prescription.',
-                'errorCode' => '403'
+                'errorCode' => '403',
             ], 403);
         }
 

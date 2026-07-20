@@ -45,7 +45,7 @@ class AppointmentSessionController extends Controller
         // check if the appointment is for this doctor
         $this->checkOwnership($appointment, $request->user()->doctor);
         // check if the appointment is in a valid status to start a session
-        if (!in_array($appointment->status, ['arrived', 'confirmed', 'scheduled'])) {
+        if (! in_array($appointment->status, ['arrived', 'confirmed', 'scheduled'])) {
             return response()->json([
                 'success' => false,
                 'data' => null,

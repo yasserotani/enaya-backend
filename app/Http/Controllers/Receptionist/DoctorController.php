@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Receptionist;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DepartmentResource;
 use App\Http\Resources\DoctorResource;
-use App\Models\Doctor;
 use App\Models\Department; // Import the Department model
+use App\Models\Doctor;
 use App\Services\DoctorService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use App\Http\Resources\DepartmentResource; // Assuming a DepartmentResource exists or will be created
+use Illuminate\Http\Request; // Assuming a DepartmentResource exists or will be created
 
 class DoctorController extends Controller
 {

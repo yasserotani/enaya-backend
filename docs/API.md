@@ -478,7 +478,7 @@ Get detailed appointment information.
         "status": "scheduled",
         "visit_reason": "Regular Checkup",
         "notes": "First time",
-        "created_at": "2026-06-11T12:00:00.000000Z"
+            "created_at": "2026-06-11T12:00:00.000000Z"
     }
 }
 ```
@@ -514,7 +514,7 @@ Create a new appointment. The system checks doctor availability using pessimisti
         "status": "scheduled",
         "visit_reason": "Regular Checkup",
         "notes": "First time",
-        "created_at": "2026-06-11T12:00:00.000000Z"
+            "created_at": "2026-06-11T12:00:00.000000Z"
     }
 }
 ```
@@ -747,7 +747,7 @@ Get detailed session information including prescriptions.
         "patient_complaint": "Chest pain",
         "diagnosis": "Heartburn",
         "status": "completed",
-        "prescriptions": [
+            "prescriptions": [
             {
                 "id": 1,
                 "appointment_session_id": 1,
@@ -1070,7 +1070,8 @@ List appointments with filtering. Defaults to today's appointments.
             "doctor_id": 1,
             "scheduled_at": "2026-06-20T10:00:00.000000Z",
             "status": "arrived",
-            "visit_reason": "Regular Checkup"
+            "visit_reason": "Regular Checkup",
+            "session": null
         }
     ]
 }

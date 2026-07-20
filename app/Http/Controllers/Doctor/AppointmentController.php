@@ -12,9 +12,7 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function __construct(private readonly AppointmentService $appointments)
-    {
-    }
+    public function __construct(private readonly AppointmentService $appointments) {}
 
     public function index(Request $request)
     {
@@ -47,7 +45,6 @@ class AppointmentController extends Controller
         ]);
     }
 
-
     public function show(Request $request, Appointment $appointment)
     {
         abort_if($appointment->doctor_id !== $request->user()->doctor->id, 403, 'Not your appointment.');
@@ -56,7 +53,7 @@ class AppointmentController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => new AppointmentResource($appointment)
+            'data' => new AppointmentResource($appointment),
         ]);
     }
 
@@ -73,6 +70,7 @@ class AppointmentController extends Controller
         }
 
         $appointment->update(['status' => AppointmentStatus::Confirmed]);
+
         return response()->json(['success' => true, 'message' => 'Appointment confirmed.', 'data' => new AppointmentResource($appointment)]);
     }
 
@@ -92,7 +90,6 @@ class AppointmentController extends Controller
             'data' => new AppointmentResource($appointment),
         ]);
     }
-
 
     public function markNoShow(Request $request, Appointment $appointment)
     {

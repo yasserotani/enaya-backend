@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Patient\AppointmentController;
-use App\Http\Controllers\Patient\ProfileController;
-use App\Http\Controllers\Patient\PrescriptionController;
 use App\Http\Controllers\Patient\AppointmentSessionController;
 use App\Http\Controllers\Patient\DoctorController;
+use App\Http\Controllers\Patient\PrescriptionController;
+use App\Http\Controllers\Patient\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 // Import the new DoctorController
 
@@ -16,7 +16,7 @@ Route::middleware(['auth:sanctum', 'role:patient'])
         Route::get('/profile', [ProfileController::class, 'show']);
         Route::post('/complete-profile', [ProfileController::class, 'complete']);
         Route::put('/profile', [ProfileController::class, 'update']);
-//        Route::get('/department-doctors', [ProfileController::class, 'getDepartmentDoctors']);
+        //        Route::get('/department-doctors', [ProfileController::class, 'getDepartmentDoctors']);
     });
 
 // Appointment

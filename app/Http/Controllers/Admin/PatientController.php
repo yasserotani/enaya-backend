@@ -27,9 +27,10 @@ class PatientController extends Controller
 
         $patients = Patient::with('user')
             ->applyFilters($filters)
-            ->when($request->boolean('with_trashed'), fn($query) => $query->withTrashed()) // Apply withTrashed if requested
+            ->when($request->boolean('with_trashed'), fn ($query) => $query->withTrashed()) // Apply withTrashed if requested
             ->latest()
             ->paginate(20);
+
         return response()->json([
             'success' => true,
             'data' => $patients,

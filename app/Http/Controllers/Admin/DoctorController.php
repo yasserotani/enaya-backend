@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
-    public function __construct(private readonly DoctorService $doctorService)
-    {
-    }
+    public function __construct(private readonly DoctorService $doctorService) {}
 
     /**
      * Display a listing of the resource.
@@ -56,6 +54,7 @@ class DoctorController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
      * @throws \Throwable
      */
     public function store(StoreDoctorRequest $request): JsonResponse
@@ -103,6 +102,7 @@ class DoctorController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
      * @throws \Throwable
      */
     public function update(UpdateDoctorRequest $request, Doctor $doctor)
@@ -119,7 +119,7 @@ class DoctorController extends Controller
                 $userData['email'] = $validated['email'];
             }
 
-            if (!empty($userData)) {
+            if (! empty($userData)) {
                 $doctor->user->update($userData);
             }
 
@@ -139,7 +139,7 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor): JsonResponse
     {
         DB::transaction(function () use ($doctor) {
-            $doctor->delete(); //soft delete
+            $doctor->delete(); // soft delete
             $doctor->user->update(['is_active' => false]); // Deactivate the related user
         });
 
@@ -163,6 +163,7 @@ class DoctorController extends Controller
                 'is_active' => true,
             ]);
         });
+
         return response()->json([
             'success' => true,
             'message' => 'Doctor restored successfully',

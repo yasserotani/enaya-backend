@@ -33,7 +33,7 @@ class AppointmentSessionController extends Controller
             return response()->json([
                 'success' => false,
                 'error' => 'You are not authorized to view this medical record.',
-                'errorCode' => '403'
+                'errorCode' => '403',
             ], 403);
         }
 
@@ -45,4 +45,3 @@ class AppointmentSessionController extends Controller
         ]);
     }
 }
-

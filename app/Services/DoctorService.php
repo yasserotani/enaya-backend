@@ -2,18 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\User;
+use App\Http\Resources\DoctorResource;
 use App\Models\Doctor;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Throwable;
-use Illuminate\Http\Request;
-use App\Http\Resources\DoctorResource;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class DoctorService
 {
-
     /**
      * @throws Throwable
      */
@@ -24,10 +23,11 @@ class DoctorService
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
-                'password' => Hash::make($data['password'])
+                'password' => Hash::make($data['password']),
             ]);
 
             $user->assignRole('doctor');
+
             // create the doctor row
             return Doctor::create([
                 'user_id' => $user->id,

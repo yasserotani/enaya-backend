@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Fillable(['user_id', 'department_id', 'specialty', 'full_name', 'phone', 'date_of_birth', 'gender', 'working_hours_start', 'working_hours_end',])]
+#[Fillable(['user_id', 'department_id', 'specialty', 'full_name', 'phone', 'date_of_birth', 'gender', 'working_hours_start', 'working_hours_end'])]
 class Doctor extends Model
 {
     /** @use HasFactory<DoctorFactory> */
@@ -25,11 +25,11 @@ class Doctor extends Model
     public function scopeApplyFilters($query, array $filters)
     {
         return $query
-            ->when($filters['department_id'] ?? null, fn($q, $v) => $q->where('department_id', $v))
-            ->when($filters['gender'] ?? null, fn($q, $v) => $q->where('gender', $v))
-            ->when($filters['specialty'] ?? null, fn($q, $v) => $q->where('specialty', 'like', "%{$v}%"))
-            ->when($filters['with_trashed'] ?? null, fn($q) => $q->withTrashed())
-            ->when($filters['search'] ?? null, fn($q, $v) => $q->where(function ($q) use ($v) {
+            ->when($filters['department_id'] ?? null, fn ($q, $v) => $q->where('department_id', $v))
+            ->when($filters['gender'] ?? null, fn ($q, $v) => $q->where('gender', $v))
+            ->when($filters['specialty'] ?? null, fn ($q, $v) => $q->where('specialty', 'like', "%{$v}%"))
+            ->when($filters['with_trashed'] ?? null, fn ($q) => $q->withTrashed())
+            ->when($filters['search'] ?? null, fn ($q, $v) => $q->where(function ($q) use ($v) {
                 $q->where('full_name', 'like', "%{$v}%")
                     ->orWhere('phone', 'like', "%{$v}%");
             }));

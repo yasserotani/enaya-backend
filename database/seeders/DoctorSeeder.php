@@ -9,8 +9,8 @@ use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\User;
-use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class DoctorSeeder extends Seeder
 {
@@ -52,7 +52,7 @@ class DoctorSeeder extends Seeder
                             fake()->numberBetween(8, 17),
                             fake()->randomElement([0, 30])
                         );
-                        $slotKey = $doctorId . '_' . $scheduledAt->format('Y-m-d H:i:s');
+                        $slotKey = $doctorId.'_'.$scheduledAt->format('Y-m-d H:i:s');
                     } while (isset($usedSlots[$slotKey]));
 
                     // Mark slot as used
@@ -71,7 +71,7 @@ class DoctorSeeder extends Seeder
                         AppointmentStatus::Arrived->value,
                         AppointmentStatus::InProgress->value,
                         AppointmentStatus::Completed->value,
-                        AppointmentStatus::NoShow->value
+                        AppointmentStatus::NoShow->value,
                     ]) && rand(0, 1)) {
                         AppointmentSession::factory()->create([
                             'appointment_id' => $appointment->id,

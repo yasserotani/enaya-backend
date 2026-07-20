@@ -24,6 +24,7 @@ class PatientFactory extends Factory
             $user = User::factory()->create();
             $user->assignRole('patient');
         }
+
         return [
             'user_id' => $user?->id,
             'full_name' => fake()->unique()->name(),

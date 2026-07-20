@@ -20,7 +20,7 @@ it('returns doctor working hours by id', function () {
     $response = $this->getJson(route('doctors.show', ['doctor' => $doctor->id]));
 
     $response->assertOk();
-    $response->assertJson([ 
+    $response->assertJson([
         'success' => true,
         'data' => [
             'id' => $doctor->id,

@@ -24,5 +24,4 @@ class DepartmentSeeder extends Seeder
             Department::create(['name' => $name]);
         }
     }
-
 }

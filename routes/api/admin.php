@@ -1,14 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AppointmentController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\{
-    AppointmentController,
-    DashboardController,
-    DepartmentController,
-    DoctorController,
-    PatientController,
-    UserController
-};
 
 Route::middleware(['auth:sanctum', 'role:admin'])
     ->prefix('admin')
@@ -17,30 +15,30 @@ Route::middleware(['auth:sanctum', 'role:admin'])
         // ashboard
         Route::get('/dashboard', [DashboardController::class, 'index']);
 
-        //users
+        // users
         Route::apiResource('users', UserController::class);
         Route::patch('users/{user}/activate', [UserController::class, 'activate']); // Added activate route
         Route::patch('users/{user}/deactivate', [UserController::class, 'deactivate']); // Added deactivate route
 
-        //patients
+        // patients
         Route::apiResource('patients', PatientController::class);
         Route::put('patients/{patient}/restore', [PatientController::class, 'restore']);
         Route::delete('patients/{patient}/force-delete', [PatientController::class, 'forceDelete']);
 
-        //doctors
+        // doctors
         Route::apiResource('doctors', DoctorController::class)->withTrashed(['show']);
         Route::put('doctors/{doctor}/restore', [DoctorController::class, 'restore']); // Fixed route
         Route::patch('doctors/{doctor}/reset-password', [DoctorController::class, 'resetPassword']); // Fixed route
 
-        //departments
+        // departments
         Route::apiResource('departments', DepartmentController::class);
         Route::get('departments/{department}/doctors', [DepartmentController::class, 'getDepartmentDoctors']);
 
-
-        //appointment
+        // appointment
         Route::get('appointments', [AppointmentController::class, 'index']);
         Route::get('appointments/stats', [AppointmentController::class, 'stats']);
         Route::get('appointments/available-slots', [AppointmentController::class, 'availableSlots']);
+        Route::get('/available-days', [AppointmentController::class, 'availableDays']);
         Route::post('appointments', [AppointmentController::class, 'store']);
 
         Route::get('appointments/{appointment}', [AppointmentController::class, 'show']);

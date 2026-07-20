@@ -17,7 +17,7 @@ class DoctorUserSeeder extends Seeder
     {
         $department = Department::query()->first();
 
-        if (!$department) {
+        if (! $department) {
             return;
         }
 

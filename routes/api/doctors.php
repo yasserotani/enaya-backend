@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Controllers\Doctor\AppointmentController;
+use App\Http\Controllers\Doctor\AppointmentSessionController;
 use App\Http\Controllers\Doctor\PatientController;
 use App\Http\Controllers\Doctor\PrescriptionController;
-use App\Http\Controllers\Doctor\AppointmentSessionController;
-use App\Http\Controllers\Doctor\AppointmentController;
-
 // Add this line
 use Illuminate\Support\Facades\Route;
 

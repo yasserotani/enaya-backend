@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function __construct(private readonly DoctorService $doctorService)
-    {
-    }
+    public function __construct(private readonly DoctorService $doctorService) {}
 
     public function index(Request $request)
     {
@@ -45,6 +43,7 @@ class UserController extends Controller
     {
         if ($user->hasRole('patient')) {
             $user->loadMissing('patient');
+
             return response()->json([
                 'success' => true,
                 'data' => new PatientResource($user->patient),
@@ -53,6 +52,7 @@ class UserController extends Controller
 
         if ($user->hasRole('doctor')) {
             $user->loadMissing('doctor.department');
+
             return response()->json([
                 'success' => true,
                 'data' => new DoctorResource($user->doctor),
@@ -128,7 +128,6 @@ class UserController extends Controller
         ]);
     }
 
-
     public function destroy(User $user)
     {
         if ($user->id === auth()->id()) {
@@ -181,6 +180,7 @@ class UserController extends Controller
     public function activate(User $user)
     {
         $user->update(['is_active' => true]);
+
         return response()->json([
             'success' => true,
             'message' => 'User activated successfully.',
@@ -197,6 +197,7 @@ class UserController extends Controller
             ], 403);
         }
         $user->update(['is_active' => false]);
+
         return response()->json([
             'success' => true,
             'message' => 'User deactivated successfully.',

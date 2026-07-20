@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Receptionist;
 
 use App\Enums\AppointmentStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Reception\StoreAppointmentRequest;
 use App\Http\Requests\Reception\RescheduleAppointmentRequest;
+use App\Http\Requests\Reception\StoreAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
 use App\Services\AppointmentService;
@@ -16,8 +16,7 @@ use Throwable;
 class AppointmentController extends Controller
 {
     public function __construct(private AppointmentService $appointments) // Removed DoctorService injection
-    {
-    }
+    {}
 
     //  view and filter appointments
     public function index(Request $request)
@@ -35,7 +34,6 @@ class AppointmentController extends Controller
         $query = Appointment::applyFilters($request->only([
             'date', 'date_from', 'date_to', 'doctor_id', 'status', 'search',
         ]));
-
 
         $perPage = $request->input('per_page', 15); // Default to 15 items per page
 
@@ -56,7 +54,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * @throws  Throwable
+     * @throws Throwable
      */
     public function store(StoreAppointmentRequest $request)
     {
@@ -75,14 +73,14 @@ class AppointmentController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Appointment booked successfully',
-            'data' => new AppointmentResource($appointment)
+            'data' => new AppointmentResource($appointment),
         ], 201);
     }
-
 
     public function show(Appointment $appointment)
     {
         $appointment->load(['patient', 'doctor', 'doctor.department', 'sessions']);
+
         return response()->json(['success' => true, 'data' => new AppointmentResource($appointment)]);
     }
 
@@ -93,9 +91,9 @@ class AppointmentController extends Controller
         }
 
         $appointment->update(['status' => AppointmentStatus::Confirmed]);
+
         return response()->json(['success' => true, 'message' => 'Appointment confirmed.', 'data' => new AppointmentResource($appointment)]);
     }
-
 
     public function cancel(Request $request, Appointment $appointment)
     {
@@ -114,7 +112,7 @@ class AppointmentController extends Controller
     {
         // get it from the appointments service
         $slots = $this->appointments->availableSlots(
-            (int)$request->input('doctor_id'),
+            (int) $request->input('doctor_id'),
             Carbon::parse($request->input('date'))
         );
 
@@ -128,7 +126,7 @@ class AppointmentController extends Controller
         ]);
 
         $availableDays = $this->appointments->getAvailableDays(
-            (int)$request->input('doctor_id')
+            (int) $request->input('doctor_id')
         );
 
         return response()->json(['success' => true, 'data' => $availableDays]);
@@ -161,11 +159,12 @@ class AppointmentController extends Controller
 
     public function markArrived(Appointment $appointment)
     {
-        if (!in_array($appointment->status, [AppointmentStatus::Scheduled, AppointmentStatus::Confirmed])) {
+        if (! in_array($appointment->status, [AppointmentStatus::Scheduled, AppointmentStatus::Confirmed])) {
             return response()->json(['success' => false, 'error' => 'Only scheduled or confirmed appointments can be marked arrived.'], 422);
         }
 
         $appointment->update(['status' => AppointmentStatus::Arrived]);
+
         return response()->json(['success' => true, 'message' => 'Patient marked as arrived.', 'data' => new AppointmentResource($appointment)]);
     }
 }

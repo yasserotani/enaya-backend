@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Receptionist\AppointmentController;
-use App\Http\Controllers\Receptionist\PatientController;
-use App\Http\Controllers\Receptionist\DoctorController; // Import the new DoctorController
+use App\Http\Controllers\Receptionist\DoctorController;
+use App\Http\Controllers\Receptionist\PatientController; // Import the new DoctorController
 use Illuminate\Support\Facades\Route;
 
 // Receptionist patient routes
@@ -18,7 +17,6 @@ Route::middleware(['auth:sanctum', 'role:receptionist'])
         Route::put('/{patient}/restore', [PatientController::class, 'restore']); // Added this route
         Route::delete('/{patient}/force-delete', [PatientController::class, 'forceDelete']); // Added this route
     });
-
 
 // Receptionist appointment management (view, update, cancel, reschedule, mark arrived/no-show)
 Route::middleware(['auth:sanctum', 'role:receptionist'])->prefix('receptionist/appointments')->group(function () { // Changed prefix here

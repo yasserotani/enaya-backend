@@ -19,7 +19,7 @@ class Patient extends Model
     public function scopeApplyFilters($query, array $filters)
     {
 
-        if (!empty($filters['search'])) {
+        if (! empty($filters['search'])) {
             $search = $filters['search'];
             $digitsOnly = preg_replace('/\D/', '', $search);
 
@@ -38,8 +38,7 @@ class Patient extends Model
             });
         }
 
-
-        if (!empty($filters['has_account'])) {
+        if (! empty($filters['has_account'])) {
             $filters['has_account'] === 'true'
                 ? $query->whereNotNull('user_id')
                 : $query->whereNull('user_id');
@@ -53,20 +52,20 @@ class Patient extends Model
         }
 
         // created_at range filters
-        if (!empty($filters['created_from'])) {
+        if (! empty($filters['created_from'])) {
             $query->whereDate('created_at', '>=', $filters['created_from']);
         }
 
-        if (!empty($filters['created_to'])) {
+        if (! empty($filters['created_to'])) {
             $query->whereDate('created_at', '<=', $filters['created_to']);
         }
 
         // date_of_birth range filters
-        if (!empty($filters['birth_from'])) {
+        if (! empty($filters['birth_from'])) {
             $query->whereDate('date_of_birth', '>=', $filters['birth_from']);
         }
 
-        if (!empty($filters['birth_to'])) {
+        if (! empty($filters['birth_to'])) {
             $query->whereDate('date_of_birth', '<=', $filters['birth_to']);
         }
 

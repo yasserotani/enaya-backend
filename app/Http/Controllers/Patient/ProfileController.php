@@ -11,14 +11,13 @@ use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
 class ProfileController extends Controller
 {
     public function show(Request $request)
     {
         $patient = $request->user()->patient;
 
-        if (!$patient) {
+        if (! $patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient profile not found',
@@ -36,7 +35,7 @@ class ProfileController extends Controller
         $validated = $request->validated();
         $patient = $request->user()->patient;
 
-        if (!$patient) {
+        if (! $patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient record not found',
@@ -76,7 +75,6 @@ class ProfileController extends Controller
             $user->update($request->only(['name', 'email']));
             $patient->update($request->only(['phone', 'date_of_birth', 'gender', 'address', 'job']));
 
-
             return response()->json([
                 'success' => true,
                 'message' => 'Profile updated successfully',
@@ -85,24 +83,24 @@ class ProfileController extends Controller
         });
     }
 
-//    public function getDepartmentDoctors(Request $request)
-//    {
-//        $request->validate([
-//            'department' => 'required',
-//        ]);
-//
-//        $departmentInput = $request->department;
-//
-//        $doctors = is_numeric($departmentInput)
-//            ? Doctor::where('department_id', $departmentInput)->with('department')->get()
-//            : Doctor::whereHas('department', fn($q) => $q->where('name', $departmentInput))
-//                ->with('department')
-//                ->get();
-//
-//        return response()->json([
-//            'success' => true,  // was missing
-//            'message' => 'Doctors retrieved successfully',
-//            'data' => DoctorResource::collection($doctors),
-//        ]);
-//    }
+    //    public function getDepartmentDoctors(Request $request)
+    //    {
+    //        $request->validate([
+    //            'department' => 'required',
+    //        ]);
+    //
+    //        $departmentInput = $request->department;
+    //
+    //        $doctors = is_numeric($departmentInput)
+    //            ? Doctor::where('department_id', $departmentInput)->with('department')->get()
+    //            : Doctor::whereHas('department', fn($q) => $q->where('name', $departmentInput))
+    //                ->with('department')
+    //                ->get();
+    //
+    //        return response()->json([
+    //            'success' => true,  // was missing
+    //            'message' => 'Doctors retrieved successfully',
+    //            'data' => DoctorResource::collection($doctors),
+    //        ]);
+    //    }
 }
