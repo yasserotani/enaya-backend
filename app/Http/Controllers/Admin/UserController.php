@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function __construct(private readonly DoctorService $doctorService) {}
+    public function __construct(private readonly DoctorService $doctorService)
+    {
+    }
 
     public function index(Request $request)
     {

@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
-    public function __construct(private readonly DoctorService $doctorService) {}
+    public function __construct(private readonly DoctorService $doctorService)
+    {
+    }
 
     /**
      * Display a listing of the resource.
@@ -119,7 +121,7 @@ class DoctorController extends Controller
                 $userData['email'] = $validated['email'];
             }
 
-            if (! empty($userData)) {
+            if (!empty($userData)) {
                 $doctor->user->update($userData);
             }
 

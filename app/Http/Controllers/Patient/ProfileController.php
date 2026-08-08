@@ -17,7 +17,7 @@ class ProfileController extends Controller
     {
         $patient = $request->user()->patient;
 
-        if (! $patient) {
+        if (!$patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient profile not found',
@@ -35,7 +35,7 @@ class ProfileController extends Controller
         $validated = $request->validated();
         $patient = $request->user()->patient;
 
-        if (! $patient) {
+        if (!$patient) {
             return response()->json([
                 'success' => false,
                 'message' => 'Patient record not found',

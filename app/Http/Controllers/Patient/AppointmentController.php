@@ -16,7 +16,9 @@ use Throwable;
 
 class AppointmentController extends Controller
 {
-    public function __construct(private AppointmentService $appointments) {}
+    public function __construct(private AppointmentService $appointments)
+    {
+    }
 
     // my appointments with filters
     public function index(Request $request)
@@ -87,7 +89,7 @@ class AppointmentController extends Controller
     {
         // git it from the appointments service
         $slots = $this->appointments->availableSlots(
-            (int) $request->input('doctor_id'),
+            (int)$request->input('doctor_id'),
             Carbon::parse($request->input('date'))
         );
 
@@ -101,7 +103,7 @@ class AppointmentController extends Controller
         ]);
 
         $availableDays = $this->appointments->getAvailableDays(
-            (int) $request->input('doctor_id')
+            (int)$request->input('doctor_id')
         );
 
         return response()->json(['success' => true, 'data' => $availableDays]);

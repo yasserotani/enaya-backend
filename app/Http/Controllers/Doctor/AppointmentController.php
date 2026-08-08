@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function __construct(private readonly AppointmentService $appointments) {}
+    public function __construct(private readonly AppointmentService $appointments)
+    {
+    }
 
     public function index(Request $request)
     {

@@ -1,6 +1,5 @@
 <?php
 
-// app/Http/Resources/AppointmentResource.php
 
 namespace App\Http\Resources;
 
