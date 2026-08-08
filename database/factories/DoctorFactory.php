@@ -32,8 +32,8 @@ class DoctorFactory extends Factory
             'phone' => fake()->phoneNumber(),
             'date_of_birth' => fake()->date(),
             'gender' => fake()->randomElement(['male', 'female']),
-            'working_hours_start' => '08:00:00',
-            'working_hours_end' => '16:00:00',
+            'working_hours_start' => fake()->randomElement(['07:00:00', '08:00:00', '09:00:00']),
+            'working_hours_end' => fake()->randomElement(['15:00:00', '16:00:00', '17:00:00', '18:00:00']),
         ];
     }
 }

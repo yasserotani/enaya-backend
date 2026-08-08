@@ -82,11 +82,6 @@ class Patient extends Model
         return $this->hasMany(Appointment::class);
     }
 
-    public function queues(): HasMany
-    {
-        return $this->hasMany(Queue::class);
-    }
-
     protected function casts(): array
     {
         return [

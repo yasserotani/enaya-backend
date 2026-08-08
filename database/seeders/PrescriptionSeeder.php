@@ -19,7 +19,7 @@ class PrescriptionSeeder extends Seeder
             return;
         }
 
-        $sessionCount = (int) ($sessions->count() * 0.6);
+        $sessionCount = (int) ($sessions->count() * 0.8);
 
         if ($sessionCount === 0) {
             return;

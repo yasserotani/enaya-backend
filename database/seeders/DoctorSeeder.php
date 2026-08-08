@@ -26,7 +26,7 @@ class DoctorSeeder extends Seeder
         $usedSlots = [];
 
         User::factory()
-            ->count(10)
+            ->count(25)
             ->create()
             ->each(function (User $user) use ($departments, $allPatients, &$usedSlots): void { // Pass $usedSlots by reference
                 $user->assignRole('doctor');

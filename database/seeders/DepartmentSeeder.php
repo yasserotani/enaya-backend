@@ -18,6 +18,12 @@ class DepartmentSeeder extends Seeder
             'Pediatrics',
             'Orthopedics',
             'Radiology',
+            'Dermatology',
+            'Ophthalmology',
+            'Gynecology',
+            'Oncology',
+            'Urology',
+            'General Surgery',
         ];
 
         foreach ($departments as $name) {
