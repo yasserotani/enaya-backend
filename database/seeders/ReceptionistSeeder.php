@@ -18,6 +18,7 @@ class ReceptionistSeeder extends Seeder
             [
                 'name' => 'Receptionist',
                 'password' => Hash::make('password'),
+                'is_active' => true,
             ]
         );
 
