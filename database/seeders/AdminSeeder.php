@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
@@ -14,12 +13,14 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::firstOrNew(['email' => 'admin@enaya.com']);
-
-        $admin->name = 'Admin';
-        $admin->password = Hash::make('password');
-        $admin->is_active = DB::raw('true');
-        $admin->save();
+        $admin = User::updateOrCreate(
+            ['email' => 'admin@enaya.com'],
+            [
+                'name' => 'Admin',
+                'password' => Hash::make('password'),
+                'is_active' => 1,
+            ]
+        );
 
         $admin->assignRole('admin');
     }

@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 'gender' => fake()->randomElement(['male', 'female']),
                 'address' => 'Test Address',
                 'job' => 'Test Job',
-                'profile_completed' => false,
+                'profile_completed' => DB::raw('false'),
             ]
         );
     }
