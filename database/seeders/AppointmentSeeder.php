@@ -33,16 +33,16 @@ class AppointmentSeeder extends Seeder
         Appointment::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-        $appointmentCount = 1000; // Increased count for more data
+        $appointmentCount = 3000; // Increased count for more data
         $statuses = array_column(AppointmentStatus::cases(), 'value');
 
         // Prevent duplicate (doctor_id + scheduled_at)
         $usedSlots = [];
 
-        // Generate appointments for the next 7 days so each day has in-progress appointments
+        // Generate appointments for the next 30 days so each day has in-progress appointments
         $daysToSeed = [];
         $start = Carbon::today();
-        for ($d = 0; $d < 7; $d++) {
+        for ($d = 0; $d < 30; $d++) {
             $daysToSeed[] = $start->copy()->addDays($d);
         }
 
@@ -58,19 +58,22 @@ class AppointmentSeeder extends Seeder
                     $slotKey = $doctor->id.'_'.$cursor->format('Y-m-d H:i:s');
 
                     if (! isset($usedSlots[$slotKey])) {
-                        $usedSlots[$slotKey] = true;
+                        // Only fill 70% of slots to ensure availability
+                        if (fake()->boolean(70)) {
+                            $usedSlots[$slotKey] = true;
 
-                        // Use a random patient from all available patients in database
-                        $patient = $patients->random();
+                            // Use a random patient from all available patients in database
+                            $patient = $patients->random();
 
-                        Appointment::create([
-                            'doctor_id' => $doctor->id,
-                            'patient_id' => $patient->id,
-                            'scheduled_at' => $cursor->copy(),
-                            'status' => AppointmentStatus::InProgress->value,
-                            'visit_reason' => fake()->optional(0.7)->sentence(),
-                            'notes' => fake()->optional(0.7)->sentence(),
-                        ]);
+                            Appointment::create([
+                                'doctor_id' => $doctor->id,
+                                'patient_id' => $patient->id,
+                                'scheduled_at' => $cursor->copy(),
+                                'status' => AppointmentStatus::InProgress->value,
+                                'visit_reason' => fake()->optional(0.7)->sentence(),
+                                'notes' => fake()->optional(0.7)->sentence(),
+                            ]);
+                        }
                     }
 
                     $cursor->addMinutes(30);
@@ -90,7 +93,7 @@ class AppointmentSeeder extends Seeder
 
             // Generate unique slot for this doctor, including today and future dates
             do {
-                $date = fake()->dateTimeBetween('-1 month', '+1 months'); // Mix of past, present, and future
+                $date = fake()->dateTimeBetween('-1 month', '+6 months'); // Mix of past, present, and future
                 $date = Carbon::parse($date)->setTime(
                     fake()->numberBetween(8, 16), // Working hours 8 AM to 4 PM
                     fake()->randomElement([0, 30]) // 0 or 30 minutes

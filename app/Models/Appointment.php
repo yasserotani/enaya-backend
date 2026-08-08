@@ -83,11 +83,6 @@ class Appointment extends Model
         return $this->belongsTo(Patient::class)->withTrashed();
     }
 
-    public function queue(): HasOne
-    {
-        return $this->hasOne(Queue::class);
-    }
-
     public function sessions(): HasOne
     {
         return $this->hasOne(AppointmentSession::class);
