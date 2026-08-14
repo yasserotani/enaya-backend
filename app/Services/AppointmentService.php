@@ -5,10 +5,10 @@ namespace App\Services;
 use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Notifications\NewAppointmentNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Throwable;
-use App\Notifications\NewAppointmentNotification;
 
 class AppointmentService
 {
@@ -25,7 +25,7 @@ class AppointmentService
      */
     private function activeStatusValues(): array
     {
-        return array_map(fn($s) => $s->value, self::ACTIVE_STATUSES);
+        return array_map(fn ($s) => $s->value, self::ACTIVE_STATUSES);
     }
 
     // Slot actions
@@ -40,11 +40,11 @@ class AppointmentService
             ->whereIn('status', $this->activeStatusValues())
             ->whereDate('scheduled_at', $date->toDateString())
             ->pluck('scheduled_at')
-            ->map(fn($t) => Carbon::parse($t)->format('Y-m-d H:i:s'));
+            ->map(fn ($t) => Carbon::parse($t)->format('Y-m-d H:i:s'));
 
         $slots = [];
         while ($cursor->lessThan($end)) {
-            if (!$booked->contains($cursor->format('Y-m-d H:i:s')) && $cursor->isAfter(now())) {
+            if (! $booked->contains($cursor->format('Y-m-d H:i:s')) && $cursor->isAfter(now())) {
                 $slots[] = $cursor->format('Y-m-d H:i:s');
             }
             $cursor->addMinutes(self::SLOT_MINUTES);
@@ -61,7 +61,7 @@ class AppointmentService
         $end = $cursor->copy()->addMonth();
 
         while ($cursor->lessThan($end)) {
-            if (!empty($this->availableSlots($doctorId, $cursor->copy()))) {
+            if (! empty($this->availableSlots($doctorId, $cursor->copy()))) {
                 $days[] = $cursor->toDateString();
             }
             $cursor->addDay();
@@ -74,7 +74,7 @@ class AppointmentService
     {
         return Appointment::where('doctor_id', $doctorId)
             ->whereIn('status', $this->activeStatusValues())
-            ->when($excludeAppointmentId, fn($q) => $q->where('id', '!=', $excludeAppointmentId))
+            ->when($excludeAppointmentId, fn ($q) => $q->where('id', '!=', $excludeAppointmentId))
             ->whereBetween('scheduled_at', [
                 $time->copy()->subMinutes(self::SLOT_MINUTES - 1),
                 $time->copy()->addMinutes(self::SLOT_MINUTES - 1),
@@ -88,14 +88,13 @@ class AppointmentService
      * @throws Throwable
      */
     public function createAppointment(
-        int               $patientId,
-        int               $doctorId,
-        Carbon            $scheduledAt,
+        int $patientId,
+        int $doctorId,
+        Carbon $scheduledAt,
         AppointmentStatus $status,
-        ?string           $visitReason = null,
-        ?string           $notes = null
-    ): Appointment
-    {
+        ?string $visitReason = null,
+        ?string $notes = null
+    ): Appointment {
         return DB::transaction(function () use ($patientId, $doctorId, $scheduledAt, $status, $visitReason, $notes) {
 
             // get and lock the doctor record while updating
@@ -122,7 +121,7 @@ class AppointmentService
 
     public function cancel(Appointment $appointment, string $cancelledBy, ?string $reason): Appointment
     {
-        if (!in_array($appointment->status, [
+        if (! in_array($appointment->status, [
             AppointmentStatus::Scheduled,
             AppointmentStatus::Confirmed,
             AppointmentStatus::Arrived,
@@ -140,7 +139,7 @@ class AppointmentService
 
     public function markAsNoShow(Appointment $appointment): Appointment
     {
-        if (!in_array($appointment->status, [
+        if (! in_array($appointment->status, [
             AppointmentStatus::Scheduled,
             AppointmentStatus::Confirmed,
         ])) {

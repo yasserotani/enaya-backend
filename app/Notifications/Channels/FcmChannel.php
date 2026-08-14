@@ -3,16 +3,15 @@
 namespace App\Notifications\Channels;
 
 use Illuminate\Notifications\Notification;
+use Kreait\Firebase\Exception\Messaging\NotFound;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification as FirebaseNotification;
-use Kreait\Firebase\Exception\Messaging\NotFound;
-use Kreait\Firebase\Exception\Messaging\InvalidMessage;
 
 class FcmChannel
 {
     public function send($notifiable, Notification $notification): void
     {
-        if (!method_exists($notification, 'toFcm')) {
+        if (! method_exists($notification, 'toFcm')) {
             return;
         }
 

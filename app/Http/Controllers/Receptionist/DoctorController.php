@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\DepartmentResource;
 use App\Http\Resources\DoctorResource;
 use App\Models\Department;
-
 // Import the Department model
 use App\Models\Doctor;
 use App\Services\DoctorService;

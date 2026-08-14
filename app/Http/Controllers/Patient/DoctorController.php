@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DepartmentResource;
 use App\Http\Resources\DoctorResource;
-
 // Import the Department model
 use App\Models\Department;
 use App\Models\Doctor;

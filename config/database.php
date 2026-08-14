@@ -94,7 +94,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => Str::slug((string)env('APP_NAME', 'laravel')) . '-database-',
+            'prefix' => Str::slug((string) env('APP_NAME', 'laravel')).'-database-',
         ],
 
         'default' => [

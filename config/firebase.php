@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'default' => 'app',
 

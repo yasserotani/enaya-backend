@@ -17,10 +17,10 @@ Route::any('/deploy/migrate', function (Request $request) {
     try {
         Artisan::call('migrate', ['--force' => true]);
 
-        return response("SUCCESS:\n" . Artisan::output(), 200)
+        return response("SUCCESS:\n".Artisan::output(), 200)
             ->header('Content-Type', 'text/plain');
     } catch (Throwable $e) {
-        return response("ERROR:\n" . $e->getMessage(), 500)
+        return response("ERROR:\n".$e->getMessage(), 500)
             ->header('Content-Type', 'text/plain');
     }
 });
@@ -33,10 +33,10 @@ Route::any('/deploy/seed', function (Request $request) {
     try {
         Artisan::call('db:seed', ['--force' => true]);
 
-        return response("SUCCESS:\n" . Artisan::output(), 200)
+        return response("SUCCESS:\n".Artisan::output(), 200)
             ->header('Content-Type', 'text/plain');
     } catch (Throwable $e) {
-        return response("ERROR:\n" . $e->getMessage(), 500)
+        return response("ERROR:\n".$e->getMessage(), 500)
             ->header('Content-Type', 'text/plain');
     }
 });
@@ -49,10 +49,10 @@ Route::any('/deploy/fresh', function (Request $request) {
     try {
         Artisan::call('migrate:fresh', ['--force' => true, '--seed' => true]);
 
-        return response("SUCCESS:\n" . Artisan::output(), 200)
+        return response("SUCCESS:\n".Artisan::output(), 200)
             ->header('Content-Type', 'text/plain');
     } catch (Throwable $e) {
-        return response("ERROR:\n" . $e->getMessage(), 500)
+        return response("ERROR:\n".$e->getMessage(), 500)
             ->header('Content-Type', 'text/plain');
     }
 });
@@ -64,10 +64,10 @@ Route::any('/deploy/clear-route', function (Request $request) {
     try {
         Artisan::call('route:clear');
 
-        return response("SUCCESS: Route cache cleared!\n" . Artisan::output(), 200)
+        return response("SUCCESS: Route cache cleared!\n".Artisan::output(), 200)
             ->header('Content-Type', 'text/plain');
     } catch (Throwable $e) {
-        return response("ERROR:\n" . $e->getMessage(), 500)
+        return response("ERROR:\n".$e->getMessage(), 500)
             ->header('Content-Type', 'text/plain');
     }
 });
@@ -97,21 +97,21 @@ Route::any('/deploy/clear-all', function (Request $request) {
         $output = '';
 
         Artisan::call('config:clear');
-        $output .= "config:clear\n" . Artisan::output() . "\n";
+        $output .= "config:clear\n".Artisan::output()."\n";
 
         Artisan::call('cache:clear');
-        $output .= "cache:clear\n" . Artisan::output() . "\n";
+        $output .= "cache:clear\n".Artisan::output()."\n";
 
         Artisan::call('route:clear');
-        $output .= "route:clear\n" . Artisan::output() . "\n";
+        $output .= "route:clear\n".Artisan::output()."\n";
 
         Artisan::call('view:clear');
-        $output .= "view:clear\n" . Artisan::output() . "\n";
+        $output .= "view:clear\n".Artisan::output()."\n";
 
-        return response("SUCCESS:\n" . $output, 200)
+        return response("SUCCESS:\n".$output, 200)
             ->header('Content-Type', 'text/plain');
     } catch (Throwable $e) {
-        return response("ERROR:\n" . $e->getMessage(), 500)
+        return response("ERROR:\n".$e->getMessage(), 500)
             ->header('Content-Type', 'text/plain');
     }
 });
