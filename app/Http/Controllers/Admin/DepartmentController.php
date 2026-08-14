@@ -8,7 +8,6 @@ use App\Http\Resources\DepartmentResource;
 use App\Http\Resources\DoctorResource;
 use App\Models\Department;
 use Illuminate\Http\JsonResponse;
-
 // Added DoctorResource import
 use Illuminate\Http\Request;
 
@@ -22,7 +21,7 @@ class DepartmentController extends Controller
         $query = Department::query();
 
         if ($request->has('search')) {
-            $query->where('name', 'like', '%' . $request->input('search') . '%');
+            $query->whereRaw('LOWER(name) LIKE LOWER(?)', ['%'.$request->input('search').'%']);
         }
 
         $departments = $query->paginate(10);

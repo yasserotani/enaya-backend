@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -15,12 +14,14 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::firstOrNew(['email' => 'user@enaya.com']);
-
-        $user->name = 'Test User';
-        $user->password = Hash::make('password');
-        $user->is_active = DB::raw('true');
-        $user->save();
+        $user = User::firstOrCreate(
+            ['email' => 'user@enaya.com'],
+            [
+                'name' => 'Test User',
+                'password' => Hash::make('password'),
+                'is_active' => true,
+            ]
+        );
 
         $user->assignRole('patient');
 
@@ -33,7 +34,7 @@ class UserSeeder extends Seeder
                 'gender' => fake()->randomElement(['male', 'female']),
                 'address' => 'Test Address',
                 'job' => 'Test Job',
-                'profile_completed' => DB::raw('false'),
+                'profile_completed' => false,
             ]
         );
     }

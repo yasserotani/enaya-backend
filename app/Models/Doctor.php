@@ -27,11 +27,11 @@ class Doctor extends Model
         return $query
             ->when($filters['department_id'] ?? null, fn ($q, $v) => $q->where('department_id', $v))
             ->when($filters['gender'] ?? null, fn ($q, $v) => $q->where('gender', $v))
-            ->when($filters['specialty'] ?? null, fn ($q, $v) => $q->where('specialty', 'like', "%{$v}%"))
+            ->when($filters['specialty'] ?? null, fn ($q, $v) => $q->whereRaw('LOWER(specialty) LIKE LOWER(?)', ["%{$v}%"]))
             ->when($filters['with_trashed'] ?? null, fn ($q) => $q->withTrashed())
             ->when($filters['search'] ?? null, fn ($q, $v) => $q->where(function ($q) use ($v) {
-                $q->where('full_name', 'like', "%{$v}%")
-                    ->orWhere('phone', 'like', "%{$v}%");
+                $q->whereRaw('LOWER(full_name) LIKE LOWER(?)', ["%{$v}%"])
+                    ->orWhereRaw('LOWER(phone) LIKE LOWER(?)', ["%{$v}%"]);
             }));
     }
 

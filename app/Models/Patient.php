@@ -24,16 +24,16 @@ class Patient extends Model
             $digitsOnly = preg_replace('/\D/', '', $search);
 
             $query->where(function ($q) use ($search, $digitsOnly) {
-                $q->where('full_name', 'like', "%{$search}%");
+                $q->whereRaw('LOWER(full_name) LIKE LOWER(?)', ["%{$search}%"]);
 
                 if ($digitsOnly !== '') {
                     // matches regardless of spaces, dashes, +, country code formatting
                     $q->orWhereRaw(
-                        "REPLACE(REPLACE(REPLACE(phone, '-', ''), ' ', ''), '+', '') LIKE ?",
+                        "LOWER(REPLACE(REPLACE(REPLACE(phone, '-', ''), ' ', ''), '+', '')) LIKE LOWER(?)",
                         ["%{$digitsOnly}%"]
                     );
                 } else {
-                    $q->orWhere('phone', 'like', "%{$search}%");
+                    $q->orWhereRaw('LOWER(phone) LIKE LOWER(?)', ["%{$search}%"]);
                 }
             });
         }

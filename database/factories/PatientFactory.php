@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @extends Factory<Patient>
@@ -34,7 +33,7 @@ class PatientFactory extends Factory
             'gender' => fake()->randomElement(['male', 'female']),
             'address' => fake()->address(),
             'job' => fake()->optional(0.6)->jobTitle(),
-            'profile_completed' => $user !== null ? DB::raw('true') : DB::raw('false'),
+            'profile_completed' => $user !== null,
             'emergency_contact' => fake()->numerify('+9639########'),
         ];
 

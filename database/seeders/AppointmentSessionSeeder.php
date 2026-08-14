@@ -7,7 +7,6 @@ use App\Models\Appointment;
 use App\Models\AppointmentSession;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class AppointmentSessionSeeder extends Seeder
@@ -22,10 +21,9 @@ class AppointmentSessionSeeder extends Seeder
         }
 
         // Clear old sessions before creating new ones based on fresh appointments
-        // Disable foreign key checks temporarily to allow truncate
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        AppointmentSession::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        Schema::withoutForeignKeyConstraints(function () {
+            AppointmentSession::truncate();
+        });
 
         $appointments = Appointment::query()->get();
 

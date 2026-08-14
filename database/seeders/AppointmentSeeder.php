@@ -9,7 +9,7 @@ use App\Models\Doctor;
 use App\Models\Patient;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class AppointmentSeeder extends Seeder
 {
@@ -27,11 +27,10 @@ class AppointmentSeeder extends Seeder
         }
 
         // Delete old appointments created by DoctorSeeder so we can recreate with proper patient distribution
-        // First disable foreign key checks to allow deletion
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        AppointmentSession::truncate();
-        Appointment::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        Schema::withoutForeignKeyConstraints(function () {
+            AppointmentSession::truncate();
+            Appointment::truncate();
+        });
 
         $appointmentCount = 3000; // Increased count for more data
         $statuses = array_column(AppointmentStatus::cases(), 'value');

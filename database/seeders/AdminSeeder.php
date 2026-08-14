@@ -13,12 +13,11 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::updateOrCreate(
+        $admin = User::firstOrCreate(
             ['email' => 'admin@enaya.com'],
             [
                 'name' => 'Admin',
                 'password' => Hash::make('password'),
-                'is_active' => 1,
             ]
         );
 

@@ -6,7 +6,6 @@ use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DoctorUserSeeder extends Seeder
@@ -22,12 +21,14 @@ class DoctorUserSeeder extends Seeder
             return;
         }
 
-        $doctorUser = User::firstOrNew(['email' => 'doctor@enaya.com']);
-
-        $doctorUser->name = 'Doctor';
-        $doctorUser->password = Hash::make('password');
-        $doctorUser->is_active = DB::raw('true');
-        $doctorUser->save();
+        $doctorUser = User::firstOrCreate(
+            ['email' => 'doctor@enaya.com'],
+            [
+                'name' => 'Doctor',
+                'password' => Hash::make('password'),
+                'is_active' => true,
+            ]
+        );
 
         $doctorUser->assignRole('doctor');
 

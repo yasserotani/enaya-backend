@@ -50,12 +50,12 @@ class Appointment extends Model
 
             $query->where(function ($q) use ($search) {
                 // Search inside the appointment's own reason or notes
-                $q->where('visit_reason', 'like', "%{$search}%")
-                    ->orWhere('notes', 'like', "%{$search}%")
+                $q->whereRaw('LOWER(visit_reason) LIKE LOWER(?)', ["%{$search}%"])
+                    ->orWhereRaw('LOWER(notes) LIKE LOWER(?)', ["%{$search}%"])
                     // Look inside the connected Patient relationship
                     ->orWhereHas('patient', function ($patientQuery) use ($search) {
-                        $patientQuery->where('full_name', 'like', "%{$search}%")
-                            ->orWhere('phone', 'like', "%{$search}%");
+                        $patientQuery->whereRaw('LOWER(full_name) LIKE LOWER(?)', ["%{$search}%"])
+                            ->orWhereRaw('LOWER(phone) LIKE LOWER(?)', ["%{$search}%"]);
                     });
             });
         }

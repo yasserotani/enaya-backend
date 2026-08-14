@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function __construct(private readonly DoctorService $doctorService)
-    {
-    }
+    public function __construct(private readonly DoctorService $doctorService) {}
 
     public function index(Request $request)
     {
@@ -30,8 +28,8 @@ class UserController extends Controller
 
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
-                $q->where('name', 'like', "%{$request->search}%")
-                    ->orWhere('email', 'like', "%{$request->search}%");
+                $q->whereRaw('LOWER(name) LIKE LOWER(?)', ["%{$request->search}%"])
+                    ->orWhereRaw('LOWER(email) LIKE LOWER(?)', ["%{$request->search}%"]);
             });
         }
 
