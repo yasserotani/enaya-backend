@@ -1,5 +1,7 @@
 <?php
 
+use App\Database\CustomPostgresConnection;
+use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -8,7 +10,7 @@ use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleMiddleware;
 use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
 
-return Application::configure(basePath: dirname(__DIR__))
+$app = Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         api: __DIR__.'/../routes/api.php',
@@ -43,4 +45,10 @@ return Application::configure(basePath: dirname(__DIR__))
             }
         });
 
-    })->create();
+    });
+
+Connection::resolverFor('pgsql', function ($connection, $database, $prefix, $config) {
+    return new CustomPostgresConnection($connection, $database, $prefix, $config);
+});
+
+return $app->create();
