@@ -17,6 +17,8 @@ class CustomPostgresConnection extends PostgresConnection
     {
         $bindings = parent::prepareBindings($bindings);
 
+        logger('prepareBindings called', $bindings);
+
         return array_map(function ($value) {
             if (is_bool($value)) {
                 return $value ? 'true' : 'false';
