@@ -31,6 +31,7 @@ class AppointmentSessionSeeder extends Seeder
             return;
         }
 
+        $rows = [];
         foreach ($appointments as $appointment) {
             if ($appointment->sessions()->exists()) {
                 continue;
@@ -74,13 +75,21 @@ class AppointmentSessionSeeder extends Seeder
                     break;
             }
 
-            AppointmentSession::factory()
-                ->for($appointment)
-                ->create([
-                    'status' => $sessionStatus,
-                    'started_at' => $startedAt,
-                    'ended_at' => $endedAt,
-                ]);
+            $rows[] = [
+                'appointment_id' => $appointment->id,
+                'status' => $sessionStatus,
+                'started_at' => $startedAt,
+                'ended_at' => $endedAt,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        // Bulk insert appointment sessions
+        if (! empty($rows)) {
+            foreach (array_chunk($rows, 200) as $chunk) {
+                \Illuminate\Support\Facades\DB::table((new AppointmentSession)->getTable())->insert($chunk);
+            }
         }
     }
 }

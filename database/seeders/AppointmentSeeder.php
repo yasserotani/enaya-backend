@@ -37,6 +37,8 @@ class AppointmentSeeder extends Seeder
 
         // Prevent duplicate (doctor_id + scheduled_at)
         $usedSlots = [];
+        // Collect appointment rows for bulk insert
+        $rows = [];
 
         // Generate appointments for the next 30 days so each day has in-progress appointments
         $daysToSeed = [];
@@ -64,14 +66,16 @@ class AppointmentSeeder extends Seeder
                             // Use a random patient from all available patients in database
                             $patient = $patients->random();
 
-                            Appointment::create([
+                            $rows[] = [
                                 'doctor_id' => $doctor->id,
                                 'patient_id' => $patient->id,
                                 'scheduled_at' => $cursor->copy(),
                                 'status' => AppointmentStatus::InProgress->value,
                                 'visit_reason' => fake()->optional(0.7)->sentence(),
                                 'notes' => fake()->optional(0.7)->sentence(),
-                            ]);
+                                'created_at' => now(),
+                                'updated_at' => now(),
+                            ];
                         }
                     }
 
@@ -119,14 +123,23 @@ class AppointmentSeeder extends Seeder
             // Use random patient from all available patients in database
             $patient = $patientsList->random();
 
-            Appointment::create([
+            $rows[] = [
                 'doctor_id' => $doctorId,
                 'patient_id' => $patient->id,
                 'scheduled_at' => $date,
                 'status' => $status,
                 'visit_reason' => fake()->optional(0.7)->sentence(),
                 'notes' => fake()->optional(0.7)->sentence(),
-            ]);
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
+
+        // Bulk insert collected appointments in chunks
+        if (! empty($rows)) {
+            foreach (array_chunk($rows, 200) as $chunk) {
+                \Illuminate\Support\Facades\DB::table((new Appointment)->getTable())->insert($chunk);
+            }
         }
     }
 }

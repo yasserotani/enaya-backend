@@ -25,8 +25,19 @@ class PrescriptionSeeder extends Seeder
             return;
         }
 
+        $rows = [];
         foreach ($sessions->random($sessionCount) as $session) {
-            Prescription::factory()->for($session)->create();
+            $data = Prescription::factory()->make()->toArray();
+            $data['appointment_session_id'] = $session->id;
+            $data['created_at'] = now();
+            $data['updated_at'] = now();
+            $rows[] = $data;
+        }
+
+        if (! empty($rows)) {
+            foreach (array_chunk($rows, 200) as $chunk) {
+                \Illuminate\Support\Facades\DB::table((new Prescription)->getTable())->insert($chunk);
+            }
         }
     }
 }

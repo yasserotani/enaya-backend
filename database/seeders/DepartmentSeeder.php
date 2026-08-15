@@ -26,8 +26,13 @@ class DepartmentSeeder extends Seeder
             'General Surgery',
         ];
 
-        foreach ($departments as $name) {
-            Department::create(['name' => $name]);
+        $now = now();
+        $rows = array_map(function ($name) use ($now) {
+            return ['name' => $name, 'created_at' => $now, 'updated_at' => $now];
+        }, $departments);
+
+        foreach (array_chunk($rows, 200) as $chunk) {
+            \Illuminate\Support\Facades\DB::table((new Department)->getTable())->insert($chunk);
         }
     }
 }
