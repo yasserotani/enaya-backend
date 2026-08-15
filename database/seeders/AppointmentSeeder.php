@@ -37,6 +37,11 @@ class AppointmentSeeder extends Seeder
 
         // Prevent duplicate (doctor_id + scheduled_at)
         $usedSlots = [];
+        // Temporary query counter for diagnostics
+        $queryCount = 0;
+        \Illuminate\Support\Facades\DB::listen(function ($query) use (&$queryCount) {
+            $queryCount++;
+        });
         // Collect appointment rows for bulk insert
         $rows = [];
 
@@ -140,6 +145,13 @@ class AppointmentSeeder extends Seeder
             foreach (array_chunk($rows, 200) as $chunk) {
                 \Illuminate\Support\Facades\DB::table((new Appointment)->getTable())->insert($chunk);
             }
+        }
+
+        // Output diagnostics: query count
+        if (isset($this->command) && $this->command) {
+            $this->command->info('AppointmentSeeder query count: ' . $queryCount);
+        } else {
+            \Illuminate\Support\Facades\Log::info('AppointmentSeeder query count: ' . $queryCount);
         }
     }
 }

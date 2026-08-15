@@ -31,7 +31,25 @@ Route::any('/deploy/seed', function (Request $request) {
         abort(403);
     }
     try {
-        Artisan::call('db:seed', ['--force' => true]);
+        $seeder = $request->query('seeder');
+        $params = ['--force' => true];
+
+        if ($seeder) {
+            $class = $seeder;
+            // Accept short class names like "DoctorSeeder" and expand to Database\Seeders\DoctorSeeder
+            if (! str_contains($class, '\\')) {
+                $class = 'Database\\Seeders\\' . $class;
+            }
+
+            if (! class_exists($class)) {
+                return response("ERROR:\n Seeder class {$class} not found", 400)
+                    ->header('Content-Type', 'text/plain');
+            }
+
+            $params['--class'] = $class;
+        }
+
+        Artisan::call('db:seed', $params);
 
         return response("SUCCESS:\n" . Artisan::output(), 200)
             ->header('Content-Type', 'text/plain');

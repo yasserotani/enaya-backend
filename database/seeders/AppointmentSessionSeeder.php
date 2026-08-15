@@ -25,6 +25,12 @@ class AppointmentSessionSeeder extends Seeder
             AppointmentSession::truncate();
         });
 
+        // Temporary query counter for diagnostics
+        $queryCount = 0;
+        \Illuminate\Support\Facades\DB::listen(function ($query) use (&$queryCount) {
+            $queryCount++;
+        });
+
         $appointments = Appointment::query()->get();
 
         if ($appointments->isEmpty()) {
@@ -90,6 +96,13 @@ class AppointmentSessionSeeder extends Seeder
             foreach (array_chunk($rows, 200) as $chunk) {
                 \Illuminate\Support\Facades\DB::table((new AppointmentSession)->getTable())->insert($chunk);
             }
+        }
+
+        // Output diagnostics: query count
+        if (isset($this->command) && $this->command) {
+            $this->command->info('AppointmentSessionSeeder query count: ' . $queryCount);
+        } else {
+            \Illuminate\Support\Facades\Log::info('AppointmentSessionSeeder query count: ' . $queryCount);
         }
     }
 }
