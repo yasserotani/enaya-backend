@@ -4,10 +4,12 @@ use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AppointmentSessionController;
 use App\Http\Controllers\Doctor\PatientController;
 use App\Http\Controllers\Doctor\PrescriptionController;
-// Add this line
+use App\Http\Controllers\Doctor\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show']);
+    Route::put('/profile/working-hours', [ProfileController::class, 'updateWorkingHours']);
 
     Route::prefix('appointments')->group(function () {
         Route::get('/', [AppointmentController::class, 'index']);
