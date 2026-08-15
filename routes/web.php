@@ -59,6 +59,63 @@ Route::any('/deploy/seed', function (Request $request) {
     }
 });
 
+// New: split seeding route — set SEED_DAY/SEED_START/SEED_END before running a seeder so callers can run small jobs
+Route::any('/deploy/seed/split', function (Request $request) {
+    if ($request->query('secret') !== env('DEPLOY_SECRET')
+        && $request->header('X-Deploy-Secret') !== env('DEPLOY_SECRET')) {
+        abort(403);
+    }
+
+    $seeder = $request->query('seeder');
+    if (! $seeder) {
+        return response("ERROR:\n Missing 'seeder' parameter", 400)->header('Content-Type', 'text/plain');
+    }
+
+    $class = $seeder;
+    if (! str_contains($class, '\\')) {
+        $class = 'Database\\Seeders\\' . $class;
+    }
+
+    if (! class_exists($class)) {
+        return response("ERROR:\n Seeder class {$class} not found", 400)->header('Content-Type', 'text/plain');
+    }
+
+    // Accept day or start/end range or batch parameters and expose to the seeder via env
+    $day = $request->query('day');
+    $start = $request->query('start');
+    $end = $request->query('end');
+    $batch = $request->query('batch');
+
+    if ($day) {
+        putenv('SEED_DAY=' . $day);
+        $_ENV['SEED_DAY'] = $day;
+        $_SERVER['SEED_DAY'] = $day;
+    }
+    if ($start) {
+        putenv('SEED_START=' . $start);
+        $_ENV['SEED_START'] = $start;
+        $_SERVER['SEED_START'] = $start;
+    }
+    if ($end) {
+        putenv('SEED_END=' . $end);
+        $_ENV['SEED_END'] = $end;
+        $_SERVER['SEED_END'] = $end;
+    }
+    if ($batch) {
+        putenv('SEED_BATCH=' . $batch);
+        $_ENV['SEED_BATCH'] = $batch;
+        $_SERVER['SEED_BATCH'] = $batch;
+    }
+
+    try {
+        Artisan::call('db:seed', ['--force' => true, '--class' => $class]);
+
+        return response("SUCCESS:\n" . Artisan::output(), 200)->header('Content-Type', 'text/plain');
+    } catch (Throwable $e) {
+        return response("ERROR:\n" . $e->getMessage(), 500)->header('Content-Type', 'text/plain');
+    }
+});
+
 Route::any('/deploy/fresh', function (Request $request) {
     if ($request->query('secret') !== env('DEPLOY_SECRET')
         && $request->header('X-Deploy-Secret') !== env('DEPLOY_SECRET')) {
@@ -135,6 +192,7 @@ Route::any('/deploy/clear-all', function (Request $request) {
 });
 // https://enaya-backend.vercel.app/deploy/migrate?secret=enayasecret
 // https://enaya-backend.vercel.app/deploy/seed?secret=enayasecret
+// https://enaya-backend.vercel.app/deploy/seed/split?secret=enayasecret&seeder=DoctorUserSeeder&day=2026-08-16
 // https://enaya-backend.vercel.app/deploy/fresh?secret=enayasecret
 // https://enaya-backend.vercel.app/deploy/clear-route?secret=enayasecret
 // https://enaya-backend.vercel.app/deploy/routes?secret=enayasecret

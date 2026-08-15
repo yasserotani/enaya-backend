@@ -54,8 +54,21 @@ class DoctorUserSeeder extends Seeder
         // Attach recurring appointments: 7 slots per day from now for the next 14 days
         $patients = Patient::query()->pluck('id')->toArray();
         if (! empty($patients)) {
-            $start = Carbon::now()->startOfDay();
-            $end = Carbon::now()->addDays(14)->endOfDay();
+            // Allow split seeding via SEED_DAY or SEED_START/SEED_END env vars
+            $seedDay = env('SEED_DAY');
+            $seedStart = env('SEED_START');
+            $seedEnd = env('SEED_END');
+
+            if ($seedDay) {
+                $start = Carbon::parse($seedDay)->startOfDay();
+                $end = Carbon::parse($seedDay)->endOfDay();
+            } elseif ($seedStart || $seedEnd) {
+                $start = $seedStart ? Carbon::parse($seedStart)->startOfDay() : Carbon::now()->startOfDay();
+                $end = $seedEnd ? Carbon::parse($seedEnd)->endOfDay() : Carbon::now()->addDays(14)->endOfDay();
+            } else {
+                $start = Carbon::now()->startOfDay();
+                $end = Carbon::now()->addDays(14)->endOfDay();
+            }
 
             // Load existing scheduled slots for this doctor in the range to avoid duplicates
             $existing = Appointment::where('doctor_id', $doctor->id)
