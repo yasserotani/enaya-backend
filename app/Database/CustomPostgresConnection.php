@@ -6,26 +6,23 @@ use Illuminate\Database\PostgresConnection;
 
 class CustomPostgresConnection extends PostgresConnection
 {
-    /**
-     * Convert PHP booleans to native Postgres booleans before binding.
-     *
-     * PDO's pgsql driver incorrectly casts PHP bool to integer (1/0) when
-     * ATTR_EMULATE_PREPARES is true (required by Supabase's PgBouncer).
-     * Postgres then rejects the integer for a boolean column.
-     */
     public function prepareBindings(array $bindings): array
     {
+        \Log::info('prepareBindings called - before', ['bindings' => $bindings]);
 
-        $bindings = parent::prepareBindings($bindings);
-        error_log('prepareBindings called - count: ' . count($bindings));
-        \Log::info('prepareBindings called', ['bindings' => $bindings]);
-
-        return array_map(function ($value) {
+        // Cast PHP booleans to Postgres boolean literals BEFORE parent
+        // has a chance to coerce them to int under emulated prepares.
+        $bindings = array_map(function ($value) {
             if (is_bool($value)) {
                 return $value ? 'true' : 'false';
             }
-
             return $value;
         }, $bindings);
+
+        $bindings = parent::prepareBindings($bindings);
+
+        \Log::info('prepareBindings called - after', ['bindings' => $bindings]);
+
+        return $bindings;
     }
 }
