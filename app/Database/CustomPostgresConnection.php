@@ -15,9 +15,10 @@ class CustomPostgresConnection extends PostgresConnection
      */
     public function prepareBindings(array $bindings): array
     {
-        $bindings = parent::prepareBindings($bindings);
 
-        logger('prepareBindings called', $bindings);
+        $bindings = parent::prepareBindings($bindings);
+        error_log('prepareBindings called - count: ' . count($bindings));
+        \Log::info('prepareBindings called', ['bindings' => $bindings]);
 
         return array_map(function ($value) {
             if (is_bool($value)) {
