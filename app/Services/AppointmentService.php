@@ -5,6 +5,9 @@ namespace App\Services;
 use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Notifications\AppointmentCancelledNotification;
+use App\Notifications\AppointmentNoShowNotification;
+use App\Notifications\AppointmentRescheduledNotification;
 use App\Notifications\NewAppointmentNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -133,6 +136,12 @@ class AppointmentService
             'status' => AppointmentStatus::Canceled,
             'cancelled_by' => $cancelledBy,
         ]);
+        // notify whoever did NOT cancel it
+        if ($cancelledBy === 'patient') {
+            $appointment->doctor->user->notify(new AppointmentCancelledNotification($appointment));
+        } else {
+            $appointment->patient->user->notify(new AppointmentCancelledNotification($appointment));
+        }
 
         return $appointment;
     }
@@ -147,6 +156,8 @@ class AppointmentService
         }
 
         $appointment->update(['status' => AppointmentStatus::NoShow]);
+
+        $appointment->doctor->user->notify(new AppointmentNoShowNotification($appointment));
 
         return $appointment;
     }
@@ -168,6 +179,9 @@ class AppointmentService
             'scheduled_at' => $newTime,
             'status' => AppointmentStatus::Scheduled,
         ]);
+
+        $appointment->patient->user->notify(new AppointmentRescheduledNotification($appointment));
+        $appointment->doctor->user->notify(new AppointmentRescheduledNotification($appointment));
 
         return $appointment;
     }

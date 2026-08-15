@@ -7,6 +7,7 @@ use App\Http\Requests\Doctor\StorePrescriptionRequest;
 use App\Http\Requests\Doctor\UpdatePrescriptionRequest;
 use App\Models\AppointmentSession;
 use App\Models\Prescription;
+use App\Notifications\NewPrescriptionNotification;
 use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
@@ -17,6 +18,10 @@ class PrescriptionController extends Controller
         $this->checkSessionActive($session);
 
         $prescription = $session->prescriptions()->create($request->validated());
+
+        $session->appointment->patient->user->notify(
+            new NewPrescriptionNotification($prescription)
+        );
 
         return response()->json([
             'success' => true,

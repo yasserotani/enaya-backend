@@ -74,12 +74,14 @@ class DoctorUserSeeder extends Seeder
             $existing = Appointment::where('doctor_id', $doctor->id)
                 ->whereBetween('scheduled_at', [$start->toDateTimeString(), $end->toDateTimeString()])
                 ->pluck('scheduled_at')
-                ->map(function ($dt) { return Carbon::parse($dt)->format('Y-m-d H:i:s'); })
+                ->map(function ($dt) {
+                    return Carbon::parse($dt)->format('Y-m-d H:i:s');
+                })
                 ->toArray();
             $existing = array_flip($existing); // for faster isset checks
 
             $rows = [];
-            $hours = [9,10,11,12,13,14,15]; // 7 slots per day
+            $hours = [9, 10, 11, 12, 13, 14, 15]; // 7 slots per day
             for ($d = $start->copy(); $d->lte($end); $d->addDay()) {
                 foreach ($hours as $hour) {
                     $scheduledAt = $d->copy()->setTime($hour, 0, 0);
@@ -108,7 +110,7 @@ class DoctorUserSeeder extends Seeder
                     DB::table((new Appointment)->getTable())->insert($chunk);
                 }
                 if (isset($this->command) && $this->command) {
-                    $this->command->info('DoctorUserSeeder inserted ' . count($rows) . ' appointments for doctor@enaya.com');
+                    $this->command->info('DoctorUserSeeder inserted '.count($rows).' appointments for doctor@enaya.com');
                 }
             }
         }

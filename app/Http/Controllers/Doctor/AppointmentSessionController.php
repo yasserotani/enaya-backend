@@ -8,6 +8,7 @@ use App\Http\Requests\Doctor\StartSessionRequest;
 use App\Http\Requests\Doctor\UpdateSessionRequest;
 use App\Models\Appointment;
 use App\Models\AppointmentSession;
+use App\Notifications\SessionStatusNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -67,7 +68,7 @@ class AppointmentSessionController extends Controller
         $session = \DB::transaction(function () use ($request, $appointment) {
             $session = $appointment->sessions()->create([
                 'started_at' => now(),
-                'status' => 'active',
+                'status' => 'in_progress',
                 'patient_complaint' => $request->patient_complaint ?? null,
                 'notes' => $request->notes,
             ]);
@@ -76,6 +77,8 @@ class AppointmentSessionController extends Controller
 
             return $session;
         });
+
+        $appointment->patient->user->notify(new SessionStatusNotification($session));
 
         return response()->json([
             'success' => true,
@@ -147,6 +150,8 @@ class AppointmentSessionController extends Controller
                 'status' => 'completed',
             ]);
         });
+
+        $appointment->patient->user->notify(new SessionStatusNotification($session->fresh()));
 
         return response()->json([
             'success' => true,

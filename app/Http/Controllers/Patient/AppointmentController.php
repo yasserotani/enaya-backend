@@ -118,7 +118,6 @@ class AppointmentController extends Controller
 
         $validated = $request->validate(['reason' => 'nullable|string|max:255']);
 
-        // DomainException is caught globally → 422 JSON automatically
         $this->appointments->cancel($appointment, 'patient', $validated['reason'] ?? null);
 
         return response()->json([

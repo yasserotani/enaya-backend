@@ -16,6 +16,7 @@ class CustomPostgresConnection extends PostgresConnection
             if (is_bool($value)) {
                 return $value ? 'true' : 'false';
             }
+
             return $value;
         }, $bindings);
 

@@ -7,6 +7,8 @@ use App\Models\Appointment;
 use App\Models\AppointmentSession;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 
 class AppointmentSessionSeeder extends Seeder
@@ -27,7 +29,7 @@ class AppointmentSessionSeeder extends Seeder
 
         // Temporary query counter for diagnostics
         $queryCount = 0;
-        \Illuminate\Support\Facades\DB::listen(function ($query) use (&$queryCount) {
+        DB::listen(function ($query) use (&$queryCount) {
             $queryCount++;
         });
 
@@ -94,15 +96,15 @@ class AppointmentSessionSeeder extends Seeder
         // Bulk insert appointment sessions
         if (! empty($rows)) {
             foreach (array_chunk($rows, 200) as $chunk) {
-                \Illuminate\Support\Facades\DB::table((new AppointmentSession)->getTable())->insert($chunk);
+                DB::table((new AppointmentSession)->getTable())->insert($chunk);
             }
         }
 
         // Output diagnostics: query count
         if (isset($this->command) && $this->command) {
-            $this->command->info('AppointmentSessionSeeder query count: ' . $queryCount);
+            $this->command->info('AppointmentSessionSeeder query count: '.$queryCount);
         } else {
-            \Illuminate\Support\Facades\Log::info('AppointmentSessionSeeder query count: ' . $queryCount);
+            Log::info('AppointmentSessionSeeder query count: '.$queryCount);
         }
     }
 }

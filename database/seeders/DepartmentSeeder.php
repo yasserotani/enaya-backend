@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Department;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DepartmentSeeder extends Seeder
 {
@@ -32,7 +33,7 @@ class DepartmentSeeder extends Seeder
         }, $departments);
 
         foreach (array_chunk($rows, 200) as $chunk) {
-            \Illuminate\Support\Facades\DB::table((new Department)->getTable())->insert($chunk);
+            DB::table((new Department)->getTable())->insert($chunk);
         }
     }
 }

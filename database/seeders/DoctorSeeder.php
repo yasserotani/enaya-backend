@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
-use App\Models\AppointmentSession;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Patient;
@@ -13,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class DoctorSeeder extends Seeder
 {
@@ -34,11 +34,11 @@ class DoctorSeeder extends Seeder
         });
 
         // Bulk-create users for doctors
-        $seedPrefix = 'bulk-doctor-' . now()->timestamp . '-';
+        $seedPrefix = 'bulk-doctor-'.now()->timestamp.'-';
         $userRows = [];
         for ($i = 1; $i <= 25; $i++) {
             $name = fake()->name();
-            $email = $seedPrefix . $i . '@example.test';
+            $email = $seedPrefix.$i.'@example.test';
             $userRows[] = [
                 'name' => $name,
                 'email' => $email,
@@ -51,7 +51,7 @@ class DoctorSeeder extends Seeder
         DB::table((new User)->getTable())->insert($userRows);
 
         // Fetch created users
-        $createdUsers = DB::table((new User)->getTable())->where('email', 'like', $seedPrefix . '%')->get();
+        $createdUsers = DB::table((new User)->getTable())->where('email', 'like', $seedPrefix.'%')->get();
         $createdUserIds = $createdUsers->pluck('id')->toArray();
 
         // Bulk-create doctors linked to the created users
@@ -62,14 +62,14 @@ class DoctorSeeder extends Seeder
                 'department_id' => $departments->random(),
                 'specialty' => 'General Practice',
                 'full_name' => $cu->name,
-            // Use unique phone per doctor to avoid unique constraint violations
-            'phone' => fake()->unique()->numerify('9#########'),
-            'date_of_birth' => \Carbon\Carbon::parse(fake()->dateTimeBetween('-65 years', '-20 years'))->format('Y-m-d'),
-            'gender' => 'male',
-            'working_hours_start' => '08:00:00',
-            'working_hours_end' => '16:00:00',
-            'created_at' => now(),
-            'updated_at' => now(),
+                // Use unique phone per doctor to avoid unique constraint violations
+                'phone' => fake()->unique()->numerify('9#########'),
+                'date_of_birth' => Carbon::parse(fake()->dateTimeBetween('-65 years', '-20 years'))->format('Y-m-d'),
+                'gender' => 'male',
+                'working_hours_start' => '08:00:00',
+                'working_hours_end' => '16:00:00',
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
         }
         DB::table((new Doctor)->getTable())->insert($doctorRows);
@@ -145,9 +145,9 @@ class DoctorSeeder extends Seeder
 
         // Output diagnostics: query count
         if (isset($this->command) && $this->command) {
-            $this->command->info('DoctorSeeder query count: ' . $queryCount);
+            $this->command->info('DoctorSeeder query count: '.$queryCount);
         } else {
-            \Illuminate\Support\Facades\Log::info('DoctorSeeder query count: ' . $queryCount);
+            Log::info('DoctorSeeder query count: '.$queryCount);
         }
     }
 }

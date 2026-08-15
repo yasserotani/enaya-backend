@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Patient;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PatientSeeder extends Seeder
 {
@@ -27,11 +28,12 @@ class PatientSeeder extends Seeder
 
             $r['created_at'] = $now;
             $r['updated_at'] = $now;
+
             return $r;
         }, $rows);
 
         foreach (array_chunk($rows, 200) as $chunk) {
-            \Illuminate\Support\Facades\DB::table((new Patient)->getTable())->insert($chunk);
+            DB::table((new Patient)->getTable())->insert($chunk);
         }
 
     }

@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\AppointmentSession;
 use App\Models\Prescription;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class PrescriptionSeeder extends Seeder
 {
@@ -15,7 +17,7 @@ class PrescriptionSeeder extends Seeder
     {
         // Temporary query counter for diagnostics
         $queryCount = 0;
-        \Illuminate\Support\Facades\DB::listen(function ($query) use (&$queryCount) {
+        DB::listen(function ($query) use (&$queryCount) {
             $queryCount++;
         });
 
@@ -41,15 +43,15 @@ class PrescriptionSeeder extends Seeder
 
         if (! empty($rows)) {
             foreach (array_chunk($rows, 200) as $chunk) {
-                \Illuminate\Support\Facades\DB::table((new Prescription)->getTable())->insert($chunk);
+                DB::table((new Prescription)->getTable())->insert($chunk);
             }
         }
 
         // Output diagnostics: query count
         if (isset($this->command) && $this->command) {
-            $this->command->info('PrescriptionSeeder query count: ' . $queryCount);
+            $this->command->info('PrescriptionSeeder query count: '.$queryCount);
         } else {
-            \Illuminate\Support\Facades\Log::info('PrescriptionSeeder query count: ' . $queryCount);
+            Log::info('PrescriptionSeeder query count: '.$queryCount);
         }
     }
 }
