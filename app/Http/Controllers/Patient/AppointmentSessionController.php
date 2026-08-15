@@ -18,11 +18,17 @@ class AppointmentSessionController extends Controller
         })
             ->with(['appointment.doctor', 'prescriptions'])
             ->orderBy('started_at', 'desc')
-            ->get();
+            ->paginate(20);
 
         return response()->json([
             'success' => true,
-            'data' => AppointmentSessionResource::collection($sessions),
+            'data' => AppointmentSessionResource::collection($sessions->items()),
+            'meta' => [
+                'current_page' => $sessions->currentPage(),
+                'last_page' => $sessions->lastPage(),
+                'per_page' => $sessions->perPage(),
+                'total' => $sessions->total(),
+            ],
         ]);
     }
 

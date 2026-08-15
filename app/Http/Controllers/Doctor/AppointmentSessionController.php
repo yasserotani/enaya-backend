@@ -18,11 +18,17 @@ class AppointmentSessionController extends Controller
     {
         $this->checkOwnership($appointment, $request->user()->doctor);
 
-        $sessions = $appointment->sessions()->with('prescriptions')->latest()->get();
+        $sessions = $appointment->sessions()->with('prescriptions')->latest()->paginate(20);
 
         return response()->json([
             'success' => true,
-            'data' => ['sessions' => $sessions],
+            'data' => ['sessions' => $sessions->items()],
+            'meta' => [
+                'current_page' => $sessions->currentPage(),
+                'last_page' => $sessions->lastPage(),
+                'per_page' => $sessions->perPage(),
+                'total' => $sessions->total(),
+            ],
             'error' => null,
             'errorCode' => null,
         ]);

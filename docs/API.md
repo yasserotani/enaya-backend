@@ -197,6 +197,100 @@ Invalidate the current access token.
 
 ---
 
+## Notification Endpoints
+
+Base path: `/api`
+
+### List Notifications
+
+`GET /api/notifications`
+
+Fetch the authenticated user's paginated notifications.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": "1",
+                "type": "App\\Notifications\\AppointmentCancelledNotification",
+                "notifiable_type": "App\\Models\\User",
+                "notifiable_id": 2,
+                "data": {
+                    "message": "Your appointment was cancelled."
+                },
+                "read_at": null,
+                "created_at": "2026-08-15T12:00:00.000000Z",
+                "updated_at": "2026-08-15T12:00:00.000000Z"
+            }
+        ],
+        "per_page": 20,
+        "total": 1
+    },
+    "error": null,
+    "errorCode": null
+}
+```
+
+### Get Unread Notifications Count
+
+`GET /api/notifications/unread-count`
+
+Return the count of unread notifications for the authenticated user.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "count": 3
+    },
+    "error": null,
+    "errorCode": null
+}
+```
+
+### Mark Notification as Read
+
+`POST /api/notifications/{id}/read`
+
+Mark one notification as read.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": null,
+    "error": null,
+    "errorCode": null
+}
+```
+
+### Mark All Notifications as Read
+
+`POST /api/notifications/read-all`
+
+Mark all unread notifications as read for the authenticated user.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": null,
+    "error": null,
+    "errorCode": null
+}
+```
+
+---
+
 ## Patient Profile Endpoints
 
 **Authorization:** `auth:sanctum` + `role:patient`
@@ -455,7 +549,13 @@ Get patient's appointments with optional filtering.
             "notes": "First time",
             "created_at": "2026-06-11T12:00:00.000000Z"
         }
-    ]
+    ],
+    "meta": {
+        "current_page": 1,
+        "last_page": 2,
+        "per_page": 20,
+        "total": 31
+    }
 }
 ```
 
@@ -659,7 +759,13 @@ Get all prescriptions for patient's sessions.
             "created_at": "2026-06-11T12:00:00.000000Z",
             "updated_at": "2026-06-11T12:00:00.000000Z"
         }
-    ]
+    ],
+    "meta": {
+        "current_page": 1,
+        "last_page": 2,
+        "per_page": 20,
+        "total": 24
+    }
 }
 ```
 
@@ -723,7 +829,13 @@ Get all appointment sessions for patient.
             "created_at": "2026-06-20T10:00:00.000000Z",
             "updated_at": "2026-06-20T10:30:00.000000Z"
         }
-    ]
+    ],
+    "meta": {
+        "current_page": 1,
+        "last_page": 1,
+        "per_page": 20,
+        "total": 7
+    }
 }
 ```
 
@@ -796,20 +908,33 @@ List all patients with optional filtering.
 ```json
 {
     "success": true,
-    "data": [
-        {
-            "id": 1,
-            "user_id": null,
-            "full_name": "Jane Doe",
-            "phone": "+963912345678",
-            "date_of_birth": "1995-05-20",
-            "gender": "female",
-            "address": "Damascus",
-            "job": "Teacher",
-            "emergency_contact": null,
-            "created_at": "2026-06-11T12:00:00.000000Z"
-        }
-    ]
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 1,
+                "user_id": null,
+                "full_name": "Jane Doe",
+                "phone": "+963912345678",
+                "date_of_birth": "1995-05-20",
+                "gender": "female",
+                "address": "Damascus",
+                "job": "Teacher",
+                "emergency_contact": null,
+                "created_at": "2026-06-11T12:00:00.000000Z"
+            }
+        ],
+        "first_page_url": "http://localhost/api/reception/patients?page=1",
+        "from": 1,
+        "last_page": 2,
+        "last_page_url": "http://localhost/api/reception/patients?page=2",
+        "next_page_url": "http://localhost/api/reception/patients?page=2",
+        "path": "http://localhost/api/reception/patients",
+        "per_page": 20,
+        "prev_page_url": null,
+        "to": 1,
+        "total": 23
+    }
 }
 ```
 
@@ -1248,6 +1373,88 @@ Get days with available slots for a doctor for the next month starting from toda
 
 ---
 
+## Doctor Profile
+
+**Authorization:** `auth:sanctum` + `role:doctor`
+
+### Get Doctor Profile
+
+`GET /api/doctor/profile`
+
+Retrieve the authenticated doctor's profile information, including personal details and working hours.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "user": {
+            "id": 2,
+            "name": "Dr. Ahmed",
+            "email": "doctor@enaya.com"
+        },
+        "full_name": "Dr. Ahmed Al-Hassan",
+        "phone": "+963912345678",
+        "date_of_birth": "1985-05-14",
+        "gender": "male",
+        "specialty": "Cardiology",
+        "working_hours_start": "09:00",
+        "working_hours_end": "17:00",
+        "department": {
+            "id": 1,
+            "name": "Cardiology"
+        }
+    }
+}
+```
+
+### Update Working Hours
+
+`PUT /api/doctor/profile/working-hours`
+
+Update the authenticated doctor's working hours.
+
+**Request:**
+
+```json
+{
+    "working_hours_start": "09:00",
+    "working_hours_end": "17:00"
+}
+```
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "message": "Working hours updated successfully",
+    "data": {
+        "id": 1,
+        "user": {
+            "id": 2,
+            "name": "Dr. Ahmed",
+            "email": "doctor@enaya.com"
+        },
+        "full_name": "Dr. Ahmed Al-Hassan",
+        "phone": "+963912345678",
+        "specialty": "Cardiology",
+        "working_hours_start": "09:00",
+        "working_hours_end": "17:00",
+        "department": {
+            "id": 1,
+            "name": "Cardiology"
+        }
+    }
+}
+```
+
+**Response `422`:** if the provided time range is invalid.
+
+---
+
 ## Doctor Appointments
 
 **Authorization:** `auth:sanctum` + `role:doctor`
@@ -1285,7 +1492,13 @@ List doctor's appointments. Defaults to today's appointments.
                 ...
             }
         }
-    ]
+    ],
+    "meta": {
+        "current_page": 1,
+        "last_page": 2,
+        "per_page": 20,
+        "total": 24
+    }
 }
 ```
 
@@ -1438,6 +1651,12 @@ List all sessions for an appointment.
                 "prescriptions": []
             }
         ]
+    },
+    "meta": {
+        "current_page": 1,
+        "last_page": 1,
+        "per_page": 20,
+        "total": 3
     }
 }
 ```

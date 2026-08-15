@@ -18,11 +18,17 @@ class PrescriptionController extends Controller
         })
             ->with(['appointmentSession.appointment.doctor'])
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(20);
 
         return response()->json([
             'success' => true,
-            'data' => PrescriptionResource::collection($prescriptions),
+            'data' => PrescriptionResource::collection($prescriptions->items()),
+            'meta' => [
+                'current_page' => $prescriptions->currentPage(),
+                'last_page' => $prescriptions->lastPage(),
+                'per_page' => $prescriptions->perPage(),
+                'total' => $prescriptions->total(),
+            ],
         ]);
     }
 

@@ -37,11 +37,17 @@ class AppointmentController extends Controller
 
         $appointments = $query->with('patient')
             ->orderBy('scheduled_at', $sortOrder)
-            ->get();
+            ->paginate(20);
 
         return response()->json([
             'success' => true,
-            'data' => AppointmentResource::collection($appointments),
+            'data' => AppointmentResource::collection($appointments->items()),
+            'meta' => [
+                'current_page' => $appointments->currentPage(),
+                'last_page' => $appointments->lastPage(),
+                'per_page' => $appointments->perPage(),
+                'total' => $appointments->total(),
+            ],
         ]);
     }
 

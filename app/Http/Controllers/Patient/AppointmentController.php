@@ -33,11 +33,17 @@ class AppointmentController extends Controller
             ->applyFilters($request->only(['status', 'doctor_id', 'timeline']))
             ->with(['doctor', 'doctor.department'])
             ->orderBy('scheduled_at', $sortOrder)
-            ->get();
+            ->paginate(20);
 
         return response()->json([
             'success' => true,
-            'data' => AppointmentResource::collection($appointments),
+            'data' => AppointmentResource::collection($appointments->items()),
+            'meta' => [
+                'current_page' => $appointments->currentPage(),
+                'last_page' => $appointments->lastPage(),
+                'per_page' => $appointments->perPage(),
+                'total' => $appointments->total(),
+            ],
         ]);
     }
 

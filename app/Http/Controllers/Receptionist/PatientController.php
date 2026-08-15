@@ -17,9 +17,9 @@ class PatientController extends Controller
             'has_account',
             'with_trashed',
         ]))
-            ->when(request()->boolean('with_trashed'), fn ($query) => $query->withTrashed()) // Apply withTrashed if requested
+            ->when(request()->boolean('with_trashed'), fn ($query) => $query->withTrashed())
             ->latest()
-            ->get();
+            ->paginate(20);
 
         return response()->json([
             'success' => true,
