@@ -10,7 +10,6 @@ use App\Models\Patient;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 
 class AppointmentSeeder extends Seeder
@@ -20,140 +19,78 @@ class AppointmentSeeder extends Seeder
      */
     public function run(): void
     {
-        // Always load fresh doctors and patients from database
-        $doctors = Doctor::all();
-        $patients = Patient::all();
+        $doctors = Doctor::query()->get();
+        $patients = Patient::query()->get();
 
         if ($doctors->isEmpty() || $patients->isEmpty()) {
             return;
         }
 
-        // Delete old appointments created by DoctorSeeder so we can recreate with proper patient distribution
         Schema::withoutForeignKeyConstraints(function () {
             AppointmentSession::truncate();
             Appointment::truncate();
         });
 
-        $appointmentCount = 3000; // Increased count for more data
-        $statuses = array_column(AppointmentStatus::cases(), 'value');
+        $startDate = Carbon::today();
+        $endDate = $startDate->copy()->addDays(10); // inclusive: today .. today+10
 
-        // Prevent duplicate (doctor_id + scheduled_at)
-        $usedSlots = [];
-        // Temporary query counter for diagnostics
-        $queryCount = 0;
-        DB::listen(function ($query) use (&$queryCount) {
-            $queryCount++;
-        });
-        // Collect appointment rows for bulk insert
         $rows = [];
+        $createdAt = now();
+        $updatedAt = now();
+        $appointmentsPerDoctorPerDay = 5;
 
-        // Generate appointments for the next 30 days so each day has in-progress appointments
-        $daysToSeed = [];
-        $start = Carbon::today();
-        for ($d = 0; $d < 30; $d++) {
-            $daysToSeed[] = $start->copy()->addDays($d);
-        }
-
-        // For each seeded day, create an 'inProgress' appointment for every 30-minute slot
-        // during each doctor's working hours so there is an appointment in progress at every time.
-        foreach ($daysToSeed as $day) {
+        for ($day = $startDate->copy(); $day->lte($endDate); $day->addDay()) {
             foreach ($doctors as $doctor) {
-                // cursor from doctor's working_hours_start to working_hours_end
-                $cursor = Carbon::parse($day)->setTimeFromTimeString($doctor->working_hours_start);
-                $end = Carbon::parse($day)->setTimeFromTimeString($doctor->working_hours_end);
+                $startTime = Carbon::parse($doctor->working_hours_start)->format('H:i');
+                $endTime = Carbon::parse($doctor->working_hours_end)->format('H:i');
 
-                while ($cursor->lessThan($end)) {
-                    $slotKey = $doctor->id.'_'.$cursor->format('Y-m-d H:i:s');
+                $slotCursor = $day->copy()->setTimeFromTimeString($startTime);
+                $slotEnd = $day->copy()->setTimeFromTimeString($endTime);
+                $slotCandidates = [];
 
-                    if (! isset($usedSlots[$slotKey])) {
-                        // Only fill 70% of slots to ensure availability
-                        if (fake()->boolean(70)) {
-                            $usedSlots[$slotKey] = true;
+                while ($slotCursor->lessThan($slotEnd)) {
+                    $slotCandidates[] = $slotCursor->copy();
+                    $slotCursor->addMinutes(30);
+                }
 
-                            // Use a random patient from all available patients in database
-                            $patient = $patients->random();
+                if (count($slotCandidates) < $appointmentsPerDoctorPerDay) {
+                    continue;
+                }
 
-                            $rows[] = [
-                                'doctor_id' => $doctor->id,
-                                'patient_id' => $patient->id,
-                                'scheduled_at' => $cursor->copy(),
-                                'status' => AppointmentStatus::InProgress->value,
-                                'visit_reason' => fake()->optional(0.7)->sentence(),
-                                'notes' => fake()->optional(0.7)->sentence(),
-                                'created_at' => now(),
-                                'updated_at' => now(),
-                            ];
-                        }
-                    }
+                $chosenSlots = collect($slotCandidates)
+                    ->shuffle()
+                    ->take($appointmentsPerDoctorPerDay);
 
-                    $cursor->addMinutes(30);
+                foreach ($chosenSlots as $scheduledAt) {
+                    $patient = $patients->random();
+
+                    $rows[] = [
+                        'doctor_id' => $doctor->id,
+                        'patient_id' => $patient->id,
+                        'scheduled_at' => $scheduledAt->format('Y-m-d H:i:s'),
+                        'status' => fake()->randomElement([
+                            AppointmentStatus::Scheduled->value,
+                            AppointmentStatus::Confirmed->value,
+                            AppointmentStatus::Arrived->value,
+                            AppointmentStatus::InProgress->value,
+                        ]),
+                        'visit_reason' => fake()->optional(0.7)->sentence(),
+                        'notes' => fake()->optional(0.7)->sentence(),
+                        'created_at' => $createdAt,
+                        'updated_at' => $updatedAt,
+                    ];
                 }
             }
         }
 
-        // Fill remaining appointments with a wider date range if total count is not met
-        $existingAppointmentsCount = Appointment::count();
-        $remainingAppointments = $appointmentCount - $existingAppointmentsCount;
-
-        // Reload fresh patient list for remaining appointments
-        $patientsList = Patient::all();
-
-        for ($i = 0; $i < $remainingAppointments; $i++) {
-            $doctorId = $doctors->random()->id;
-
-            // Generate unique slot for this doctor, including today and future dates
-            do {
-                $date = fake()->dateTimeBetween('-1 month', '+6 months'); // Mix of past, present, and future
-                $date = Carbon::parse($date)->setTime(
-                    fake()->numberBetween(8, 16), // Working hours 8 AM to 4 PM
-                    fake()->randomElement([0, 30]) // 0 or 30 minutes
-                );
-
-                $slotKey = $doctorId.'_'.$date->format('Y-m-d H:i:s');
-
-            } while (isset($usedSlots[$slotKey]));
-
-            // Mark slot as used
-            $usedSlots[$slotKey] = true;
-
-            // Determine status with higher probability for 'InProgress'
-            $status = fake()->randomElement([
-                AppointmentStatus::InProgress->value, // Higher chance for in progress
-                AppointmentStatus::InProgress->value,
-                AppointmentStatus::Scheduled->value,
-                AppointmentStatus::Confirmed->value,
-                AppointmentStatus::Completed->value,
-                AppointmentStatus::Canceled->value,
-                AppointmentStatus::NoShow->value,
-            ]);
-
-            // Use random patient from all available patients in database
-            $patient = $patientsList->random();
-
-            $rows[] = [
-                'doctor_id' => $doctorId,
-                'patient_id' => $patient->id,
-                'scheduled_at' => $date,
-                'status' => $status,
-                'visit_reason' => fake()->optional(0.7)->sentence(),
-                'notes' => fake()->optional(0.7)->sentence(),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        }
-
-        // Bulk insert collected appointments in chunks
         if (! empty($rows)) {
             foreach (array_chunk($rows, 200) as $chunk) {
                 DB::table((new Appointment)->getTable())->insert($chunk);
             }
         }
 
-        // Output diagnostics: query count
         if (isset($this->command) && $this->command) {
-            $this->command->info('AppointmentSeeder query count: '.$queryCount);
-        } else {
-            Log::info('AppointmentSeeder query count: '.$queryCount);
+            $this->command->info('AppointmentSeeder inserted '.count($rows).' appointments from '.$startDate->toDateString().' to '.$endDate->toDateString().'.');
         }
     }
 }

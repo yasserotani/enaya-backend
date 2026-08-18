@@ -36,20 +36,33 @@ class AppointmentService
     {
         $doctor = Doctor::findOrFail($doctorId);
 
-        $cursor = $date->copy()->setTimeFromTimeString($doctor->working_hours_start);
-        $end = $date->copy()->setTimeFromTimeString($doctor->working_hours_end);
+        // Normalize date to application timezone and start of day
+        $appTz = config('app.timezone') ?: date_default_timezone_get();
+        $date = $date->copy()->setTimezone($appTz)->startOfDay();
 
+        // Ensure working hours are treated as time-only (ignore any stored date portion)
+        $startTime = Carbon::parse($doctor->working_hours_start)->format('H:i');
+        $endTime = Carbon::parse($doctor->working_hours_end)->format('H:i');
+
+        $cursor = $date->copy()->setTimeFromTimeString($startTime);
+        $end = $date->copy()->setTimeFromTimeString($endTime);
+
+        // Fetch booked slots for the given date (normalize booked times to app timezone)
         $booked = Appointment::where('doctor_id', $doctorId)
             ->whereIn('status', $this->activeStatusValues())
             ->whereDate('scheduled_at', $date->toDateString())
             ->pluck('scheduled_at')
-            ->map(fn ($t) => Carbon::parse($t)->format('Y-m-d H:i:s'));
+            ->map(fn ($t) => Carbon::parse($t)->setTimezone($appTz)->format('Y-m-d H:i:s'));
 
         $slots = [];
         while ($cursor->lessThan($end)) {
-            if (! $booked->contains($cursor->format('Y-m-d H:i:s')) && $cursor->isAfter(now())) {
+            // Only filter out past times when the requested date is today.
+            $isFuture = $date->isSameDay(now()) ? $cursor->isAfter(now()) : true;
+
+            if (! $booked->contains($cursor->format('Y-m-d H:i:s')) && $isFuture) {
                 $slots[] = $cursor->format('Y-m-d H:i:s');
             }
+
             $cursor->addMinutes(self::SLOT_MINUTES);
         }
 
