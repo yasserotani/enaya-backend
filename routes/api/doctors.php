@@ -7,12 +7,13 @@ use App\Http\Controllers\Doctor\PrescriptionController;
 use App\Http\Controllers\Doctor\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor'])->group(function () {
+Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor,receptionist'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::put('/profile/working-hours', [ProfileController::class, 'updateWorkingHours']);
 
     Route::prefix('appointments')->group(function () {
         Route::get('/', [AppointmentController::class, 'index']);
+        Route::get('/patients/{patient}/medical-record', [AppointmentController::class, 'medicalRecord']);
         Route::get('/{appointment}', [AppointmentController::class, 'show']);
         Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
         Route::patch('/{appointment}/no-show', [AppointmentController::class, 'markNoShow']);
@@ -32,9 +33,6 @@ Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor'])->group(func
     Route::get('/patients', [PatientController::class, 'index']);
     Route::get('/patients/{patient}', [PatientController::class, 'show']);
 
-    Route::prefix('sessions/{session}')->group(function () {
-        Route::post('/prescriptions', [PrescriptionController::class, 'store']);
-        Route::delete('/prescriptions/{prescription}', [PrescriptionController::class, 'destroy']);
-        Route::put('/prescriptions/{prescription}', [PrescriptionController::class, 'update']);
-    });
+
 });
+

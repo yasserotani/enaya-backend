@@ -559,6 +559,60 @@ Get patient's appointments with optional filtering.
 }
 ```
 
+### Medical Record (Authenticated Patient)
+
+`GET /api/patient/appointments/medical-record`
+
+Get the authenticated patient's medical record (no patient ID is required in the URL).
+
+**Pagination:** fixed at `10` appointments per page.
+
+**Query Parameters:**
+
+| Name   | Type | Description             |
+|--------|------|-------------------------|
+| `page` | int  | Page number (optional)  |
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "patient": {
+            "id": 1,
+            "full_name": "Jane Doe",
+            "phone": "+963912345678",
+            "date_of_birth": "1998-02-01",
+            "gender": "female"
+        },
+        "appointments": [
+            {
+                "id": 10,
+                "doctor": {
+                    "id": 2,
+                    "full_name": "Dr. Ahmad"
+                },
+                "session": {
+                    "id": 7,
+                    "prescriptions": []
+                },
+                "scheduled_at": "2026-06-20 10:00:00",
+                "status": "completed"
+            }
+        ]
+    },
+    "meta": {
+        "current_page": 1,
+        "last_page": 2,
+        "per_page": 10,
+        "total": 14
+    },
+    "error": null,
+    "errorCode": null
+}
+```
+
 ### Get Appointment
 
 `GET /api/patient/appointments/{appointment}`
@@ -1207,6 +1261,60 @@ List appointments with filtering. Defaults to today's appointments.
 }
 ```
 
+### Get Patient Medical Record
+
+`GET /api/receptionist/appointments/medical-record/{patient}`
+
+Get a patient's medical record with appointments ordered by latest scheduled date.
+
+**Pagination:** fixed at `10` appointments per page.
+
+**Query Parameters:**
+
+| Name   | Type | Description             |
+|--------|------|-------------------------|
+| `page` | int  | Page number (optional)  |
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "patient": {
+            "id": 1,
+            "full_name": "Jane Doe",
+            "phone": "+963912345678",
+            "date_of_birth": "1998-02-01",
+            "gender": "female"
+        },
+        "appointments": [
+            {
+                "id": 10,
+                "doctor": {
+                    "id": 2,
+                    "full_name": "Dr. Ahmad"
+                },
+                "session": {
+                    "id": 7,
+                    "prescriptions": []
+                },
+                "scheduled_at": "2026-06-20 10:00:00",
+                "status": "completed"
+            }
+        ]
+    },
+    "meta": {
+        "current_page": 1,
+        "last_page": 2,
+        "per_page": 10,
+        "total": 14
+    },
+    "error": null,
+    "errorCode": null
+}
+```
+
 ### Create Appointment
 
 `POST /api/receptionist/appointments`
@@ -1506,6 +1614,24 @@ List doctor's appointments. Defaults to today's appointments.
     }
 }
 ```
+
+### Get Patient Medical Record
+
+`GET /api/doctor/appointments/patients/{patient}/medical-record`
+
+Get a patient's medical record limited to appointments that belong to the authenticated doctor.
+
+**Pagination:** fixed at `10` appointments per page.
+
+**Query Parameters:**
+
+| Name   | Type | Description             |
+|--------|------|-------------------------|
+| `page` | int  | Page number (optional)  |
+
+**Response `200`:** same envelope as other medical record endpoints.
+
+**Response `403`:** if the patient has no appointments with the authenticated doctor.
 
 ### Get Appointment
 
@@ -2681,6 +2807,22 @@ List clinic's appointments with pagination, ordered by latest scheduled time.
     }
 }
 ```
+
+### Get Patient Medical Record
+
+`GET /api/admin/appointments/medical-record/{patient}`
+
+Get a patient's full medical record ordered by latest appointment.
+
+**Pagination:** fixed at `10` appointments per page.
+
+**Query Parameters:**
+
+| Name   | Type | Description             |
+|--------|------|-------------------------|
+| `page` | int  | Page number (optional)  |
+
+**Response `200`:** same envelope as other medical record endpoints.
 
 ### Create Appointment
 

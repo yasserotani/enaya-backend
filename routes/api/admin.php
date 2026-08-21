@@ -36,6 +36,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])
 
         // appointment
         Route::get('appointments', [AppointmentController::class, 'index']);
+        Route::get('appointments/medical-record/{patient}', [AppointmentController::class, 'medicalRecord']);
         Route::get('appointments/stats', [AppointmentController::class, 'stats']);
         Route::get('appointments/available-slots', [AppointmentController::class, 'availableSlots']);
         Route::get('/available-days', [AppointmentController::class, 'availableDays']);

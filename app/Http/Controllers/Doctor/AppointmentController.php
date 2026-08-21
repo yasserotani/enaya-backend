@@ -6,13 +6,16 @@ use App\Enums\AppointmentStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
+use App\Models\Patient;
 use App\Services\AppointmentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function __construct(private readonly AppointmentService $appointments) {}
+    public function __construct(private readonly AppointmentService $appointments)
+    {
+    }
 
     public function index(Request $request)
     {
@@ -22,7 +25,7 @@ class AppointmentController extends Controller
             'timeline' => 'nullable|in:upcoming,past',
         ]);
 
-        $filters = $request->only(['status', 'date', 'timeline']);
+        $filters = $request->only(['status', 'date', 'timeline', 'date', 'date_from', 'date_to', 'doctor_id', 'status', 'search',]);
 
         // today is the default date
         if (empty($filters['date']) && empty($filters['timeline'])) {
@@ -60,6 +63,40 @@ class AppointmentController extends Controller
         return response()->json([
             'success' => true,
             'data' => new AppointmentResource($appointment),
+        ]);
+    }
+
+    public function medicalRecord(Request $request, Patient $patient)
+    {
+        $doctorId = $request->user()->doctor->id;
+
+        abort_if(
+            !Appointment::query()
+                ->whereBelongsTo($patient)
+                ->where('doctor_id', $doctorId)
+                ->exists(),
+            403,
+            'Not your patient.'
+        );
+
+        $appointments = $this->appointments->medicalRecord($patient, doctorId: $doctorId, perPage: 10);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'patient' => $patient->only([
+                    'id', 'full_name', 'phone', 'date_of_birth', 'gender',
+                ]),
+                'appointments' => AppointmentResource::collection($appointments->items()),
+            ],
+            'meta' => [
+                'current_page' => $appointments->currentPage(),
+                'last_page' => $appointments->lastPage(),
+                'per_page' => $appointments->perPage(),
+                'total' => $appointments->total(),
+            ],
+            'error' => null,
+            'errorCode' => null,
         ]);
     }
 

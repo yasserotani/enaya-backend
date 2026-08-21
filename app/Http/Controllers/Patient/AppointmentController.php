@@ -8,7 +8,6 @@ use App\Http\Requests\Patient\StoreAppointmentRequest;
 use App\Http\Requests\Reception\RescheduleAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
-use App\Models\Doctor;
 use App\Services\AppointmentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -88,9 +87,38 @@ class AppointmentController extends Controller
         ]);
     }
 
+    public function medicalRecord(Request $request)
+    {
+        $patient = $request->user()->patient;
+        $appointments = $this->appointments->medicalRecord($patient, perPage: 10);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'patient' => $patient->only([
+                    'id', 'full_name', 'phone', 'date_of_birth', 'gender',
+                ]),
+                'appointments' => AppointmentResource::collection($appointments->items()),
+            ],
+            'meta' => [
+                'current_page' => $appointments->currentPage(),
+                'last_page' => $appointments->lastPage(),
+                'per_page' => $appointments->perPage(),
+                'total' => $appointments->total(),
+            ],
+            'error' => null,
+            'errorCode' => null,
+        ]);
+    }
+
     // get available slots for a doctor on a given date
     public function availableSlots(Request $request)
     {
+        $request->validate([
+            'doctor_id' => 'required|exists:doctors,id',
+            'date' => 'required|date_format:Y-m-d',
+        ]);
+
         // git it from the appointments service
         $slots = $this->appointments->availableSlots(
             (int) $request->input('doctor_id'),

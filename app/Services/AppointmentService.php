@@ -5,11 +5,13 @@ namespace App\Services;
 use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Notifications\AppointmentCancelledNotification;
 use App\Notifications\AppointmentNoShowNotification;
 use App\Notifications\AppointmentRescheduledNotification;
 use App\Notifications\NewAppointmentNotification;
 use Carbon\Carbon;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -36,9 +38,10 @@ class AppointmentService
     {
         $doctor = Doctor::findOrFail($doctorId);
 
-        // Normalize date to application timezone and start of day
+        // Keep calendar date stable and normalize it to the app timezone.
         $appTz = config('app.timezone') ?: date_default_timezone_get();
-        $date = $date->copy()->setTimezone($appTz)->startOfDay();
+        $date = Carbon::createFromFormat('Y-m-d', $date->toDateString(), $appTz)->startOfDay();
+        $now = now($appTz);
 
         // Ensure working hours are treated as time-only (ignore any stored date portion)
         $startTime = Carbon::parse($doctor->working_hours_start)->format('H:i');
@@ -57,8 +60,8 @@ class AppointmentService
         $slots = [];
         while ($cursor->lessThan($end)) {
             // Only filter out past times when the requested date is today.
-            $isFuture = $date->isSameDay(now()) ? $cursor->isAfter(now()) : true;
-
+            //            $isFuture = $date->isSameDay(now()) ? $cursor->isAfter(now()) : true;
+            $isFuture = true;
             if (! $booked->contains($cursor->format('Y-m-d H:i:s')) && $isFuture) {
                 $slots[] = $cursor->format('Y-m-d H:i:s');
             }
@@ -96,6 +99,19 @@ class AppointmentService
                 $time->copy()->addMinutes(self::SLOT_MINUTES - 1),
             ])
             ->exists();
+    }
+
+    public function medicalRecord(Patient $patient, ?int $doctorId = null, int $perPage = 10): LengthAwarePaginator
+    {
+        return Appointment::query()
+            ->whereBelongsTo($patient)
+            ->when($doctorId !== null, fn ($query) => $query->where('doctor_id', $doctorId))
+            ->with([
+                'doctor:id,user_id,full_name,specialty',
+                'sessions.prescriptions',
+            ])
+            ->orderByDesc('scheduled_at')
+            ->paginate($perPage);
     }
 
     //  Appointment Actions

@@ -22,6 +22,7 @@ Route::middleware(['auth:sanctum', 'role:receptionist'])
 Route::middleware(['auth:sanctum', 'role:receptionist'])->prefix('receptionist/appointments')->group(function () { // Changed prefix here
     Route::get('/', [AppointmentController::class, 'index']);
     Route::post('/', [AppointmentController::class, 'store']);
+    Route::get('/medical-record/{patient}', [AppointmentController::class, 'medicalRecord']);
     Route::get('/available-slots', [AppointmentController::class, 'availableSlots']);
     Route::get('/available-days', [AppointmentController::class, 'availableDays']);
     Route::get('/{appointment}', [AppointmentController::class, 'show']);

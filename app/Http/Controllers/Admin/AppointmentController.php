@@ -8,6 +8,7 @@ use App\Http\Requests\Reception\RescheduleAppointmentRequest;
 use App\Http\Requests\Reception\StoreAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
+use App\Models\Patient;
 use App\Services\AppointmentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -84,6 +85,29 @@ class AppointmentController extends Controller
         return response()->json([
             'success' => true,
             'data' => new AppointmentResource($appointment),
+        ]);
+    }
+
+    public function medicalRecord(Patient $patient)
+    {
+        $appointments = $this->appointments->medicalRecord($patient, perPage: 10);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'patient' => $patient->only([
+                    'id', 'full_name', 'phone', 'date_of_birth', 'gender',
+                ]),
+                'appointments' => AppointmentResource::collection($appointments->items()),
+            ],
+            'meta' => [
+                'current_page' => $appointments->currentPage(),
+                'last_page' => $appointments->lastPage(),
+                'per_page' => $appointments->perPage(),
+                'total' => $appointments->total(),
+            ],
+            'error' => null,
+            'errorCode' => null,
         ]);
     }
 

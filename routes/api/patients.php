@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum', 'role:patient'])
     ->group(function () {
         Route::get('/', [AppointmentController::class, 'index']);
         Route::post('/', [AppointmentController::class, 'store']);
+        Route::get('/medical-record', [AppointmentController::class, 'medicalRecord']);
         Route::get('/available-slots', [AppointmentController::class, 'availableSlots']);
         Route::get('/available-days', [AppointmentController::class, 'availableDays']); // New route
         Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
