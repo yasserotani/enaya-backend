@@ -108,6 +108,7 @@ class AppointmentService
             ->when($doctorId !== null, fn ($query) => $query->where('doctor_id', $doctorId))
             ->with([
                 'doctor:id,user_id,full_name,specialty',
+                'sessions',
                 'sessions.prescriptions',
             ])
             ->orderByDesc('scheduled_at')

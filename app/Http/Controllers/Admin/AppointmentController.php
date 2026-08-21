@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Reception\RescheduleAppointmentRequest;
 use App\Http\Requests\Reception\StoreAppointmentRequest;
 use App\Http\Resources\AppointmentResource;
+use App\Http\Resources\AppointmentSessionResource;
 use App\Models\Appointment;
+use App\Models\AppointmentSession;
 use App\Models\Patient;
 use App\Services\AppointmentService;
 use Carbon\Carbon;
@@ -85,6 +87,26 @@ class AppointmentController extends Controller
         return response()->json([
             'success' => true,
             'data' => new AppointmentResource($appointment),
+        ]);
+    }
+
+    public function sessionDetails(AppointmentSession $session)
+    {
+        $session->load([
+            'prescriptions',
+            'appointment.patient',
+            'appointment.doctor',
+            'appointment.doctor.department',
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'session' => new AppointmentSessionResource($session),
+                'appointment' => new AppointmentResource($session->appointment),
+            ],
+            'error' => null,
+            'errorCode' => null,
         ]);
     }
 

@@ -33,7 +33,9 @@ class AppointmentSessionSeeder extends Seeder
             $queryCount++;
         });
 
-        $appointments = Appointment::query()->get();
+        $appointments = Appointment::query()
+            ->whereDoesntHave('sessions')
+            ->get();
 
         if ($appointments->isEmpty()) {
             return;
@@ -41,22 +43,29 @@ class AppointmentSessionSeeder extends Seeder
 
         $rows = [];
         foreach ($appointments as $appointment) {
-            if ($appointment->sessions()->exists()) {
-                continue;
-            }
-
             $appointmentStatus = $appointment->status instanceof AppointmentStatus
                 ? $appointment->status->value
                 : (string) $appointment->status;
 
-            $sessionStatus = match ($appointmentStatus) {
-                AppointmentStatus::Completed->value => 'completed',
-                AppointmentStatus::Canceled->value => 'cancelled',
-                default => 'in_progress',
-            };
-
             // Align session times with the appointment's scheduled_at so sessions fall on the same day
             $apptDate = Carbon::parse($appointment->scheduled_at);
+            $isOldAppointment = $apptDate->isPast();
+
+            if ($isOldAppointment) {
+                $sessionStatus = match ($appointmentStatus) {
+                    AppointmentStatus::Canceled->value => 'cancelled',
+                    AppointmentStatus::Completed->value => 'completed',
+                    default => fake()->randomElement(['completed', 'cancelled']),
+                };
+            } else {
+                $sessionStatus = match ($appointmentStatus) {
+                    AppointmentStatus::InProgress->value => 'in_progress',
+                    AppointmentStatus::Canceled->value => 'cancelled',
+                    AppointmentStatus::Completed->value => 'completed',
+                    default => 'pending',
+                };
+            }
+
             $startedAt = null;
             $endedAt = null;
 
@@ -77,8 +86,8 @@ class AppointmentSessionSeeder extends Seeder
                     $endedAt = null;
                     break;
                 case 'cancelled':
-                    // cancelled sessions may have a cancellation timestamp before scheduled date
-                    $startedAt = fake()->optional(0.5)->dateTimeBetween($apptDate->copy()->subDays(7), $apptDate);
+                    // cancelled sessions have no session activity details
+                    $startedAt = null;
                     $endedAt = null;
                     break;
             }

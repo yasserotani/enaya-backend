@@ -595,7 +595,16 @@ Get the authenticated patient's medical record (no patient ID is required in the
                 },
                 "session": {
                     "id": 7,
-                    "prescriptions": []
+                    "appointment_id": 10,
+                    "started_at": "2026-06-20 10:05:00",
+                    "ended_at": "2026-06-20 10:35:00",
+                    "notes": "Consultation notes",
+                    "patient_complaint": "Headache",
+                    "diagnosis": "Migraine",
+                    "status": "completed",
+                    "prescriptions": [],
+                    "created_at": "2026-06-20T10:05:00.000000Z",
+                    "updated_at": "2026-06-20T10:35:00.000000Z"
                 },
                 "scheduled_at": "2026-06-20 10:00:00",
                 "status": "completed"
@@ -1297,13 +1306,23 @@ Get a patient's medical record with appointments ordered by latest scheduled dat
                 },
                 "session": {
                     "id": 7,
-                    "prescriptions": []
+                    "appointment_id": 10,
+                    "started_at": "2026-06-20 10:05:00",
+                    "ended_at": "2026-06-20 10:35:00",
+                    "notes": "Consultation notes",
+                    "patient_complaint": "Headache",
+                    "diagnosis": "Migraine",
+                    "status": "completed",
+                    "prescriptions": [],
+                    "created_at": "2026-06-20T10:05:00.000000Z",
+                    "updated_at": "2026-06-20T10:35:00.000000Z"
                 },
                 "scheduled_at": "2026-06-20 10:00:00",
                 "status": "completed"
             }
         ]
     },
+
     "meta": {
         "current_page": 1,
         "last_page": 2,
@@ -3037,6 +3056,65 @@ Get available time slots for a doctor on a specific date.
         "10:00",
         "10:30"
     ]
+}
+```
+
+### Get Session Details
+
+`GET /api/admin/sessions/{session}`
+
+Get full details for a specific appointment session, including prescriptions and its appointment context.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "session": {
+            "id": 1355,
+            "appointment_id": 210,
+            "started_at": "2026-08-21 10:00:00",
+            "ended_at": "2026-08-21 10:30:00",
+            "notes": "Follow-up consultation",
+            "patient_complaint": "Headache",
+            "diagnosis": "Migraine",
+            "status": "completed",
+            "prescriptions": [
+                {
+                    "id": 77,
+                    "appointment_session_id": 1355,
+                    "medication_name": "Ibuprofen",
+                    "dosage": "400mg",
+                    "frequency": "twice daily",
+                    "duration": 5,
+                    "notes": "After meals",
+                    "created_at": "2026-08-21T10:10:00.000000Z",
+                    "updated_at": "2026-08-21T10:10:00.000000Z"
+                }
+            ],
+            "created_at": "2026-08-21T10:00:00.000000Z",
+            "updated_at": "2026-08-21T10:30:00.000000Z"
+        },
+        "appointment": {
+            "id": 210,
+            "doctor": {
+                "...": "DoctorResource fields"
+            },
+            "patient": {
+                "...": "PatientResource fields"
+            },
+            "session": null,
+            "scheduled_at": "2026-08-21 09:30:00",
+            "status": "completed",
+            "visit_reason": "Neurology follow-up",
+            "notes": null,
+            "cancelled_by": null,
+            "created_at": "2026-08-20T09:00:00.000000Z"
+        }
+    },
+    "error": null,
+    "errorCode": null
 }
 ```
 

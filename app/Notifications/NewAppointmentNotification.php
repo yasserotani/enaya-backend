@@ -21,6 +21,7 @@ class NewAppointmentNotification extends Notification
             'title' => 'New Appointment',
             'body' => "You have a new appointment on {$this->appointment->scheduled_at}",
             'appointment_id' => $this->appointment->id,
+            'patient_name' => $this->appointment->patient->name,
         ];
     }
 

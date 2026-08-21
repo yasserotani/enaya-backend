@@ -13,9 +13,7 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function __construct(private readonly AppointmentService $appointments)
-    {
-    }
+    public function __construct(private readonly AppointmentService $appointments) {}
 
     public function index(Request $request)
     {
@@ -36,8 +34,7 @@ class AppointmentController extends Controller
             $filters['date'] = now()->toDateString();
         }
 
-        $query = Appointment::where('doctor_id', $request->user()->doctor->id)
-            ->applyFilters($filters);
+        $query = Appointment::applyFilters($filters);
 
         // show closest appointments first, unless looking at past history
         $sortOrder = (isset($filters['timeline']) && $filters['timeline'] === 'past') ? 'desc' : 'asc';
@@ -77,7 +74,7 @@ class AppointmentController extends Controller
         $doctorId = $request->user()->doctor->id;
 
         abort_if(
-            !Appointment::query()
+            ! Appointment::query()
                 ->whereBelongsTo($patient)
                 ->where('doctor_id', $doctorId)
                 ->exists(),

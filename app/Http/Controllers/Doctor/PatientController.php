@@ -48,9 +48,9 @@ class PatientController extends Controller
         $authDoctor = auth()->user()->doctor;
 
         $patient->loadMissing([
-            'appointments' => fn($q) => $q
+            'appointments' => fn ($q) => $q
                 ->where('doctor_id', $authDoctor->id)
-                ->with('appointmentSession.prescriptions')
+                ->with('sessions.prescriptions')
                 ->latest('scheduled_at'),
         ]);
 

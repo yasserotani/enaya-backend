@@ -41,6 +41,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])
         Route::get('appointments/available-slots', [AppointmentController::class, 'availableSlots']);
         Route::get('/available-days', [AppointmentController::class, 'availableDays']);
         Route::post('appointments', [AppointmentController::class, 'store']);
+        Route::get('sessions/{session}', [AppointmentController::class, 'sessionDetails']);
 
         Route::get('appointments/{appointment}', [AppointmentController::class, 'show']);
         Route::patch('appointments/{appointment}/confirm', [AppointmentController::class, 'confirm']);
