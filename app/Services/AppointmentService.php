@@ -147,9 +147,14 @@ class AppointmentService
                 'notes' => $notes,
             ]);
 
-            $doctor->user->notify(new NewAppointmentNotification($appointment));
             $patient = Patient::findOrFail($patientId);
-            $patient->user->notify(new NewAppointmentNotification($appointment));
+            if ($doctor->user) {
+                $doctor->user->notify(new NewAppointmentNotification($appointment));
+            }
+
+            if ($patient->user) {
+                $patient->user->notify(new NewAppointmentNotification($appointment));
+            }
             return $appointment;
         });
     }
