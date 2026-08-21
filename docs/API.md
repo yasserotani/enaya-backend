@@ -578,7 +578,7 @@ Get detailed appointment information.
         "status": "scheduled",
         "visit_reason": "Regular Checkup",
         "notes": "First time",
-            "created_at": "2026-06-11T12:00:00.000000Z"
+        "created_at": "2026-06-11T12:00:00.000000Z"
     }
 }
 ```
@@ -614,7 +614,7 @@ Create a new appointment. The system checks doctor availability using pessimisti
         "status": "scheduled",
         "visit_reason": "Regular Checkup",
         "notes": "First time",
-            "created_at": "2026-06-11T12:00:00.000000Z"
+        "created_at": "2026-06-11T12:00:00.000000Z"
     }
 }
 ```
@@ -859,7 +859,7 @@ Get detailed session information including prescriptions.
         "patient_complaint": "Chest pain",
         "diagnosis": "Heartburn",
         "status": "completed",
-            "prescriptions": [
+        "prescriptions": [
             {
                 "id": 1,
                 "appointment_session_id": 1,
@@ -896,12 +896,17 @@ List all patients with optional filtering.
 
 **Query Parameters:**
 
-| Name           | Type   | Values       | Description                   |
-|----------------|--------|--------------|-------------------------------|
-| `search`       | string |              | Search by name or phone       |
-| `gender`       | enum   | male, female | Filter by gender              |
-| `has_account`  | bool   | true, false  | Filter by account status      |
-| `with_trashed` | bool   | true, false  | Include soft-deleted patients |
+| Name                | Type   | Values       | Description                   |
+|---------------------|--------|--------------|-------------------------------|
+| `search`            | string |              | Search by name or phone       |
+| `gender`            | enum   | male, female | Filter by gender              |
+| `has_account`       | bool   | true, false  | Filter by account status      |
+| `profile_completed` | bool   | true, false  | Filter by profile completion  |
+| `created_from`      | date   | Y-m-d        | Filter from creation date     |
+| `created_to`        | date   | Y-m-d        | Filter to creation date       |
+| `birth_from`        | date   | Y-m-d        | Filter from birth date        |
+| `birth_to`          | date   | Y-m-d        | Filter to birth date          |
+| `with_trashed`      | bool   | true, false  | Include soft-deleted patients |
 
 **Response `200`:**
 
@@ -1886,13 +1891,13 @@ Remove prescription from session (only during active session).
 
 **Authorization:** `auth:sanctum` + `role:doctor`
 
-Base path: `/api/doctor/{doctor}`
+Base path: `/api/doctor`
 
 ### List Doctor's Patients
 
-`GET /api/doctor/{doctor}/patients`
+`GET /api/doctor/patients`
 
-Get all patients who have appointments with this doctor.
+Get all patients in the system, with optional filtering applied by the authenticated doctor context.
 
 **Query Parameters:**
 
@@ -1938,9 +1943,9 @@ Get all patients who have appointments with this doctor.
 
 ### Get Patient Details
 
-`GET /api/doctor/{doctor}/patients/{patient}`
+`GET /api/doctor/patients/{patient}`
 
-Get patient profile with all appointments from this doctor.
+Get the patient profile with all appointments from the authenticated doctor.
 
 **Response `200`:**
 

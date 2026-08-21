@@ -10,11 +10,10 @@ use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, ?Doctor $doctor = null)
     {
-        $authDoctor = auth()->user()->doctor;
-
-        // apply the same patient-level filters used by reception
+        // Keep the doctor route available for compatibility, but the list is no longer restricted
+        // to patients assigned to a specific doctor.
         $filters = $request->only([
             'search',
             'gender',
@@ -26,15 +25,10 @@ class PatientController extends Controller
             'birth_to',
         ]);
 
-        // get all patients that have appointments with this doctor, then apply patient filters
-
         $patients = Patient::withCount('appointments')
-            ->whereHas('appointments', function ($q) use ($authDoctor) {
-                $q->where('doctor_id', $authDoctor->id);
-            })
             ->applyFilters($filters)
             ->latest()
-            ->paginate(15);
+            ->paginate(10);
 
         return response()->json([
             'success' => true,
@@ -54,7 +48,7 @@ class PatientController extends Controller
         $authDoctor = auth()->user()->doctor;
 
         $patient->loadMissing([
-            'appointments' => fn ($q) => $q
+            'appointments' => fn($q) => $q
                 ->where('doctor_id', $authDoctor->id)
                 ->with('appointmentSession.prescriptions')
                 ->latest('scheduled_at'),
