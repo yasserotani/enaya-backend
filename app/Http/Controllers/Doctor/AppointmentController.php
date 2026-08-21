@@ -20,12 +20,16 @@ class AppointmentController extends Controller
     public function index(Request $request)
     {
         $request->validate([
-            'status' => 'nullable|string',
             'date' => 'nullable|date_format:Y-m-d',
+            'date_from' => 'nullable|date_format:Y-m-d',
+            'date_to' => 'nullable|date_format:Y-m-d|after_or_equal:date_from',
+            'status' => 'nullable|string',
             'timeline' => 'nullable|in:upcoming,past',
+            'search' => 'nullable|string|max:100',
+            'per_page' => 'nullable|integer|min:1',
         ]);
 
-        $filters = $request->only(['status', 'date', 'timeline', 'date', 'date_from', 'date_to', 'doctor_id', 'status', 'search',]);
+        $filters = $request->only(['status', 'date', 'timeline', 'date_from', 'date_to', 'search']);
 
         // today is the default date
         if (empty($filters['date']) && empty($filters['timeline'])) {
@@ -38,13 +42,15 @@ class AppointmentController extends Controller
         // show closest appointments first, unless looking at past history
         $sortOrder = (isset($filters['timeline']) && $filters['timeline'] === 'past') ? 'desc' : 'asc';
 
+        $perPage = $request->input('per_page', 20);
+
         $appointments = $query->with('patient')
             ->orderBy('scheduled_at', $sortOrder)
-            ->paginate(20);
+            ->paginate($perPage);
 
         return response()->json([
             'success' => true,
-            'data' => AppointmentResource::collection($appointments->items()),
+            'data' => AppointmentResource::collection($appointments),
             'meta' => [
                 'current_page' => $appointments->currentPage(),
                 'last_page' => $appointments->lastPage(),
