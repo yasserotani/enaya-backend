@@ -7,7 +7,7 @@ use App\Http\Controllers\Doctor\PrescriptionController;
 use App\Http\Controllers\Doctor\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor,receptionist'])->group(function () {
+Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor|receptionist'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::put('/profile/working-hours', [ProfileController::class, 'updateWorkingHours']);
 
