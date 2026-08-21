@@ -197,6 +197,48 @@ Invalidate the current access token.
 
 ---
 
+## Device Token Endpoints
+
+### Register Device Token
+
+`POST /api/device-token`
+
+Store the authenticated user's Firebase Cloud Messaging (FCM) token for push notifications. If the same `fcm_token` already exists for the user, it is updated instead of duplicated.
+
+**Authorization:** `auth:sanctum`
+
+**Request:**
+
+```json
+{
+    "fcm_token": "cN2Y4x9l...example-token",
+    "device_type": "android"
+}
+```
+
+**Body Parameters:**
+
+- `fcm_token` (required, string): The FCM registration token from the mobile app.
+- `device_type` (optional, string): Device platform. Allowed values: `android`, `ios`.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": null,
+    "error": null,
+    "errorCode": null
+}
+```
+
+**Notes:**
+
+- The endpoint is used by mobile clients to keep their push notification device token current.
+- Multiple device tokens can be stored for the same user, but duplicate tokens are merged by value.
+
+---
+
 ## Notification Endpoints
 
 Base path: `/api`

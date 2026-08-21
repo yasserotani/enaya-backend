@@ -33,6 +33,19 @@ class FcmChannel
                             $payload['body']
                         ))
                         ->withData($payload['data'] ?? [])
+                        ->withAndroidConfig([
+                            'priority' => 'high',
+                            'notification' => [
+                                'sound' => 'default',
+                                'channel_id' => 'high_importance_channel', // سنقوم بتعريف هذه القناة في الموبايل
+                            ],
+                        ])
+                        ->withApnsConfig([
+                            'payload' => [
+                                'aps' => ['sound' => 'default'],
+                            ],
+                        ])
+
                 );
             } catch (NotFound $e) {
                 $notifiable->deviceTokens()->where('fcm_token', $token)->delete();

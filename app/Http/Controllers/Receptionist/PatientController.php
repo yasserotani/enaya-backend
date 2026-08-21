@@ -21,7 +21,7 @@ class PatientController extends Controller
             'birth_from',
             'birth_to',
         ]))
-            ->when(request()->boolean('with_trashed'), fn($query) => $query->withTrashed())
+            ->when(request()->boolean('with_trashed'), fn ($query) => $query->withTrashed())
             ->latest()
             ->paginate(20);
 
@@ -71,7 +71,7 @@ class PatientController extends Controller
     public function update(UpdatePatientRequest $request, Patient $patient)
     {
         // if the patient has an account, prevent updating from reception
-        if ($patient->user_id !== null && !$request->user()->can('edit-app-patients')) {
+        if ($patient->user_id !== null && ! $request->user()->can('edit-app-patients')) {
             return response()->json([
                 'success' => false,
                 'message' => 'This patient has an account and cannot be edited from reception',
@@ -90,7 +90,7 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
 
-        if ($patient->user_id !== null && !request()->user()->can('delete-app-patients')) {
+        if ($patient->user_id !== null && ! request()->user()->can('delete-app-patients')) {
             return response()->json([
                 'success' => false,
                 'message' => 'This patient has an account and cannot be deleted from reception',

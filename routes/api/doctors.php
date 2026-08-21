@@ -3,7 +3,6 @@
 use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AppointmentSessionController;
 use App\Http\Controllers\Doctor\PatientController;
-use App\Http\Controllers\Doctor\PrescriptionController;
 use App\Http\Controllers\Doctor\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +32,4 @@ Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor|receptionist']
     Route::get('/patients', [PatientController::class, 'index']);
     Route::get('/patients/{patient}', [PatientController::class, 'show']);
 
-
 });
-

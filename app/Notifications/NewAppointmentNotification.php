@@ -8,9 +8,7 @@ use Illuminate\Notifications\Notification;
 
 class NewAppointmentNotification extends Notification
 {
-    public function __construct(public Appointment $appointment)
-    {
-    }
+    public function __construct(public Appointment $appointment) {}
 
     public function via($notifiable): array
     {
@@ -34,8 +32,8 @@ class NewAppointmentNotification extends Notification
             'body' => "You have a new appointment on {$this->appointment->scheduled_at}",
             'data' => [
                 'type' => 'appointment',
-                'id' => (string)$this->appointment->id,
-                'patient_name' => (string)$this->appointment->patient->name,
+                'id' => (string) $this->appointment->id,
+                'patient_name' => (string) $this->appointment->patient->name,
             ],
         ];
     }

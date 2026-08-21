@@ -13,9 +13,7 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function __construct(private readonly AppointmentService $appointments)
-    {
-    }
+    public function __construct(private readonly AppointmentService $appointments) {}
 
     public function index(Request $request)
     {
@@ -32,9 +30,9 @@ class AppointmentController extends Controller
         $filters = $request->only(['status', 'date', 'timeline', 'date_from', 'date_to', 'search']);
 
         // today is the default date
-//        if (empty($filters['date']) && empty($filters['timeline'])) {
-//            $filters['date'] = now()->toDateString();
-//        }
+        //        if (empty($filters['date']) && empty($filters['timeline'])) {
+        //            $filters['date'] = now()->toDateString();
+        //        }
 
         $query = Appointment::applyFilters($filters);
 
@@ -80,7 +78,7 @@ class AppointmentController extends Controller
         $doctorId = $request->user()->doctor->id;
 
         abort_if(
-            !Appointment::query()
+            ! Appointment::query()
                 ->whereBelongsTo($patient)
                 ->where('doctor_id', $doctorId)
                 ->exists(),
