@@ -36,6 +36,10 @@ class AppointmentController extends Controller
 
         $query = Appointment::applyFilters($filters);
 
+        // limit to authenticated doctor's appointments
+        $doctorId = $request->user()->doctor->id;
+        $query->where('doctor_id', $doctorId);
+
         // show closest appointments first, unless looking at past history
         $sortOrder = (isset($filters['timeline']) && $filters['timeline'] === 'past') ? 'desc' : 'asc';
 

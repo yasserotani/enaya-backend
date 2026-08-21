@@ -42,6 +42,7 @@ class AppointmentSessionSeeder extends Seeder
         }
 
         $rows = [];
+        $now = now();
         foreach ($appointments as $appointment) {
             $appointmentStatus = $appointment->status instanceof AppointmentStatus
                 ? $appointment->status->value
@@ -92,14 +93,19 @@ class AppointmentSessionSeeder extends Seeder
                     break;
             }
 
-            $rows[] = [
+            $row = AppointmentSession::factory()->make([
                 'appointment_id' => $appointment->id,
                 'status' => $sessionStatus,
-                'started_at' => $startedAt,
-                'ended_at' => $endedAt,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
+            ])->toArray();
+
+            // Ensure MySQL-compatible DATETIME strings (Y-m-d H:i:s) — factory may produce ISO8601 strings
+            $row['started_at'] = $startedAt ? Carbon::parse($startedAt)->format('Y-m-d H:i:s') : null;
+            $row['ended_at'] = $endedAt ? Carbon::parse($endedAt)->format('Y-m-d H:i:s') : null;
+
+            $row['created_at'] = $now;
+            $row['updated_at'] = $now;
+
+            $rows[] = $row;
         }
 
         // Bulk insert appointment sessions
