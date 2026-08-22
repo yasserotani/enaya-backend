@@ -23,7 +23,7 @@ class StartSessionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'patient_complaint' => ['required', 'string', 'max:1000'],
+            'patient_complaint' => ['nullable', 'string', 'max:1000'],
             'notes' => ['nullable', 'string', 'max:1000'],
         ];
     }
