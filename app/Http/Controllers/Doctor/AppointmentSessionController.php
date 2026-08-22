@@ -54,7 +54,7 @@ class AppointmentSessionController extends Controller
         $this->checkOwnership($appointment, $request->user()->doctor);
 
         // check if the appointment is in a valid status to start a session
-        if (! in_array($appointment->status, [
+        if (!in_array($appointment->status, [
             AppointmentStatus::Arrived,
             AppointmentStatus::Confirmed,
             AppointmentStatus::Scheduled,
@@ -107,14 +107,14 @@ class AppointmentSessionController extends Controller
         $this->checkOwnership($appointment, $request->user()->doctor);
 
         // can't edit a finished session
-        if ($session->status === 'completed') {
-            return response()->json([
-                'success' => false,
-                'data' => null,
-                'error' => 'Cannot modify a completed session.',
-                'errorCode' => '422',
-            ], 422);
-        }
+//        if ($session->status === 'completed') {
+//            return response()->json([
+//                'success' => false,
+//                'data' => null,
+//                'error' => 'Cannot modify a completed session.',
+//                'errorCode' => '422',
+//            ], 422);
+//        }
 
         DB::transaction(function () use ($request, $appointment, $session) {
             $isClosing = in_array($request->status, ['completed', 'cancelled'], true);
@@ -143,14 +143,14 @@ class AppointmentSessionController extends Controller
     {
         $this->checkOwnership($appointment, $request->user()->doctor);
 
-        if ($session->status !== 'active') {
-            return response()->json([
-                'success' => false,
-                'data' => null,
-                'error' => 'Only active sessions can be ended.',
-                'errorCode' => '422',
-            ], 422);
-        }
+//        if ($session->status !== 'active') {
+//            return response()->json([
+//                'success' => false,
+//                'data' => null,
+//                'error' => 'Only active sessions can be ended.',
+//                'errorCode' => '422',
+//            ], 422);
+//        }
 
         DB::transaction(function () use ($request, $appointment, $session) {
             $session->update([
