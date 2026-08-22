@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AppointmentSessionController;
+use App\Http\Controllers\Doctor\PrescriptionController;
 use App\Http\Controllers\Doctor\PatientController;
 use App\Http\Controllers\Doctor\ProfileController;
 use App\Http\Controllers\Patient\DoctorController as PatientDoctorController;
@@ -29,10 +30,18 @@ Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor|receptionist']
             Route::post('sessions/start', [AppointmentSessionController::class, 'start']);
             Route::get('sessions/{session}', [AppointmentSessionController::class, 'show']);
             Route::patch('sessions/{session}', [AppointmentSessionController::class, 'update']);
+
         });
     });
 
     Route::get('/patients', [PatientController::class, 'index']);
     Route::get('/patients/{patient}', [PatientController::class, 'show']);
+
+    // Doctor-level session prescription routes (match docs)
+    Route::prefix('sessions')->group(function () {
+        Route::post('{session}/prescriptions', [PrescriptionController::class, 'store']);
+        Route::patch('{session}/prescriptions/{prescription}', [PrescriptionController::class, 'update']);
+        Route::delete('{session}/prescriptions/{prescription}', [PrescriptionController::class, 'destroy']);
+    });
 
 });
