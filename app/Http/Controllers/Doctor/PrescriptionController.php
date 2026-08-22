@@ -19,9 +19,11 @@ class PrescriptionController extends Controller
 
         $prescription = $session->prescriptions()->create($request->validated());
 
-        $session->appointment->patient->user->notify(
-            new NewPrescriptionNotification($prescription)
-        );
+        if ($session->appointment?->patient?->user) {
+            $session->appointment->patient->user->notify(
+                new NewPrescriptionNotification($prescription)
+            );
+        }
 
         return response()->json([
             'success' => true,

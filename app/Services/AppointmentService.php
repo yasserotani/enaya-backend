@@ -175,9 +175,13 @@ class AppointmentService
         ]);
         // notify whoever did NOT cancel it
         if ($cancelledBy === 'patient') {
-            $appointment->doctor->user->notify(new AppointmentCancelledNotification($appointment));
+            if ($appointment->doctor?->user) {
+                $appointment->doctor->user->notify(new AppointmentCancelledNotification($appointment));
+            }
         } else {
-            $appointment->patient->user->notify(new AppointmentCancelledNotification($appointment));
+            if ($appointment->patient?->user) {
+                $appointment->patient->user->notify(new AppointmentCancelledNotification($appointment));
+            }
         }
 
         return $appointment;
@@ -194,7 +198,9 @@ class AppointmentService
 
         $appointment->update(['status' => AppointmentStatus::NoShow]);
 
-        $appointment->doctor->user->notify(new AppointmentNoShowNotification($appointment));
+        if ($appointment->doctor?->user) {
+            $appointment->doctor->user->notify(new AppointmentNoShowNotification($appointment));
+        }
 
         return $appointment;
     }
@@ -217,8 +223,13 @@ class AppointmentService
             'status' => AppointmentStatus::Scheduled,
         ]);
 
-        $appointment->patient->user->notify(new AppointmentRescheduledNotification($appointment));
-        $appointment->doctor->user->notify(new AppointmentRescheduledNotification($appointment));
+        if ($appointment->patient?->user) {
+            $appointment->patient->user->notify(new AppointmentRescheduledNotification($appointment));
+        }
+
+        if ($appointment->doctor?->user) {
+            $appointment->doctor->user->notify(new AppointmentRescheduledNotification($appointment));
+        }
 
         return $appointment;
     }

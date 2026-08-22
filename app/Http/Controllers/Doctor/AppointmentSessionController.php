@@ -84,7 +84,9 @@ class AppointmentSessionController extends Controller
             return $session;
         });
 
-        $appointment->patient->user->notify(new SessionStatusNotification($session));
+        if ($appointment->patient?->user) {
+            $appointment->patient->user->notify(new SessionStatusNotification($session));
+        }
 
         return response()->json([
             'success' => true,
@@ -157,7 +159,9 @@ class AppointmentSessionController extends Controller
             ]);
         });
 
-        $appointment->patient->user->notify(new SessionStatusNotification($session->fresh()));
+        if ($appointment->patient?->user) {
+            $appointment->patient->user->notify(new SessionStatusNotification($session->fresh()));
+        }
 
         return response()->json([
             'success' => true,
