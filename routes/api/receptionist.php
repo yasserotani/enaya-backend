@@ -28,6 +28,7 @@ Route::middleware(['auth:sanctum', 'role:receptionist'])->prefix('receptionist/a
     Route::get('/{appointment}', [AppointmentController::class, 'show']);
     Route::patch('/{appointment}/confirm', [AppointmentController::class, 'confirm']);
     Route::patch('/{appointment}/arrived', [AppointmentController::class, 'markArrived']);
+    Route::patch('/{appointment}/complete', [AppointmentController::class, 'complete']);
     Route::patch('/{appointment}/reschedule', [AppointmentController::class, 'reschedule']);
     Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
     Route::patch('/{appointment}/no-show', [AppointmentController::class, 'markNoShow']);

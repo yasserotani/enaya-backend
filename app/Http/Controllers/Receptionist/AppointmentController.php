@@ -196,4 +196,22 @@ class AppointmentController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Patient marked as arrived.', 'data' => new AppointmentResource($appointment)]);
     }
+
+    public function complete(Appointment $appointment)
+    {
+        if (! in_array($appointment->status, [AppointmentStatus::Arrived, AppointmentStatus::InProgress])) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Only arrived or in-progress appointments can be completed.',
+            ], 422);
+        }
+
+        $appointment->update(['status' => AppointmentStatus::Completed]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Appointment completed.',
+            'data' => new AppointmentResource($appointment),
+        ]);
+    }
 }
