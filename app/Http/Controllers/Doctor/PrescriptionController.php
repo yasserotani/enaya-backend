@@ -68,15 +68,8 @@ class PrescriptionController extends Controller
 
     private function checkSessionActive(AppointmentSession $session): void
     {
-        // check if the session is active
-        if ($session->status !== 'active') {
-            abort(response()->json([
-                'success' => false,
-                'data' => null,
-                'error' => 'Cannot modify prescriptions on a closed session.',
-                'errorCode' => 'SESSION_NOT_ACTIVE',
-            ], 422));
-        }
+        // intentionally allow modifying prescriptions regardless of session status
+
     }
 
     public function destroy(Request $request, AppointmentSession $session, Prescription $prescription)
