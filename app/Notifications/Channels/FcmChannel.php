@@ -12,7 +12,7 @@ class FcmChannel
 {
     public function send($notifiable, Notification $notification): void
     {
-        if (! method_exists($notification, 'toFcm')) {
+        if (!method_exists($notification, 'toFcm')) {
             return;
         }
 
@@ -24,8 +24,27 @@ class FcmChannel
             return;
         }
 
+        // Resolve the Firebase messaging client defensively.
+        // If credentials are missing/invalid, this throws BEFORE the per-token
+        // try/catch below even starts, so it must be guarded separately.
+        try {
+            $messaging = app('firebase.messaging');
+        } catch (\Throwable $e) {
+            Log::error('FCM: failed to resolve Firebase messaging client', [
+                'user_id' => $notifiable->id,
+                'exception' => $e->getMessage(),
+            ]);
+            error_log(json_encode([
+                'level' => 'error',
+                'message' => 'FCM: failed to resolve Firebase messaging client',
+                'user_id' => $notifiable->id,
+                'exception' => $e->getMessage(),
+            ]));
+
+            return;
+        }
+
         $payload = $notification->toFcm($notifiable);
-        $messaging = app('firebase.messaging');
 
         foreach ($tokens as $token) {
             try {
