@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use App\Notifications\UserLoggedInNotification;
 
 class AuthController extends Controller
 {
@@ -48,6 +49,16 @@ class AuthController extends Controller
         //        $user->tokens()->delete(); // delete old tokens
         $token = $user->createToken('auth_token', ['*'], now()->addDays(30));
         $expiresAt = $token->accessToken->expires_at->toISOString();
+
+        // Notify the user of a successful login (database + FCM via FcmChannel).
+        $ip = $request->ip();
+        $agent = $request->header('User-Agent');
+        try {
+            $user->notify(new UserLoggedInNotification($ip, $agent));
+        } catch (\Throwable $e) {
+            // Don't fail the login if notification sending fails; just report the error.
+            report($e);
+        }
 
         return response()->json([
             'success' => true,
