@@ -20,6 +20,7 @@ class FcmChannel
 
         if ($tokens->isEmpty()) {
             Log::info('FCM: no device tokens', ['user_id' => $notifiable->id]);
+            error_log(json_encode(['level' => 'info', 'message' => 'FCM: no device tokens', 'user_id' => $notifiable->id]));
             return;
         }
 
@@ -57,6 +58,7 @@ class FcmChannel
                     'message_id' => $response,
                     'payload' => $payload,
                 ]);
+                error_log(json_encode(['level' => 'info', 'message' => 'FCM: message sent', 'user_id' => $notifiable->id, 'token' => $token, 'message_id' => $response]));
             } catch (NotFound $e) {
                 // token no longer valid — remove from DB and log
                 Log::warning('FCM: token not found, deleting', [
@@ -64,6 +66,7 @@ class FcmChannel
                     'token' => $token,
                     'exception' => $e->getMessage(),
                 ]);
+                error_log(json_encode(['level' => 'warning', 'message' => 'FCM: token not found, deleting', 'user_id' => $notifiable->id, 'token' => $token, 'exception' => $e->getMessage()]));
 
                 $notifiable->deviceTokens()->where('fcm_token', $token)->delete();
             } catch (\Throwable $e) {
@@ -73,6 +76,7 @@ class FcmChannel
                     'token' => $token,
                     'exception' => $e->getMessage(),
                 ]);
+                error_log(json_encode(['level' => 'error', 'message' => 'FCM: send error', 'user_id' => $notifiable->id, 'token' => $token, 'exception' => $e->getMessage()]));
 
                 report($e);
             }
