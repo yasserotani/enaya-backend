@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Doctor;
 
+use App\Enums\AppointmentStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Doctor\EndSessionRequest;
 use App\Http\Requests\Doctor\StartSessionRequest;
@@ -51,12 +52,17 @@ class AppointmentSessionController extends Controller
     {
         // check if the appointment is for this doctor
         $this->checkOwnership($appointment, $request->user()->doctor);
+
         // check if the appointment is in a valid status to start a session
-        if (! in_array($appointment->status, ['arrived', 'confirmed', 'scheduled'])) {
+        if (! in_array($appointment->status, [
+            AppointmentStatus::Arrived,
+            AppointmentStatus::Confirmed,
+            AppointmentStatus::Scheduled,
+        ], true)) {
             return response()->json([
                 'success' => false,
                 'data' => null,
-                'error' => "Cannot start a session for a '{$appointment->status}' appointment.",
+                'error' => "Cannot start a session for a '{$appointment->status->value}' appointment.",
                 'errorCode' => '422',
             ], 422);
         }
@@ -71,7 +77,7 @@ class AppointmentSessionController extends Controller
             ], 422);
         }
 
-        $session = \DB::transaction(function () use ($request, $appointment) {
+        $session = DB::transaction(function () use ($request, $appointment) {
             $session = $appointment->sessions()->create([
                 'started_at' => now(),
                 'status' => 'in_progress',
@@ -79,7 +85,7 @@ class AppointmentSessionController extends Controller
                 'notes' => $request->notes,
             ]);
 
-            $appointment->update(['status' => 'inProgress']);
+            $appointment->update(['status' => AppointmentStatus::InProgress]);
 
             return $session;
         });
@@ -110,8 +116,8 @@ class AppointmentSessionController extends Controller
             ], 422);
         }
 
-        \DB::transaction(function () use ($request, $appointment, $session) {
-            $isClosing = in_array($request->status, ['completed', 'cancelled']);
+        DB::transaction(function () use ($request, $appointment, $session) {
+            $isClosing = in_array($request->status, ['completed', 'cancelled'], true);
 
             $session->update([
                 ...$request->only(['diagnosis', 'patient_complaint', 'notes', 'status']),
@@ -119,9 +125,9 @@ class AppointmentSessionController extends Controller
             ]);
 
             if ($request->status === 'completed') {
-                $appointment->update(['status' => 'completed']);
+                $appointment->update(['status' => AppointmentStatus::Completed]);
             } elseif ($request->status === 'cancelled') {
-                $appointment->update(['status' => 'cancelled']);
+                $appointment->update(['status' => AppointmentStatus::Canceled]);
             }
         });
 
@@ -155,7 +161,7 @@ class AppointmentSessionController extends Controller
             ]);
 
             $appointment->update([
-                'status' => 'completed',
+                'status' => AppointmentStatus::Completed,
             ]);
         });
 

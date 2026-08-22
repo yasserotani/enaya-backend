@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\AppointmentStatus;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
@@ -219,4 +220,35 @@ test('doctor can list their patients', function (): void {
         ->assertOk()
         ->assertJsonPath('success', true)
         ->assertJsonCount(2, 'data');
+});
+
+test('doctor can start a session for an arrived appointment', function (): void {
+    $doctorUser = User::factory()->create();
+    $doctorUser->assignRole('doctor');
+
+    $doctor = Doctor::factory()->create([
+        'user_id' => $doctorUser->id,
+    ]);
+
+    $patient = Patient::factory()->create(['user_id' => null]);
+
+    $appointment = Appointment::factory()->create([
+        'doctor_id' => $doctor->id,
+        'patient_id' => $patient->id,
+        'status' => AppointmentStatus::Arrived->value,
+    ]);
+
+    $this->actingAs($doctorUser, 'sanctum')
+        ->postJson('/api/doctor/appointments/'.$appointment->id.'/sessions/start', [
+            'patient_complaint' => 'Persistent headache',
+            'notes' => 'Needs physician evaluation.',
+        ])
+        ->assertCreated()
+        ->assertJsonPath('success', true)
+        ->assertJsonPath('data.session.status', 'in_progress');
+
+    $this->assertDatabaseHas('appointments', [
+        'id' => $appointment->id,
+        'status' => AppointmentStatus::InProgress->value,
+    ]);
 });
