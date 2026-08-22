@@ -3,6 +3,7 @@
 namespace App\Notifications\Channels;
 
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
 use Kreait\Firebase\Exception\Messaging\NotFound;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification as FirebaseNotification;
@@ -18,6 +19,7 @@ class FcmChannel
         $tokens = $notifiable->deviceTokens()->pluck('fcm_token');
 
         if ($tokens->isEmpty()) {
+            Log::info('FCM: no device tokens', ['user_id' => $notifiable->id]);
             return;
         }
 
@@ -26,7 +28,7 @@ class FcmChannel
 
         foreach ($tokens as $token) {
             try {
-                $messaging->send(
+                $response = $messaging->send(
                     CloudMessage::withTarget('token', $token)
                         ->withNotification(FirebaseNotification::create(
                             $payload['title'],
@@ -47,11 +49,31 @@ class FcmChannel
                         ])
 
                 );
+
+                // Log successful send with the messaging response (message id)
+                Log::info('FCM: message sent', [
+                    'user_id' => $notifiable->id,
+                    'token' => $token,
+                    'message_id' => $response,
+                    'payload' => $payload,
+                ]);
             } catch (NotFound $e) {
+                // token no longer valid — remove from DB and log
+                Log::warning('FCM: token not found, deleting', [
+                    'user_id' => $notifiable->id,
+                    'token' => $token,
+                    'exception' => $e->getMessage(),
+                ]);
+
                 $notifiable->deviceTokens()->where('fcm_token', $token)->delete();
             } catch (\Throwable $e) {
-                // catches EVERYTHING else — timeouts, no internet, Firebase down, anything
-                // log it, but never let it crash the request
+                // Log failures, but don't let them crash the request
+                Log::error('FCM: send error', [
+                    'user_id' => $notifiable->id,
+                    'token' => $token,
+                    'exception' => $e->getMessage(),
+                ]);
+
                 report($e);
             }
         }
