@@ -9,7 +9,7 @@ use App\Http\Requests\Doctor\StartSessionRequest;
 use App\Http\Requests\Doctor\UpdateSessionRequest;
 use App\Models\Appointment;
 use App\Models\AppointmentSession;
-use App\Notifications\SessionStatusNotification;
+use App\Notifications\SessionStatusxication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
