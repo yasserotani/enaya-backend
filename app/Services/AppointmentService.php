@@ -13,6 +13,7 @@ use App\Notifications\NewAppointmentNotification;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class AppointmentService
@@ -147,13 +148,51 @@ class AppointmentService
             ]);
 
             $patient = Patient::findOrFail($patientId);
+
+            Log::info('Starting appointment notification flow', [
+                'appointment_id' => $appointment->id,
+                'doctor_id' => $doctor->id,
+                'patient_id' => $patient->id,
+                'scheduled_at' => $appointment->scheduled_at,
+            ]);
+
             if ($doctor->user) {
+                Log::info('Preparing doctor notification', [
+                    'appointment_id' => $appointment->id,
+                    'doctor_user_id' => $doctor->user->id,
+                ]);
                 $doctor->user->notify(new NewAppointmentNotification($appointment));
+                Log::info('Doctor notification sent', [
+                    'appointment_id' => $appointment->id,
+                    'doctor_user_id' => $doctor->user->id,
+                ]);
+            } else {
+                Log::warning('Doctor notification skipped: doctor user not found', [
+                    'appointment_id' => $appointment->id,
+                    'doctor_id' => $doctor->id,
+                ]);
             }
 
             if ($patient->user) {
+                Log::info('Preparing patient notification', [
+                    'appointment_id' => $appointment->id,
+                    'patient_user_id' => $patient->user->id,
+                ]);
                 $patient->user->notify(new NewAppointmentNotification($appointment));
+                Log::info('Patient notification sent', [
+                    'appointment_id' => $appointment->id,
+                    'patient_user_id' => $patient->user->id,
+                ]);
+            } else {
+                Log::warning('Patient notification skipped: patient user not found', [
+                    'appointment_id' => $appointment->id,
+                    'patient_id' => $patient->id,
+                ]);
             }
+
+            Log::info('Appointment notification flow completed', [
+                'appointment_id' => $appointment->id,
+            ]);
 
             return $appointment;
         });
