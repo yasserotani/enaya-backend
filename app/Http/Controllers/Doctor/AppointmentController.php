@@ -124,6 +124,24 @@ class AppointmentController extends Controller
         return response()->json(['success' => true, 'message' => 'Appointment confirmed.', 'data' => new AppointmentResource($appointment)]);
     }
 
+    public function markArrived(Request $request, Appointment $appointment)
+    {
+        abort_if($appointment->doctor_id !== $request->user()->doctor->id,
+            403, 'Not your appointment.');
+
+        if (! in_array($appointment->status, [AppointmentStatus::Scheduled, AppointmentStatus::Confirmed])) {
+            return response()->json(['success' => false, 'error' => 'Only scheduled or confirmed appointments can be marked arrived.'], 422);
+        }
+
+        $appointment->update(['status' => AppointmentStatus::Arrived]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Patient marked as arrived.',
+            'data' => new AppointmentResource($appointment),
+        ]);
+    }
+
     public function cancel(Request $request, Appointment $appointment)
     {
         abort_if(

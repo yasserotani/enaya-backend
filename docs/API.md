@@ -1722,6 +1722,24 @@ Confirm a scheduled appointment.
 }
 ```
 
+### Mark Patient Arrived
+
+`PATCH /api/doctor/appointments/{appointment}/arrived`
+
+Mark a scheduled or confirmed appointment as arrived.
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "message": "Patient marked as arrived.",
+    "data": {
+        ...
+    }
+}
+```
+
 ### Cancel Appointment
 
 `PATCH /api/doctor/appointments/{appointment}/cancel`
@@ -2079,6 +2097,33 @@ Remove prescription from session (only during active session).
 **Authorization:** `auth:sanctum` + `role:doctor`
 
 Base path: `/api/doctor`
+
+### List Departments
+
+`GET /api/doctor/departments`
+
+Retrieve a listing of all departments.
+
+**Authorization:** `auth:sanctum` + `role:doctor`
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "Cardiology"
+        },
+        {
+            "id": 2,
+            "name": "Pediatrics"
+        }
+    ],
+    "message": "Departments retrieved successfully."
+}
+```
 
 ### List Doctor's Patients
 

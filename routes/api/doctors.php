@@ -4,16 +4,19 @@ use App\Http\Controllers\Doctor\AppointmentController;
 use App\Http\Controllers\Doctor\AppointmentSessionController;
 use App\Http\Controllers\Doctor\PatientController;
 use App\Http\Controllers\Doctor\ProfileController;
+use App\Http\Controllers\Patient\DoctorController as PatientDoctorController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('doctor')->middleware(['auth:sanctum', 'role:doctor|receptionist'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::put('/profile/working-hours', [ProfileController::class, 'updateWorkingHours']);
+    Route::get('/departments', [PatientDoctorController::class, 'getDepartments']);
 
     Route::prefix('appointments')->group(function () {
         Route::get('/', [AppointmentController::class, 'index']);
         Route::get('/patients/{patient}/medical-record', [AppointmentController::class, 'medicalRecord']);
         Route::get('/{appointment}', [AppointmentController::class, 'show']);
+        Route::patch('/{appointment}/arrived', [AppointmentController::class, 'markArrived']);
         Route::patch('/{appointment}/cancel', [AppointmentController::class, 'cancel']);
         Route::patch('/{appointment}/no-show', [AppointmentController::class, 'markNoShow']);
         Route::patch('/{appointment}/confirm', [AppointmentController::class, 'confirm']);
