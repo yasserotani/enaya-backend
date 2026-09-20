@@ -13,7 +13,9 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
-
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+    ],
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],

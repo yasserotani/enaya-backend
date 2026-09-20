@@ -132,6 +132,47 @@ For patient accounts, check profile status via `GET /api/patients/profile`.
 - `401`: Email or password incorrect
 - `403`: Account has been deactivated
 
+### Google Login
+
+`POST /api/auth/google`
+
+Authenticate or create a patient account using a Google ID token.
+
+**Request:**
+
+```json
+{
+    "token": "google-id-token"
+}
+```
+
+**Response `200`:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "user": {
+            "id": 1,
+            "email": "user@gmail.com",
+            "username": "Google User",
+            "roleId": 3
+        },
+        "profileCompleted": false,
+        "token": "plain-text-sanctum-token",
+        "expiresAt": "2026-07-07T12:00:00.000000Z"
+    },
+    "error": null,
+    "errorCode": null
+}
+```
+
+**Error Responses:**
+
+- `401`: Invalid Google token or client ID mismatch
+- `403`: Account has been deactivated
+- `422`: Google account data is incomplete
+
 ### Current User
 
 `GET /api/auth/me`
