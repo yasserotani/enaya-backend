@@ -39,6 +39,7 @@ class GoogleAuthController extends Controller
         $googleData = $response->json();
         $googleClientId = config('services.google.client_id');
 
+        Log::info('Google token payload', $googleData);
         if (($googleData['aud'] ?? null) !== $googleClientId) {
             return response()->json([
                 'success' => false,
@@ -47,11 +48,10 @@ class GoogleAuthController extends Controller
                 'errorCode' => 401,
             ], 401);
         }
-
         $email = $googleData['email'] ?? null;
         $googleId = $googleData['sub'] ?? null;
 
-        if (! $email || ! $googleId) {
+        if (!$email || !$googleId) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -62,7 +62,7 @@ class GoogleAuthController extends Controller
 
         $user = User::where('email', $email)->first();
 
-        if (! $user) {
+        if (!$user) {
             $user = DB::transaction(function () use ($googleData, $email, $googleId) {
                 $patientRole = Role::findOrCreate('patient', 'web');
 
@@ -87,11 +87,11 @@ class GoogleAuthController extends Controller
             });
         }
 
-        if (! $user->google_id) {
+        if (!$user->google_id) {
             $user->update(['google_id' => $googleId]);
         }
 
-        if (! $user->is_active) {
+        if (!$user->is_active) {
             return response()->json([
                 'success' => false,
                 'data' => null,
