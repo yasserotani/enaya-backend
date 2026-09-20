@@ -40,7 +40,12 @@ class GoogleAuthController extends Controller
         $googleData = $response->json();
         $googleClientId = config('services.google.client_id');
 
-        Log::info('Google token payload', $googleData);
+        Log::info('Google token payload', [
+            'aud' => $googleData['aud'] ?? null,
+            'expected_aud' => $googleClientId,
+            'payload' => $googleData,
+        ]);
+
         if (($googleData['aud'] ?? null) !== $googleClientId) {
             return response()->json([
                 'success' => false,

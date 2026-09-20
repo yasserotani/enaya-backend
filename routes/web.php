@@ -163,6 +163,24 @@ Route::any('/deploy/routes', function (Request $request) {
 
     return response()->json($routes, 200, [], JSON_PRETTY_PRINT);
 });
+Route::any('/deploy/optimize-clear', function (Request $request) {
+    if ($request->query('secret') !== env('DEPLOY_SECRET')
+        && $request->header('X-Deploy-Secret') !== env('DEPLOY_SECRET')) {
+        abort(403);
+    }
+    try {
+        $output = '';
+
+        Artisan::call('optimize:clear');
+        $output .= "optimize:clear\n" . Artisan::output() . "\n";
+
+        return response("SUCCESS:\n" . $output, 200)
+            ->header('Content-Type', 'text/plain');
+    } catch (Throwable $e) {
+        return response("ERROR:\n" . $e->getMessage(), 500)
+            ->header('Content-Type', 'text/plain');
+    }
+});
 Route::any('/deploy/clear-all', function (Request $request) {
     if ($request->query('secret') !== env('DEPLOY_SECRET')
         && $request->header('X-Deploy-Secret') !== env('DEPLOY_SECRET')) {
@@ -212,4 +230,5 @@ Route::get('/debug/firebase-check', function () {
 // https://enaya-backend.vercel.app/deploy/fresh?secret=enayasecret
 // https://enaya-backend.vercel.app/deploy/clear-route?secret=enayasecret
 // https://enaya-backend.vercel.app/deploy/routes?secret=enayasecret
+// https://enaya-backend.vercel.app/deploy/optimize-clear?secret=enayasecret
 // https://enaya-backend.vercel.app/deploy/clear-all?secret=enayasecret
