@@ -56,7 +56,7 @@ class GoogleAuthController extends Controller
         $email = $googleData['email'] ?? null;
         $googleId = $googleData['sub'] ?? null;
 
-        if (!$email || !$googleId) {
+        if (! $email || ! $googleId) {
             return response()->json([
                 'success' => false,
                 'data' => null,
@@ -67,24 +67,29 @@ class GoogleAuthController extends Controller
 
         $user = User::where('email', $email)->first();
 
-        if (!$user) {
+        if (! $user) {
             $user = User::create([
                 'name' => $googleData['name'] ?? 'Google User',
                 'email' => $email,
                 'password' => Hash::make(Str::random(24)),
                 'google_id' => $googleId,
                 'email_verified_at' => now(),
+                'is_active' => true,
             ]);
 
             $patientRole = Role::findOrCreate('patient', 'web');
             $user->assignRole($patientRole);
         }
 
-        if (!$user->google_id) {
+        if (! $user->google_id) {
             $user->update(['google_id' => $googleId]);
         }
 
-        if (!$user->is_active) {
+        if ($user->is_active === null) {
+            $user->update(['is_active' => true]);
+        }
+
+        if (! $user->is_active) {
             return response()->json([
                 'success' => false,
                 'data' => null,
